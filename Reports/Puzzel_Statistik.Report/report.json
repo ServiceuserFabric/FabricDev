@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"type\":2,\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY26SU02",
+            "path": "BaseThemes/CY26SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Side 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "9527ab9467c3008d9e85",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"e3444a69e06940359255\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.17114914425428,\"y\":0,\"z\":0,\"width\":1269.8288508557457,\"height\":719.8044009779951,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"agents.master_full_name\",\"active\":true}],\"Values\":[{\"queryRef\":\"Sum(Agent_events_pause_durations.duration_seconds)\"}],\"Columns\":[{\"queryRef\":\"agent_events.pause_type_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a1\",\"Entity\":\"agents\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Agent_events_pause_durations\",\"Type\":0},{\"Name\":\"a2\",\"Entity\":\"agent_events\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"master_full_name\"},\"Name\":\"agents.master_full_name\",\"NativeReferenceName\":\"master_full_name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"duration_seconds\"}},\"Function\":0},\"Name\":\"Sum(Agent_events_pause_durations.duration_seconds)\",\"NativeReferenceName\":\"Sum af duration_seconds\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a2\"}},\"Property\":\"pause_type_name\"},\"Name\":\"agent_events.pause_type_name\",\"NativeReferenceName\":\"pause_type_name\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"name\":\"71a4a97c72eb0ddcab48\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Agent_events_pause_durations\"}},\"Property\":\"dte_start_date\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Agent_events_pause_durations\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Between\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"dte_start_date\"}},\"LowerBound\":{\"DateSpan\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"DateAdd\":{\"Expression\":{\"Now\":{}},\"Amount\":1,\"TimeUnit\":0}},\"Amount\":-1,\"TimeUnit\":0}},\"TimeUnit\":0}},\"UpperBound\":{\"DateSpan\":{\"Expression\":{\"Now\":{}},\"TimeUnit\":0}}}}}]},\"type\":\"RelativeDate\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 719.80,
+          "width": 1269.83,
+          "x": 10.17,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

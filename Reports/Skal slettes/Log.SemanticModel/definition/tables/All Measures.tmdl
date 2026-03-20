@@ -1,0 +1,117 @@
+table 'All Measures'
+	lineageTag: 02659c75-af57-4f2e-a0bd-c985a4d1083d
+
+	measure 'Antal Aktive Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Aktive")
+		formatString: #,0
+		lineageTag: 08639b64-d711-4626-8a7f-025ccd36a6fe
+
+	measure 'Antal Aktive Produkter' = Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="I brug")
+		formatString: #,0
+		lineageTag: 2c5058de-db8b-42ed-86bd-54c7147df39d
+
+		changedProperty = Name
+
+	measure 'Antal Churnede Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Churned")
+		formatString: #,0
+		lineageTag: 895d6e82-4e9e-497e-9bc4-2144b2b514fc
+
+	measure 'Antal Churnede Produkter' = Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="Deaktiveret")
+		formatString: #,0
+		lineageTag: 254dc0fb-108a-4b45-b3a6-9de946752e20
+
+		changedProperty = Name
+
+	measure 'Antal Kunder' = DISTINCTCOUNT('status'[KundeNO])
+		formatString: 0
+		lineageTag: ab628c74-a784-4988-9957-29a74e6e3ec4
+
+		changedProperty = Name
+
+	measure 'Antal Pending Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Pending")
+		formatString: 0
+		lineageTag: 1c8c2932-32e3-4e83-8eed-dfd4b9038d1f
+
+	measure 'Antal Pending Produkter' = ```
+			Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="Pending")
+			
+			```
+		formatString: 0
+		lineageTag: 67dc0ed0-2e82-4401-9ce9-d54dc8c9e39b
+
+		changedProperty = Name
+
+	measure 'Antal Produkter' = COUNT('status'[ProduktID])
+		formatString: #,0
+		lineageTag: d7cb69cb-06b6-4bb1-8d3a-90fb25245343
+
+		changedProperty = Name
+
+	measure 'Antal MedlemNr' = DISTINCTCOUNT('Customer'[memberNumber])
+		formatString: 0
+		lineageTag: 4ca31d39-9503-4499-b687-6c06499292e3
+
+	measure 'Antal NySalg' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[NySalg]="NySalg")
+		formatString: 0
+		lineageTag: fa6d1081-4fce-4155-9f6b-6ad158988516
+
+	measure 'Acc Aktive Customers' =
+			
+			VAR MaxEndDate = MAX('Kalendar'[Date])
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('status'[KundeNO]),
+			    'status'[Kunde_Status] = "Aktive",
+			    REMOVEFILTERS('Kalendar'),
+			    'Kalendar'[Date] <= MaxEndDate
+			)
+		formatString: 0
+		lineageTag: c0ea59e2-17d5-40f2-9e50-1b659529f1bb
+
+	measure 'Acc Churnede Customers' =
+			
+			VAR MaxEndDate = MAX('Kalendar'[Date])
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('status'[KundeNO]),
+			    'status'[Kunde_Status] = "Churned",
+			    REMOVEFILTERS('Kalendar'),
+			    'Kalendar'[Date] <= MaxEndDate
+			)
+		formatString: 0
+		lineageTag: 9fd82286-b9ef-4c6d-bbd7-294bcc45a95c
+
+	measure 'Acc Pending Customers' =
+			
+			VAR MaxEndDate = MAX('Kalendar'[Date])
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('status'[KundeNO]),
+			    'status'[Kunde_Status] = "Pending",
+			    REMOVEFILTERS('Kalendar'),
+			    'Kalendar'[Date] <= MaxEndDate
+			)
+		formatString: 0
+		lineageTag: b761759b-fe6a-428e-bdfb-8dd104e18cf0
+
+	column Measures
+		dataType: string
+		isHidden
+		lineageTag: 62108bb9-bccb-48d6-be61-b76abfa9f2b5
+		summarizeBy: none
+		sourceColumn: Measures
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'All Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Measures = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Measures", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

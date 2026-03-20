@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Salgsafdeling"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "791444c6-a983-9591-4e43-3e52f616bb68"
+  }
+}

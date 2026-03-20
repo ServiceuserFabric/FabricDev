@@ -1,0 +1,191 @@
+table Customer
+	lineageTag: 0779cccb-eb63-4993-8a38-365ee99890b3
+	sourceLineageTag: 94df1b23-063e-40f3-af7f-6b71b811e26f
+
+	column AccCustGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 66fe53b8-28a2-46f4-bccd-fec4fd96f42e
+		sourceLineageTag: 63a8dc66-b48e-4045-ab66-b11c957e8cd2
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: AccCustGroupKey
+
+		annotation SummarizationSetBy = User
+
+	column accounts_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1048b8a5-5279-4f7c-9140-c91cb2f82b4e
+		sourceLineageTag: 56d7ba4a-c3eb-4446-a740-446e046cde87
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: accounts_id
+
+		annotation SummarizationSetBy = User
+
+	column accounts_invoiceBy
+		dataType: string
+		lineageTag: 3bffeb95-3e17-467a-908d-b932d48659cc
+		sourceLineageTag: 11392e46-5458-4d28-b092-4137bf08ecba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: accounts_invoiceBy
+
+		annotation SummarizationSetBy = User
+
+	column accounts_mobilepayTicket
+		dataType: string
+		lineageTag: 9b8d4e44-ced4-443e-95f9-dff6290ee953
+		sourceLineageTag: 69c76927-224b-4269-8478-d2f934df514d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: accounts_mobilepayTicket
+
+		annotation SummarizationSetBy = User
+
+	column accounts_modified
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7842ccba-6b77-47e0-aa59-99ac3485ca00
+		sourceLineageTag: 74644dbf-320c-4b3e-9e89-ecc14ded1e72
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: accounts_modified
+
+		variation Variation
+			isDefault
+			relationship: d718e756-5906-47fc-9214-0d53165b3253
+			defaultHierarchy: LocalDateTable_7f793165-82c9-4de8-89d2-3be658c82e73.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column address
+		dataType: string
+		lineageTag: ff1960fd-aba9-4860-b452-28e8bc8287e3
+		sourceLineageTag: b498e081-55ad-470b-8aad-99c976e7c76b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = User
+
+	column country
+		dataType: string
+		lineageTag: 152263f7-339e-4414-978b-8592656d092d
+		sourceLineageTag: c7b819a8-33fa-4d99-bd08-80d8d9e90f15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = User
+
+	column customAttributes_internalsaleinitials
+		dataType: string
+		lineageTag: 64008c77-f88f-459d-852a-cd7520054be8
+		sourceLineageTag: baf9eb82-512b-421d-93e4-d4486387241d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: customAttributes_internalsaleinitials
+
+		annotation SummarizationSetBy = User
+
+	column customerGroupKey
+		dataType: string
+		lineageTag: e3fb7b44-9af7-463a-8efe-34bf3c1f0a49
+		sourceLineageTag: 981001f9-ff9a-4997-865b-3795d88a6a1a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: customerGroupKey
+
+		annotation SummarizationSetBy = User
+
+	column endDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 57386e3b-ddb4-4c29-bc40-dba3623c39e0
+		sourceLineageTag: b3aa6210-54a1-4ff5-9c1b-430a7a70380d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: endDate
+
+		variation Variation
+			isDefault
+			relationship: 6dea3f3d-8749-4e72-a1a5-750f838ef584
+			defaultHierarchy: LocalDateTable_a60a4bac-5e2f-4fe9-af59-a2d88be881cb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column memberNumber
+		dataType: string
+		lineageTag: 669d1938-6482-419f-b07d-9fd4ea57f213
+		sourceLineageTag: 90720e60-e2b2-43bb-8ca2-24dc67cdce11
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: memberNumber
+
+		annotation SummarizationSetBy = User
+
+	column name
+		dataType: string
+		lineageTag: 0cc91841-e859-4662-98af-64ab63acfd25
+		sourceLineageTag: 25164849-badb-4920-9daa-51e74dc12c38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = User
+
+	column startDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3375f55b-ee54-4af9-80e1-ed2483bdf355
+		sourceLineageTag: 38ad83dd-d534-4dc5-a239-ab55e962b6f7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: startDate
+
+		variation Variation
+			isDefault
+			relationship: 17c4797e-5e6d-4bf1-8007-a63a8bad5473
+			defaultHierarchy: LocalDateTable_31900d35-da3c-4e23-b583-d5af6d7599f8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Zip
+		dataType: int64
+		formatString: 0
+		lineageTag: 633e1df2-19e2-4047-8dfc-5ca1aa80e5ad
+		sourceLineageTag: 8a77ac50-a8d3-460b-949b-ffcaa53c5f85
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = User
+
+	column City
+		dataType: string
+		lineageTag: fd1c504f-62d6-4481-a2a1-744808d19133
+		sourceLineageTag: a44c7446-0528-4562-8811-c631b3bc647a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = User
+
+	column SalgVia
+		dataType: string
+		lineageTag: d08fc886-500d-4d1b-b288-30ff8a4143af
+		sourceLineageTag: 458a7d80-5053-4f6d-b398-836688d5aafe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SalgVia
+
+		annotation SummarizationSetBy = User
+
+	partition Customer = entity
+		mode: directQuery
+		source
+			entityName: Customer
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+

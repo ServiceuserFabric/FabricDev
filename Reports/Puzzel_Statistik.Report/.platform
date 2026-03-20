@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Puzzel_Statistik"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "79ea1aaf-3754-bffb-40ce-1385702a9d73"
+  }
+}

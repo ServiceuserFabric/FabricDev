@@ -1,0 +1,123 @@
+table Realiseret_vs_Budget_Dagligt_
+	isHidden
+	lineageTag: 83c49ab5-a70f-4f30-828a-3e43e50e184a
+	sourceLineageTag: c7e70191-1b53-4e70-8341-5649a51c6ccd
+
+	measure 'Antal Kunder Budgeteret' = sum('Realiseret_vs_Budget_Dagligt_'[Antal_Kunder_Budget])
+		formatString: 0
+		isHidden
+		lineageTag: faa2f0d9-52fd-4763-8e09-bd2d630dd988
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure 'Antal Kunder Realiseret_' = SUM(Realiseret_vs_Budget_Dagligt_[Antal_Kunder_Realiseret])
+		formatString: 0
+		isHidden
+		lineageTag: 51607336-7779-4087-a45b-539dc76175ea
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure Procent =
+			
+			DIVIDE([Antal Kunder Realiseret_], [Antal Kunder Budgeteret])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		isHidden
+		lineageTag: c68d996e-5b02-4b1a-86b1-0f0ece3f4133
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	column MyImage = ```
+			
+			 IF([Procent]>=.1, "https://www.freepnglogos.com/uploads/thumbs-up-png/thumbs-up-clipart-in-green-circle-33.png", "https://th.bing.com/th/id/R.64a757936cad9cdd2300d1a98137e24c?rik=cYq9SSsipwpYcw&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2f9Tp%2f65e%2f9Tp65ezLc.png&ehk=qkCBZshYFz0alMVhvEXvN%2bEaybJvz6M8mCIXxeVSodc%3d&risl=&pid=ImgRaw&r=0)"
+			)
+			```
+		isHidden
+		lineageTag: a440874b-581f-4829-bce4-aaf916b59566
+		summarizeBy: none
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be4bd9b9-4893-42ee-b634-f185b55ccf69
+		sourceLineageTag: 730bb969-2c47-46db-859a-8cab0214f4ca
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 176eede9-c234-44ec-8e21-af26e5f64d3e
+			defaultHierarchy: LocalDateTable_891bcfd7-f638-429f-87e7-446303c39376.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Periode
+		dataType: string
+		lineageTag: 6e1ed606-5564-4efe-8301-0e978dabf67c
+		sourceLineageTag: f3602c81-145f-458b-9c86-85c202f0f498
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Periode
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: 1106a061-957f-4175-b7da-69a514063ab5
+		sourceLineageTag: bc62abae-5378-450e-a1d5-9defa1bbb0d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d1851a9-6bb9-4f08-be12-9779dea60e01
+		sourceLineageTag: 05a7c610-b930-46f2-9d26-60e2da4cceb0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: e6c76fb4-dc14-471d-ad3b-059172040ef7
+		sourceLineageTag: 8d3ebd8d-5e22-46b3-a0a4-00fee6a41157
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = User
+
+	partition Realiseret_vs_Budget_Dagligt_ = entity
+		mode: directQuery
+		source
+			entityName: Realiseret_vs_Budget_Dagligt_
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+
+	changedProperty = IsHidden
+

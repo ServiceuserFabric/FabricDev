@@ -1,0 +1,93 @@
+table Kalendar
+	lineageTag: 9571ec09-47d6-468d-9b0a-521020b4fa49
+
+	column Date
+		formatString: Short Date
+		lineageTag: b85fdf39-0edd-4300-a3f1-f18a03ae373e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 33a007be-32d8-4ffc-bb66-63841832319d
+			defaultHierarchy: LocalDateTable_92472825-2b59-4991-ab98-707466ce23dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: a2ed0fbf-7240-402a-8786-d06c258ab98e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: 0
+		lineageTag: 4fe54f3f-ed10-4d57-8766-e36841c9704f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: 24828eb2-e479-4ff2-97d4-a89ad114646e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: c1df35fd-0370-47a8-a6db-cc31debe59f8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 107f77bc-10e5-424a-993c-f69caef47e18
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Year Hierarchy'
+		lineageTag: 8320aca1-c88d-4bc5-8a2b-25b8515a9cb3
+
+		level Year
+			lineageTag: 56a91d83-d68a-4dad-b648-1b25e64ca498
+			column: Year
+
+		level MonthName
+			lineageTag: 46f676d6-0e10-4700-8567-bbfa6227d214
+			column: MonthName
+
+		level Date
+			lineageTag: 94188006-fc4f-4350-9102-72af3758495a
+			column: Date
+
+	partition Kalendar = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2024, 05, 01), DATE(2025, 12, 31)),
+				    "Year", YEAR([Date]),
+				    "Month", MONTH([Date]),
+				    "Day", DAY([Date]),
+				    "MonthName", FORMAT([Date], "MMMM"),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+				
+				```
+
+	annotation PBI_Id = 2742359d517d45aba0feed2c503073d3
+

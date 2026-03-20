@@ -1,0 +1,64 @@
+table Realiseret_vs_Budget_Dagligt_
+	isHidden
+	lineageTag: 83c49ab5-a70f-4f30-828a-3e43e50e184a
+
+	measure 'Antal Kunder Budgeteret' = sum('Realiseret_vs_Budget_Dagligt_'[Antal_Kunder_Budget])
+		formatString: 0
+		isHidden
+		lineageTag: faa2f0d9-52fd-4763-8e09-bd2d630dd988
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure 'Antal Kunder Realiseret_' = SUM(Realiseret_vs_Budget_Dagligt_[Antal_Kunder_Realiseret])
+		formatString: 0
+		isHidden
+		lineageTag: 51607336-7779-4087-a45b-539dc76175ea
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure Procent =
+			
+			DIVIDE([Antal Kunder Realiseret_], [Antal Kunder Budgeteret])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		isHidden
+		lineageTag: c68d996e-5b02-4b1a-86b1-0f0ece3f4133
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	column MyImage = ```
+			
+			 IF([Procent]>=.1, "https://www.freepnglogos.com/uploads/thumbs-up-png/thumbs-up-clipart-in-green-circle-33.png", "https://th.bing.com/th/id/R.64a757936cad9cdd2300d1a98137e24c?rik=cYq9SSsipwpYcw&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2f9Tp%2f65e%2f9Tp65ezLc.png&ehk=qkCBZshYFz0alMVhvEXvN%2bEaybJvz6M8mCIXxeVSodc%3d&risl=&pid=ImgRaw&r=0)"
+			)
+			```
+		isHidden
+		lineageTag: a440874b-581f-4829-bce4-aaf916b59566
+		summarizeBy: none
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Realiseret_vs_Budget_Dagligt_ = entity
+		mode: directQuery
+		source
+			entityName: Realiseret_vs_Budget_Dagligt_
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+
+	changedProperty = IsHidden
+

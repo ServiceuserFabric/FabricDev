@@ -1,0 +1,5 @@
+{
+  "explorationState": "{\"version\":\"1.8\",\"activeSection\":\"\",\"sections\":{\"ReportSection654af56f1b7a32eb3090\":{\"visualContainers\":{\"7d7d8263c385cee30433\":{\"singleVisual\":{\"visualType\":\"map\",\"mobileObjects\":{\"mapControls\":[{\"properties\":{\"autoZoom\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showZoomButtons\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"centerLatitude\":{\"expr\":{\"Literal\":{\"Value\":\"55.98329325659067D\"}}},\"centerLongitude\":{\"expr\":{\"Literal\":{\"Value\":\"12.352672242247094D\"}}},\"zoomLevel\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}},\"showLassoButton\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}}}}}",
+  "objectId": "",
+  "type": 4
+}

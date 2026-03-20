@@ -1,0 +1,46 @@
+table 'Status Measure'
+	lineageTag: a9fe8b47-07d4-4d85-a258-8ef1215464c8
+
+	measure 'Selected Kunde Status' =
+			
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE('Status Measure'[Status]) = "Aktive", [Antal Aktive Kunder],
+			    SELECTEDVALUE('Status Measure'[Status]) = "Pending", [Antal Pending Kunder],
+			    SELECTEDVALUE('Status Measure'[Status]) = "Churned", [Antal Churned Kunder],
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 0c947425-a109-4f52-871c-8d2cdd9dfbea
+
+	measure 'Selected Produkt Status' =
+			
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE('Status Measure'[Status]) = "Aktive", [Antal Aktive Produkter],
+			    SELECTEDVALUE('Status Measure'[Status]) = "Pending", [Antal Pending Produkter],
+			    SELECTEDVALUE('Status Measure'[Status]) = "Churned", [Antal Churned Produkter],
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 427ced88-6a4b-4683-9c81-a4ee982e5f4f
+
+	column Status
+		lineageTag: e1352198-9c8f-42dd-a62e-baee3208c3f1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Status Measure' = calculated
+		mode: import
+		source =
+				UNION(
+				    ROW("Status", "Pending"),
+				    ROW("Status", "Aktive"),
+				    ROW("Status", "Churned")
+				)
+
+	annotation PBI_Id = 0f530b05f8a34c9f9d5ca5189f73af0c
+

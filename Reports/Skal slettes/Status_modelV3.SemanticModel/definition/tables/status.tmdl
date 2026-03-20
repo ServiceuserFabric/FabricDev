@@ -1,0 +1,242 @@
+table status
+	lineageTag: 51917b52-5a37-4e37-a66c-c29fda607779
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 15
+		incrementalGranularity: day
+		incrementalPeriods: 3
+		sourceExpression =
+			let
+			    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+			    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+			    dbo_status = Golden_lakehouse{[Schema="dbo", Item="status"]}[Data],
+			    #"Changed Type" = Table.TransformColumnTypes(dbo_status,{{"Dato", type datetime}}),
+			
+			    // Filtrér rækker baseret på Dato-kolonnen og dine RangeStart/RangeEnd-parametre
+			    FilteredRows = Table.SelectRows(
+			        #"Changed Type",
+			        each [Dato] >= RangeStart and [Dato] < RangeEnd
+			    ),
+			    #"Changed Type1" = Table.TransformColumnTypes(FilteredRows,{{"Dato", type date}})
+			in
+			    #"Changed Type1"
+
+	column hasBeenBilledOnce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c9dce2b1-883b-4fa3-967b-dba3439fd121
+		summarizeBy: none
+		sourceColumn: hasBeenBilledOnce
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kunde_Status
+		dataType: string
+		lineageTag: cfb3fa3b-3034-49d0-85b2-88ba62c875a6
+		summarizeBy: none
+		sourceColumn: Kunde_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 21e061ae-c1bd-4e11-b72e-a64b9514bea6
+		summarizeBy: none
+		sourceColumn: startDate
+
+		variation Variation
+			isDefault
+			relationship: daa430f8-f493-48b2-8c88-6412a7e98e62
+			defaultHierarchy: LocalDateTable_e9639056-9351-4a17-8caa-f2881091dd60.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 963e393c-80e5-48a3-b342-6a3434f4bb8f
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 0ae6fa6d-3434-4bcf-bf20-67d638391739
+			defaultHierarchy: LocalDateTable_fbf7063b-e8ce-4ee6-9545-b5574a8beb41.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Partner
+		dataType: string
+		lineageTag: 4d91a02b-14b5-4774-9d9c-1350c8a6fe9f
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produkt_Status
+		dataType: string
+		lineageTag: d535d2da-b30c-4ac2-b2c9-4956677cc3aa
+		summarizeBy: none
+		sourceColumn: Produkt_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column KundeNO
+		dataType: string
+		lineageTag: b8ba8eca-cae5-4a94-85ad-76f83cea73a7
+		summarizeBy: none
+		sourceColumn: KundeNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e6592a1-bc80-4a47-a55a-f47ffc3d94af
+		summarizeBy: none
+		sourceColumn: accountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: ac760a6f-ad1e-4395-b368-ccad009f8586
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b85e9dc1-95ea-4996-9e8b-2153e03fc6e2
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		variation Variation
+			isDefault
+			relationship: 5c4915ca-6e61-4660-a451-bab8dc684669
+			defaultHierarchy: LocalDateTable_499f3ab6-f168-4bc6-b600-df646ce0b10f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column modifiedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8daeb144-feb8-464b-b809-4f2f17ecdf94
+		summarizeBy: none
+		sourceColumn: modifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 4fe21923-e70b-4593-8867-e838015223bf
+			defaultHierarchy: LocalDateTable_ab919326-cc64-4b52-bd7b-6cdb88510e64.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column activeProvisioning
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 305e8538-eeda-414f-9f91-73c47286b712
+		summarizeBy: none
+		sourceColumn: activeProvisioning
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduktID
+		dataType: int64
+		formatString: 0
+		lineageTag: 26bb7ae5-9579-4491-a38d-438c98e8249f
+		summarizeBy: none
+		sourceColumn: ProduktID
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 46f7d814-94c5-4ad9-8c06-09699247edaa
+		summarizeBy: none
+		sourceColumn: endDate
+
+		variation Variation
+			isDefault
+			relationship: 196336c8-7ce1-4704-a113-2a3e0c83ea49
+			defaultHierarchy: LocalDateTable_d4783459-250a-4bf9-bc5d-0b096b3ebcbf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column NySalg
+		dataType: string
+		lineageTag: 4b73e957-369f-4618-85d6-ddc8d0fac7a6
+		summarizeBy: none
+		sourceColumn: NySalg
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3df2dfa1-6f5a-43cd-a684-8a9c73eacb16
+		summarizeBy: none
+		sourceColumn: orderedDate
+
+		variation Variation
+			isDefault
+			relationship: 452e67b7-27a6-4387-935b-69cd9d94c55d
+			defaultHierarchy: LocalDateTable_dcb36131-7551-419a-b326-57ab42cf0f69.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: acfb1fed-2842-4f57-984d-106815bda7a9
+		summarizeBy: none
+		sourceColumn: orderedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 6c174ea8-4bf0-4201-92da-2fe1b2a13d62
+			defaultHierarchy: LocalDateTable_986976a4-bdbc-4667-8626-f3ae69747d36.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition status = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_status = Golden_lakehouse{[Schema="dbo", Item="status"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dbo_status,{{"Dato", type datetime}}),
+				
+				    // Filtrér rækker baseret på Dato-kolonnen og dine RangeStart/RangeEnd-parametre
+				    FilteredRows = Table.SelectRows(
+				        #"Changed Type",
+				        each [Dato] >= RangeStart and [Dato] < RangeEnd
+				    ),
+				    #"Changed Type1" = Table.TransformColumnTypes(FilteredRows,{{"Dato", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_IsMQueryFoldable = True
+

@@ -1,0 +1,99 @@
+table Kalendar
+	lineageTag: 1549b095-7502-4373-bb9f-998486bf8349
+
+	column Date
+		isHidden
+		formatString: Short Date
+		lineageTag: 924f845a-10ae-42a7-8b1d-a031a9cf12be
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 3b45c14d-9e93-408d-a544-64d0b8e2c1c0
+			defaultHierarchy: LocalDateTable_a4aa847c-a6bc-4e59-80e5-e001b2d8e8ca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		isHidden
+		formatString: 0
+		lineageTag: e0e54949-b603-4f5d-af7e-98d39193a569
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		isHidden
+		formatString: 0
+		lineageTag: 453649d2-8dfe-4c2c-98bb-c7e0e409426a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		isHidden
+		formatString: 0
+		lineageTag: 32ea3bb4-353e-42de-b004-c6407f2df239
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		isHidden
+		lineageTag: 0ff82002-97a0-4153-aa6b-8b73455f061b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		isHidden
+		lineageTag: 98a54bc9-7a4e-4a2a-982b-f8d40b62138d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy Bestilingsdato
+		lineageTag: 344675d7-cec4-48c3-927f-059df93ba1c1
+
+		level Year
+			lineageTag: 85da33ca-c573-4644-880a-1e597e90e4fb
+			column: Year
+
+		level MonthName
+			lineageTag: 2a9f2076-9421-48ad-a9ce-5d4b4fee6851
+			column: MonthName
+
+		level Date
+			lineageTag: e0c60f32-157c-4842-aec3-da69fbc9904d
+			column: Date
+
+	partition Kalendar = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2024, 05, 01), DATE(2025, 12, 31)),
+				    "Year", YEAR([Date]),
+				    "Month", MONTH([Date]),
+				    "Day", DAY([Date]),
+				    "MonthName", FORMAT([Date], "MMMM"),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+				
+				```
+
+	annotation PBI_Id = da73128ed70f41769a31bce044c24a6f
+

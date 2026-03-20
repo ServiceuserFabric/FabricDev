@@ -1,0 +1,77 @@
+relationship daa430f8-f493-48b2-8c88-6412a7e98e62
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.startDate
+	toColumn: LocalDateTable_e9639056-9351-4a17-8caa-f2881091dd60.Date
+
+relationship 0ae6fa6d-3434-4bcf-bf20-67d638391739
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.Dato
+	toColumn: LocalDateTable_fbf7063b-e8ce-4ee6-9545-b5574a8beb41.Date
+
+relationship 5c4915ca-6e61-4660-a451-bab8dc684669
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.createdDate
+	toColumn: LocalDateTable_499f3ab6-f168-4bc6-b600-df646ce0b10f.Date
+
+relationship 4fe21923-e70b-4593-8867-e838015223bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.modifiedDate
+	toColumn: LocalDateTable_ab919326-cc64-4b52-bd7b-6cdb88510e64.Date
+
+relationship 196336c8-7ce1-4704-a113-2a3e0c83ea49
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.endDate
+	toColumn: LocalDateTable_d4783459-250a-4bf9-bc5d-0b096b3ebcbf.Date
+
+relationship 452e67b7-27a6-4387-935b-69cd9d94c55d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.orderedDate
+	toColumn: LocalDateTable_dcb36131-7551-419a-b326-57ab42cf0f69.Date
+
+relationship 6c174ea8-4bf0-4201-92da-2fe1b2a13d62
+	joinOnDateBehavior: datePartOnly
+	fromColumn: status.orderedDateTime
+	toColumn: LocalDateTable_986976a4-bdbc-4667-8626-f3ae69747d36.Date
+
+relationship 8dd082e1-9bba-450f-b5c4-9f6aef0a5844
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Realiseret_vs_Budget.Dato
+	toColumn: LocalDateTable_7fe4b3dc-9f6f-4888-87ef-8f17f521a449.Date
+
+relationship 723b4183-8527-4f29-aba3-56ef1bd2c5c5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Realiseret_vs_Budget.Periode
+	toColumn: LocalDateTable_75aead4b-ceeb-40f6-ae6d-a73003d11a7b.Date
+
+relationship e19391b4-0f53-484c-87be-2ff7c648d24b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.accounts_modified
+	toColumn: LocalDateTable_6b734bbc-45d3-47f8-ab9b-5ea36a30935c.Date
+
+relationship 1bd197f6-a51b-403d-ad56-6ddd52e120fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.endDate
+	toColumn: LocalDateTable_a9a223b4-0a45-4060-a4e7-00a5200c5321.Date
+
+relationship 187702ed-c70e-4094-8882-66d0903a2bd8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.startDate
+	toColumn: LocalDateTable_9fa4afc7-f716-452b-b0b5-0e944af95da4.Date
+
+relationship 6b79069f-0271-9b1a-e28f-fd3b42cb7563
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship fefc2c95-c700-f578-f6c9-d1c498b68c0f
+	toCardinality: many
+	fromColumn: status.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 6b499d97-bbcf-5d71-96ff-558ca4702a41
+	fromColumn: status.Partner
+	toColumn: IO.key
+
+relationship ab83df51-485d-b3ae-f718-285c7a82d8d5
+	fromColumn: status.ProduktID
+	toColumn: Product_config.id
+

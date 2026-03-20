@@ -1,0 +1,170 @@
+table Customer
+	lineageTag: 94df1b23-063e-40f3-af7f-6b71b811e26f
+
+	column AccCustGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 63a8dc66-b48e-4045-ab66-b11c957e8cd2
+		summarizeBy: count
+		sourceColumn: AccCustGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 56d7ba4a-c3eb-4446-a740-446e046cde87
+		summarizeBy: none
+		sourceColumn: accounts_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_invoiceBy
+		dataType: string
+		lineageTag: 11392e46-5458-4d28-b092-4137bf08ecba
+		summarizeBy: none
+		sourceColumn: accounts_invoiceBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_mobilepayTicket
+		dataType: string
+		lineageTag: 69c76927-224b-4269-8478-d2f934df514d
+		summarizeBy: none
+		sourceColumn: accounts_mobilepayTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_modified
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 74644dbf-320c-4b3e-9e89-ecc14ded1e72
+		summarizeBy: none
+		sourceColumn: accounts_modified
+
+		variation Variation
+			isDefault
+			relationship: ca524211-6490-4bfa-a147-3c560d4a479b
+			defaultHierarchy: LocalDateTable_7f793165-82c9-4de8-89d2-3be658c82e73.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column address
+		dataType: string
+		lineageTag: b498e081-55ad-470b-8aad-99c976e7c76b
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: c7b819a8-33fa-4d99-bd08-80d8d9e90f15
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column customAttributes_internalsaleinitials
+		dataType: string
+		lineageTag: baf9eb82-512b-421d-93e4-d4486387241d
+		summarizeBy: none
+		sourceColumn: customAttributes_internalsaleinitials
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerGroupKey
+		dataType: string
+		lineageTag: 981001f9-ff9a-4997-865b-3795d88a6a1a
+		summarizeBy: none
+		sourceColumn: customerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3aa6210-54a1-4ff5-9c1b-430a7a70380d
+		summarizeBy: none
+		sourceColumn: endDate
+
+		variation Variation
+			isDefault
+			relationship: 594db7c0-8fa6-4097-bd96-f85bde188ddc
+			defaultHierarchy: LocalDateTable_a60a4bac-5e2f-4fe9-af59-a2d88be881cb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column memberNumber
+		dataType: string
+		lineageTag: 90720e60-e2b2-43bb-8ca2-24dc67cdce11
+		summarizeBy: none
+		sourceColumn: memberNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 25164849-badb-4920-9daa-51e74dc12c38
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 38ad83dd-d534-4dc5-a239-ab55e962b6f7
+		summarizeBy: none
+		sourceColumn: startDate
+
+		variation Variation
+			isDefault
+			relationship: 29ae5b19-2a6c-4338-8f39-5d0536e62727
+			defaultHierarchy: LocalDateTable_31900d35-da3c-4e23-b583-d5af6d7599f8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Zip
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a77ac50-a8d3-460b-949b-ffcaa53c5f85
+		summarizeBy: sum
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: a44c7446-0528-4562-8811-c631b3bc647a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalgVia
+		dataType: string
+		lineageTag: 458a7d80-5053-4f6d-b398-836688d5aafe
+		summarizeBy: none
+		sourceColumn: SalgVia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_Customer = Golden_lakehouse{[Schema="dbo",Item="Customer"]}[Data]
+				in
+				    dbo_Customer
+
+	annotation PBI_ResultType = Table
+

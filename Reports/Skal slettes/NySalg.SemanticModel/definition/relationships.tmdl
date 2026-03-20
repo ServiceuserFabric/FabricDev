@@ -1,0 +1,66 @@
+relationship 16a27cdf-c024-4545-9a90-e7589b0ceb67
+	fromColumn: Status_I_dag_.Dato
+	toColumn: LocalDateTable_eb7c6dc6-0975-411a-95f1-8e7bc396c9a1.Date
+
+relationship 609a17a7-1fc0-4bef-955a-0a5fff06e708
+	fromColumn: Status_I_dag_.orderedDate
+	toColumn: LocalDateTable_d939a60d-de76-432d-9466-f3d2041ad7e8.Date
+
+relationship 365ebab3-59b1-480a-9945-29a0a214f692
+	fromColumn: Status_I_dag_.orderedDateTime
+	toColumn: LocalDateTable_d93600f1-14c3-442b-b5a9-190af0470c29.Date
+
+relationship be38c046-4e80-4ff0-9df9-68bb6c194f95
+	fromColumn: Status_I_dag_.startDate
+	toColumn: LocalDateTable_02c1a297-7e3b-4f67-8b02-3352beecd6ec.Date
+
+relationship 5ed82f03-815d-43c4-83f1-05cba05f3c40
+	fromColumn: Status_I_dag_.endDate
+	toColumn: LocalDateTable_4dd12603-e323-4e1e-a4ef-5cfa30fa8eb2.Date
+
+relationship 6298e011-bc28-45a9-872e-d18ac3f04d84
+	fromColumn: Status_I_dag_.createdDate
+	toColumn: LocalDateTable_633f4234-7afe-44e4-9316-5aec4d759c07.Date
+
+relationship ef07a6a1-7850-4484-9b10-8a1801cb5647
+	fromColumn: Status_I_dag_.modifiedDate
+	toColumn: LocalDateTable_3883417b-547f-4cc7-9904-2a5adfb08623.Date
+
+relationship 0816f8db-4474-4ded-b71d-1bb393fb7a3b
+	toCardinality: many
+	fromColumn: Status_I_dag_.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 09c50507-bef1-4696-86c1-4e89656f5795
+	fromColumn: Status_I_dag_.Partner
+	toColumn: IO.id
+
+relationship 1ac8c064-e4bf-4366-bcf1-92b3602736f5
+	fromColumn: Status_I_dag_.ProduktID
+	toColumn: Product_config.id
+
+relationship 6eeeae60-f3a2-41c0-a40b-582be95642ac
+	fromColumn: 'Realiseret_vs_Budget_Dagligt_ 2'.Dato
+	toColumn: LocalDateTable_891bcfd7-f638-429f-87e7-446303c39376.Date
+
+relationship f0f28a5e-4d91-4da8-b4c2-a0b026df60d3
+	fromColumn: Customer.accounts_modified
+	toColumn: LocalDateTable_7f793165-82c9-4de8-89d2-3be658c82e73.Date
+
+relationship 03433063-7cf6-40f5-b1dd-a7b805260aa5
+	fromColumn: Customer.endDate
+	toColumn: LocalDateTable_a60a4bac-5e2f-4fe9-af59-a2d88be881cb.Date
+
+relationship e3bf514f-3a09-409f-8a0e-02baca576d6b
+	fromColumn: Customer.startDate
+	toColumn: LocalDateTable_31900d35-da3c-4e23-b583-d5af6d7599f8.Date
+
+relationship 3b0516c3-d4d7-470c-bdb6-13b04590037b
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship 416ff75e-0d30-6cd4-829f-d5c915fd9fe1
+	securityFilteringBehavior: none
+	fromColumn: Status_I_dag_.orderedDate
+	toColumn: Kalendar.Date
+

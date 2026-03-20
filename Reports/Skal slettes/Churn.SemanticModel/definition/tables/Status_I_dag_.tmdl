@@ -1,0 +1,228 @@
+table Status_I_dag_
+	lineageTag: a8ca4ed9-bf9b-4cf7-8697-5390a2ab1fb4
+	sourceLineageTag: c0269e21-ca9c-4cd2-a56c-b6b72234fbcc
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b23d62e-a841-4e7e-bb8b-f7bd50c0ec2a
+		sourceLineageTag: e14c1ec2-d66f-4bd0-9962-5846e2589de1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eb579aca-62c8-4010-9061-9f6ddcae2e9d
+		sourceLineageTag: f351d4af-56f4-4e71-b404-749e07bba168
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: ce9fdaab-2c99-4c68-82e4-40bcef710b5d
+			defaultHierarchy: LocalDateTable_eb7c6dc6-0975-411a-95f1-8e7bc396c9a1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column accountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a29aa64a-82c4-45fc-a604-fe2ba7ba30e5
+		sourceLineageTag: de165325-ecb4-4129-b688-298ce031b00a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: accountKey
+
+		annotation SummarizationSetBy = User
+
+	column KundeNO
+		dataType: string
+		lineageTag: 2438f88f-aea4-4d97-afa1-de79b4fc04d8
+		sourceLineageTag: 420356ee-9bad-4c37-b268-1aa8bf0fad4b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: KundeNO
+
+		annotation SummarizationSetBy = User
+
+	column ProduktID
+		dataType: int64
+		formatString: 0
+		lineageTag: bdfe7f47-e48a-40a5-8eea-d0a8b09b7452
+		sourceLineageTag: 49fe27cc-4fb9-40c2-9d3d-f1b01d01d898
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ProduktID
+
+		annotation SummarizationSetBy = User
+
+	column activeProvisioning
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6fa8536b-36d1-43ed-8b11-185427e0040c
+		sourceLineageTag: dc499c2b-0b44-4ad7-8296-fa4d6c8ea547
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: activeProvisioning
+
+		annotation SummarizationSetBy = User
+
+	column hasBeenBilledOnce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 040e12f9-f84c-4793-aa46-998de78cc38d
+		sourceLineageTag: 342d73a2-5d3b-4921-926c-bc40a65d16b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: hasBeenBilledOnce
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: 6d46572c-02d8-4dd5-99fa-3ff0feb46725
+		sourceLineageTag: 8b5dfdf2-56f4-47d6-914d-e26024675533
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Kunde_Status
+		dataType: string
+		lineageTag: cc4a4671-3728-40e8-b57f-8c41452e785f
+		sourceLineageTag: 2afef526-6096-4f96-8431-ed70cbd41d78
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Kunde_Status
+
+		annotation SummarizationSetBy = User
+
+	column NySalg
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ea3caea4-96d5-4acc-a0b8-b60e88381029
+		sourceLineageTag: 816b2900-af06-4d42-b9c0-a3fa7ab3a46a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NySalg
+
+		annotation SummarizationSetBy = User
+
+	column Produkt_Status
+		dataType: string
+		lineageTag: b0029eb9-4ef7-4564-b872-a72f6f031bae
+		sourceLineageTag: 527862fa-cab9-49ac-b4ef-9924dcfb5fdd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Produkt_Status
+
+		annotation SummarizationSetBy = User
+
+	column orderedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be9727b2-2695-48ef-a2ad-d7aada3bc096
+		sourceLineageTag: 8db75893-7fab-41b0-9b22-b674f7fa4390
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: orderedDate
+
+		variation Variation
+			isDefault
+			relationship: 4aecde96-9534-4f6f-b902-469397b3bc97
+			defaultHierarchy: LocalDateTable_d939a60d-de76-432d-9466-f3d2041ad7e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column orderedDateTime
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ca9327b5-26fb-4b52-8b0e-b5e42f88bc6a
+		sourceLineageTag: b0ff3512-62f9-49b5-8de7-451d1ffea8cf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: orderedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 74356a4a-e04e-46b1-8bf9-0f7222601d27
+			defaultHierarchy: LocalDateTable_d93600f1-14c3-442b-b5a9-190af0470c29.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column startDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f2604bb6-1dd1-492e-95d3-772f4b1ae155
+		sourceLineageTag: 172a15e5-2acd-4ec1-a309-212a1ee1ec0c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: startDate
+
+		variation Variation
+			isDefault
+			relationship: 753410c6-bcfa-418a-8532-04c7b03b1f6f
+			defaultHierarchy: LocalDateTable_02c1a297-7e3b-4f67-8b02-3352beecd6ec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column endDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 60902375-38de-4c9d-82fd-3b0109c7e84f
+		sourceLineageTag: 6925f39b-94a8-4751-a526-169ddeaaf75a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: endDate
+
+		variation Variation
+			isDefault
+			relationship: 61c67ffa-b85f-488a-813e-2eba9a643140
+			defaultHierarchy: LocalDateTable_4dd12603-e323-4e1e-a4ef-5cfa30fa8eb2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column createdDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cc9ff1c9-81ce-492a-949f-45c61103fadf
+		sourceLineageTag: 0cab8f80-3a2a-48ea-87a7-c71c0d740267
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		variation Variation
+			isDefault
+			relationship: 5c1a1509-fa2d-420d-8021-1fad5eceda5c
+			defaultHierarchy: LocalDateTable_633f4234-7afe-44e4-9316-5aec4d759c07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column modifiedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 46c5a00b-a1e6-45fe-bd36-4fdab69c5a17
+		sourceLineageTag: abd344b4-38ec-4660-82a4-8721a3a93dad
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 7e795078-8e5a-4f9e-890b-5aa004835060
+			defaultHierarchy: LocalDateTable_3883417b-547f-4cc7-9904-2a5adfb08623.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	partition Status_I_dag_ = entity
+		mode: directQuery
+		source
+			entityName: Status_I_dag_
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+

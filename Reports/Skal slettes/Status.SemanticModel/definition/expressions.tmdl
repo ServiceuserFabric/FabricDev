@@ -1,0 +1,11 @@
+expression 'DirectQuery to AS - Status_i_dagV2' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/Reports", "Status_i_dagV2"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: 617145c1-113d-4b92-b6e4-dd0692245fbc
+
+	annotation PBI_IncludeFutureArtifacts = True
+

@@ -1,0 +1,24 @@
+table 'Akk Status Measure'
+	isHidden
+	lineageTag: d4a66310-04b8-4c78-8360-9221617f0327
+
+	column Status
+		isHidden
+		lineageTag: b9f02a70-6011-48fe-b755-77067016fa15
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Akk Status Measure' = calculated
+		mode: import
+		source =
+				UNION(
+				    ROW("Status", "Pending"),
+				    ROW("Status", "Aktive"),
+				    ROW("Status", "Churnede")
+				)
+
+	annotation PBI_Id = 5e8f9018ae444c0fb7e341fd94b732db
+

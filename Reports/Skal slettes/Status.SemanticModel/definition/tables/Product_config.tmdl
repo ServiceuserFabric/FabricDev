@@ -1,0 +1,62 @@
+table Product_config
+	lineageTag: f0465965-0c4d-44d5-8b1f-fc7ad61ffab2
+	sourceLineageTag: 7447dece-4a82-47e6-80e5-dbe5b1672809
+
+	column id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: a9cf9da8-77cd-49c1-9a76-0494b4653e4d
+		sourceLineageTag: e37e06db-2b7c-4955-b9d0-a46a700047db
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column HovedProduktGruppe
+		dataType: string
+		lineageTag: c75558ee-65ff-4176-8e8d-c2bf92d4cf9a
+		sourceLineageTag: 5800548f-bdaa-419c-be1d-bfeacc7c1ef1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: HovedProduktGruppe
+
+		annotation SummarizationSetBy = User
+
+	column ProductMainGroup
+		dataType: string
+		lineageTag: 93bd4d41-ebc0-43ee-8d5d-e053eaa37565
+		sourceLineageTag: 08cb31b8-4f90-4875-a2c3-8599b5fb507f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ProductMainGroup
+
+		annotation SummarizationSetBy = User
+
+	column productGroup
+		dataType: string
+		lineageTag: 8099c37c-99a5-44f0-a81f-357f4dd925f1
+		sourceLineageTag: a8bb17c6-5e78-42ae-8771-db329955fbcd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: productGroup
+
+		annotation SummarizationSetBy = User
+
+	column selfserviceNames_da
+		dataType: string
+		lineageTag: a4541c77-e155-4053-93f2-ee671e04cb5d
+		sourceLineageTag: ac0ec2fd-a4de-4c6a-b57e-99ad2a52ced7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: selfserviceNames_da
+
+		annotation SummarizationSetBy = User
+
+	partition Product_config = entity
+		mode: directQuery
+		source
+			entityName: Product_config
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+
