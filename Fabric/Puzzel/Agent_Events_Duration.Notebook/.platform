@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Agent_Events_Duration"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "188330c6-bd37-9595-4ce7-965f2fc82204"
+  }
+}
