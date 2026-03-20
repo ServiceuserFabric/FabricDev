@@ -1,0 +1,83 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "188330c6-bd37-9595-4ce7-965f2fc82204",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Agent_Events_Duration",
+        "dependsOn": []
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[puz].[usp_load_agent_events_today]"
+        },
+        "linkedService": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Agent_events_pause_durations",
+        "dependsOn": [
+          {
+            "activity": "Agent_Events_Duration",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Fejl i beregning for pause og signed duration</p>",
+          "to": "driftbi@altuibox.dk",
+          "subject": "Fejl i beregning for pause og signed duration"
+        },
+        "externalReferences": {
+          "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Fejl i beregning for pause og signed duration",
+        "dependsOn": [
+          {
+            "activity": "Agent_Events_Duration",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

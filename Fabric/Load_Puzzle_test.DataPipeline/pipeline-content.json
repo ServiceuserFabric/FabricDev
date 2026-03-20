@@ -1,0 +1,91 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SqlServerSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "SqlServerTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "agents",
+                "database": "ConnectCallData_451261"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "55ae7e95-3c55-4877-9cf0-95eeea26df83"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "applyVOrder": false,
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "agents"
+              },
+              "schema": [],
+              "connectionSettings": {
+                "name": "Puzzel_Altibox",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "externalReferences": {
+                    "connection": "deac6c92-2ecb-4226-af01-bcc682a21a88"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "LoadFequency": {
+        "type": "int",
+        "defaultValue": 1
+      },
+      "ToSchema": {
+        "type": "string",
+        "defaultValue": "puz"
+      },
+      "FullLoad": {
+        "type": "int",
+        "defaultValue": 0
+      }
+    }
+  }
+}

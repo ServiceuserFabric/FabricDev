@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Load_Puzzle_Dimensions"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "54f23bcc-12e4-8bd8-49bd-f571030d9caf"
+  }
+}

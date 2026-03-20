@@ -1,0 +1,189 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            },
+            "storeSettings": {
+              "type": "SftpReadSettings",
+              "disableChunking": false,
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            },
+            "datasetSettings": {
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "SftpLocation",
+                  "folderPath": "/home/sftp-rootdir/nuuday",
+                  "fileName": {
+                    "value": "@concat(\n  'altibox_customer_report_',\n  variables('InsertDateVar'),\n  '.csv')",
+                    "type": "Expression"
+                  }
+                },
+                "columnDelimiter": ";",
+                "encodingName": "WINDOWS-1252",
+                "quoteChar": "\"",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "bd6d1062-3e63-4387-a4b4-49d6ad430fef"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "applyVOrder": false,
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "AltiboxMobil_Nuuday"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "NuudayMobil",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "e271117f-6ff9-9d74-43e1-8a1e6988f490",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Nuuday reports load",
+        "description": "Download af daglig fil fra Altibox SFTP-server leveret fra Nuuday",
+        "dependsOn": [
+          {
+            "activity": "Set InsertDate",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Set InsertDate_copy1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_AltiboxMobil_Nuuday]",
+          "storedProcedureParameters": {
+            "ParameterDate": {
+              "value": {
+                "value": "@concat(substring(variables('InsertDateVar'),0,2),'-',substring(variables('InsertDateVar'),3,2),'-',substring(variables('InsertDateVar'),6,4))",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Transform to warehouse",
+        "description": "Add date and transform data types",
+        "dependsOn": [
+          {
+            "activity": "Nuuday reports load",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "InsertDateVar",
+          "value": {
+            "value": "@formatDateTime(utcNow(),'dd_MM_yyyy')",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set InsertDate",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "InsertDateVar",
+          "value": "18_03_2026"
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set InsertDate_copy1",
+        "description": "Sæt dato i Settings med formatet dd-mm-yyyy",
+        "dependsOn": []
+      }
+    ],
+    "variables": {
+      "InsertDateVar": {
+        "type": "String"
+      }
+    }
+  }
+}

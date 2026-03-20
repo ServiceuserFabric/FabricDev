@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pipeline - Get panther last modified_"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e70ccc57-283d-95ce-49ff-e98790d885b1"
+  }
+}
