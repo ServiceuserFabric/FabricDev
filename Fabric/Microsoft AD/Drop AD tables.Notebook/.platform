@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Drop AD tables"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8e6ae61b-d18f-8ca0-4e9e-239bdb4c27e2"
+  }
+}

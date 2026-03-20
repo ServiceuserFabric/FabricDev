@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "CopyLoyaltyGroup"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "07b8e460-cffa-b424-40f4-38cb615de1d0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Load_Nuuday_Historik"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2a130369-1e9a-81dd-4d59-79a4fc453e8e"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA Geography"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4bee9837-2568-84cc-4d5c-d1ea3fe3d28e"
+  }
+}

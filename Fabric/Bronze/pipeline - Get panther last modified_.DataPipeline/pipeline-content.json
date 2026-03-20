@@ -1,0 +1,1251 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('hasMorePagesCustProd'), false)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "RestSource",
+                  "requestMethod": "GET",
+                  "additionalHeaders": {
+                    "Authorization": "bearer 70b5e054e9f2aa463388ec89702bca63428782d37f089e0f4806833311404b2b",
+                    "user-token": "318165fae0b1ddf4d9ba11b173901d42"
+                  },
+                  "paginationRules": {
+                    "supportRFC5988": "true"
+                  },
+                  "httpRequestTimeout": "00:01:40",
+                  "requestInterval": "00.00:00:00.020",
+                  "datasetSettings": {
+                    "type": "RestResource",
+                    "typeProperties": {
+                      "relativeUrl": {
+                        "value": "/api/v2/customer-products?filter=modified%24gt%3A@{formatDateTime(utcNow(),'yyyy-MM-dd')}&pagesize=@{pipeline().parameters.pageSize}&page=@{variables('currentPageCustProd')}\n",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d6f6fd21-7888-4c39-834d-4f3adf936ecb"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "JsonSink",
+                  "formatSettings": {
+                    "type": "JsonWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings",
+                    "copyBehavior": "FlattenHierarchy"
+                  },
+                  "datasetSettings": {
+                    "type": "Json",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "API_Data_cust_prod_lastModified",
+                        "fileName": {
+                          "value": "@{formatDateTime(utcNow(),'yyyy-MM-dd')}/data_page_@{variables('currentPageCustProd')}.json",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "schema": {},
+                    "linkedService": {
+                      "name": "Bronze_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "ed7800dd-db8c-b9a8-4129-4963b1df83e8",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data cust prod",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "nextPageCustProd",
+                "value": {
+                  "value": "@add(variables('currentPageCustProd'), 1)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var nextPage cust prod",
+              "dependsOn": [
+                {
+                  "activity": "Copy data cust prod",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "currentPageCustProd",
+                "value": {
+                  "value": "@variables('nextPageCustProd')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var currentPage cus prod",
+              "dependsOn": [
+                {
+                  "activity": "Set var nextPage cust prod",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "hasMorePagesCustProd",
+                "value": {
+                  "value": "@not(equals(activity('Copy data cust prod').output.rowsRead, 0))",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var hasMorePages cust prod",
+              "dependsOn": [
+                {
+                  "activity": "Set var currentPage cus prod",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Pagination loop cust prod",
+        "dependsOn": []
+      },
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('hasMorePagesProdCon'), false)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "RestSource",
+                  "requestMethod": "GET",
+                  "additionalHeaders": {
+                    "Authorization": "bearer 70b5e054e9f2aa463388ec89702bca63428782d37f089e0f4806833311404b2b",
+                    "user-token": "318165fae0b1ddf4d9ba11b173901d42"
+                  },
+                  "paginationRules": {
+                    "supportRFC5988": "true"
+                  },
+                  "httpRequestTimeout": "00:01:40",
+                  "requestInterval": "00.00:00:00.010",
+                  "datasetSettings": {
+                    "type": "RestResource",
+                    "typeProperties": {
+                      "relativeUrl": {
+                        "value": "/api/v2/product-configurations?filter=modified%24gt%3A@{formatDateTime(utcNow(),'yyyy-MM-dd')}&pagesize=@{pipeline().parameters.pageSize}&page=@{variables('CurrentPageProdCon')}\n",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d6f6fd21-7888-4c39-834d-4f3adf936ecb"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "JsonSink",
+                  "formatSettings": {
+                    "type": "JsonWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings",
+                    "copyBehavior": "FlattenHierarchy"
+                  },
+                  "datasetSettings": {
+                    "type": "Json",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "API_Data_product_config_lastModified",
+                        "fileName": {
+                          "value": "@{formatDateTime(utcNow(),'yyyy-MM-dd')}/data_page_@{variables('currentPageCustProd')}.json",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "schema": {},
+                    "linkedService": {
+                      "name": "Bronze_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "ed7800dd-db8c-b9a8-4129-4963b1df83e8",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data product config",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "nextPageProdCon",
+                "value": {
+                  "value": "@add(variables('CurrentPageProdCon'), 1)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var nextPage prod con",
+              "dependsOn": [
+                {
+                  "activity": "Copy data product config",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "CurrentPageProdCon",
+                "value": {
+                  "value": "@variables('nextPageProdCon')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var currentPage prod con",
+              "dependsOn": [
+                {
+                  "activity": "Set var nextPage prod con",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "hasMorePagesProdCon",
+                "value": {
+                  "value": "@not(equals(activity('Copy data product config').output.rowsRead, 0))",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var hasMorePages prod con",
+              "dependsOn": [
+                {
+                  "activity": "Set var currentPage prod con",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Pagination loop product config",
+        "dependsOn": []
+      },
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('hasMorePagesCustTable'), false)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "RestSource",
+                  "requestMethod": "GET",
+                  "additionalHeaders": {
+                    "Authorization": "bearer 70b5e054e9f2aa463388ec89702bca63428782d37f089e0f4806833311404b2b",
+                    "user-token": "318165fae0b1ddf4d9ba11b173901d42"
+                  },
+                  "paginationRules": {
+                    "supportRFC5988": "true"
+                  },
+                  "httpRequestTimeout": "00:01:40",
+                  "requestInterval": "00.00:00:00.010",
+                  "datasetSettings": {
+                    "type": "RestResource",
+                    "typeProperties": {
+                      "relativeUrl": {
+                        "value": "/api/v2/customers?filter=modified%24gt%3A@{formatDateTime(utcNow(),'yyyy-MM-dd')}&pagesize=@{pipeline().parameters.pageSize}&page=@{variables('currentPageCustTable')}\n",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d6f6fd21-7888-4c39-834d-4f3adf936ecb"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "JsonSink",
+                  "formatSettings": {
+                    "type": "JsonWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings",
+                    "copyBehavior": "FlattenHierarchy"
+                  },
+                  "datasetSettings": {
+                    "type": "Json",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "API_Data_customer_table_lastModified",
+                        "fileName": {
+                          "value": "@{formatDateTime(utcNow(),'yyyy-MM-dd')}/data_page_@{variables('currentPageCustTable')}.json",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "schema": {},
+                    "linkedService": {
+                      "name": "Bronze_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "ed7800dd-db8c-b9a8-4129-4963b1df83e8",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data customer table",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "nextPageCustTable",
+                "value": {
+                  "value": "@add(variables('currentPageCustTable'), 1)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var nextPage customer table",
+              "dependsOn": [
+                {
+                  "activity": "Copy data customer table",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "currentPageCustTable",
+                "value": {
+                  "value": "@variables('nextPageCustTable')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var currentPage customer table",
+              "dependsOn": [
+                {
+                  "activity": "Set var nextPage customer table",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "hasMorePagesCustTable",
+                "value": {
+                  "value": "@not(equals(activity('Copy data customer table').output.rowsRead, 0))\n",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var hasMorePages customer table",
+              "dependsOn": [
+                {
+                  "activity": "Set var currentPage customer table",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Pagination loop customer table",
+        "dependsOn": []
+      },
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('hasMorePagesIO'), false)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "RestSource",
+                  "requestMethod": "GET",
+                  "additionalHeaders": {
+                    "Authorization": "bearer 70b5e054e9f2aa463388ec89702bca63428782d37f089e0f4806833311404b2b",
+                    "user-token": "318165fae0b1ddf4d9ba11b173901d42"
+                  },
+                  "paginationRules": {
+                    "supportRFC5988": "true"
+                  },
+                  "httpRequestTimeout": "00:01:40",
+                  "requestInterval": "00.00:00:00.010",
+                  "datasetSettings": {
+                    "type": "RestResource",
+                    "typeProperties": {
+                      "relativeUrl": {
+                        "value": "/api/v2/datasets/infrastructureowners?filter=modified%24gt%3A@{formatDateTime(utcNow(),'yyyy-MM-dd')}&pagesize=@{pipeline().parameters.pageSize}&page=@{variables('currentPageIO')}",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d6f6fd21-7888-4c39-834d-4f3adf936ecb"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "JsonSink",
+                  "formatSettings": {
+                    "type": "JsonWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings",
+                    "copyBehavior": "FlattenHierarchy"
+                  },
+                  "datasetSettings": {
+                    "type": "Json",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "API_Data_IO_lastModified",
+                        "fileName": {
+                          "value": "@{formatDateTime(utcNow(),'yyyy-MM-dd')}/data_page_@{variables('currentPageCustProd')}.json",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "schema": {},
+                    "linkedService": {
+                      "name": "Bronze_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "ed7800dd-db8c-b9a8-4129-4963b1df83e8",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data IO",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "nextPageIO",
+                "value": {
+                  "value": "@add(variables('currentPageIO'), 1)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var nextPage IO",
+              "dependsOn": [
+                {
+                  "activity": "Copy data IO",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "currentPageIO",
+                "value": {
+                  "value": "@variables('nextPageIO')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var currentPage IO",
+              "dependsOn": [
+                {
+                  "activity": "Set var nextPage IO",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "hasMorePagesIO",
+                "value": {
+                  "value": "@equals(activity('Copy data IO').output.rowsRead, 0)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var hasMorePages IO",
+              "dependsOn": [
+                {
+                  "activity": "Set var currentPage IO",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Pagination loop IO",
+        "dependsOn": []
+      },
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@and(\n    and(\n        equals(variables('hasMorePagesIO'), false),\n        equals(variables('hasMorePagesCustProd'), false)\n    ),\n    and(\n        equals(variables('hasMorePagesCustTable'), false),\n        equals(variables('hasMorePagesProdCon'), false)\n    )\n)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Wait",
+              "typeProperties": {
+                "waitTimeInSeconds": 3
+              },
+              "name": "Wait1",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "Until1",
+        "dependsOn": [
+          {
+            "activity": "Pagination loop cust prod",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Pagination loop product config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Pagination loop customer table",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Pagination loop IO",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Pagination Loop Customer Group",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a9907e01-ce02-9036-45f1-51cae4c81741",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook1",
+        "dependsOn": [
+          {
+            "activity": "Until1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "b9f6dd96-ae0d-96a5-4460-df34bc383a91",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Clean data into silver lakehouse",
+        "dependsOn": [
+          {
+            "activity": "Notebook1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Until",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(variables('hasMorePagesCustomerGroup'), false)",
+            "type": "Expression"
+          },
+          "timeout": "0.12:00:00",
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "RestSource",
+                  "requestMethod": "GET",
+                  "additionalHeaders": {
+                    "Authorization": "bearer 70b5e054e9f2aa463388ec89702bca63428782d37f089e0f4806833311404b2b",
+                    "user-token": "318165fae0b1ddf4d9ba11b173901d42"
+                  },
+                  "paginationRules": {
+                    "supportRFC5988": "true"
+                  },
+                  "httpRequestTimeout": "00:01:40",
+                  "requestInterval": "00.00:00:00.010",
+                  "datasetSettings": {
+                    "type": "RestResource",
+                    "typeProperties": {
+                      "relativeUrl": {
+                        "value": "/api/v2/customer-groups?pagesize=@{pipeline().parameters.pageSize}&page=@{variables('currentPageCustomerGroup')}",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "d6f6fd21-7888-4c39-834d-4f3adf936ecb"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "JsonSink",
+                  "formatSettings": {
+                    "type": "JsonWriteSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings",
+                    "copyBehavior": "FlattenHierarchy"
+                  },
+                  "datasetSettings": {
+                    "type": "Json",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "API_Data_Customer_Groups_lastModified",
+                        "fileName": {
+                          "value": "@{formatDateTime(utcNow(),'yyyy-MM-dd')}/data_page_@{variables('currentPageCustProd')}.json",
+                          "type": "Expression"
+                        }
+                      }
+                    },
+                    "schema": {},
+                    "linkedService": {
+                      "name": "Bronze_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "ed7800dd-db8c-b9a8-4129-4963b1df83e8",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy data customer group",
+              "dependsOn": []
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "nextPageCustomerGroup",
+                "value": {
+                  "value": "@add(variables('currentPageCustomerGroup'), 1)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var nextPage_Customer_Group",
+              "dependsOn": [
+                {
+                  "activity": "Copy data customer group",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "currentPageCustomerGroup",
+                "value": {
+                  "value": "@variables('nextPageCustomerGroup')",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var currentPage IO_copy1",
+              "dependsOn": [
+                {
+                  "activity": "Set var nextPage_Customer_Group",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "hasMorePagesCustomerGroup",
+                "value": {
+                  "value": "@equals(activity('Copy data customer group').output.rowsRead, 0)",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set var hasMorePages IO_copy1",
+              "dependsOn": [
+                {
+                  "activity": "Set var currentPage IO_copy1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Pagination Loop Customer Group",
+        "dependsOn": []
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource"
+          },
+          "datasetSettings": {
+            "type": "LakehouseTable",
+            "typeProperties": {
+              "table": "Status_I_dag_"
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "Silver_lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "6ca9605e-ba45-abfa-466b-655aac6fbbda",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Tables"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_Status_idag",
+        "dependsOn": [
+          {
+            "activity": "Clean data into silver lakehouse 2",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@empty(activity('Lookup_Status_idag').output)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "Wait",
+              "typeProperties": {
+                "waitTimeInSeconds": 1
+              },
+              "name": "Wait-No-Data-In-Status_i_dag_",
+              "dependsOn": []
+            },
+            {
+              "type": "Office365Outlook",
+              "typeProperties": {
+                "inputs": {
+                  "body": {
+                    "To": "rene@calmdata.dk",
+                    "Subject": "No data in Status_I_dag_ altibox",
+                    "Body": "<p>Der er ingen data i silver tabellen \" status_i_dag_\". tjek den&nbsp;</p>",
+                    "Sensitivity": "",
+                    "Importance": "Normal"
+                  },
+                  "method": "post",
+                  "path": "/v2/Mail"
+                }
+              },
+              "name": "Office 365 Outlook1",
+              "dependsOn": [
+                {
+                  "activity": "Wait-No-Data-In-Status_i_dag_",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ifFalseActivities": [
+            {
+              "type": "Wait",
+              "typeProperties": {
+                "waitTimeInSeconds": 1
+              },
+              "name": "Wait-Data_is_in_status_i_dag",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "If Condition1",
+        "dependsOn": [
+          {
+            "activity": "Lookup_Status_idag",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "b9f6dd96-ae0d-96a5-4460-df34bc383a91",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Clean data into silver lakehouse 2",
+        "dependsOn": [
+          {
+            "activity": "Clean data into silver lakehouse",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[UpdateOpdateretTidspunkt]",
+          "storedProcedureParameters": {
+            "Entitet": {
+              "value": "Panther",
+              "type": "String"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "AltiboxMetadata",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update updated time",
+        "dependsOn": [
+          {
+            "activity": "Update ProductHistory",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "1da70de6-4768-b422-484d-28d7a613e09b",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update statusalle",
+        "description": "Update historical status table with daily incremental data",
+        "dependsOn": [
+          {
+            "activity": "If Condition1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_ProductHistory]"
+        },
+        "connectionSettings": {
+          "name": "AltiboxMetadata",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update ProductHistory",
+        "dependsOn": [
+          {
+            "activity": "Clean data into silver lakehouse 2",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Pipeline RunId: @{pipeline().RunId}</p>\n<p>Dataflow output: @{activity('Clean data into silver lakehouse').output}</p>",
+          "to": "carsten.koudal@fellowmind.dk; driftbi@altibox.dk",
+          "subject": {
+            "value": "@concat(pipeline().PipelineName,' failed')",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Clean data into silver lakehouse",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "pageSize": {
+        "type": "int",
+        "defaultValue": 1000
+      }
+    },
+    "variables": {
+      "currentPageCustProd": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "hasMorePagesCustProd": {
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      "nextPageCustProd": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "CurrentPageProdCon": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "hasMorePagesProdCon": {
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      "nextPageProdCon": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "currentPageCustTable": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "hasMorePagesCustTable": {
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      "nextPageCustTable": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "currentPageIO": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "hasMorePagesIO": {
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      "nextPageIO": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "currentPageCustomerGroup": {
+        "type": "Integer",
+        "defaultValue": 0
+      },
+      "hasMorePagesCustomerGroup": {
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      "nextPageCustomerGroup": {
+        "type": "Integer",
+        "defaultValue": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+relationship 929666cb-58e1-add8-49be-f4dd1340599e
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship dcc62cc4-e20f-0099-d111-da604f880883
+	fromColumn: status.Partner
+	toColumn: IO.key
+
+relationship 69392553-2d68-362a-5e66-48a85e298338
+	toCardinality: many
+	fromColumn: status.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 6a5e3025-ad49-8bea-64f9-fb8cb051708f
+	fromColumn: status.ProduktID
+	toColumn: Product_config.id
+

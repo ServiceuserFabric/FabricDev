@@ -1,0 +1,19 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "NewUsers GA",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "connections": [
+    {
+      "path": "GoogleAnalytics",
+      "kind": "GoogleAnalytics",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"f9e29773-22ac-4818-a86f-0dd3d9518309\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"4e6df107-7165-4204-ac03-44a4c3321aa7\"}"
+    }
+  ]
+}

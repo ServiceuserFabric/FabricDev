@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "Puzzel_Altibox"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "57b74950-1041-894b-4d65-0415dcddaf9e"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Slet dubletter"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "08669d24-8201-b7cd-482d-07ffc368ec9b"
+  }
+}

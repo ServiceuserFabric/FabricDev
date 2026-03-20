@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA Engagement"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "be8605bf-9b7d-af91-4e1a-b0b03c668a1c"
+  }
+}

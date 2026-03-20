@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "NewUsers GA",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Altibox dk": {
+      "queryId": "c5434822-4cc7-4a1b-a29c-37f8ff51c264",
+      "queryName": "Altibox dk",
+      "loadEnabled": false
+    },
+    "Altibox dk_DataDestination": {
+      "queryId": "82e2b63e-ffde-4dac-8bbe-2bd1266ec532",
+      "queryName": "Altibox dk_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "GoogleAnalytics",
+      "kind": "GoogleAnalytics",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"f9e29773-22ac-4818-a86f-0dd3d9518309\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"4e6df107-7165-4204-ac03-44a4c3321aa7\"}"
+    }
+  ]
+}

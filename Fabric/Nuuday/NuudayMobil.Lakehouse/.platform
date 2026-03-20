@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "NuudayMobil"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e271117f-6ff9-9d74-43e1-8a1e6988f490"
+  }
+}

@@ -1,0 +1,179 @@
+table Customer
+	lineageTag: dcaae4d0-ab88-43bc-a2cd-06ba6efd4bcb
+	sourceLineageTag: [dbo].[Customer]
+
+	column AccCustGroupKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b0776a36-2b61-4cfd-941b-8be9b79d96a3
+		sourceLineageTag: AccCustGroupKey
+		summarizeBy: count
+		sourceColumn: AccCustGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bc2c5d2e-095a-4d3f-84e5-e0427d33ce1b
+		sourceLineageTag: accounts_id
+		summarizeBy: none
+		sourceColumn: accounts_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_invoiceBy
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5a0ff0be-cb64-4d7e-8133-9fd303928631
+		sourceLineageTag: accounts_invoiceBy
+		summarizeBy: none
+		sourceColumn: accounts_invoiceBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_mobilepayTicket
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5a07861a-3ec1-4e7d-8aa6-d1f8e85e26b9
+		sourceLineageTag: accounts_mobilepayTicket
+		summarizeBy: none
+		sourceColumn: accounts_mobilepayTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_modified
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 46b612d2-afd5-4a94-9a84-5150a56a63eb
+		sourceLineageTag: accounts_modified
+		summarizeBy: none
+		sourceColumn: accounts_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 09f7191c-280f-4979-a60e-0757a5ae843d
+		sourceLineageTag: address
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d40226ec-ea1a-40c5-97f7-c94c52a1a3b6
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column customAttributes_internalsaleinitials
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: db8e8b24-51cb-44b1-addb-ec8b7f0c4f80
+		sourceLineageTag: customAttributes_internalsaleinitials
+		summarizeBy: none
+		sourceColumn: customAttributes_internalsaleinitials
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerGroupKey
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1fd42251-1459-4005-bfdb-50cf863093c6
+		sourceLineageTag: customerGroupKey
+		summarizeBy: none
+		sourceColumn: customerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 5313d96e-ab65-4d9a-ba5d-3eb9f4dc648e
+		sourceLineageTag: endDate
+		summarizeBy: none
+		sourceColumn: endDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column memberNumber
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b5a74411-8528-4fb6-9bd7-65b6c50e79f0
+		sourceLineageTag: memberNumber
+		summarizeBy: none
+		sourceColumn: memberNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 96c85341-23f8-4d10-8fa6-849b73863466
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 4860f27e-5a13-48a2-a660-08791d376299
+		sourceLineageTag: startDate
+		summarizeBy: none
+		sourceColumn: startDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: fd9ed829-b600-42ab-af43-565141188566
+		sourceLineageTag: Zip
+		summarizeBy: sum
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0c36ed2e-a8df-4964-be4e-086b59ce38ea
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalgVia
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 64184bd2-b060-4476-8c60-fb5fd0313063
+		sourceLineageTag: SalgVia
+		summarizeBy: none
+		sourceColumn: SalgVia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = entity
+		mode: directLake
+		source
+			entityName: Customer
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

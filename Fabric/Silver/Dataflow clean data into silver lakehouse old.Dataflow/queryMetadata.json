@@ -1,0 +1,122 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowFastCopy": false
+  },
+  "name": "Dataflow clean data into silver lakehouse",
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Customer": {
+      "queryId": "89e94c60-0226-40bf-9c28-4af9964cd9e2",
+      "queryName": "Customer",
+      "loadEnabled": false
+    },
+    "Cust prod": {
+      "queryId": "fcc733cc-e63c-4d8a-94d5-7d09d854ea83",
+      "queryName": "Cust prod",
+      "loadEnabled": false
+    },
+    "IO": {
+      "queryId": "354806e4-407b-4694-b9ea-08d5f1d18477",
+      "queryName": "IO",
+      "loadEnabled": false
+    },
+    "Product config": {
+      "queryId": "cdfee73f-4dac-4773-84a5-9c0336fef718",
+      "queryName": "Product config",
+      "loadEnabled": false
+    },
+    "Status_I_dag_": {
+      "queryId": "10830b32-040a-4d1d-9795-8d0b771c29dc",
+      "queryName": "Status_I_dag_",
+      "loadEnabled": false
+    },
+    "Cust_Group": {
+      "queryId": "7e9938b6-bd55-4bff-b64e-9de91ff3d784",
+      "queryName": "Cust_Group",
+      "loadEnabled": false
+    },
+    "DefaultStaging": {
+      "queryId": "dbd632af-2683-45b6-93da-bcaed04f8f6a",
+      "queryName": "DefaultStaging",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "IO_DataDestination": {
+      "queryId": "e305fa8f-c52c-420c-b5fd-f790c0021cb8",
+      "queryName": "IO_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "c8e867ea-c9d0-4d47-96dd-2e6ef2dc3a26",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "TryConvertToInt": {
+      "queryId": "66466985-8e84-48f8-8ab3-fa5baff5e21b",
+      "queryName": "TryConvertToInt",
+      "loadEnabled": false
+    },
+    "NavigationQuery": {
+      "queryId": "a73eb54d-c7cb-4be0-a0a6-6afa05ea12aa",
+      "queryName": "NavigationQuery",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Product config_DataDestination": {
+      "queryId": "6839fbd3-de07-4d1a-9595-f01dcf14a61a",
+      "queryName": "Product config_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Cust prod_DataDestination": {
+      "queryId": "de2c732d-6b2d-457d-badb-5c5d80180199",
+      "queryName": "Cust prod_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Status_I_dag__DataDestination": {
+      "queryId": "a2831554-7438-4173-81c4-298b46165a3e",
+      "queryName": "Status_I_dag__DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Cust_Group_DataDestination": {
+      "queryId": "5ad6baa7-0167-4fc4-81f1-629d2025368f",
+      "queryName": "Cust_Group_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Customer_DataDestination": {
+      "queryId": "e8f64378-f569-40c3-aaf2-d984d5e7075d",
+      "queryName": "Customer_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://altiboxonmicrosoft.sharepoint.com/sites/biproject/Delte%20dokumenter/General/Budget%20kundetal.xlsx",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"8fbd57bc-1f18-4562-bab2-d66c8f15e72c\",\"DatasourceId\":\"28e58b3f-dc03-4056-a308-e44ca8dde758\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"8fbd57bc-1f18-4562-bab2-d66c8f15e72c\",\"DatasourceId\":\"62347777-8dca-43d8-8c7a-db9f2291202a\"}"
+    },
+    {
+      "path": "PowerPlatformDataflows",
+      "kind": "PowerPlatformDataflows",
+      "connectionId": "{\"ClusterId\":\"8fbd57bc-1f18-4562-bab2-d66c8f15e72c\",\"DatasourceId\":\"39f162cb-760f-4f45-b439-5e8c3d34778a\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"4e6df107-7165-4204-ac03-44a4c3321aa7\"}"
+    }
+  ],
+  "allowNativeQueries": false
+}

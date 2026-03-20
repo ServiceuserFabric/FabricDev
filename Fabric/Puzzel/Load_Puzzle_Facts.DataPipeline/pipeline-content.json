@@ -1,0 +1,510 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderStoredProcedureName": "[utl].[GetQueries]",
+            "storedProcedureParameters": {
+              "FullLoad": {
+                "type": "Int32",
+                "value": {
+                  "value": "@pipeline().parameters.FullLoad",
+                  "type": "Expression"
+                }
+              },
+              "LoadFrequency": {
+                "type": "Int32",
+                "value": {
+                  "value": "@pipeline().parameters.LoadFequency",
+                  "type": "Expression"
+                }
+              },
+              "ToSchema": {
+                "type": "String",
+                "value": {
+                  "value": "@pipeline().parameters.ToSchema",
+                  "type": "Expression"
+                }
+              }
+            },
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "connectionSettings": {
+              "name": "Golden_warehouse",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+                  "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+                },
+                "externalReferences": {
+                  "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "GetQueries",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('GetQueries').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "SqlServerSource",
+                  "sqlReaderQuery": {
+                    "value": "@{item().SourceQuery}",
+                    "type": "Expression"
+                  },
+                  "partitionOption": "None",
+                  "queryTimeout": "02:00:00",
+                  "datasetSettings": {
+                    "type": "SqlServerTable",
+                    "typeProperties": {
+                      "database": "ConnectCallData_451261"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "55ae7e95-3c55-4877-9cf0-95eeea26df83"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "Upsert",
+                  "applyVOrder": true,
+                  "upsertSettings": {
+                    "keys": {
+                      "value": "@array(item().IncField)",
+                      "type": "Expression"
+                    }
+                  },
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "schema": "dbo",
+                      "table": {
+                        "value": "@{item().TableName}",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Puzzel_Altibox",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 1,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy one table",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "Get data from tables",
+        "dependsOn": [
+          {
+            "activity": "GetQueries",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('GetQueries').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Lookup",
+              "typeProperties": {
+                "source": {
+                  "type": "LakehouseTableSource",
+                  "sqlReaderQuery": {
+                    "value": "@concat('SELECT MAX(',item().IncField,') AS maxvalue FROM dbo.',item().TableName)",
+                    "type": "Expression"
+                  },
+                  "partitionOption": "None"
+                },
+                "datasetSettings": {
+                  "type": "LakehouseTable",
+                  "schema": [],
+                  "connectionSettings": {
+                    "name": "Puzzel_Altibox",
+                    "properties": {
+                      "type": "Lakehouse",
+                      "typeProperties": {
+                        "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                        "workspaceId": "00000000-0000-0000-0000-000000000000",
+                        "rootFolder": "Tables"
+                      },
+                      "externalReferences": {
+                        "connection": "deac6c92-2ecb-4226-af01-bcc682a21a88"
+                      },
+                      "annotations": []
+                    }
+                  },
+                  "annotations": []
+                },
+                "firstRowOnly": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Get watermarkvalue",
+              "dependsOn": []
+            },
+            {
+              "type": "SqlServerStoredProcedure",
+              "typeProperties": {
+                "storedProcedureName": "[utl].[usp_write_watermark]",
+                "storedProcedureParameters": {
+                  "TableName": {
+                    "value": {
+                      "value": "@item().TableName",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "ToSchema": {
+                    "value": {
+                      "value": "@pipeline().parameters.ToSchema",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  },
+                  "WatermarkValue": {
+                    "value": {
+                      "value": "@activity('Get watermarkvalue').output.value[0].maxvalue",
+                      "type": "Expression"
+                    },
+                    "type": "String"
+                  }
+                }
+              },
+              "connectionSettings": {
+                "name": "Golden_warehouse",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+                    "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+                  },
+                  "externalReferences": {
+                    "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 1,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Write watermark for table",
+              "dependsOn": [
+                {
+                  "activity": "Get watermarkvalue",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Update watermarks",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_Call_Events]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Enhance_call_events",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_Agent_Events]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Enhance_agent_events",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_Agent_Events]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Enhance_agent_events_efter_deduplication",
+        "description": "Kører procedure efter eventuel deduplication. ",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Slet dubletter",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "c368ec9b-07ff-482d-b7cd-820108669d24",
+          "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Slet dubletter",
+        "description": "Slet dubletter i tabellen ved fejl",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Enhance_agent_events",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Der er opstået en fejl, tjek for eventuelle dubletter.&nbsp;</p>\n<p>SQL:&nbsp;</p>\n<p>SELECT</p>\n<p>&nbsp;&nbsp;&nbsp;&nbsp;rec_id,</p>\n<p>&nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS cnt</p>\n<p>FROM [dbo].[agent_events]</p>\n<p>GROUP BY rec_id</p>\n<p>HAVING COUNT(*) &gt; 1;<br>\n</p>",
+          "to": "driftbi@altibox.dk",
+          "subject": "Fejl i Warehouse.Agent_Events"
+        },
+        "externalReferences": {
+          "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Enhance_agent_events",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_vw_enqreg_total]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Enhance vw_enqreg_total",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "LoadFequency": {
+        "type": "int",
+        "defaultValue": 60
+      },
+      "ToSchema": {
+        "type": "string",
+        "defaultValue": "puz"
+      },
+      "FullLoad": {
+        "type": "int",
+        "defaultValue": 0
+      }
+    }
+  }
+}

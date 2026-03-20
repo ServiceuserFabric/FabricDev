@@ -1,0 +1,46 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Populate ProductHistory",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Populate_ProductHistory]",
+          "storedProcedureParameters": {
+            "FromDate": {
+              "value": "2025-01-01",
+              "type": "DateTime"
+            },
+            "ToDate": {
+              "value": "2026-02-23",
+              "type": "DateTime"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "AltiboxMetadata",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

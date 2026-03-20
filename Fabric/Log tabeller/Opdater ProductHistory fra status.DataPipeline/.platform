@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Opdater ProductHistory fra status"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1e775afd-a0a2-82d7-4df4-0f745e362ea2"
+  }
+}

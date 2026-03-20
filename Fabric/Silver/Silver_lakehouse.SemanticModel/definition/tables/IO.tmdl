@@ -1,0 +1,54 @@
+table IO
+	lineageTag: b1c3b772-60ca-42b0-bf10-b7fc9b07b0d8
+	sourceLineageTag: [dbo].[IO]
+
+	column id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ec914e40-efd8-42cf-9552-9c61cec436fb
+		sourceLineageTag: id
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: ccfbf096-4608-4060-864c-4bc6965815ab
+		sourceLineageTag: key
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: c707bcc9-5f20-479c-b72b-554cc2e95209
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: a6ca3d63-4d4d-451b-9d84-2eb50a5ab007
+		sourceLineageTag: value
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition IO-25e9e784-39dc-494b-a7db-a81d280b886d = entity
+		mode: directLake
+		source
+			entityName: IO
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+

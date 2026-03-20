@@ -1,0 +1,64 @@
+table Product_config
+	lineageTag: 3017270e-b290-44b9-9319-ddddce8d6b6d
+	sourceLineageTag: [dbo].[Product_config]
+
+	column id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c8968b1b-f184-4397-9ffd-8e9aaf276aae
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column productGroup
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 307d97f5-5b73-4c42-b0ad-e95bf4594182
+		sourceLineageTag: productGroup
+		summarizeBy: none
+		sourceColumn: productGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column selfserviceNames_da
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3c3ca587-913b-4ffc-9253-bc4353988035
+		sourceLineageTag: selfserviceNames_da
+		summarizeBy: none
+		sourceColumn: selfserviceNames_da
+
+		annotation SummarizationSetBy = Automatic
+
+	column HovedProduktGruppe
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6ea4852e-2cbe-4f5f-bd00-d2a373ffde1e
+		sourceLineageTag: HovedProduktGruppe
+		summarizeBy: none
+		sourceColumn: HovedProduktGruppe
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductMainGroup
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 89dae328-805b-4996-bfec-7ee566e075e5
+		sourceLineageTag: ProductMainGroup
+		summarizeBy: none
+		sourceColumn: ProductMainGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_config = entity
+		mode: directLake
+		source
+			entityName: Product_config
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
