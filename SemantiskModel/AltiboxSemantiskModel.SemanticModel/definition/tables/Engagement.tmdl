@@ -1,0 +1,49 @@
+table Engagement
+	lineageTag: ec5586f5-c580-4e84-8e18-b8241f6542f2
+	sourceLineageTag: [dbo].[Engagement]
+
+	column activeUsers
+		dataType: int64
+		formatString: 0
+		lineageTag: 1241708f-be7f-4856-bb9e-b25f6e90836f
+		sourceLineageTag: activeUsers
+		summarizeBy: sum
+		sourceColumn: activeUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column screenPageViews
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b9abe89-9d69-4733-8277-f72bd1c67167
+		sourceLineageTag: screenPageViews
+		summarizeBy: sum
+		sourceColumn: screenPageViews
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 13099a79-70cb-4cb3-bcf2-218c95410cce
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column unifiedPagePathScreen
+		dataType: string
+		lineageTag: 447c4465-d84c-431f-bb8a-ddaa428a744c
+		sourceLineageTag: unifiedPagePathScreen
+		summarizeBy: none
+		sourceColumn: unifiedPagePathScreen
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Engagement = entity
+		mode: directLake
+		source
+			entityName: Engagement
+			expressionSource: 'DirectLake - GoogleAnalytics_Altibox'
+

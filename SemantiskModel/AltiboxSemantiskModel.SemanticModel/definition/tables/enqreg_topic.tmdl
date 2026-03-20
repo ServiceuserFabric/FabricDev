@@ -1,0 +1,50 @@
+table enqreg_topic
+	lineageTag: b10a1b33-eb4c-45e3-ba68-fa347e7db48e
+	sourceLineageTag: [dbo].[enqreg_topic]
+
+	column enqreg_topic_recid
+		dataType: int64
+		formatString: 0
+		lineageTag: e81e1772-d402-4131-9b98-470050ffca17
+		sourceLineageTag: enqreg_topic_recid
+		summarizeBy: none
+		sourceColumn: enqreg_topic_recid
+
+		annotation SummarizationSetBy = Automatic
+
+	column enqreg_category_recid
+		dataType: int64
+		formatString: 0
+		lineageTag: afd45767-d7ca-47b0-88f7-b5014638e42f
+		sourceLineageTag: enqreg_category_recid
+		summarizeBy: none
+		sourceColumn: enqreg_category_recid
+
+		annotation SummarizationSetBy = Automatic
+
+	column topic_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e117798-c004-44e1-a6ff-062650a63ab7
+		sourceLineageTag: topic_id
+		summarizeBy: none
+		sourceColumn: topic_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column topic_name
+		dataType: string
+		lineageTag: 1cc17123-f7b7-43ca-912a-aff26b8278da
+		sourceLineageTag: topic_name
+		summarizeBy: none
+		sourceColumn: topic_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition enqreg_topic = entity
+		mode: directLake
+		source
+			entityName: enqreg_topic
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

@@ -1,0 +1,61 @@
+table 'Calendar Comparison'
+	lineageTag: ffbb4f9a-fa18-45b2-905e-e2e017504219
+
+	column Date
+		formatString: General Date
+		lineageTag: e6ea6338-2a96-4b90-ab40-b5c49c36919f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 1d34a6b2-41aa-4dfd-b841-9ba5323d3036
+			defaultHierarchy: LocalDateTable_2a74af26-1120-4f9c-91c9-34d327a77d2f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ÅrMåned = FORMAT('Calendar Comparison'[Date], "YYYY-MM")
+		lineageTag: e06316ed-5ea6-409f-9703-1fe446b693e1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MonthStart Comparison' =
+			
+			DATE ( YEAR ( 'Calendar Comparison'[Date]), MONTH ( 'Calendar Comparison'[Date] ), 1 )
+		formatString: General Date
+		displayFolder: Filterformål
+		lineageTag: e977c45a-1587-4b69-80c0-452879685c38
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 93f2cd17-5ea3-4b69-852c-61eaf19b9c2f
+			defaultHierarchy: LocalDateTable_64b34e55-865a-42f7-8209-dbc0ea624f37.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ÅrMåned_Default Comparison' =
+			
+			VAR LastMonthStart =
+			    EOMONTH ( TODAY(), -2 ) + 1
+			RETURN
+			IF (
+			    'Calendar Comparison'[MonthStart Comparison] = LastMonthStart,
+			    "Sidste måned",
+			    'Calendar Comparison'[ÅrMåned]
+			)
+		displayFolder: Filterformål
+		lineageTag: ae38b303-fef2-4fd2-9e96-31dcb8106f6a
+		summarizeBy: none
+		sortByColumn: ÅrMåned
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Calendar Comparison' = calculated
+		mode: import
+		source = CALENDAR(DATE(2024,1,1), DATE(2034,12,31))
+
+	annotation PBI_Id = 3769ff0de4474133a6798b04bdac4707
+

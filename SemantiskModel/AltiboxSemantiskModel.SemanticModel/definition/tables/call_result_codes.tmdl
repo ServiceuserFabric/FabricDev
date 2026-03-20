@@ -1,0 +1,29 @@
+table call_result_codes
+	lineageTag: bd2c9f4c-8f51-4948-8b70-2a2919bc7892
+	sourceLineageTag: [dbo].[call_result_codes]
+
+	column result_code
+		dataType: string
+		lineageTag: 5f616b82-38bc-42b7-97b3-fc52c015b120
+		sourceLineageTag: result_code
+		summarizeBy: none
+		sourceColumn: result_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column descript
+		dataType: string
+		lineageTag: cfa7a2ce-5f7c-4041-b8f8-8a4fa59b8f9a
+		sourceLineageTag: descript
+		summarizeBy: none
+		sourceColumn: descript
+
+		annotation SummarizationSetBy = Automatic
+
+	partition call_result_codes = entity
+		mode: directLake
+		source
+			entityName: call_result_codes
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

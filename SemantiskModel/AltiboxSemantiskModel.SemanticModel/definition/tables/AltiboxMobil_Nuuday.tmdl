@@ -1,0 +1,334 @@
+table AltiboxMobil_Nuuday
+	lineageTag: d36952a0-1aec-460f-accb-3d73a0eec1b1
+	sourceLineageTag: [nuu].[AltiboxMobil_Nuuday]
+
+	column 'TCM Kunde ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f8ba3d0-4e30-4d06-a50a-fbb526b3fc44
+		sourceLineageTag: TCM Kunde ID
+		summarizeBy: none
+		sourceColumn: TCM Kunde ID
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column Bevægelse
+		dataType: string
+		lineageTag: ecc17bfe-dbce-4989-b7f2-5d25dc066615
+		sourceLineageTag: Bevægelse
+		summarizeBy: none
+		sourceColumn: Bevægelse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 1d95522f-a8d5-415a-a90e-33310d086211
+		sourceLineageTag: Status
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Produkt Type'
+		dataType: string
+		lineageTag: eb337b9e-3c2d-425c-b408-888abeba778c
+		sourceLineageTag: Produkt Type
+		summarizeBy: none
+		sourceColumn: Produkt Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Produkt ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 603d63b1-f4b6-4fcd-89e2-f29ccf09f838
+		sourceLineageTag: Produkt ID
+		summarizeBy: none
+		sourceColumn: Produkt ID
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column 'Abonnements ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ca80f36-f563-4f47-bd71-c2e59140ead2
+		sourceLineageTag: Abonnements ID
+		summarizeBy: none
+		sourceColumn: Abonnements ID
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column 'Eksternt abonnnementsnavn'
+		dataType: string
+		lineageTag: 1bc8bc2e-d34d-43e0-a868-3fc50a96af5c
+		sourceLineageTag: Eksternt abonnnementsnavn
+		summarizeBy: none
+		sourceColumn: Eksternt abonnnementsnavn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Internt abonnnementsnavn'
+		dataType: string
+		lineageTag: 3078b806-422e-48cd-98ee-036e1d26c293
+		sourceLineageTag: Internt abonnnementsnavn
+		summarizeBy: none
+		sourceColumn: Internt abonnnementsnavn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Familieabonnement til produkt-id'
+		dataType: string
+		lineageTag: ddd071b6-8f2c-45b3-ab40-0a12ad7350a0
+		sourceLineageTag: Familieabonnement til produkt-id
+		summarizeBy: none
+		sourceColumn: Familieabonnement til produkt-id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mobil nummer'
+		dataType: string
+		lineageTag: e014fb41-fc2b-45af-86aa-8fc2860a9fa5
+		sourceLineageTag: Mobil nummer
+		summarizeBy: none
+		sourceColumn: Mobil nummer
+
+		annotation SummarizationSetBy = Automatic
+
+	column E-Mail
+		dataType: string
+		lineageTag: ab45bf40-8dfd-48d5-822a-a07c8cfc6c66
+		sourceLineageTag: E-Mail
+		summarizeBy: none
+		sourceColumn: E-Mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sælgerreference
+		dataType: string
+		lineageTag: 3b1cdb87-d238-466a-a618-2a30db571ef1
+		sourceLineageTag: Sælgerreference
+		summarizeBy: none
+		sourceColumn: Sælgerreference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tidligere udbyder'
+		dataType: string
+		lineageTag: 82b4af5f-8b83-4c21-8e5a-ffc4cbd457a5
+		sourceLineageTag: Tidligere udbyder
+		summarizeBy: none
+		sourceColumn: Tidligere udbyder
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kunde Navn'
+		dataType: string
+		lineageTag: fe556e0b-3bb6-405e-8061-bdfa762d6613
+		sourceLineageTag: Kunde Navn
+		summarizeBy: none
+		sourceColumn: Kunde Navn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kunde Adresse'
+		dataType: string
+		lineageTag: dfdf3d20-9f7a-497c-b09b-039ce061cfb3
+		sourceLineageTag: Kunde Adresse
+		summarizeBy: none
+		sourceColumn: Kunde Adresse
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kunde Postnummer'
+		dataType: string
+		lineageTag: 28637fc5-93fc-4113-a5dc-9770634df80b
+		sourceLineageTag: Kunde Postnummer
+		summarizeBy: none
+		sourceColumn: Kunde Postnummer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kunde By'
+		dataType: string
+		lineageTag: f22823a9-a9e9-4ad9-8f53-cd5a6e9c76cc
+		sourceLineageTag: Kunde By
+		summarizeBy: none
+		sourceColumn: Kunde By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Permission
+		dataType: string
+		lineageTag: fb69e1c1-130b-4fdb-8ec8-e1a12c84c930
+		sourceLineageTag: Permission
+		summarizeBy: none
+		sourceColumn: Permission
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bestillingstid
+		dataType: string
+		lineageTag: e00b8001-91b7-4311-943c-825d9c0919d6
+		sourceLineageTag: Bestillingstid
+		summarizeBy: none
+		sourceColumn: Bestillingstid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Aktiveringsdato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a3822184-7156-422a-b5ff-85581ca8d851
+		sourceLineageTag: Aktiveringsdato
+		summarizeBy: none
+		sourceColumn: Aktiveringsdato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Afregningstype
+		dataType: string
+		lineageTag: 5783af68-d514-4aea-ba02-37127d0cdf8b
+		sourceLineageTag: Afregningstype
+		summarizeBy: none
+		sourceColumn: Afregningstype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Automatisk optankning'
+		dataType: string
+		lineageTag: 59d1c2de-a290-4a28-aeb0-18b11e1a968c
+		sourceLineageTag: Automatisk optankning
+		summarizeBy: none
+		sourceColumn: Automatisk optankning
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Registrering af opsigelsesdato'
+		dataType: string
+		lineageTag: 19339d1b-befd-4564-bb29-121a416636d7
+		sourceLineageTag: Registrering af opsigelsesdato
+		summarizeBy: none
+		sourceColumn: Registrering af opsigelsesdato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opsigelsesdato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0ecb7d05-3bc9-46ec-92d9-a322e212f036
+		sourceLineageTag: Opsigelsesdato
+		summarizeBy: none
+		sourceColumn: Opsigelsesdato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kommentar til opsigelse'
+		dataType: string
+		lineageTag: 6e875760-49b5-4ba4-b005-75f8c457b43c
+		sourceLineageTag: Kommentar til opsigelse
+		summarizeBy: none
+		sourceColumn: Kommentar til opsigelse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Udporteringsdato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 49792142-b40e-4736-8e33-2de2a48394e6
+		sourceLineageTag: Udporteringsdato
+		summarizeBy: none
+		sourceColumn: Udporteringsdato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Eksport til'
+		dataType: string
+		lineageTag: c0d14a5a-d9ed-4854-97b3-bdcdb3890ca9
+		sourceLineageTag: Eksport til
+		summarizeBy: none
+		sourceColumn: Eksport til
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tilvalg
+		dataType: string
+		lineageTag: 214d0b85-b1ef-42ce-b0fc-5ee247a38f78
+		sourceLineageTag: Tilvalg
+		summarizeBy: none
+		sourceColumn: Tilvalg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bindingsperiode slutter'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a26f395a-9e97-4e33-8782-b3687d118703
+		sourceLineageTag: Bindingsperiode slutter
+		summarizeBy: none
+		sourceColumn: Bindingsperiode slutter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bundles på købstidspunkt'
+		dataType: string
+		lineageTag: c96f9c2f-f218-41b9-b425-5b5e979650b7
+		sourceLineageTag: Bundles på købstidspunkt
+		summarizeBy: none
+		sourceColumn: Bundles på købstidspunkt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bestillingsdato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 81462e6d-45ee-442a-a246-8a0c4b1f9693
+		sourceLineageTag: Bestillingsdato
+		summarizeBy: none
+		sourceColumn: Bestillingsdato
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 44922bdd-67cb-415e-bfd1-858587ed61b2
+		sourceLineageTag: FromDate
+		summarizeBy: none
+		sourceColumn: FromDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 929fdbe9-79ab-44c5-944d-7fc4736b2f55
+		sourceLineageTag: ToDate
+		summarizeBy: none
+		sourceColumn: ToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastVersion
+		dataType: int64
+		formatString: 0
+		lineageTag: 87c3b275-26b9-44ac-81df-f5247308978e
+		sourceLineageTag: LastVersion
+		summarizeBy: sum
+		sourceColumn: LastVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AltiboxMobil_Nuuday = entity
+		mode: directLake
+		source
+			entityName: AltiboxMobil_Nuuday
+			schemaName: nuu
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

@@ -1,0 +1,2540 @@
+table 'All Measures'
+	lineageTag: f9b93126-dfac-47ff-b852-957cbcb0b70f
+	sourceLineageTag: [dbo].[allmeasures]
+
+	measure 'Antal Aktive Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Aktive")
+		formatString: #,##0;(#,##0)
+		displayFolder: CRM FORÆLDET
+		lineageTag: 15090b68-2b08-4e51-a712-eda8fafb3aaa
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Antal Aktive Produkter' = Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="I brug")
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 1a9d519a-a5fa-4f63-b3da-ffd944a447a5
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Churnede Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Churned")
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 2e6fce2b-1ebf-40f2-b031-a955d769942d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Churnede Produkter' = Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="Deaktiveret")
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: e041b96c-f86d-431e-9e8f-7d00b21cc234
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Kunder' = DISTINCTCOUNT('status'[KundeNO])
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 2ff3877f-8ced-4941-b57a-6dbf7bdea174
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal MedlemNr' = DISTINCTCOUNT('Customer'[memberNumber])
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 58f1869f-8db0-47d2-b6d8-83e1373939fd
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal NySalg Denne Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[orderedDate] ) = MONTH ( EOMONTH ( TODAY(), 0 ) )
+			                && YEAR ( 'status'[orderedDate] ) = YEAR ( EOMONTH ( TODAY(), 0 ) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: Nysalg
+		lineageTag: eb537c16-9b90-4a47-80af-5f965edc4e48
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Pending Kunder' = Calculate(DISTINCTCOUNT('status'[KundeNO]),'status'[Kunde_Status]="Pending")
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 67cb59b9-b324-4ef1-8b3f-bd834e14ba4f
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Pending Produkter' = Calculate(COUNT('status'[ProduktID]),'status'[Produkt_Status]="Pending")
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: b6f75aa1-0271-4d0c-ae02-2782a87b26dd
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Produkter' = COUNT('status'[ProduktID])
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: cd078950-cb31-4dfa-b5f5-58ebcd1c31f6
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Annulleringer ÅTD' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			
+			    // Base logic
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Churned" ),
+			    KEEPFILTERS ( 'status'[endDate] <= 'status'[startDate] ),
+			
+			    // YTD: from January 1st this year to today
+			    KEEPFILTERS (
+			        'status'[endDate] >= DATE ( YEAR ( TODAY() ), 1, 1 )
+			            && 'status'[endDate] <= TODAY()
+			       )
+			)
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: b422ce9b-a26b-4a6f-8fd4-fd63c0bee2d5
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Aktive tv-andel' = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('status'),
+			        'status'[Produkt_Status] = "I brug",
+			        Product_config[ProductGroup] = "TV - Pakker"
+			        
+			    ),
+			    CALCULATE(
+			        COUNTROWS('status'),
+			        'status'[Produkt_Status] = "I brug",
+			        Product_config[HovedProduktGruppe] = "Internet"
+			        
+			    )
+			)
+			```
+		displayFolder: CRM FORÆLDET
+		lineageTag: d3e3ae55-37fa-436c-ae94-f034cb45764e
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Antal Annulleringer Sidste Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Churned" ),
+			    KEEPFILTERS (
+			        FILTER ( 'status', 'status'[endDate] <= 'status'[startDate] )
+			    ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[endDate] ) = MONTH ( EOMONTH ( TODAY(), -1 ) )
+			                && YEAR ( 'status'[endDate] ) = YEAR ( EOMONTH ( TODAY(), -1 ) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 766dfa7f-be1d-4717-8127-1be807b8f67d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Aktiveringer Sidste Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[startDate] ) = MONTH ( EOMONTH ( TODAY(), -1 ) )
+			                && YEAR ( 'status'[startDate] ) = YEAR ( EOMONTH ( TODAY(), -1 ) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 55a177f2-852f-434b-98d7-8e34ff8b5080
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Aktiveringer ÅTD' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        'status'[startDate] >= DATE ( YEAR ( TODAY() ), 1, 1 )
+			            && 'status'[startDate] <= TODAY()
+			       )
+			)
+			
+			
+			```
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 10844c65-656d-4cf7-a459-3fb2ead928db
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Nysalg ÅTD' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        'status'[orderedDate] >= DATE ( YEAR ( TODAY() ), 1, 1 )
+			            && 'status'[orderedDate] <= TODAY()
+			       )
+			)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Nysalg
+		lineageTag: b4d04564-8b47-48aa-be15-2e4f960f3c4d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Aktiveringer Denne Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[startDate] ) = MONTH ( EOMONTH ( TODAY(), 0 ) )
+			                && YEAR ( 'status'[startDate] ) = YEAR ( EOMONTH ( TODAY(),  0) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: b31332cc-a147-45f0-a024-14dde40de3f0
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Annulleringer Denne Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Churned" ),
+			    KEEPFILTERS (
+			        FILTER ( 'status', 'status'[endDate] <= 'status'[startDate] )
+			    ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[endDate] ) = MONTH ( EOMONTH ( TODAY(), 0 ) )
+			                && YEAR ( 'status'[endDate] ) = YEAR ( EOMONTH ( TODAY(), 0 ) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 59fe0702-6041-464b-80c1-68af23aaceb8
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal NySalg Sidste Måned' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[NySalg] = "true" ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Aktive" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[orderedDate] ) = MONTH ( EOMONTH ( TODAY(), -1 ) )
+			                && YEAR ( 'status'[orderedDate] ) = YEAR ( EOMONTH ( TODAY(), -1 ) )
+			        )
+			       )
+			)
+		formatString: 0
+		displayFolder: Nysalg
+		lineageTag: d188f4e7-6edf-49f3-81a5-36302bc87e1d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Opsagte Kunder Denne Måned' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Churned" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status',
+			            MONTH ( 'status'[endDate] ) = MONTH ( EOMONTH ( TODAY(), 0 ) )
+			                && YEAR ( 'status'[endDate] ) = YEAR ( EOMONTH ( TODAY(), 0 ) )
+			        )
+			    )
+			)
+			
+			```
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 19e95b0e-ca79-454f-b557-e6e8e7295e90
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Opsagte Kunder Sidste Måned' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    'status'[Kunde_Status] = "Churned",
+			    'status'[endDate] >= DATE( YEAR( TODAY() ), MONTH( TODAY() ) - 1, 1 ),
+			    'status'[endDate] <  DATE( YEAR( TODAY() ), MONTH( TODAY() ), 1 )
+			)
+			
+			```
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: f76487c4-4f83-46a2-9131-926c4cdd9e6d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal Opsagte Kunder ÅTD' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'status'[KundeNO] ),
+			    KEEPFILTERS ( 'status'[Kunde_Status] = "Churned" ),
+			    KEEPFILTERS (
+			        FILTER (
+			            'status', 'status'[endDate] >= DATE ( YEAR ( TODAY() ), 1, 1 )
+			                && 'status'[endDate] = TODAY()
+			        )
+			    )
+			)
+			
+			```
+		formatString: 0
+		displayFolder: CRM FORÆLDET
+		lineageTag: 8ea9f54e-00af-488b-9234-d177e85e73ff
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal NySalg (OrderedDate)' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT('status'[KundeNO]),
+			    KEEPFILTERS('status'[NySalg] = "true"),
+			    USERELATIONSHIP('status'[OrderedDate], 'Calendar'[Date])
+			)
+			
+			```
+		formatString: 0
+		displayFolder: Nysalg
+		lineageTag: 338b2411-a232-4f0f-9f25-1e36789745c4
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Brugerdefineret dato (Filter)' = ```
+			
+			VAR Selected =
+			    SELECTEDVALUE('Calendar'[Date])
+			RETURN
+			IF( NOT ISBLANK(Selected), Selected, TODAY() )
+			
+			```
+		formatString: General Date
+		displayFolder: Date
+		lineageTag: a46950c3-4e6a-446b-aba3-9090f413c57f
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Antal besvarede opkald' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    call_events[event_type] = "c",
+			    TRIM(call_events[result_code]) = "k",
+			    call_events[media_type_id] = 1
+			)
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 0035496d-6582-410c-9a30-17f5e8aa67f8
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal tilbudte opkald' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    call_events[event_type] = "c",
+			    TRIM(call_events[result_code]) IN {"k","t","h","q","c","b"},
+			    call_events[media_type_id] = 1
+			)
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: f936a0c9-c6f0-409d-9912-4f07d36c1a86
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal udgående opkald' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    CONTAINSSTRING(call_events[queue_key], "__CALLOUT_"))
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 266c1965-2d91-4ac4-9937-40b65ff34fcf
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Gennemsnitlig efterbehandlingstid per opkald (mm:ss)' =
+			
+			VAR TotalSpeakSec =
+			    CALCULATE(
+			        SUM(call_events[wrap_up_sec]),
+			        KEEPFILTERS( call_events[event_type] = "c" ),
+			        KEEPFILTERS( call_events[result_code] IN { "k" } ),
+			        KEEPFILTERS( call_events[media_type_id] = 1 ),
+			        KEEPFILTERS( call_events[queue_key] <> "__CALLOUT__" )
+			    )
+			VAR CallCount =
+			    CALCULATE(
+			        DISTINCTCOUNT(call_events[call_id]),
+			        KEEPFILTERS( call_events[event_type] = "c" ),
+			        KEEPFILTERS( call_events[result_code] IN { "k" } ),
+			        KEEPFILTERS( call_events[media_type_id] = 1 ),
+			        KEEPFILTERS( call_events[queue_key] <> "__CALLOUT__" )
+			    )
+			VAR AvgSec = DIVIDE(TotalSpeakSec, CallCount)
+			VAR Minutes = INT( AvgSec / 60 )
+			VAR Seconds = INT( MOD( AvgSec, 60 ) )
+			RETURN
+			    FORMAT( Minutes, "0" ) & ":" & FORMAT( Seconds, "00" )
+		displayFolder: Puzzel
+		lineageTag: ba15151f-1ae8-441d-b239-37225d5f70e2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Gennemsnitlig taletid per opkald (mm:ss)' =
+			
+			VAR TotalSpeakSec =
+			    CALCULATE(
+			        SUM(call_events[duration_speak_sec]),
+			        KEEPFILTERS( call_events[event_type] = "c" ),
+			        KEEPFILTERS( call_events[result_code] IN { "k" } ),
+			        KEEPFILTERS( call_events[media_type_id] = 1 ),
+			        KEEPFILTERS( call_events[queue_key] <> "__CALLOUT__" )
+			    )
+			VAR CallCount =
+			    CALCULATE(
+			        DISTINCTCOUNT(call_events[call_id]),
+			        KEEPFILTERS( call_events[event_type] = "c" ),
+			        KEEPFILTERS( call_events[result_code] IN { "k" } ),
+			        KEEPFILTERS( call_events[media_type_id] = 1 ),
+			        KEEPFILTERS( call_events[queue_key] <> "__CALLOUT__" )
+			    )
+			VAR AvgSec = DIVIDE(TotalSpeakSec, CallCount)
+			VAR Minutes = INT( AvgSec / 60 )
+			VAR Seconds = INT( MOD( AvgSec, 60 ) )
+			RETURN
+			    FORMAT( Minutes, "0" ) & ":" & FORMAT( Seconds, "00" )
+		displayFolder: Puzzel
+		lineageTag: 30e11217-f6f2-446a-88b2-6bb656461d67
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Senest opdateret tid' =
+			
+			VAR MaxDT =
+			    CALCULATE(
+			        MAX ( call_events[dte_start] ),
+			        REMOVEFILTERS ( 'Calendar'[Date] )
+			    )
+			RETURN
+			    CALCULATE(
+			        MAX ( call_events[dte_start_time] ),
+			        REMOVEFILTERS ( 'Calendar'[Date] ),
+			        call_events[dte_start] = MaxDT
+			    )
+		formatString: General Date
+		displayFolder: Puzzel
+		lineageTag: 2cf8717e-af8c-4f3a-9c31-cb248614f138
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder %Calendar' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 4f6f05f5-d3c3-4fd1-bec2-b723c6865642
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	/// Anvendes til at vise antallet af kunder på en fleksibelt valgt dato
+	measure 'AsOf Date' =
+			
+			VAR SelectedMonthStart =
+			    SELECTEDVALUE ( 'Calendar'[MonthStart] )
+			
+			VAR CurrentMonthStart =
+			    DATE ( YEAR ( TODAY() ), MONTH ( TODAY() ), 1 )
+			
+			VAR MonthToUse =
+			    COALESCE ( SelectedMonthStart, CurrentMonthStart )
+			
+			RETURN
+			IF (
+			    MonthToUse = CurrentMonthStart,
+			    TODAY (),
+			    EOMONTH ( MonthToUse, 0 )
+			)
+		formatString: General Date
+		isHidden
+		displayFolder: Date
+		lineageTag: aa4433a5-d5c0-41bc-bf1f-50531062bd1c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		changedProperty = IsHidden
+
+	measure 'Aktive tv-andel NY' =
+			
+			VAR d = [AsOf Date]
+			VAR TvCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			        Product_config[ProductGroup] = "TV - Pakker",
+			        REMOVEFILTERS ( 'Calendar' ),
+			        ProductHistory[Kunde_Status] = "Aktive",
+			        ProductHistory[FromDate] <= d,
+			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			    )
+			VAR InternetCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			        Product_config[HovedProduktGruppe] = "Internet",
+			        REMOVEFILTERS ( 'Calendar' ),
+			        ProductHistory[Kunde_Status] = "Aktive",
+			        ProductHistory[FromDate] <= d,
+			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			    )
+			RETURN
+			DIVIDE ( TvCustomers, InternetCustomers )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 1072e346-56ed-4306-b10c-a6c0cdf207f7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder (Daglig udvikling)' =
+			
+			VAR d =
+			    MAX ( 'Calendar'[Date] )   -- one date per day on the axis
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 1d024b64-f9de-4c5b-ace2-b205aa0b5bad
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Kunder %Calendar' =
+			
+			VAR _Today = TODAY()
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    -- use orderedDate relationship for the calculation
+			    USERELATIONSHIP ( 'Calendar'[Date], ProductHistory[orderedDate] ),
+			
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= _Today,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) > _Today,
+			    Customer[ca_created] = ""
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 0728bd42-4256-4937-93b7-d63bb7a5cb6d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Nye Kunder Current' =
+			
+			VAR StartDate = MIN ( 'Calendar'[Date] )
+			VAR EndDate   = MAX ( 'Calendar'[Date] )
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			
+			
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			
+			
+			    REMOVEFILTERS ( ProductHistory[FromDate] ),
+			
+			
+			    USERELATIONSHIP ( 'Calendar'[Date], ProductHistory[orderedDate] ),
+			
+			
+			    ProductHistory[orderedDate] >= StartDate,
+			    ProductHistory[orderedDate] <= EndDate,
+			
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[NySalg] = "1",
+			    Customer[ca_created] = ""
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 3d8f7ddb-ea8f-4714-95f1-5e64d6b4b50c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	/// Måltallet beregner antal nysalg 
+	measure 'Antal Nysalg Nye Kunder Comparison' = ```
+			
+			-- Virker med Month Compare Filter
+			VAR StartDate = MIN('Calendar Comparison'[Date])
+			VAR EndDate   = MAX('Calendar Comparison'[Date])
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    
+			    REMOVEFILTERS ( 'Calendar' ),
+			    USERELATIONSHIP('Calendar Comparison'[Date],ProductHistory[orderedDate]),
+			
+			    
+			    DATEVALUE ( ProductHistory[orderedDate] )>= StartDate,
+			    DATEVALUE ( ProductHistory[orderedDate] ) <= EndDate,
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[NySalg] = "1",
+			    Customer[ca_created] = "")
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 6d355ac7-ca88-4c96-9439-a8e08f28d285
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		changedProperty = FormatString
+
+	measure 'Nysalg Nye Kunder (Δ)' = [Antal Nysalg Nye Kunder Current] - [Antal Nysalg Nye Kunder Comparison]
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 1b9f4a4f-ff62-412c-af13-81c3d2d15253
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Nysalg Nye Kunder (%Δ)' =
+			DIVIDE (
+			    [Nysalg Nye Kunder (Δ)], [Antal Nysalg Nye Kunder Comparison])
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 5d201c10-74a4-45b6-87bd-a6857308f615
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Antal Churn Kunder Comparison' = ```
+			
+			VAR StartDate = MIN ( 'Calendar Comparison'[Date] )
+			VAR EndDate   = MAX ( 'Calendar Comparison'[Date] )
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( ProductHistory[FromDate] ),
+			
+			    USERELATIONSHIP ( 'Calendar Comparison'[Date], ProductHistory[endDate] ),
+			
+			    DATEVALUE ( ProductHistory[endDate])>= StartDate,
+			    DATEVALUE ( ProductHistory[endDate] ) <= EndDate,
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[Kunde_Status] = "Churned")
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) CHURN
+		lineageTag: 3113eef2-6dad-4877-9c09-aa212390b6b8
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Churn Kunder Current' = ```
+			
+			VAR StartDate = MIN ( 'Calendar'[Date] )
+			VAR EndDate   = MAX ( 'Calendar'[Date] )
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    REMOVEFILTERS ( ProductHistory[FromDate] ),
+			
+			    USERELATIONSHIP ( 'Calendar'[Date], ProductHistory[endDate] ),
+			
+			    DATEVALUE ( ProductHistory[endDate])>= StartDate,
+			    DATEVALUE ( ProductHistory[endDate] ) <= EndDate,
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[Kunde_Status] = "Churned")
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) CHURN
+		lineageTag: a2cb8589-a8ca-40cd-88a5-87f814f05ce7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Churn Kunder %Calendar' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    ProductHistory[Kunde_Status] = "Churned",
+			    ProductHistory[FromDate] <= TODAY(),
+			    ProductHistory[ToDate] > TODAY(),
+			    Customer[ca_created] = "",
+			    USERELATIONSHIP ( ProductHistory[endDate], 'Calendar'[Date] )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) CHURN
+		lineageTag: a41cf655-6354-45e5-ba23-428524ea3f39
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Nettoudvikling Salg (Salg-Churn)' =
+			
+			[Antal Nysalg Nye Kunder Current] - [Antal Churn Kunder %Calendar]
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: f8d581c4-7104-4bee-9eb5-1d33e0da09e1
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	/// En kopi af Antal Kunder %Calendar for at kunne sammenligne i går med i dag til betinget formatering.
+	measure 'Antal Kunder %Calender Last Month' =
+			
+			VAR d = EOMONTH ( [AsOf Date], -1 )
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS( 'Calendar' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 5a160fe4-e258-4367-bad1-dd9769c1acce
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+	measure 'Antal Kunder Color' =
+			
+			VAR TodayVal = [Antal Kunder %Calendar]
+			VAR YestVal  = [Antal Kunder %Calender Last Month]
+			RETURN
+			IF (
+			    ISBLANK(TodayVal) || ISBLANK(YestVal),
+			    BLANK(),
+			    IF ( YestVal > TodayVal, "#D13438", "#107C10" )
+			)
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 227599ca-1fd1-4353-be03-2eaa8a86119a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	/// Denne measure bruger primært forbindelsen til kalenderen Calender Comparison Periods, for at kunne opdele measure i flere perioder. Den baserer sig på den primære measure Antal Kunder
+	measure 'Aktive Kunder Sammenligningsperioder' =
+			
+			VAR d0 =
+			    [AsOf Date]
+			
+			VAR IsPrimo =
+			    SELECTEDVALUE ( 'Calendar Comparison Periods'[IsPrimo], 0 )
+			
+			VAR OffsetM =
+			    SELECTEDVALUE ( 'Calendar Comparison Periods'[OffsetMonths], 0 )
+			
+			VAR TargetDate =
+			    IF (
+			        IsPrimo = 1,
+			        DATE ( YEAR ( d0 ), 1, 1 ),          -- Primo i samme år som AsOf
+			        EOMONTH ( d0, OffsetM )               -- Månedsskift-baseret
+			    )
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= TargetDate,
+			    ProductHistory[ToDate] > TargetDate
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: ab38cb76-d52b-4c1c-836f-b10a58723b32
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+	measure 'Antal Kunder TV %Calendar' = ```
+			
+			VAR d = [AsOf Date]
+			VAR MaxDate = DATE(9999,12,31)
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    Product_config[HovedProduktGruppe] = "TV",
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 635b0cb1-5f8c-471b-ab60-547eaf2d62a6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder TV %Calendar Last Month' =
+			
+			VAR d = EOMONTH ( [AsOf Date], -1 )
+			VAR MaxDate = DATE(9999,12,31)
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    Product_config[HovedProduktGruppe] = "TV",
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 8dc04f3b-e134-4c8e-b061-f24fc09badd1
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder TV Color' =
+			
+			VAR MonthVal = [Antal Kunder TV %Calendar Last Month]
+			VAR LastMonthVal  = [Antal Kunder TV %Calendar Last Month]
+			RETURN
+			IF (
+			    ISBLANK(MonthVal) || ISBLANK(LastMonthVal),
+			    BLANK(),
+			    IF ( LastMonthVal > MonthVal, "#D13438", "#107C10" )
+			)
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 2c3c7b21-de46-47e7-b590-85868b3d0453
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Kunder WEB %Calendar' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= TODAY(),
+			    Customer[customAttributes_internalsaleinitials] = "web",
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) > TODAY(),
+			    Customer[ca_created] = "",
+			    USERELATIONSHIP ( ProductHistory[OrderedDate], 'Calendar'[Date] )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 8dff7e0d-9208-4b07-83d1-818f58c03689
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Kunder Medarbejdere Internet %Calendar' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= TODAY(),
+			    NOT(ISBLANK(Product_config[Internet_category])),
+			    NOT(ISBLANK(MicrosoftAD_users[jobTitle])) ,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) > TODAY(),
+			    Customer[ca_created] = "",
+			    USERELATIONSHIP ( ProductHistory[OrderedDate], 'Calendar'[Date] )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 3999f428-507a-4302-a799-49e4ffc036d3
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Nye Kunder (Current) BACKUP' =
+			
+			VAR StartDate = [Current Month Start]
+			VAR EndDate   = [Current Month End]
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			
+			    DATEVALUE ( ProductHistory[orderedDateTime] ) >= StartDate,
+			    DATEVALUE ( ProductHistory[orderedDateTime] ) <= EndDate,
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[NySalg] = "1",
+			    Customer[ca_created] = "")
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: ac8eb478-7eb4-4888-9a42-50cc6a483488
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Nye Kunder (Comparison) BACKUP' =
+			
+			-- Virker med Month Compare Filter
+			VAR StartDate = [Compare Month Start]
+			VAR EndDate   = [Compare Month End]
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			
+			    DATEVALUE ( ProductHistory[orderedDateTime] )>= StartDate,
+			    DATEVALUE ( ProductHistory[orderedDateTime] ) <= EndDate,
+			
+			    ProductHistory[FromDate] <= AsOf,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    ProductHistory[NySalg] = "1",
+			    Customer[ca_created] = "")
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 0707927b-6754-4a69-81de-d2c59dfb048c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Aktive mobilkunder %Calender' = ```
+			
+			VAR d = MAX ( 'Calendar'[Date] )
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( AltiboxMobil_Nuuday[Mobil nummer] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    AltiboxMobil_Nuuday[FromDate] <= d,
+			    COALESCE ( AltiboxMobil_Nuuday[ToDate], DATE ( 9999, 12, 31 ) ) >= d,
+			    AltiboxMobil_Nuuday[Status]
+			        IN {
+			            "Aktiv",
+			            "Aktiv men opsagt",
+			            "Saldospærret",
+			            "Midlertidig genåbnet"
+			        }
+			)
+			
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: 7bce48b8-256c-47cd-8a76-1a44b5b6122b
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder Annulleringer Comparison' = ```
+			
+			VAR d = [AsOf Date Comparison]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Annulleret/Ukendt",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) Annulleringer
+		lineageTag: f59cf3c8-ba02-4ef2-8570-321e34180cc7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'AsOf Date Comparison' =
+			
+			VAR SelectedMonthStart =
+			    SELECTEDVALUE ( 'Calendar Comparison'[MonthStart Comparison] )
+			
+			VAR CurrentMonthStart =
+			    DATE ( YEAR ( TODAY() ), MONTH ( TODAY() ), 1 )
+			
+			VAR MonthToUse =
+			    COALESCE ( SelectedMonthStart, CurrentMonthStart )
+			
+			RETURN
+			IF (
+			    MonthToUse = CurrentMonthStart,
+			    TODAY (),
+			    EOMONTH ( MonthToUse, 0 )
+			)
+		formatString: General Date
+		isHidden
+		displayFolder: Date
+		lineageTag: 05868446-110e-4bd0-8945-33dd78d9b8ce
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure 'Antal Kunder Current' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 966821c0-17df-481d-a66b-cec150b449b4
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder Annulleringer Current Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal  Kunder Annulleringer Current],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) Annulleringer
+		lineageTag: 33f6ee80-6e5b-4b1a-a20d-f584350fc67a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder Annulleringer Comparison Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Kunder Annulleringer Comparison],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) Annulleringer
+		lineageTag: df8a64b7-3247-495f-8fd1-c39e6bdd2c0d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Nysalg Nye Kunder Current Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Nysalg Nye Kunder Current],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: f8dd1fd1-9f37-48cb-8a36-874968e6452c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Nysalg Nye Kunder Comparison Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Nysalg Nye Kunder Comparison],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: bf00a052-ca4c-45aa-bdc3-75757891325d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Aktive mobilkunder' = ```
+			
+			VAR AsOfDate =
+			    MAX ( 'Calendar'[Date] )
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( AltiboxMobil_Nuuday[Mobil nummer] ),
+			 -- Remove filter to calender 
+			    REMOVEFILTERS ( 'Calendar' ),
+			
+			    AltiboxMobil_Nuuday[Aktiveringsdato] <= AsOfDate,
+			    (
+			        ISBLANK ( AltiboxMobil_Nuuday[Opsigelsesdato] )
+			            || AltiboxMobil_Nuuday[Opsigelsesdato] >= AsOfDate
+			    )
+			)
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: 74e0b9ec-b288-430c-9b39-731cc83ce733
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'DEBUG – Cat' = ```
+			
+			SELECTEDVALUE ( Produktvalg[Kategori], "<BLANK>" )
+			
+			```
+		displayFolder: Debug
+		lineageTag: 39e493fa-750f-4357-95e6-132c582a4751
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'DEBUG – RowParam' =
+			
+			SELECTEDVALUE ( 'MatrixRækkeParameter'[Parameter Bestil], -99 )
+		formatString: 0
+		displayFolder: Debug
+		lineageTag: 1f468fe3-332a-4563-9f84-f8625fe05e6f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'DEBUG – ShowCol' =
+			
+			VAR Cat =
+			    SELECTEDVALUE ( Produktvalg[Kategori] )
+			VAR ColParam =
+			    SELECTEDVALUE ( 'KolonneParameter'[Parameter Bestil], -99 )
+			RETURN
+			IF (
+			    Cat = "Mobil",
+			    ColParam = 1,
+			    ColParam = 0
+			)
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Debug
+		lineageTag: 7f3ee910-fce6-4cf9-a8b6-5d0ee48783e3
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'DEBUG – RowParam rowcount' =
+			
+			COUNTROWS ( VALUES ( 'MatrixRækkeParameter'[Parameter Bestil] ) )
+		formatString: 0
+		displayFolder: Debug
+		lineageTag: ff64871d-0b5d-4b52-839e-da7996ad2297
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Pending Nye Kunder Current' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Pending",
+			    ProductHistory[Produkt_Status] = "Pending",
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) PENDING
+		lineageTag: 96c0d6d6-910f-4ca2-a4ff-a30e368592e2
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Antal Pending Nye Kunder Current Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Pending Nye Kunder Current],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) PENDING
+		lineageTag: 507c1751-61b5-434c-a428-6eeb2f3ec11a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Pending Nye Kunder Comparison' = ```
+			
+			VAR d = [AsOf Date Comparison]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Pending",
+			    ProductHistory[Produkt_Status] = "Pending",
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) PENDING
+		lineageTag: 32e9b0bc-04e9-4cb2-ab46-f2a7b7efa8c5
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Pending Nye Kunder Comparison Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Pending Nye Kunder Comparison],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) PENDING
+		lineageTag: df664c7a-6208-49d5-9b23-e029fece46f5
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Måltal Current Aktive Pending' =
+			
+			VAR MetricChosen = SELECTEDVALUE('Produktmix Måltal Matrix'[Måltal], "Aktive")
+			RETURN
+			SWITCH(
+			    MetricChosen,
+			    "Aktive",  [Antal Kunder Current Produktvalg],
+			    "Pending", [Antal Pending Nye Kunder Current Produktvalg],
+			    "Annulleringer", [Antal Kunder Annulleringer Current Produktvalg],
+			    [Antal Kunder Annulleringer Current Produktvalg]
+			)
+		formatString: #,0
+		displayFolder: Udsnit til måltal
+		lineageTag: 53881117-0698-4190-9ae2-423b7c7e34fe
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	/// Bruges til at skifte dynamisk mellem måltal i rapport ved hjælp af hjælpe matrix 'Måltal Matrix'[Måltal]
+	measure 'Måltal Comparison Aktive Pending' =
+			
+			VAR MetricChosen = SELECTEDVALUE('Produktmix Måltal Matrix'[Måltal], "Aktive")
+			RETURN
+			SWITCH(
+			    MetricChosen,
+			    "Aktive",  [Antal Kunder Comparison Produktvalg],
+			    "Pending", [Antal Pending Nye Kunder Comparison Produktvalg],
+			    "Annulleringer", [Antal Kunder Annulleringer Comparison Produktvalg],
+			    [Antal Kunder Comparison Produktvalg]
+			)
+		formatString: #,0
+		displayFolder: Udsnit til måltal
+		lineageTag: 5b58ca82-a17e-4c91-8f85-70c7525e7e40
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Description
+
+		changedProperty = FormatString
+
+	measure 'Måltal Comparison Salg Churn' =
+			
+			VAR MetricChosen = SELECTEDVALUE('Salgsrapport Måltal Matrix'[Måltal], "Salg")
+			RETURN
+			SWITCH(
+			    MetricChosen,
+			    "Salg",  [Antal Nysalg Nye Kunder Comparison Produktvalg],
+			    "Churn", [Antal Churn Kunder Comparison Produktvalg],
+			    [Antal Nysalg Nye Kunder Comparison Produktvalg]
+			)
+		formatString: #,0
+		displayFolder: Udsnit til måltal
+		lineageTag: 03dc60c1-46e6-4a3e-9012-7a7a14b0f55b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Churn Kunder Current Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Churn Kunder Current],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) CHURN
+		lineageTag: 1968191d-3b85-44b3-9b31-06af234ab7b9
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Churn Kunder Comparison Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Churn Kunder Comparison],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) CHURN
+		lineageTag: 6fdba03c-803f-4cc6-83bb-f0341dd87a13
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Måltal Current Salg Churn' =
+			
+			VAR MetricChosen = SELECTEDVALUE('Salgsrapport Måltal Matrix'[Måltal], "Salg")
+			RETURN
+			SWITCH(
+			    MetricChosen,
+			    "Salg",  [Antal Nysalg Nye Kunder Current Produktvalg],
+			    "Churn", [Antal Churn Kunder Current Produktvalg],
+			    [Antal Nysalg Nye Kunder Current Produktvalg]
+			)
+		formatString: #,0
+		displayFolder: Udsnit til måltal
+		lineageTag: 359d998f-8d9d-4df6-8d01-56afff006398
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Hitrate internetsalg' = ```
+			CALCULATE([Antal Nysalg Kunder Medarbejdere Internet %Calendar] / ([Antal besvarede opkald] + [Antal udgående opkald] )) 
+			```
+		formatString: 0\ %;-0\ %;0\ %
+		displayFolder: KPI measures
+		lineageTag: 442eb6e9-98b9-411c-9a0a-93e21f2c60ab
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Antal reddede Retention' = CALCULATE(DISTINCTCOUNT(vw_enqreg_total[enqreg_header_recid]), filter(vw_enqreg_total, vw_enqreg_total[category_name] = "Reddet"))
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: ed4ced79-a71a-45c4-86f6-906f9e2966f3
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Total antal aktive kunder' =
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status]   = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate]  >  d,
+			    (
+			        Product_config[HovedProduktGruppe] = "Internet"
+			            ||
+			        (
+			            Product_config[HovedProduktGruppe] = "TV"
+			                &&
+			            Product_config[productGroup] = "TV SA - Pakker"
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 6b0204d1-c648-47ae-996d-986549052cbc
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal  Kunder Annulleringer Current' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    ProductHistory[Kunde_Status] = "Annulleret/Ukendt",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: 0
+		displayFolder: CRM (ProductHistory) Annulleringer
+		lineageTag: 5bb2609d-f9c8-466c-8e67-960fd63ec1d2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder Current Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Kunder Current],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			            TRUE
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: a538e013-1772-49c9-ba3d-508a84905448
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder Comparison' = ```
+			
+			VAR d = [AsOf Date Comparison]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 35a44de0-fdee-4df0-b8e4-d7b10cadd569
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder Comparison Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Kunder Comparison],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			            TRUE
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 0709feda-8356-41d0-acd9-ac10eb629a46
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal ringede servicekald' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    CONTAINSSTRING(call_events[queue_key], "servicekald")) 
+			```
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 7ad29ec5-077d-41d9-9fae-20cdac996a2f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal besvarede servicekald' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    CONTAINSSTRING(call_events[queue_key], "servicekald"),
+			    call_events[result_response] in {0, 200}) -- 0 og 200 
+			```
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 40ff4191-f3ec-4a59-a550-e27096ddc041
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal mailhenvendelser' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    CONTAINSSTRING(call_events[queue_key], "Q_EMAIL"))
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 15206f4f-9768-4ddb-9823-0d8b27271ec7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal chathenvendelser' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			    CONTAINSSTRING(call_events[queue_key], "c_"))
+		formatString: #,0
+		displayFolder: Puzzel
+		lineageTag: 1e539e6c-30a4-4a31-81ab-3ab39c7579d4
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Seneste dato' =
+			
+			CALCULATE(
+			    MAX ( call_events[dte_start] ),
+			    REMOVEFILTERS ( 'Calendar'[Date] )
+			)
+		formatString: General Date
+		displayFolder: Puzzel
+		lineageTag: d6d533ed-9a3c-4d55-98c2-b3f53d52fb82
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Total antal besvarede henvendelser' = [Antal besvarede opkald] + [Antal mailhenvendelser] + [Antal chathenvendelser]
+		formatString: 0
+		displayFolder: Puzzel
+		lineageTag: c631525d-cbd8-42b5-9639-76632bc09f91
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure Pålogningstid =
+			
+			SUMX(
+			    FILTER(
+			        agent_events,
+			        agent_events[event_type] = "i"
+			            && NOT ISBLANK(agent_events[agent_id])
+			            && NOT ISBLANK(agent_events[dte_start])
+			    ),
+			    VAR Agent  = agent_events[agent_id]
+			    VAR InTime = agent_events[dte_start]
+			
+			    -- Find next sign-out for same agent, ignoring the date filter (Calendar)
+			    VAR OutTime =
+			        MINX(
+			            FILTER(
+			                CALCULATETABLE(agent_events, REMOVEFILTERS('Calendar')),
+			                agent_events[agent_id] = Agent
+			                    && agent_events[event_type] = "o"
+			                    && agent_events[dte_start] > InTime
+			            ),
+			            agent_events[dte_start]
+			        )
+			    RETURN
+			        IF(
+			            NOT ISBLANK(OutTime),
+			            (OutTime - InTime) * 86400,   -- seconds
+			            BLANK()
+			        )
+			)
+		displayFolder: Puzzel
+		lineageTag: 47697929-9312-4c24-8e88-5a05860a3178
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Antal Kunder TVSA %Calendar Last Month' =
+			
+			VAR d = EOMONTH ( [AsOf Date], -1 )
+			VAR MaxDate = DATE(9999,12,31)
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    Product_config[ProductMainGroup] = "TVSA",
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: debc3bba-5ff2-4fcc-acaf-9549e6ce40d7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder TVSA %Calendar' = ```
+			
+			VAR d = [AsOf Date]
+			VAR MaxDate = DATE(9999,12,31)
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    Product_config[ProductMainGroup] = "TVSA",
+			    ProductHistory[Kunde_Status] = "Aktive",
+			    ProductHistory[Produkt_Status] = "I brug",
+			    ProductHistory[FromDate] <= d,
+			    ProductHistory[ToDate] > d)
+			
+			```
+		formatString: 0
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 5c831aa3-12a5-4ca8-9ba5-270840f8ccb7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Kunder TVSA Color' =
+			
+			VAR MonthVal = [Antal Kunder TVSA %Calendar Last Month]
+			VAR LastMonthVal  = [Antal Kunder TVSA %Calendar Last Month]
+			RETURN
+			IF (
+			    ISBLANK(MonthVal) || ISBLANK(LastMonthVal),
+			    BLANK(),
+			    IF ( LastMonthVal > MonthVal, "#D13438", "#107C10" )
+			)
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 29b1dda9-a470-4475-9c20-d3adf7552ce7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Nysalg test' = ```
+			
+			VAR StartDate = MIN ( 'Calendar'[Date] )
+			VAR EndDate   = MAX ( 'Calendar'[Date] )
+			VAR AsOf      = EndDate
+			RETURN AsOf
+			
+			```
+		formatString: General Date
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 059066a0-a36e-4202-bd43-337bdbc62af2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Kunder %Calender Produktvalg' =
+			
+			VAR Cat = SELECTEDVALUE ( Produktvalg[Kategori], "Internet" )
+			RETURN
+			CALCULATE (
+			    [Antal Nysalg Kunder %Calendar],
+			    FILTER (
+			        Product_config,
+			        SWITCH (
+			            Cat,
+			
+			            "Internet",
+			                Product_config[HovedProduktGruppe] = "Internet"
+			                    && Product_config[productGroup] <> "Migrering",
+			
+			            "TV",
+			                Product_config[HovedProduktGruppe] = "TV",
+			
+			            "TV Streaming",
+			                Product_config[HovedProduktGruppe] = "Streaming",
+			
+			            "TV Tilvalg",
+			                Product_config[HovedProduktGruppe] = "TV Tilvalg",
+			
+			            "VOIP",
+			                Product_config[HovedProduktGruppe] = "VOIP",
+			
+			            "Tilbehør",
+			                Product_config[HovedProduktGruppe] = "Antivirus"
+			                    || Product_config[HovedProduktGruppe] = "Fast IP"
+			                    || (
+			                        Product_config[HovedProduktGruppe] = "Internet Tilvalg"
+			                        && Product_config[productGroup] = "IP"
+			                    ),
+			
+			            TRUE
+			        )
+			    )
+			)
+		formatString: #,0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 64c572ef-9b4b-4545-986e-17180d50412b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder Nuuday Current' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( AltiboxMobil_Nuuday[Mobil nummer] ),
+			    REMOVEFILTERS ( 'Calendar' ),
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    AltiboxMobil_Nuuday[Status] in {"Aktiv men opsagt", "Aktiv", "Saldospærret"},
+			    AltiboxMobil_Nuuday[FromDate] <= d,
+			    AltiboxMobil_Nuuday[ToDate] > d)
+			
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: 0d895f45-e418-4f4c-a111-1e696f21da96
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure Nuuday_Y_Axis_Min =
+			
+			VAR MinInPeriod =
+			    MINX(
+			        VALUES('Calendar'[Date]),
+			        [Aktive mobilkunder %Calender]
+			    )
+			RETURN
+			MinInPeriod - 100
+		formatString: 0
+		displayFolder: Nuuday
+		lineageTag: 8e83d5de-10e4-4444-9e7a-10fa0793abaf
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure Nuuday_Y_Axis_Max =
+			
+			VAR MaxInPeriod =
+			    MINX(
+			        VALUES('Calendar'[Date]),
+			        [Aktive mobilkunder %Calender]
+			    )
+			RETURN
+			MaxInPeriod + 100
+		formatString: 0
+		displayFolder: Nuuday
+		lineageTag: 5d1e8ae4-7eb7-4531-baf0-47ae230fb286
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Churn Kunder Nuuday Current' = ```
+			
+			VAR StartDate = MIN ( 'Calendar'[Date] )
+			VAR EndDate   = MAX ( 'Calendar'[Date] )
+			VAR AsOf      = EndDate
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT ( AltiboxMobil_Nuuday[Mobil nummer] ),
+			    
+			    REMOVEFILTERS ( 'Calendar Comparison' ),
+			    REMOVEFILTERS ( AltiboxMobil_Nuuday[FromDate] ),
+			
+			    USERELATIONSHIP ( 'Calendar'[Date], AltiboxMobil_Nuuday[Udporteringsdato] ),
+			
+			    DATEVALUE ( AltiboxMobil_Nuuday[Udporteringsdato])>= StartDate,
+			    DATEVALUE ( AltiboxMobil_Nuuday[Udporteringsdato] ) <= EndDate,
+			
+			    AltiboxMobil_Nuuday[FromDate] <= AsOf,
+			    COALESCE ( AltiboxMobil_Nuuday[ToDate], DATE ( 9999, 12, 31 ) ) >= AsOf,
+			
+			    AltiboxMobil_Nuuday[Status] = "Nedlagt")
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: bcdcd3bc-101f-4ef3-85a1-3ed1705e7d21
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Igangværende opsigelser' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN 
+			CALCULATE(DISTINCTCOUNT(AltiboxMobil_Nuuday[Mobil nummer]), 
+			            AltiboxMobil_Nuuday[Status] = "Aktiv men opsagt",
+			            AltiboxMobil_Nuuday[FromDate] <= d,
+			            AltiboxMobil_Nuuday[ToDate] > d)
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: 0c900715-fcf3-4e86-8514-7dd2c0e2bd2b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Igangværende oprettelser' = ```
+			
+			VAR d = [AsOf Date]
+			RETURN 
+			CALCULATE(DISTINCTCOUNT(AltiboxMobil_Nuuday[Mobil nummer]), 
+			            AltiboxMobil_Nuuday[Status] IN {"Afventer Bekræftelsesdato", "Afventer Oprettelse", 
+			                                            "Confirmed og Afventer flytning", "Afventer afsendelse af SIM-kort", 
+			                                            "Afventer bookning af SIM-kort"},
+			            AltiboxMobil_Nuuday[FromDate] <= d,
+			            AltiboxMobil_Nuuday[ToDate] > d)
+			```
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: 48f5a53e-09ae-4616-8bdb-d27285311e52
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Nysalg Kunder Medarbejdere TV %Calendar' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			    ProductHistory[NySalg] = "1",
+			    ProductHistory[FromDate] <= TODAY(),
+			    Product_config[ProductMainGroup] in {"TV", "TVSA"},
+			    NOT(ISBLANK(MicrosoftAD_users[jobTitle])) ,
+			    COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) > TODAY(),
+			    Customer[ca_created] = "",
+			    USERELATIONSHIP ( ProductHistory[OrderedDate], 'Calendar'[Date] )
+			)
+		formatString: 0
+		displayFolder: CRM (ProductHistory) NYSALG
+		lineageTag: 8e62f09f-69bb-4410-a1e9-065ca1548530
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Hitrate tvsalg' = ```
+			CALCULATE([Antal Nysalg Kunder Medarbejdere TV %Calendar] / ([Antal besvarede opkald] + [Antal udgående opkald] )) 
+			```
+		formatString: 0\ %;-0\ %;0\ %
+		displayFolder: KPI measures
+		lineageTag: a116bbac-ad50-4535-bc30-e584c63bd541
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'AST per opkald (mm:ss)' =
+			
+			VAR AvgSeconds =
+			    COALESCE (
+			        AVERAGE ( call_events[duration_speak_sec] ),
+			        0
+			    )
+			VAR Minutes =
+			    INT ( AvgSeconds / 60 )
+			VAR Seconds =
+			    MOD ( ROUND ( AvgSeconds, 0 ), 60 )
+			RETURN
+			    FORMAT ( Minutes, "00" ) & ":" & FORMAT ( Seconds, "00" )
+		displayFolder: Puzzel
+		lineageTag: 8495b1a9-981b-4cd2-a857-0e359769091f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'AWT per opkald (mm:ss)' =
+			
+			VAR AvgSeconds =
+			    COALESCE (
+			        AVERAGE ( call_events[wrap_up_sec] ),
+			        0
+			    )
+			VAR Minutes =
+			    INT ( AvgSeconds / 60 )
+			VAR Seconds =
+			    MOD ( ROUND ( AvgSeconds, 0 ), 60 )
+			RETURN
+			    FORMAT ( Minutes, "00" ) & ":" & FORMAT ( Seconds, "00" )
+		displayFolder: Puzzel
+		lineageTag: a7eff951-f696-47db-82f0-ce429ade7624
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Antal Nysalg Kunder Medarbejdere Mobil %Calendar' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( AltiboxMobil_Nuuday[Mobil nummer] ),
+			    AltiboxMobil_Nuuday[FromDate] <= TODAY(),
+			    NOT(ISBLANK(MicrosoftAD_users[jobTitle])) ,
+			    COALESCE ( AltiboxMobil_Nuuday[ToDate], DATE ( 9999, 12, 31 ) ) > TODAY(),
+			    USERELATIONSHIP ( AltiboxMobil_Nuuday[Bestillingsdato], 'Calendar'[Date] )
+			)
+		formatString: #,0
+		displayFolder: Nuuday
+		lineageTag: fb3a87cb-a044-4d31-9c5b-043e2d462307
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal besvarede retentionkald' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(call_events[call_id]),
+			(call_events[queue_key] =  "q_Opsigelser"),
+			    call_events[result_response] in {0, 200}) -- 0 og 200 
+			```
+		formatString: 0
+		displayFolder: Puzzel
+		lineageTag: cb3e1ce4-a75b-4d02-a7fa-782ec49b8aab
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Hitrate retention' = ```
+			CALCULATE([Antal reddede Retention] / ([Antal besvarede retentionkald] )) 
+			```
+		formatString: 0\ %;-0\ %;0\ %
+		displayFolder: KPI measures
+		lineageTag: 10562042-614f-479b-ab13-2c53ff6d44ed
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0f049dbf-adce-4f2a-b7a2-a58355f2af30
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'All Measures' = entity
+		mode: directLake
+		source
+			entityName: allmeasures
+			expressionSource: 'DirectLake - Golden_lakehouse'
+
+	changedProperty = Name
+

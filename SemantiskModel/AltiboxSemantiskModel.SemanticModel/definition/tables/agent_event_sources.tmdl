@@ -1,0 +1,29 @@
+table agent_event_sources
+	lineageTag: 044cc9ec-0a81-486b-9621-97d08bb9ef86
+	sourceLineageTag: [dbo].[agent_event_sources]
+
+	column event_source
+		dataType: string
+		lineageTag: 9ce0541b-24a6-40ea-a9eb-74d289af30b9
+		sourceLineageTag: event_source
+		summarizeBy: none
+		sourceColumn: event_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column descript
+		dataType: string
+		lineageTag: db3a9bc0-25f4-4ad3-839f-ba078667decb
+		sourceLineageTag: descript
+		summarizeBy: none
+		sourceColumn: descript
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agent_event_sources = entity
+		mode: directLake
+		source
+			entityName: agent_event_sources
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

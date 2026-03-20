@@ -1,0 +1,156 @@
+table Agent_events_pause_durations
+	lineageTag: 04f249c9-d621-4e3b-9dca-1b2ccb876fa5
+	sourceLineageTag: [puz].[Agent_events_pause_durations]
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b39d45c7-467a-4fd4-8ce0-b4c58cfb382e
+		sourceLineageTag: agent_id
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rec_id_pause_start
+		dataType: int64
+		formatString: 0
+		lineageTag: e5d88738-77a6-40f8-8a68-397d52ee94b5
+		sourceLineageTag: rec_id_pause_start
+		summarizeBy: none
+		sourceColumn: rec_id_pause_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8e0562e1-839e-4d6f-989f-edd5d8120d29
+		sourceLineageTag: dte_start
+		summarizeBy: none
+		sourceColumn: dte_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_end
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab5bab0a-bcad-483c-b558-368f3313cf31
+		sourceLineageTag: dte_end
+		summarizeBy: none
+		sourceColumn: dte_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column profile
+		dataType: string
+		lineageTag: a41a2149-7733-4d93-9979-01ef9fb012b1
+		sourceLineageTag: profile
+		summarizeBy: none
+		sourceColumn: profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type_pause_start
+		dataType: string
+		lineageTag: 30d241c0-7571-478b-8243-17c20b40bfb8
+		sourceLineageTag: event_type_pause_start
+		summarizeBy: none
+		sourceColumn: event_type_pause_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type_pause_end
+		dataType: string
+		lineageTag: 5837aa65-7800-44d4-8b15-c2e37bd9962e
+		sourceLineageTag: event_type_pause_end
+		summarizeBy: none
+		sourceColumn: event_type_pause_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: ef87861a-89ab-4d0f-ad24-50bb44f23872
+		sourceLineageTag: duration_seconds
+		summarizeBy: sum
+		sourceColumn: duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: de3bc0a4-c317-4ee8-b256-a04e2cf361b5
+		sourceLineageTag: event_date
+		summarizeBy: none
+		sourceColumn: event_date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column dte_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3287f805-126e-4593-88a9-7b0dea26d2d3
+		sourceLineageTag: dte_start_date
+		summarizeBy: none
+		sourceColumn: dte_start_date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column dte_start_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8f39d9b-b0ab-4cb3-bc7c-6548109688d0
+		sourceLineageTag: dte_start_time
+		summarizeBy: none
+		sourceColumn: dte_start_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 01ca1c8f-365a-4a37-8654-bd3c6e5bbc43
+		sourceLineageTag: dte_start_hour
+		summarizeBy: sum
+		sourceColumn: dte_start_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_minute
+		dataType: int64
+		formatString: 0
+		lineageTag: 800fc2c6-b0ce-4eb3-b59c-38dd65d88c35
+		sourceLineageTag: dte_start_minute
+		summarizeBy: sum
+		sourceColumn: dte_start_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_index
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b3fad36-08d4-471e-b721-4bb0622d047b
+		sourceLineageTag: dte_start_index
+		summarizeBy: sum
+		sourceColumn: dte_start_index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Agent_events_pause_durations = entity
+		mode: directLake
+		source
+			entityName: Agent_events_pause_durations
+			schemaName: puz
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

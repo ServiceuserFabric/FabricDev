@@ -1,0 +1,47 @@
+table watermarktable
+	lineageTag: 4426869c-44d3-4aa4-9c55-9106297b8533
+	sourceLineageTag: [utl].[watermarktable]
+
+	column ToSchema
+		dataType: string
+		lineageTag: 50956d41-95a5-4699-9873-120d44129979
+		sourceLineageTag: ToSchema
+		summarizeBy: none
+		sourceColumn: ToSchema
+
+		annotation SummarizationSetBy = Automatic
+
+	column TableName
+		dataType: string
+		lineageTag: a7321e18-01ef-4df0-a630-af2902ab442c
+		sourceLineageTag: TableName
+		summarizeBy: none
+		sourceColumn: TableName
+
+		annotation SummarizationSetBy = Automatic
+
+	column WatermarkColumn
+		dataType: string
+		lineageTag: ca381850-c26e-4bdb-b004-8642ab8a78ed
+		sourceLineageTag: WatermarkColumn
+		summarizeBy: none
+		sourceColumn: WatermarkColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column WatermarkValue
+		dataType: string
+		lineageTag: af7acbe4-9748-4b5c-9983-939f4bd27142
+		sourceLineageTag: WatermarkValue
+		summarizeBy: none
+		sourceColumn: WatermarkValue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition watermarktable = entity
+		mode: directLake
+		source
+			entityName: watermarktable
+			schemaName: utl
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

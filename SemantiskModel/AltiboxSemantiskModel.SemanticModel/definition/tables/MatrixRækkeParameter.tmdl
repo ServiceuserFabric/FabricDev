@@ -1,0 +1,48 @@
+table MatrixRækkeParameter
+	lineageTag: d2377e64-429a-40f8-b391-e32102da2f87
+
+	column Parameter
+		lineageTag: 075f4179-c183-44c5-bc4e-e36518ac63a2
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Bestil'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Felter'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Felter'
+		lineageTag: 3d5b3d26-cb4a-483e-bab9-e27e7c208ae4
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Bestil'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Bestil'
+		isHidden
+		formatString: 0
+		lineageTag: 46345970-75d1-4b30-bf05-b05474ec27cd
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MatrixRækkeParameter = calculated
+		mode: import
+		source =
+				
+				{
+				    ("Produkt", NAMEOF ( 'Product_config'[Internet_speed] ), 0),
+				    ("Produkt", NAMEOF ( 'Product_config'[selfserviceNames_da] ), 1)
+				}
+
+	annotation PBI_Id = 2a0c64d3264949689e961d9ca1d43f20
+

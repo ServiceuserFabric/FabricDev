@@ -1,0 +1,47 @@
+table IO
+	lineageTag: d62f0744-f29e-4fda-8556-03278624c397
+	sourceLineageTag: [dbo].[IO]
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 53b7cea2-1023-4e5f-b90f-88fd988c101a
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		lineageTag: 4f335e74-9718-4186-9f60-38bde5e0108f
+		sourceLineageTag: key
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: fba763c6-3652-4095-8ee4-acf26a637eb8
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: ada94f7c-2b8e-4da8-bbab-24597e5154d3
+		sourceLineageTag: value
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition IO = entity
+		mode: directLake
+		source
+			entityName: IO
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

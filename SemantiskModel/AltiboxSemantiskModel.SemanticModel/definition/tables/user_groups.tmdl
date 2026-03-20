@@ -1,0 +1,30 @@
+table user_groups
+	lineageTag: 12a48ed6-1ba7-4bf4-ad8c-e6a1c4e1c2d3
+	sourceLineageTag: [dbo].[user_groups]
+
+	column usergroup_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5202ff83-1aff-4693-9f05-88ae43b08579
+		sourceLineageTag: usergroup_id
+		summarizeBy: none
+		sourceColumn: usergroup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_name
+		dataType: string
+		lineageTag: f1d137c3-830b-487c-ac47-1c12a408ba72
+		sourceLineageTag: usergroup_name
+		summarizeBy: none
+		sourceColumn: usergroup_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition user_groups = entity
+		mode: directLake
+		source
+			entityName: user_groups
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

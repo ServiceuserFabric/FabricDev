@@ -1,0 +1,60 @@
+table call_event_extras
+	lineageTag: a1f5ab0e-689c-43f8-a430-a74a8d65a8db
+	sourceLineageTag: [dbo].[call_event_extras]
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: df051327-dd08-4a50-bc59-5070fc3cd067
+		sourceLineageTag: rec_id
+		summarizeBy: none
+		sourceColumn: rec_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_events_rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ca8f782-e854-44be-8055-ae234f89ba5c
+		sourceLineageTag: call_events_rec_id
+		summarizeBy: none
+		sourceColumn: call_events_rec_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_text
+		dataType: string
+		lineageTag: 03e751c0-76fa-4281-8bca-33536cfe02cb
+		sourceLineageTag: transfer_text
+		summarizeBy: none
+		sourceColumn: transfer_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent2agent
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e5d2812-b641-43fd-a6ef-11eb60ab1194
+		sourceLineageTag: agent2agent
+		summarizeBy: none
+		sourceColumn: agent2agent
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_cache
+		dataType: int64
+		formatString: 0
+		lineageTag: e570368d-261c-4efc-9545-4e41af703b7b
+		sourceLineageTag: from_cache
+		summarizeBy: none
+		sourceColumn: from_cache
+
+		annotation SummarizationSetBy = Automatic
+
+	partition call_event_extras = entity
+		mode: directLake
+		source
+			entityName: call_event_extras
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

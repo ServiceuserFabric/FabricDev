@@ -1,0 +1,50 @@
+table OpdateretTidspunkt
+	lineageTag: 5dafc5cb-5e48-4924-be40-c724baa5c1ab
+	sourceLineageTag: [dbo].[OpdateretTidspunkt]
+
+	column Entitet
+		dataType: string
+		lineageTag: 844a92b9-6553-4758-ae65-f09702e2ba76
+		sourceLineageTag: Entitet
+		summarizeBy: none
+		sourceColumn: Entitet
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dato
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 76d1370b-cd04-46aa-91d1-663a27bfe85a
+		sourceLineageTag: Dato
+		summarizeBy: none
+		sourceColumn: Dato
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tidspunkt
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: f67e4046-0372-453f-adb5-9dd0562d9882
+		sourceLineageTag: Tidspunkt
+		summarizeBy: none
+		sourceColumn: Tidspunkt
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition OpdateretTidspunkt = entity
+		mode: directLake
+		source
+			entityName: OpdateretTidspunkt
+			schemaName: dbo
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

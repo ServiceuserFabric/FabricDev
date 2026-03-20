@@ -1,0 +1,177 @@
+table status
+	lineageTag: eaaa68cb-be63-45d6-bf27-534c31bb25c4
+	sourceLineageTag: [dbo].[status]
+
+	column hasBeenBilledOnce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9ff704e8-c3e6-424a-b9aa-73444cf1b2cb
+		sourceLineageTag: hasBeenBilledOnce
+		summarizeBy: none
+		sourceColumn: hasBeenBilledOnce
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kunde_Status
+		dataType: string
+		lineageTag: 8075d908-355e-4b26-b14e-53acedfddb28
+		sourceLineageTag: Kunde_Status
+		summarizeBy: none
+		sourceColumn: Kunde_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4eef3623-d9af-4bf5-9209-fd54e93f4ecc
+		sourceLineageTag: startDate
+		summarizeBy: none
+		sourceColumn: startDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ac82b68e-95e9-4e97-b7b7-4c3ff55baa8f
+		sourceLineageTag: Dato
+		summarizeBy: none
+		sourceColumn: Dato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		lineageTag: 613d0ba3-2475-41ef-b4a6-0dbf2f3a3bd5
+		sourceLineageTag: Partner
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produkt_Status
+		dataType: string
+		lineageTag: e1f0afe3-6e5e-44a6-816a-6be73c75291f
+		sourceLineageTag: Produkt_Status
+		summarizeBy: none
+		sourceColumn: Produkt_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column KundeNO
+		dataType: string
+		lineageTag: a12fe0fe-2fe5-4b93-8427-db71c95b9561
+		sourceLineageTag: KundeNO
+		summarizeBy: none
+		sourceColumn: KundeNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: faf30f46-8f74-4b9d-84a9-b06170e8cc71
+		sourceLineageTag: accountKey
+		summarizeBy: none
+		sourceColumn: accountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: a080dbc9-dc94-4754-aa70-5d2306c26af9
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column createdDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 08b57572-6bb8-4953-9a5e-5e0f8b4b5c72
+		sourceLineageTag: createdDate
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 76cb859b-6133-493b-8e22-a8f4427eb433
+		sourceLineageTag: modifiedDate
+		summarizeBy: none
+		sourceColumn: modifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column activeProvisioning
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a85e66f2-7768-431c-9ebd-a65ba6a426ae
+		sourceLineageTag: activeProvisioning
+		summarizeBy: none
+		sourceColumn: activeProvisioning
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduktID
+		dataType: int64
+		formatString: 0
+		lineageTag: b3d0f54c-92e9-46f0-8917-f2604cdf9d69
+		sourceLineageTag: ProduktID
+		summarizeBy: none
+		sourceColumn: ProduktID
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 71524042-a87d-4e8f-8f80-31ddf43304b8
+		sourceLineageTag: endDate
+		summarizeBy: none
+		sourceColumn: endDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column NySalg
+		dataType: string
+		lineageTag: dc0cc34a-08fc-4a76-9aed-e9348781c63d
+		sourceLineageTag: NySalg
+		summarizeBy: none
+		sourceColumn: NySalg
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 48781802-5512-4989-9636-a5515cc0bc5f
+		sourceLineageTag: orderedDate
+		summarizeBy: none
+		sourceColumn: orderedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fb207f00-0579-4097-9216-44b36685298c
+		sourceLineageTag: orderedDateTime
+		summarizeBy: none
+		sourceColumn: orderedDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition status = entity
+		mode: directLake
+		source
+			entityName: status
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

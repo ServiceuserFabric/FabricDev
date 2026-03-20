@@ -1,0 +1,25 @@
+table 'Salgsrapport Måltal Matrix'
+	lineageTag: 382db952-ce3c-4a2b-a0b3-e1c5a729e361
+
+	column Måltal
+		lineageTag: 532d3afd-3b2c-45e2-850d-9cda14044404
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Måltal]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Salgsrapport Måltal Matrix' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Måltal", STRING,
+				    {
+				        {"Salg"},
+				        {"Churn"}
+				    }
+				)
+
+	annotation PBI_Id = d3f70f293d304966ab0891e898dee3d0
+

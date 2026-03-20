@@ -1,0 +1,51 @@
+expression 'DirectLake - Golden_lakehouse' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/6b06974a-4346-4a38-bc5a-d42e564a6bec/836bc8da-2d44-4096-be88-36e2f91bbf80", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 03cf720f-6698-4f9a-bbbf-b1af99007fbb
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[ProductHistory]"}},"objectType":"Table"}]
+
+expression 'DirectLake - AltiboxMetadata' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/6b06974a-4346-4a38-bc5a-d42e564a6bec/e53bd032-acff-4e0b-9fbf-af74e4125510", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 55ffcb86-e53d-434c-869a-0d40de94842d
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[puz].[agent_events]"}},"objectType":"Table"}]
+
+expression 'DirectLake - Puzzel_Altibox' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/6b06974a-4346-4a38-bc5a-d42e564a6bec/dcddaf9e-0415-4d65-894b-104157b74950", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 89c1abd6-519b-45c4-9a99-d825cb5fb95c
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[agent_events_signed_in_sessions]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[agent_events_pause_durations]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[agent_events_deduped_tmp]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[vw_enqreg_total]"}},"objectType":"Table"}]
+
+expression 'DirectLake - MicrosoftAD' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/6b06974a-4346-4a38-bc5a-d42e564a6bec/9b2f31d6-7763-4e3f-a1dd-929063e067b3", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 864eec1b-81d4-42b7-aa1e-f742bcf1e1de
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+expression 'DirectLake - GoogleAnalytics_Altibox' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/6b06974a-4346-4a38-bc5a-d42e564a6bec/3ccdc5e8-f799-4ab1-87cc-80fbf06f7929", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 7b662990-82e1-47f9-afa8-419d33fbdceb
+
+	annotation PBI_IncludeFutureArtifacts = False
+

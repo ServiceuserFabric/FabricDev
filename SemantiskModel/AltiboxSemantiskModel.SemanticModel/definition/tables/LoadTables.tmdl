@@ -1,0 +1,68 @@
+table LoadTables
+	lineageTag: a055fa7f-3750-488b-8465-50be34a8714e
+	sourceLineageTag: [utl].[LoadTables]
+
+	column TableName
+		dataType: string
+		lineageTag: 4d12cefe-8e9d-4878-a8b7-b69081012c13
+		sourceLineageTag: TableName
+		summarizeBy: none
+		sourceColumn: TableName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SQLQuery
+		dataType: string
+		lineageTag: 7da1a8de-1d92-4f73-afd3-a0f0efaf050d
+		sourceLineageTag: SQLQuery
+		summarizeBy: none
+		sourceColumn: SQLQuery
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncFull
+		dataType: int64
+		formatString: 0
+		lineageTag: 398ce792-516e-4aa8-a6cd-b88b0381c59c
+		sourceLineageTag: IncFull
+		summarizeBy: sum
+		sourceColumn: IncFull
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadFrequency
+		dataType: int64
+		formatString: 0
+		lineageTag: 240eb727-9566-46a2-845a-4a89f373da5f
+		sourceLineageTag: LoadFrequency
+		summarizeBy: sum
+		sourceColumn: LoadFrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Active
+		dataType: int64
+		formatString: 0
+		lineageTag: 32886781-ebf0-488e-a134-ca2a93226dad
+		sourceLineageTag: Active
+		summarizeBy: sum
+		sourceColumn: Active
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToSchema
+		dataType: string
+		lineageTag: def61fdc-7d3f-425d-99e6-60a5d1520b0f
+		sourceLineageTag: ToSchema
+		summarizeBy: none
+		sourceColumn: ToSchema
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LoadTables = entity
+		mode: directLake
+		source
+			entityName: LoadTables
+			schemaName: utl
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

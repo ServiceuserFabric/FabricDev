@@ -1,0 +1,30 @@
+table phone_types
+	lineageTag: da75403c-3267-438c-89d6-4fb8362821a9
+	sourceLineageTag: [dbo].[phone_types]
+
+	column phone_type
+		dataType: int64
+		formatString: 0
+		lineageTag: abcfed35-883a-4a04-82c0-5e0dd5701733
+		sourceLineageTag: phone_type
+		summarizeBy: none
+		sourceColumn: phone_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column descript
+		dataType: string
+		lineageTag: 842ac055-660f-4e65-bae5-db82cf7d4c4f
+		sourceLineageTag: descript
+		summarizeBy: none
+		sourceColumn: descript
+
+		annotation SummarizationSetBy = Automatic
+
+	partition phone_types = entity
+		mode: directLake
+		source
+			entityName: phone_types
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

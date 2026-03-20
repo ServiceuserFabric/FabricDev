@@ -1,0 +1,39 @@
+table TrafficSource
+	lineageTag: eca1f4e8-bba4-4fb1-84ef-d8125b8331f2
+	sourceLineageTag: [dbo].[TrafficSource]
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 24533832-0f77-4619-9226-e12038c38801
+		sourceLineageTag: sessions
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b0f9b80-b52d-4d79-a81e-b26aaa24c67d
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessionPrimaryChannelGroup
+		dataType: string
+		lineageTag: b9728065-023b-40fe-9f1c-e021101c3af9
+		sourceLineageTag: sessionPrimaryChannelGroup
+		summarizeBy: none
+		sourceColumn: sessionPrimaryChannelGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrafficSource = entity
+		mode: directLake
+		source
+			entityName: TrafficSource
+			expressionSource: 'DirectLake - GoogleAnalytics_Altibox'
+

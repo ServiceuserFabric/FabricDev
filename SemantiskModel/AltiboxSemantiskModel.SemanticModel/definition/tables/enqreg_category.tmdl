@@ -1,0 +1,64 @@
+table enqreg_category
+	lineageTag: 08bb4b09-e5f5-473c-bce2-4274ded6754b
+	sourceLineageTag: [dbo].[enqreg_category]
+
+	column enqreg_category_recid
+		dataType: int64
+		formatString: 0
+		lineageTag: 388467a6-a0ca-491f-a9c9-5bf0d2350844
+		sourceLineageTag: enqreg_category_recid
+		summarizeBy: none
+		sourceColumn: enqreg_category_recid
+
+		annotation SummarizationSetBy = Automatic
+
+	column enqreg_header_recid
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c33ad38-6ccb-417c-87e9-7702722a3fb6
+		sourceLineageTag: enqreg_header_recid
+		summarizeBy: sum
+		sourceColumn: enqreg_header_recid
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f3841c95-3146-4e92-945e-575187235b56
+		sourceLineageTag: category_id
+		summarizeBy: none
+		sourceColumn: category_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column category_name
+		dataType: string
+		lineageTag: da61b3d3-2250-4cb9-a796-67da3c800ec5
+		sourceLineageTag: category_name
+		summarizeBy: none
+		sourceColumn: category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_category_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e68ebf5c-e36c-4fc9-8954-1e386b3f1e52
+		sourceLineageTag: parent_category_id
+		summarizeBy: none
+		sourceColumn: parent_category_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	partition enqreg_category = entity
+		mode: directLake
+		source
+			entityName: enqreg_category
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

@@ -1,0 +1,50 @@
+/// Dette er til at lave udsnit i rapporter, som ikke har en direkte sammenhæng til kalender
+table Month_Current_Filter
+	lineageTag: 7c922ed5-ccd5-411e-82af-c1f8f0e48559
+
+	measure 'Current Month Start' =
+			
+			SELECTEDVALUE ( Month_Current_Filter[MonthStart] )
+		formatString: General Date
+		lineageTag: 45702440-e19e-47ed-81d7-51a4c39cceea
+
+	measure 'Current Month End' = EOMONTH ( [Current Month Start], 0 )
+		formatString: General Date
+		lineageTag: 8aa775c6-7a40-447a-ba79-04f2a3715417
+
+	column MonthStart
+		formatString: General Date
+		lineageTag: 38bddf48-64e6-43ce-b5a1-dce732764b5b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthStart]
+
+		variation Variation
+			isDefault
+			relationship: f4f714c8-03eb-4781-9264-0cc3284e7ea6
+			defaultHierarchy: LocalDateTable_6b21b8de-0016-4c0f-9898-f60bc0f0ddb7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: 3205c725-c5dc-4b1c-ac5c-b9ef83bcf962
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Month_Current_Filter = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'Calendar',
+				        "MonthStart", 'Calendar'[MonthStart],
+				        "YearMonth",  'Calendar'[ÅrMåned]
+				    )
+				)
+
+	annotation PBI_Id = a1bcfdd070ba48688c3ab5a255b9c652
+

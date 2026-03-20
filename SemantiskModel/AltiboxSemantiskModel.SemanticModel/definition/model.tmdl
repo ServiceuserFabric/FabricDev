@@ -1,0 +1,76 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table Customer
+ref table Realiseret_vs_Budget
+ref table Product_config
+ref table IO
+ref table Cust_Group
+ref table Realiseret_vs_Budget_Dagligt_
+ref table Calendar
+ref table 'All Measures'
+ref table status
+ref table call_relations
+ref table enqreg_header
+ref table call_event_extras
+ref table queues
+ref table menues
+ref table surveys
+ref table agent_event_types
+ref table call_event_types
+ref table agent_result_codes
+ref table enqreg_category
+ref table call_variables
+ref table agent_event_sources
+ref table phone_types
+ref table enqreg_topic
+ref table user_groups
+ref table media_types
+ref table call_result_codes
+ref table MicrosoftAD_group_memberships
+ref table MicrosoftAD_users
+ref table MicrosoftAD_groups
+ref table TrafficSource
+ref table Demographics
+ref table Engagement
+ref table Audience_name
+ref table Month_Current_Filter
+ref table Month_Compare_Filter
+ref table DateTableTemplate_96ad8888-05a7-4855-9a0d-bb2a75d10879
+ref table LocalDateTable_6b21b8de-0016-4c0f-9898-f60bc0f0ddb7
+ref table LocalDateTable_f651335d-69fe-4e11-be67-60c9f056c102
+ref table 'Calendar Comparison Periods'
+ref table Tid
+ref table 'Calendar Comparison'
+ref table LocalDateTable_2a74af26-1120-4f9c-91c9-34d327a77d2f
+ref table AltiboxMobil_Nuuday
+ref table LocalDateTable_64b34e55-865a-42f7-8209-dbc0ea624f37
+ref table Produktvalg
+ref table MatrixRækkeParameter
+ref table 'Produktmix Måltal Matrix'
+ref table 'Salgsrapport Måltal Matrix'
+ref table call_events
+ref table LoadTables
+ref table watermarktable
+ref table OpdateretTidspunkt
+ref table agents
+ref table agents_history
+ref table ProductHistory
+ref table agent_events
+ref table 'dbo call_events'
+ref table 'dbo agents'
+ref table Agent_events_pause_durations
+ref table Agent_events_signed_in_sessions
+ref table vw_enqreg_total
+

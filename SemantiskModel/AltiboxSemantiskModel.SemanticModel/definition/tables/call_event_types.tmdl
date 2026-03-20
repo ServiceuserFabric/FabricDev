@@ -1,0 +1,29 @@
+table call_event_types
+	lineageTag: 62c524bb-869a-4cbb-be22-e66b3bc304df
+	sourceLineageTag: [dbo].[call_event_types]
+
+	column event_type
+		dataType: string
+		lineageTag: fd071c1f-ae75-4dd7-854d-e5bdab081aae
+		sourceLineageTag: event_type
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column descript
+		dataType: string
+		lineageTag: 8fa35c63-2a2c-4cd0-91e6-cdcb48f38f09
+		sourceLineageTag: descript
+		summarizeBy: none
+		sourceColumn: descript
+
+		annotation SummarizationSetBy = Automatic
+
+	partition call_event_types = entity
+		mode: directLake
+		source
+			entityName: call_event_types
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

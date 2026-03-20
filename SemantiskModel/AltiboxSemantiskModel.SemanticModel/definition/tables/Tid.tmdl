@@ -1,0 +1,205 @@
+table Tid
+	lineageTag: c126c21d-28dc-4b79-a74a-1a3ee60d008a
+
+	column Tid
+		dataType: dateTime
+		formatString: Short Time
+		lineageTag: b524235e-3966-4bca-a026-4842b71c35b2
+		summarizeBy: none
+		sourceColumn: Tid
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a26c096-db57-40bf-9259-6f7ee210c203
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = User
+
+	column Time
+		dataType: int64
+		formatString: 0
+		lineageTag: 7621b2a6-bdd1-4f45-9216-4d3a9acdfa92
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = User
+
+	column Minut
+		dataType: int64
+		formatString: 0
+		lineageTag: b9b867c4-ee79-464e-9421-fde6771071f2
+		summarizeBy: none
+		sourceColumn: Minut
+
+		annotation SummarizationSetBy = User
+
+	column '5 Minutter'
+		dataType: string
+		lineageTag: 8635828a-27b4-4545-bd32-1a9dfb184883
+		summarizeBy: none
+		sourceColumn: 5 Minutter
+
+		annotation SummarizationSetBy = Automatic
+
+	column '10 Minutter'
+		dataType: string
+		lineageTag: d84b7e7b-7a7e-4c4d-b9db-38240af0ed43
+		summarizeBy: none
+		sourceColumn: 10 Minutter
+
+		annotation SummarizationSetBy = Automatic
+
+	column '15 Minutter'
+		dataType: string
+		lineageTag: dcad2f38-e604-4c13-9e3f-348b1ebeffbb
+		summarizeBy: none
+		sourceColumn: 15 Minutter
+
+		annotation SummarizationSetBy = Automatic
+
+	column '30 Minutter '
+		dataType: string
+		lineageTag: b43b6a89-5e2f-431a-816f-4149b67857ed
+		summarizeBy: none
+		sourceColumn: "30 Minutter "
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1 Time'
+		dataType: string
+		lineageTag: c00e1cf1-1156-442d-93c6-f1892778537c
+		summarizeBy: none
+		sourceColumn: 1 Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column '5 Minutters Interval'
+		dataType: string
+		lineageTag: 90274aff-0104-4789-940d-e9c36f9ab2df
+		summarizeBy: none
+		sourceColumn: 5 Minutters Interval
+
+		annotation SummarizationSetBy = Automatic
+
+	column '10 Minutters Interval'
+		dataType: string
+		lineageTag: 6cf697b8-f7e4-4ca8-a80e-f3b63097c076
+		summarizeBy: none
+		sourceColumn: 10 Minutters Interval
+
+		annotation SummarizationSetBy = Automatic
+
+	column '15 Minutters Interval'
+		dataType: string
+		lineageTag: 7fbd7e5a-d58f-4d93-bfe6-22c500796668
+		summarizeBy: none
+		sourceColumn: 15 Minutters Interval
+
+		annotation SummarizationSetBy = Automatic
+
+	column '30 Minutters Interval'
+		dataType: string
+		lineageTag: 2d29da8c-edc3-4f7f-9c94-250d4ddbbbbb
+		summarizeBy: none
+		sourceColumn: 30 Minutters Interval
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1 Times Interval'
+		dataType: string
+		lineageTag: b5fc1dcc-a88c-4ed5-97e7-491091beb99f
+		summarizeBy: none
+		sourceColumn: 1 Times Interval
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tid = m
+		mode: import
+		source = ```
+				let
+				     NumberOfMinutes = 24 * 60,
+				    ListOfMinutes = List.Times(#time(0, 0, 0), NumberOfMinutes, #duration(0, 0, 1, 0)),
+				    MinutesAsTable = Table.FromList(ListOfMinutes, Splitter.SplitByNothing(), {"Time"}, null, ExtraValues.Error),
+				    MinuteColumnAsTime = Table.TransformColumnTypes(MinutesAsTable,{{"Time", type time}}),
+				
+				     Index = Table.AddColumn(MinuteColumnAsTime, "Index", each Time.Hour([Time]) * 100 + Time.Minute([Time]), Int32.Type),
+				
+				      Hour = Table.AddColumn(Index, "Hour", each Time.Hour([Time]), Int32.Type),
+				    Minute = Table.AddColumn(Hour, "Minute", each Time.Minute([Time]), Int32.Type),
+				
+				     fnTimeRoundDown = (currentTime as time, interval as number) as time => 
+				        let
+				            currentHour = Time.Hour(currentTime),
+				            currentMinute = Time.Minute(currentTime),
+				            result = #time(currentHour, currentMinute - Number.Mod(currentMinute, interval), 0)
+				        in
+				            result,
+				
+				    FiveMinutes = Table.AddColumn(Minute, "FiveMinutes", each fnTimeRoundDown([Time], 5), type time),
+				    TenMinutes = Table.AddColumn(FiveMinutes, "TenMinutes", each fnTimeRoundDown([Time], 10), type time),
+				    FifteenMinutes = Table.AddColumn(TenMinutes, "FifteenMinutes", each fnTimeRoundDown([Time], 15), type time),
+				    ThirtyMinutes = Table.AddColumn(FifteenMinutes, "ThirtyMinutes", each fnTimeRoundDown([Time], 30), type time),
+				    OneHour = Table.AddColumn(ThirtyMinutes, "OneHour", each fnTimeRoundDown([Time], 60), type time),
+				
+				    fnTimeToText = (currentTime as time, countOfMinutes as number) as text =>
+				        let 
+				            from = currentTime,
+				            to = currentTime + #duration(0, 0, countOfMinutes, 0),
+				            result = Time.ToText(from, "HH:mm", "da-DK") & " - " & Time.ToText(to, "HH:mm", "da-DK")
+				        in
+				            result,
+				
+				    FiveMinutesText = Table.AddColumn(OneHour, "FiveMinutesInterval", each fnTimeToText([FiveMinutes], 5), type text),
+				    TenMinutesText = Table.AddColumn(FiveMinutesText, "TenMinutesInterval", each fnTimeToText([TenMinutes], 10), type text),
+				    FifteenMinutesText = Table.AddColumn(TenMinutesText, "FifteenMinutesInterval", each fnTimeToText([FifteenMinutes], 15), type text),
+				    ThirtyMinutesText = Table.AddColumn(FifteenMinutesText, "ThirtyMinutesInterval", each fnTimeToText([ThirtyMinutes], 30), type text),
+				    OneHourText = Table.AddColumn(ThirtyMinutesText, "OneHourInterval", each fnTimeToText([OneHour], 60), type text),
+				    ColumnTranslation = Table.RenameColumns(
+				    OneHourText,
+				    {
+				        {"Time", "Tid"}, 
+				        {"Hour", "Time"}, 
+				        {"Minute", "Minut"}, 
+				        {"FiveMinutes", "5 Minutter"}, 
+				        {"TenMinutes", "10 Minutter"}, 
+				        {"FifteenMinutes", "15 Minutter"}, 
+				        {"ThirtyMinutes", "30 Minutter "}, 
+				        {"OneHour", "1 Time"}, 
+				        {"FiveMinutesInterval", "5 Minutters Interval"}, 
+				        {"TenMinutesInterval", "10 Minutters Interval"}, 
+				        {"FifteenMinutesInterval", "15 Minutters Interval"}, 
+				        {"ThirtyMinutesInterval", "30 Minutters Interval"}, 
+				        {"OneHourInterval", "1 Times Interval"}
+				    }
+				),
+				
+				    // ⬇️ Change starts here: format Tid as text with seconds ":00"
+				    #"Tid as text with seconds" =
+				        Table.TransformColumns(
+				            ColumnTranslation,
+				            { { "Tid", each Time.ToText(_, "HH:mm:ss", "da-DK"), type text } }
+				        ),
+				
+				    //"Changed column type with locale" = Table.TransformColumnTypes(ColumnTranslation, {{"Tid", type text}}, "da-DK"),  // ← old line removed
+				
+				    #"Changed column type with locale 1" = Table.TransformColumnTypes(
+				        #"Tid as text with seconds",
+				        {{"5 Minutter", type text}, {"10 Minutter", type text}, {"15 Minutter", type text}, {"30 Minutter ", type text}, {"1 Time", type text}},
+				        "da-DK"
+				    )
+				in
+				    #"Changed column type with locale 1"
+				```
+
+	annotation PBI_ResultType = Table
+

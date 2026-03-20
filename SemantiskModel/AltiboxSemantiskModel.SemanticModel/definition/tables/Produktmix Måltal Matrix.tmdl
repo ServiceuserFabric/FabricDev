@@ -1,0 +1,25 @@
+table 'Produktmix Måltal Matrix'
+	lineageTag: eac18e7d-7ece-4fe7-8b96-1382d4cfc214
+
+	column Måltal
+		lineageTag: f695a84d-51ae-458b-8015-172651ab4048
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Måltal]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Produktmix Måltal Matrix' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Måltal", STRING,
+				    {
+				        {"Aktive"},
+				        {"Pending"}
+				    }
+				)
+
+	annotation PBI_Id = 7d12fddc147e4483ae6fe22cc7bd622f
+

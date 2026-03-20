@@ -1,0 +1,54 @@
+/// Dette er til at lave udsnit i rapporter, som ikke har en direkte sammenhæng til kalender
+table Month_Compare_Filter
+	lineageTag: 35ad3908-e6db-4c54-b8f6-cade1b4642aa
+
+	measure 'Compare Month Start' = ```
+			SELECTEDVALUE ( Month_Compare_Filter[MonthStart])
+			
+			```
+		formatString: General Date
+		lineageTag: 9227c6ff-1b8a-44c3-9d3e-53928f82afa0
+
+	measure 'Compare Month End' = ```
+			EOMONTH (Month_Compare_Filter[Compare Month Start], 0 )
+			
+			```
+		formatString: General Date
+		lineageTag: 179c0026-2aff-4d31-85d2-8bdd589dc353
+
+	column MonthStart
+		formatString: General Date
+		lineageTag: 4403121b-f881-4708-add6-9054ab0fea8a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthStart]
+
+		variation Variation
+			isDefault
+			relationship: a9df07c2-d08c-4ff5-837b-69378eb7fcce
+			defaultHierarchy: LocalDateTable_f651335d-69fe-4e11-be67-60c9f056c102.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: f6fda179-f374-4aaa-8af9-b405509e6589
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Month_Compare_Filter = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'Calendar',
+				        "MonthStart", 'Calendar'[MonthStart],
+				        "YearMonth",  'Calendar'[ÅrMåned]
+				    )
+				)
+
+	annotation PBI_Id = 68d96e4f52004efd888cedb5a5e4f05b
+

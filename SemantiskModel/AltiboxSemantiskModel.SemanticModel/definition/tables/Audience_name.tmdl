@@ -1,0 +1,59 @@
+table Audience_name
+	lineageTag: 21a402fc-a647-4332-9356-89777a34e96b
+	sourceLineageTag: [dbo].[Audience_name]
+
+	column newUsers
+		dataType: int64
+		formatString: 0
+		lineageTag: d1e6500a-52d4-4453-9778-0e4db2c8bc88
+		sourceLineageTag: newUsers
+		summarizeBy: sum
+		sourceColumn: newUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column totalUsers
+		dataType: int64
+		formatString: 0
+		lineageTag: 38676b15-d37f-4f14-8c1b-a01257a1189f
+		sourceLineageTag: totalUsers
+		summarizeBy: sum
+		sourceColumn: totalUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: ca91a428-ae44-4478-90e5-2024657307e2
+		sourceLineageTag: sessions
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column audienceName
+		dataType: string
+		lineageTag: 11d9ef07-7c3e-4425-9159-d94dd0529dbf
+		sourceLineageTag: audienceName
+		summarizeBy: none
+		sourceColumn: audienceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b8c8cf78-2637-46ff-9bb4-3353d2a6c376
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Audience_name = entity
+		mode: directLake
+		source
+			entityName: Audience_name
+			expressionSource: 'DirectLake - GoogleAnalytics_Altibox'
+
