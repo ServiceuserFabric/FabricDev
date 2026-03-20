@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA TrafficSource"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c4708234-4570-8223-4199-e6008902cdc8"
+  }
+}

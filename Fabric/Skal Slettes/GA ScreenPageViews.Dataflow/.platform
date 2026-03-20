@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA ScreenPageViews"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1eaa3efd-c596-8e97-49f3-898ecc16ec89"
+  }
+}

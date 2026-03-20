@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA ActiveUsers_Mathias_SKAL_SLETTES"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2cdf0630-4692-954d-47df-fa9f500145ba"
+  }
+}

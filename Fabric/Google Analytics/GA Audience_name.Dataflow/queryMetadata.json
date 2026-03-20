@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "GA Audience_name",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Audience_name": {
+      "queryId": "c126e78c-bd51-41a8-b398-5188597f5a28",
+      "queryName": "Audience_name",
+      "loadEnabled": false
+    },
+    "Audience_name_DataDestination": {
+      "queryId": "9181f067-14fe-4e21-b5ce-0802fde9d289",
+      "queryName": "Audience_name_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "GoogleAnalytics",
+      "kind": "GoogleAnalytics",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"f9e29773-22ac-4818-a86f-0dd3d9518309\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"934d6cb4-1845-41fb-bddb-06d5fda26814\",\"DatasourceId\":\"4e6df107-7165-4204-ac03-44a4c3321aa7\"}"
+    }
+  ]
+}

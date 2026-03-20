@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "GA ScreenPageViews_MATHIAS_SKAL_SLETTES"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4e2e4610-ced0-a454-4714-bb5ab1e8c1d7"
+  }
+}
