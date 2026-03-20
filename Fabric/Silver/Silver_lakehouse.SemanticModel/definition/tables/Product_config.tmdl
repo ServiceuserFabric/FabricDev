@@ -1,0 +1,64 @@
+table Product_config
+	lineageTag: 9135902a-4fee-47ff-88f6-7b6a22742747
+	sourceLineageTag: [dbo].[Product_config]
+
+	column id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 34cf7917-3280-4e73-9689-0aced7f89032
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column productGroup
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 7af04032-8faa-4d77-ace1-1c18d31ad166
+		sourceLineageTag: productGroup
+		summarizeBy: none
+		sourceColumn: productGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column selfserviceNames_da
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 74fdeb54-7e21-4d4c-88ea-749aa4394f8a
+		sourceLineageTag: selfserviceNames_da
+		summarizeBy: none
+		sourceColumn: selfserviceNames_da
+
+		annotation SummarizationSetBy = Automatic
+
+	column HovedProduktGruppe
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: dd564e8b-dd6e-40ea-b09e-54556a3459a7
+		sourceLineageTag: HovedProduktGruppe
+		summarizeBy: none
+		sourceColumn: HovedProduktGruppe
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductMainGroup
+		dataType: string
+		sourceProviderType: varchar
+		lineageTag: 89058f71-2fcd-49bd-8ae9-d1257c5ab8b3
+		sourceLineageTag: ProductMainGroup
+		summarizeBy: none
+		sourceColumn: ProductMainGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_config-ebc453de-0e33-4891-b340-be9cacb1b0a8 = entity
+		mode: directLake
+		source
+			entityName: Product_config
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation IsTableInBiModel = True
+

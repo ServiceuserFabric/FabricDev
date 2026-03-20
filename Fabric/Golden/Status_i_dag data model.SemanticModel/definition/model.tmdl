@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.142.7627.6 (Main)+12378a3b51a63d36fded4ef866d1d94d4d0715e0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["WebModelingEdit","DaxQueryView_Desktop"]
+
+annotation __PBIService_Versioning_SaveVersion = 9c45e643-fc5c-4d98-8958-8d84ad0bef2e
+
+ref table IO
+ref table Cust_Group
+ref table Product_config
+ref table Realiseret_vs_Budget_Dagligt_
+ref table Customer
+ref table Status_I_dag_
+
+ref cultureInfo en-US
+

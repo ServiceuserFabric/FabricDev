@@ -1,0 +1,18 @@
+model a64e563c-9beb-46e1-b1fc-7229242d7701
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Antal_Kunder_i_dag","FilteredNySalgTV","Incremental_Status_I_Dag_view","exec_requests_history","DimDate","long_running_queries","frequently_run_queries","exec_sessions_history","Cust_Prod_Clean","Date_Status","Produkt_Status","Produkt_Status_Expanded","NySalgProducts","Kunde_Status","Status_I_dag","Realiseret_vs_Budget_Dagligt","NySalgTV","NySalgInternet","FilteredNySalgProducts_OLD","FilteredNySalgProducts","FilteredNySalgInternet","IO","Cust_prod","Status_I_dag_","Customer","Product_config","Realiseret_vs_Budget","Realiseret_vs_Budget_Dagligt_","Cust_Group","status","Budget","incremental_status_log"]
+
+annotation SourceLineageTagType = DatabaseFullyQualifiedName
+
+ref table IO
+ref table Product_config
+

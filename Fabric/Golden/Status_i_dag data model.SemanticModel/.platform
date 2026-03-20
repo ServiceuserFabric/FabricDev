@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Status_i_dag data model",
+    "description": "Data model for the report showing todays data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "530d6c10-bd91-b90e-4cae-b750cc658da5"
+  }
+}

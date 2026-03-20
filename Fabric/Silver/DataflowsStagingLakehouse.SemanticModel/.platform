@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DataflowsStagingLakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f4b851a7-8c2a-ae6f-44ee-13e9715747f5"
+  }
+}

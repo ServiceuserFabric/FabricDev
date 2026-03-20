@@ -1,0 +1,67 @@
+table Realiseret_vs_Budget
+	lineageTag: f5b93540-c102-44a3-ab62-7189054d271d
+	sourceLineageTag: [dbo].[Realiseret_vs_Budget]
+
+	column Dato
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: efdec9c5-7ba7-4e15-9de2-8e86036f2d57
+		sourceLineageTag: Dato
+		summarizeBy: none
+		sourceColumn: Dato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Periode
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 53643deb-51b4-4297-8709-bcd9f8f76d41
+		sourceLineageTag: Periode
+		summarizeBy: none
+		sourceColumn: Periode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d44bca38-2ae5-46a7-81de-15c77556e2ef
+		sourceLineageTag: Partner
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 41ddc444-7318-4044-bf96-c581c49fd7c7
+		sourceLineageTag: Antal_Kunder_Realiseret
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ac66e5d5-8ae9-4617-b765-c876c304bb34
+		sourceLineageTag: Antal_Kunder_Budget
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Realiseret_vs_Budget = entity
+		mode: directLake
+		source
+			entityName: Realiseret_vs_Budget
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

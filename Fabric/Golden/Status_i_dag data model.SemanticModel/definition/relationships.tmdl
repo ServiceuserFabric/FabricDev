@@ -1,0 +1,17 @@
+relationship 50b3f54a-7694-850f-b1d8-06b4c246c335
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship 2660fa6d-f4aa-f33f-f93b-0b11b79a686e
+	toCardinality: many
+	fromColumn: Status_I_dag_.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 87ff5f01-c295-1540-dba6-8afaad2e344c
+	fromColumn: Status_I_dag_.Partner
+	toColumn: IO.key
+
+relationship 190f9069-5e9e-78b4-7ba3-30088e095566
+	fromColumn: Status_I_dag_.ProduktID
+	toColumn: Product_config.id
+

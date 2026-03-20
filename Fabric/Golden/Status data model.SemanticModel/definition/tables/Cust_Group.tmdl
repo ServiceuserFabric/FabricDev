@@ -1,0 +1,104 @@
+table Cust_Group
+	lineageTag: bee2a806-edc6-4573-8bfd-2fd516a96f21
+	sourceLineageTag: [dbo].[Cust_Group]
+
+	column account
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a2fefeb8-50f8-4229-8619-4668089178d8
+		sourceLineageTag: account
+		summarizeBy: none
+		sourceColumn: account
+
+		annotation SummarizationSetBy = Automatic
+
+	column bookkeepingId
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8b11410b-43dd-47cb-86fe-25c93d8505c9
+		sourceLineageTag: bookkeepingId
+		summarizeBy: none
+		sourceColumn: bookkeepingId
+
+		annotation SummarizationSetBy = Automatic
+
+	column fullPath
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 196d8b9d-d818-4728-b1b1-178d7e1f5f3f
+		sourceLineageTag: fullPath
+		summarizeBy: none
+		sourceColumn: fullPath
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 40d8058b-c31c-4e48-8fc8-706fa6d3680b
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ident
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b01dc9d4-5c6c-4eb0-bafb-8c9d7d50e1dc
+		sourceLineageTag: ident
+		summarizeBy: none
+		sourceColumn: ident
+
+		annotation SummarizationSetBy = Automatic
+
+	column modified
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: e602a8f9-d2e7-4072-a9cb-4ee60c916302
+		sourceLineageTag: modified
+		summarizeBy: none
+		sourceColumn: modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedISO
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ca126e9d-a77c-4326-bd07-feb27b1544fe
+		sourceLineageTag: modifiedISO
+		summarizeBy: none
+		sourceColumn: modifiedISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4850adc1-6f2f-485a-935a-436f59c7d4e4
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentCustomerGroupId
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b26972dd-f8c1-4322-8a01-af6e5eb40deb
+		sourceLineageTag: parentCustomerGroupId
+		summarizeBy: none
+		sourceColumn: parentCustomerGroupId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cust_Group = entity
+		mode: directLake
+		source
+			entityName: Cust_Group
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
