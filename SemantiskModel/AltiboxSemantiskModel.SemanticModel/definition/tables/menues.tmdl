@@ -1,0 +1,68 @@
+table menues
+	lineageTag: 928d313c-92dc-4c40-aacc-6a6e030a08a1
+	sourceLineageTag: [dbo].[menues]
+
+	column service_num
+		dataType: string
+		lineageTag: 1d11390e-305f-4ae2-890e-6e9e8dd0b31a
+		sourceLineageTag: service_num
+		summarizeBy: none
+		sourceColumn: service_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column menue_key
+		dataType: string
+		lineageTag: 83890eee-36f3-4b37-a37b-c38dc2a5a120
+		sourceLineageTag: menue_key
+		summarizeBy: none
+		sourceColumn: menue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column descript
+		dataType: string
+		lineageTag: 34f80744-31a7-4de0-a372-8f5f6ebcf413
+		sourceLineageTag: descript
+		summarizeBy: none
+		sourceColumn: descript
+
+		annotation SummarizationSetBy = Automatic
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c911ee6-4a7a-4918-8d22-ce6ad6f0861a
+		sourceLineageTag: rec_id
+		summarizeBy: sum
+		sourceColumn: rec_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8b2d2577-5c0d-4492-9307-ec30f9a31229
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc5086e2-38f6-414b-80c6-ec5b23613397
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition menues = entity
+		mode: directLake
+		source
+			entityName: menues
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

@@ -1,0 +1,29 @@
+table Produktvalg
+	lineageTag: ec33b9dd-311d-47f5-85a3-f1163496e5b0
+
+	column Kategori
+		lineageTag: 8663b113-a092-4d4f-9077-e85c8f53c5fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Kategori]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Produktvalg = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Kategori", STRING,
+				    {
+				        { "Internet" },
+				        { "TV" },
+				        { "TV Streaming" },
+				        { "TV Tilvalg" },
+				        { "VOIP" },
+				        { "Tilbehør" }
+				    }
+				)
+
+	annotation PBI_Id = dc2c24659c8e46529771bcc24aa586bd
+

@@ -1,0 +1,215 @@
+table Calendar
+	lineageTag: a426c13c-8cca-4223-9a55-d61e8b46b5c1
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: dd-mm-yyyy
+		lineageTag: 70702a84-6c49-465d-8074-16abbb897556
+		summarizeBy: none
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column År = YEAR(Calendar[Date])
+		lineageTag: 6b3ead0c-cdc1-475a-929f-ac86a4922418
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dagsnr = DAY(Calendar[Date])
+		formatString: 0
+		lineageTag: d098d864-6515-44f1-9af8-7c096eb0c6e4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kvartal = "Q" & FORMAT(Calendar[Date], "Q")
+		lineageTag: b16d025a-e45d-4c53-9b95-172538c171f6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Måned = FORMAT(Calendar[Date], "MMMM")
+		lineageTag: 7bfaf0bb-956b-4d6a-9ca5-86329aa99aa1
+		summarizeBy: none
+		sortByColumn: MånedsNr
+
+		annotation SummarizationSetBy = Automatic
+
+	column MånedsNr = MONTH(Calendar[Date])
+		formatString: 0
+		lineageTag: db72f1ba-aaf0-446f-9d9c-4e2f0c79f263
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ugedag = WEEKDAY(Calendar[Date])
+		formatString: 0
+		lineageTag: 45eb8299-9bfd-463e-8673-44451fb974d9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column UgedagNavn = Upper(FORMAT(Calendar[Date],"Dddd", "da-DK"))
+		lineageTag: dce38ff3-27e1-4dec-94c1-b4b7b5bec939
+		summarizeBy: none
+		sortByColumn: Ugedag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ugenr = WEEKNUM(Calendar[Date],21)
+		formatString: 0
+		lineageTag: 97e41fcd-9a07-4fb2-ab41-b92936d85c48
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ÅrUge = ```
+			'Calendar'[ISOYear] & "-" & FORMAT( WEEKNUM([Date], 21), "00" )
+			
+			```
+		lineageTag: 3da64fa2-f4db-412c-b4dc-e1548379054f
+		summarizeBy: none
+		sortByColumn: ÅrUgeSort_ISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ÅrMåned = FORMAT('Calendar'[Date], "YYYY-MM")
+		lineageTag: 12f19133-6161-4450-8508-eea68ae9f964
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aktuel dato (Filter)' = if('Calendar'[Date] = TODAY() - 1, 1, 0)
+		formatString: 0
+		lineageTag: 7a0379ba-d791-40fa-b317-87e2b13a4bdc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Formål til filterudsnit
+	column MonthStart =
+			
+			DATE ( YEAR ( 'Calendar'[Date] ), MONTH ( 'Calendar'[Date] ), 1 )
+		formatString: General Date
+		displayFolder: Filterformål
+		lineageTag: 22126b30-8636-4ef2-8ff1-96b297443358
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthKey =
+			
+			YEAR ( 'Calendar'[Date] ) * 100 + MONTH ( 'Calendar'[Date] )
+		formatString: 0
+		displayFolder: Filterformål
+		lineageTag: ae1838bc-9f08-4533-af22-043adf4375e7
+		summarizeBy: count
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bruges til at definere indeværende måned i slicer
+	column ÅrMåned_Default =
+			
+			VAR CurrentMonthStart = DATE ( YEAR ( TODAY() ), MONTH ( TODAY() ), 1 )
+			RETURN
+			IF (
+			    'Calendar'[MonthStart] = CurrentMonthStart,
+			    "Indeværende måned",
+			    'Calendar'[ÅrMåned]
+			)
+		displayFolder: Filterformål
+		lineageTag: b8657b41-bacf-46bb-959b-49d361b9e4e2
+		summarizeBy: none
+		sortByColumn: ÅrMåned
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthEnd = EOMONTH('Calendar'[MonthStart],0)
+		formatString: General Date
+		displayFolder: Filterformål
+		lineageTag: 40cda7a9-3d11-4ef9-8288-7cda74368b89
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Anvendes for at sortere kronologisk for ÅrUge
+	column ISOYear = ```
+			YEAR ( [Date] - WEEKDAY([Date], 2) + 4 )
+			
+			```
+		formatString: 0
+		displayFolder: Sorteringskolonner
+		lineageTag: 86fad04c-092b-44d5-9cb8-cb6910635f30
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Denne kolonne anvendes for at ÅrUge sorteres korrekt kronologisk fremfor alfabetisk
+	column ÅrUgeSort_ISO = 'Calendar'[ISOYear] * 100 + WEEKNUM([Date],21)
+		formatString: 0
+		displayFolder: Sorteringskolonner
+		lineageTag: 1c8160d7-ad2a-45e5-b208-6cfc264209e7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ÅrUge_Default = ```
+			
+			VAR StartOfWeek =
+			    TODAY() - WEEKDAY ( TODAY(), 2 ) + 1
+			VAR EndOfWeek =
+			    StartOfWeek + 6
+			RETURN
+			IF (
+			    MAX ( 'Calendar'[Date] ) >= StartOfWeek
+			        && MAX ( 'Calendar'[Date] ) <= EndOfWeek,
+			    "Indeværende uge",
+			    SELECTEDVALUE ( 'Calendar'[ÅrUge] )
+			)
+			
+			```
+		displayFolder: Filterformål
+		lineageTag: fe786765-6a39-446b-ab36-9abe831a6cd5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy ÅMD
+		lineageTag: f32776c6-9f29-4780-b2ac-7e62fcc3065c
+
+		level År
+			lineageTag: 81c6169f-6558-4ce2-9677-a1743528e352
+			column: År
+
+		level Måned
+			lineageTag: d3d4cb75-5744-4412-871c-40d0bf84c062
+			column: Måned
+
+		level Date
+			lineageTag: 5894a1f9-5931-4222-9c1d-e4e3650684ea
+			column: Date
+
+		level Ugenr
+			lineageTag: 4d05e02e-6c6c-4ce9-9888-9664c2a8f1b8
+			column: Ugenr
+
+		level ÅrUge
+			lineageTag: 797a887a-98fa-4134-81f0-8c02bbf41ec1
+			column: ÅrUge
+
+		level ÅrMåned
+			lineageTag: d3903c54-5b16-46e9-80cc-877ffaa4ee47
+			column: ÅrMåned
+
+	partition Calendar = calculated
+		mode: import
+		source = CALENDAR(DATE(2024,1,1), DATE(2034,12,31))
+
+	annotation PBI_Id = e2088f18c06e46d2a163fef851dbfcfd
+

@@ -1,0 +1,245 @@
+table Customer
+	lineageTag: 8186cbd3-86c0-4905-ad03-350091d0419e
+	sourceLineageTag: [dbo].[Customer]
+
+	column AccCustGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fc2410e3-0b55-4e0c-925c-4dd15ff9c732
+		sourceLineageTag: AccCustGroupKey
+		summarizeBy: none
+		sourceColumn: AccCustGroupKey
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column accounts_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 53ec151f-bab1-4baf-9024-4adf776eb43f
+		sourceLineageTag: accounts_id
+		summarizeBy: none
+		sourceColumn: accounts_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_invoiceBy
+		dataType: string
+		lineageTag: 02cc8172-c7ce-402f-9d56-f6242993f3e6
+		sourceLineageTag: accounts_invoiceBy
+		summarizeBy: none
+		sourceColumn: accounts_invoiceBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_mobilepayTicket
+		dataType: string
+		lineageTag: b0770e92-1707-4d84-8aec-0126e4590665
+		sourceLineageTag: accounts_mobilepayTicket
+		summarizeBy: none
+		sourceColumn: accounts_mobilepayTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eba2b712-1158-470a-b128-0e92a89a8595
+		sourceLineageTag: accounts_modified
+		summarizeBy: none
+		sourceColumn: accounts_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 658bea63-a568-49d8-be3d-12642170abdd
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column customAttributes_internalsaleinitials
+		dataType: string
+		lineageTag: d66f34aa-2536-4d38-abce-3cee7292437b
+		sourceLineageTag: customAttributes_internalsaleinitials
+		summarizeBy: none
+		sourceColumn: customAttributes_internalsaleinitials
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerGroupKey
+		dataType: string
+		lineageTag: 2cf87122-a5be-4e14-9a44-c83f290f0d34
+		sourceLineageTag: customerGroupKey
+		summarizeBy: none
+		sourceColumn: customerGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ce8d10cc-1e03-4e28-adc0-dc7bd4e84d76
+		sourceLineageTag: endDate
+		summarizeBy: none
+		sourceColumn: endDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column memberNumber
+		dataType: string
+		lineageTag: 3eae40d8-1833-43d6-9e82-5477213ac3f4
+		sourceLineageTag: memberNumber
+		summarizeBy: none
+		sourceColumn: memberNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 5c87ce3d-ce3d-4abd-b9dd-f2a8f2b985d2
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4cf9bce4-69ce-4397-a1d9-4abe3b15dabd
+		sourceLineageTag: startDate
+		summarizeBy: none
+		sourceColumn: startDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: double
+		formatString: 0
+		lineageTag: c1ffb41c-6af8-4d13-aa74-b09303ef7ed8
+		sourceLineageTag: Zip
+		summarizeBy: none
+		sourceColumn: Zip
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column City
+		dataType: string
+		lineageTag: da005577-eb11-47f3-92f0-b97f054ca1e0
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalgVia
+		dataType: string
+		lineageTag: e97736b4-5974-4f0c-9431-9ccf06a8e31c
+		sourceLineageTag: SalgVia
+		summarizeBy: none
+		sourceColumn: SalgVia
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_address
+		dataType: string
+		lineageTag: bbacfe78-f348-49a8-b515-fbf8f01d8acd
+		sourceLineageTag: accounts_address
+		summarizeBy: none
+		sourceColumn: accounts_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_company
+		dataType: string
+		lineageTag: 0ddc75b1-7bde-4a1f-98ce-30a8e177d8b7
+		sourceLineageTag: accounts_company
+		summarizeBy: none
+		sourceColumn: accounts_company
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_email
+		dataType: string
+		lineageTag: bb110144-8370-4afe-8899-ae453c737503
+		sourceLineageTag: accounts_email
+		summarizeBy: none
+		sourceColumn: accounts_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column dawaId
+		dataType: string
+		lineageTag: bc6cdc76-b406-4ac1-9a1d-6cbc856666a1
+		sourceLineageTag: dawaId
+		summarizeBy: none
+		sourceColumn: dawaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column floor
+		dataType: string
+		lineageTag: 7654a992-6655-4ac8-a9a1-90ccdfe6300a
+		sourceLineageTag: floor
+		summarizeBy: none
+		sourceColumn: floor
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile
+		dataType: string
+		lineageTag: 0011f498-3839-4201-83d8-940dc3044072
+		sourceLineageTag: mobile
+		summarizeBy: none
+		sourceColumn: mobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column number
+		dataType: string
+		lineageTag: 9e503c05-e06a-44ce-87a6-7a6ee0387ed7
+		sourceLineageTag: number
+		summarizeBy: none
+		sourceColumn: number
+
+		annotation SummarizationSetBy = Automatic
+
+	column side
+		dataType: string
+		lineageTag: 43216685-f615-49f2-94b0-ad71d2b69751
+		sourceLineageTag: side
+		summarizeBy: none
+		sourceColumn: side
+
+		annotation SummarizationSetBy = Automatic
+
+	column street
+		dataType: string
+		lineageTag: 7684a2f1-a184-4291-8196-276bdd5e3e6c
+		sourceLineageTag: street
+		summarizeBy: none
+		sourceColumn: street
+
+		annotation SummarizationSetBy = Automatic
+
+	column ca_created
+		dataType: string
+		lineageTag: 02eaad57-1df8-4b84-9f8f-541c419bbb9a
+		sourceLineageTag: ca_created
+		summarizeBy: none
+		sourceColumn: ca_created
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = entity
+		mode: directLake
+		source
+			entityName: Customer
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

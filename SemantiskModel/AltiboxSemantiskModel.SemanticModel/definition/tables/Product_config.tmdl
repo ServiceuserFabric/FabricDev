@@ -1,0 +1,74 @@
+table Product_config
+	lineageTag: ffed5e22-19b8-44dc-a6ad-c82579988b53
+	sourceLineageTag: [dbo].[Product_config]
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 65881559-eb1c-47e7-b91e-87edf49457d8
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column productGroup
+		dataType: string
+		lineageTag: b2c27980-36af-4530-a872-05e1e31b276b
+		sourceLineageTag: productGroup
+		summarizeBy: none
+		sourceColumn: productGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column selfserviceNames_da
+		dataType: string
+		lineageTag: 17310a09-d1f5-4ac8-ab16-7eeee962ae44
+		sourceLineageTag: selfserviceNames_da
+		summarizeBy: none
+		sourceColumn: selfserviceNames_da
+
+		annotation SummarizationSetBy = Automatic
+
+	column HovedProduktGruppe
+		dataType: string
+		lineageTag: 76db55ff-ef04-4ea6-9ba6-941b4b9d10bc
+		sourceLineageTag: HovedProduktGruppe
+		summarizeBy: none
+		sourceColumn: HovedProduktGruppe
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductMainGroup
+		dataType: string
+		lineageTag: 7ca5e6da-fe18-473e-a460-59145c3fa9d6
+		sourceLineageTag: ProductMainGroup
+		summarizeBy: none
+		sourceColumn: ProductMainGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Internet_speed
+		dataType: string
+		lineageTag: 6feae6a8-5af6-4a08-926f-30143008914b
+		sourceLineageTag: Internet_speed
+		summarizeBy: none
+		sourceColumn: Internet_speed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Internet_category
+		dataType: string
+		lineageTag: 10f2c2cc-eaf6-4aef-8836-d295c14f7a88
+		sourceLineageTag: Internet_category
+		summarizeBy: none
+		sourceColumn: Internet_category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_config = entity
+		mode: directLake
+		source
+			entityName: Product_config
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

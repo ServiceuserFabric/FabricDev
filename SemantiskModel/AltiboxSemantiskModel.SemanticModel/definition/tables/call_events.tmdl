@@ -1,0 +1,446 @@
+table call_events
+	lineageTag: e51111e2-067f-4429-a10c-e5cdc3c92391
+	sourceLineageTag: [puz].[call_events]
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 676b4891-502c-409d-b2fc-618f0141cef6
+		sourceLineageTag: rec_id
+		summarizeBy: none
+		sourceColumn: rec_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_key
+		dataType: string
+		lineageTag: da52841b-1749-403e-8aeb-8744d6667313
+		sourceLineageTag: customer_key
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_id
+		dataType: double
+		lineageTag: b4774cdc-bbc4-4592-8135-66ddcd4c5e6b
+		sourceLineageTag: call_id
+		summarizeBy: sum
+		sourceColumn: call_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column call_sequence
+		dataType: int64
+		formatString: 0
+		lineageTag: 5570837a-c4ab-43e4-8c34-0687f95e3ab3
+		sourceLineageTag: call_sequence
+		summarizeBy: sum
+		sourceColumn: call_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column media_type_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c7307024-fe13-4b5c-b49c-0898d6b2be9c
+		sourceLineageTag: media_type_id
+		summarizeBy: none
+		sourceColumn: media_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fc70c9e0-0884-429b-9151-e9fc7c8a7884
+		sourceLineageTag: dte_start
+		summarizeBy: none
+		sourceColumn: dte_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_tot_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: f8300e52-a4e0-4818-bdc4-e28c40529fc4
+		sourceLineageTag: duration_tot_sec
+		summarizeBy: sum
+		sourceColumn: duration_tot_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_speak_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dab1afc-6984-4113-bcde-916fe20c2c03
+		sourceLineageTag: duration_speak_sec
+		summarizeBy: sum
+		sourceColumn: duration_speak_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_speak_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a0abd116-0355-417a-807d-f07e7cee1492
+		sourceLineageTag: dte_speak_start
+		summarizeBy: none
+		sourceColumn: dte_speak_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: 10c2d8b5-8a8a-45ea-a76d-f6845db06345
+		sourceLineageTag: source
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination
+		dataType: string
+		lineageTag: 424395c8-8122-4808-b0c8-5420e8735b96
+		sourceLineageTag: destination
+		summarizeBy: none
+		sourceColumn: destination
+
+		annotation SummarizationSetBy = Automatic
+
+	column additional_source
+		dataType: string
+		lineageTag: 59cae24b-1f92-47e0-958c-2f85cec54212
+		sourceLineageTag: additional_source
+		summarizeBy: none
+		sourceColumn: additional_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column redirect_source
+		dataType: string
+		lineageTag: 98c6b144-9f39-40b7-93f2-0903347867be
+		sourceLineageTag: redirect_source
+		summarizeBy: none
+		sourceColumn: redirect_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_num
+		dataType: string
+		lineageTag: b2473340-a1e9-4bdf-97b9-eb643a8ec7df
+		sourceLineageTag: service_num
+		summarizeBy: none
+		sourceColumn: service_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column queue_key
+		dataType: string
+		lineageTag: c382225a-b0ad-4947-a6ec-5005a428d10e
+		sourceLineageTag: queue_key
+		summarizeBy: none
+		sourceColumn: queue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column menue_key
+		dataType: string
+		lineageTag: a8fa9226-be24-4057-aa67-cf7a537016ff
+		sourceLineageTag: menue_key
+		summarizeBy: none
+		sourceColumn: menue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column menue_choice
+		dataType: string
+		lineageTag: f7020c1e-4904-485a-99a7-0dd77028a30c
+		sourceLineageTag: menue_choice
+		summarizeBy: none
+		sourceColumn: menue_choice
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c57f737-e90f-4a9c-9ffb-b2c716a94a63
+		sourceLineageTag: agent_id
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type
+		dataType: string
+		lineageTag: 21a0f7cc-a933-4d48-8fb9-ac1205ec883a
+		sourceLineageTag: event_type
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column result_code
+		dataType: string
+		lineageTag: 0423aaae-e3b8-4878-97e2-a21fd888ffe1
+		sourceLineageTag: result_code
+		summarizeBy: none
+		sourceColumn: result_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column answered
+		dataType: int64
+		formatString: 0
+		lineageTag: 41c43e7b-8db1-4d02-8869-8ebf37d303b9
+		sourceLineageTag: answered
+		summarizeBy: sum
+		sourceColumn: answered
+
+		annotation SummarizationSetBy = Automatic
+
+	column ciq
+		dataType: string
+		lineageTag: 33ccef2d-7ef8-4170-900d-f23f9924b72d
+		sourceLineageTag: ciq
+		summarizeBy: none
+		sourceColumn: ciq
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b443a2e0-8de0-41f8-bc8e-c970cac95137
+		sourceLineageTag: call_transfer
+		summarizeBy: none
+		sourceColumn: call_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column wrap_up_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b5593cc-fa4e-4704-852e-fce4a92f8038
+		sourceLineageTag: wrap_up_sec
+		summarizeBy: sum
+		sourceColumn: wrap_up_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column alert_ms
+		dataType: int64
+		formatString: 0
+		lineageTag: 0475b9b6-904c-4bab-bac6-75dbb1670fa6
+		sourceLineageTag: alert_ms
+		summarizeBy: sum
+		sourceColumn: alert_ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column setup_ms
+		dataType: int64
+		formatString: 0
+		lineageTag: 048605f1-d2b0-41d1-8d25-a3ea0e820324
+		sourceLineageTag: setup_ms
+		summarizeBy: sum
+		sourceColumn: setup_ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column block_duration_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: b3ecf472-344c-4ba7-be9c-b4c516acf92b
+		sourceLineageTag: block_duration_sec
+		summarizeBy: sum
+		sourceColumn: block_duration_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_iq_session_id
+		dataType: string
+		lineageTag: 85013471-5d62-4524-8255-19801948fd95
+		sourceLineageTag: internal_iq_session_id
+		summarizeBy: none
+		sourceColumn: internal_iq_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_odr_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bbdfb228-e172-4e90-9cd4-9445b7821e9c
+		sourceLineageTag: internal_odr_id
+		summarizeBy: sum
+		sourceColumn: internal_odr_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fd18ae36-f41d-48df-a2ef-c3f9f94e1a4a
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column sla
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c6b5817-afa8-4d15-99b0-6c674cbf2eb9
+		sourceLineageTag: sla
+		summarizeBy: sum
+		sourceColumn: sla
+
+		annotation SummarizationSetBy = Automatic
+
+	column alt_sla
+		dataType: int64
+		formatString: 0
+		lineageTag: b68d3edc-3bd9-4052-a848-7d761a793642
+		sourceLineageTag: alt_sla
+		summarizeBy: sum
+		sourceColumn: alt_sla
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_scheduled_callback
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 206615fb-7183-4d5d-882d-220922c0beee
+		sourceLineageTag: dte_scheduled_callback
+		summarizeBy: none
+		sourceColumn: dte_scheduled_callback
+
+		annotation SummarizationSetBy = Automatic
+
+	column result_response
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f6cdab2-63fc-40b4-abf0-b39375b84f1e
+		sourceLineageTag: result_response
+		summarizeBy: sum
+		sourceColumn: result_response
+
+		annotation SummarizationSetBy = Automatic
+
+	column request_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 634d51c9-2c55-4a67-a72f-3b29efe419f5
+		sourceLineageTag: request_id
+		summarizeBy: sum
+		sourceColumn: request_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold
+		dataType: int64
+		formatString: 0
+		lineageTag: 98c9d234-60f4-44e6-b385-8f9ac830d3bd
+		sourceLineageTag: hold
+		summarizeBy: sum
+		sourceColumn: hold
+
+		annotation SummarizationSetBy = Automatic
+
+	column consult
+		dataType: int64
+		formatString: 0
+		lineageTag: cf9ff09a-62c0-44a3-bda0-2ef0de215bdc
+		sourceLineageTag: consult
+		summarizeBy: sum
+		sourceColumn: consult
+
+		annotation SummarizationSetBy = Automatic
+
+	column leg_type
+		dataType: string
+		lineageTag: aaf96542-b61b-459e-9b74-34c713a7381e
+		sourceLineageTag: leg_type
+		summarizeBy: none
+		sourceColumn: leg_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column originating
+		dataType: string
+		lineageTag: deaea728-5dbf-4e93-b7cd-fc3606a711ae
+		sourceLineageTag: originating
+		summarizeBy: none
+		sourceColumn: originating
+
+		annotation SummarizationSetBy = Automatic
+
+	column add_originating
+		dataType: string
+		lineageTag: 06c89771-086f-42cb-b4a9-9c1aabbb7cba
+		sourceLineageTag: add_originating
+		summarizeBy: none
+		sourceColumn: add_originating
+
+		annotation SummarizationSetBy = Automatic
+
+	column caller_on_hold_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: e016e9cf-e933-4864-b036-95d53e73e66c
+		sourceLineageTag: caller_on_hold_sec
+		summarizeBy: sum
+		sourceColumn: caller_on_hold_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 165c1df5-e6a2-41bd-a356-79f84fbe78e5
+		sourceLineageTag: dte_start_time
+		summarizeBy: none
+		sourceColumn: dte_start_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: ad6378b9-0e7f-49b5-8228-d8c6def3fcfe
+		sourceLineageTag: dte_start_hour
+		summarizeBy: sum
+		sourceColumn: dte_start_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_minute
+		dataType: int64
+		formatString: 0
+		lineageTag: dfcb7e35-3f8b-4819-9811-d91cf0916714
+		sourceLineageTag: dte_start_minute
+		summarizeBy: sum
+		sourceColumn: dte_start_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_index
+		dataType: int64
+		formatString: 0
+		lineageTag: 70fbe021-67eb-4171-bd46-2231094307df
+		sourceLineageTag: dte_start_index
+		summarizeBy: sum
+		sourceColumn: dte_start_index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition call_events = entity
+		mode: directLake
+		source
+			entityName: call_events
+			schemaName: puz
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

@@ -1,0 +1,73 @@
+table call_variables
+	lineageTag: ffabd558-bd87-437d-9b38-b27a4b44cc58
+	sourceLineageTag: [dbo].[call_variables]
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cdd9969-2b6f-4aec-a776-e70ded94a548
+		sourceLineageTag: rec_id
+		summarizeBy: none
+		sourceColumn: rec_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column internal_session_id
+		dataType: string
+		lineageTag: ea617501-f07c-4004-961b-c3c2e7579e1a
+		sourceLineageTag: internal_session_id
+		summarizeBy: none
+		sourceColumn: internal_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_id
+		dataType: double
+		lineageTag: f083d9b4-91f6-4e1c-aa74-ebd0b64882e9
+		sourceLineageTag: call_id
+		summarizeBy: none
+		sourceColumn: call_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dte_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c9fe079-cad7-4660-94f1-566443a2213a
+		sourceLineageTag: dte_time
+		summarizeBy: none
+		sourceColumn: dte_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: e728ea0b-2268-4dcf-8750-7496c529436a
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 4814bda4-5174-4e05-afaa-3a6ccd722d77
+		sourceLineageTag: value
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition call_variables = entity
+		mode: directLake
+		source
+			entityName: call_variables
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

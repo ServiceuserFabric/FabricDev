@@ -1,0 +1,61 @@
+table agents_history
+	lineageTag: cf50a258-3290-4e24-9529-1c39c568ccb5
+	sourceLineageTag: [puz].[agents_history]
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a5553220-07ea-4fd6-86a4-2c2207d26a4d
+		sourceLineageTag: agent_id
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8b999a85-d930-4b3b-ac73-3c89e74fe674
+		sourceLineageTag: deleted
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ff511eb3-9a2f-4451-90d6-ff4b8b2730cf
+		sourceLineageTag: FromDate
+		summarizeBy: none
+		sourceColumn: FromDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2105caa8-8e6a-4bcf-afdc-a54522498d61
+		sourceLineageTag: ToDate
+		summarizeBy: none
+		sourceColumn: ToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastVersion
+		dataType: int64
+		formatString: 0
+		lineageTag: f55668ee-d071-4fde-afce-be647883b396
+		sourceLineageTag: LastVersion
+		summarizeBy: sum
+		sourceColumn: LastVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agents_history = entity
+		mode: directLake
+		source
+			entityName: agents_history
+			schemaName: puz
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

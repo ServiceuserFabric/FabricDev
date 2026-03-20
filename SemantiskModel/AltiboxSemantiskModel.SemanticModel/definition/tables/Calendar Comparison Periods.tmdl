@@ -1,0 +1,55 @@
+/// Denne tabel anvendes primært til KPI'er for at kunne bruge måltal til sammenligningsperioder, fx måltal i går, 1 måned siden, etc. 
+table 'Calendar Comparison Periods'
+	lineageTag: cf63c1e9-c9c4-4aa7-9741-91ff5656b63f
+
+	column PeriodKey
+		formatString: 0
+		lineageTag: 132ace37-09b4-44d3-9338-2d8a87a73776
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [PeriodKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodLabel
+		lineageTag: bf018824-11c7-4941-b1d6-5badea0fead2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PeriodLabel]
+		sortByColumn: PeriodKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPrimo
+		formatString: 0
+		lineageTag: bc959f39-3cf3-4158-94eb-5d2cacc7cc87
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [IsPrimo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OffsetMonths
+		formatString: 0
+		lineageTag: c5c303c8-efcf-4d45-86e2-208da57caf04
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [OffsetMonths]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Calendar Comparison Periods' = calculated
+		mode: import
+		source =
+				
+				VAR Y = YEAR ( TODAY() )
+				RETURN
+				UNION (
+				    ROW ( "PeriodKey", 1, "PeriodLabel", "I dag",      "OffsetMonths", 0,  "IsPrimo", 0 ),
+				    ROW ( "PeriodKey", 2, "PeriodLabel", "1 måned siden","OffsetMonths", -1, "IsPrimo", 0 ),
+				    ROW ( "PeriodKey", 3, "PeriodLabel", "3 måneder siden","OffsetMonths", -3, "IsPrimo", 0 ),
+				    ROW ( "PeriodKey", 4, "PeriodLabel", "Primo " & Y,  "OffsetMonths", BLANK(), "IsPrimo", 1 )
+				)
+
+	annotation PBI_Id = 5c95af0f2ade47ab99293aebc41faeb0
+

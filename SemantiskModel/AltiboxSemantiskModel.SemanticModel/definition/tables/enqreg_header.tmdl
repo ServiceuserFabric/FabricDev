@@ -1,0 +1,142 @@
+table enqreg_header
+	lineageTag: 1c19b270-b998-418c-a0ba-f74eb4115a58
+	sourceLineageTag: [dbo].[enqreg_header]
+
+	column enqreg_header_recid
+		dataType: int64
+		formatString: 0
+		lineageTag: a728d5c9-3cc4-41f9-87d7-9cb11e7b73a4
+		sourceLineageTag: enqreg_header_recid
+		summarizeBy: sum
+		sourceColumn: enqreg_header_recid
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_session_id
+		dataType: string
+		lineageTag: 98157c4c-2edb-4b51-b3e1-170112ca341a
+		sourceLineageTag: internal_session_id
+		summarizeBy: none
+		sourceColumn: internal_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_key
+		dataType: string
+		lineageTag: e9a2a039-e433-4e5e-a51c-0879db66b420
+		sourceLineageTag: customer_key
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_country_src_db
+		dataType: string
+		lineageTag: c03b0312-0308-4228-9cf8-e7ea1754e9eb
+		sourceLineageTag: internal_country_src_db
+		summarizeBy: none
+		sourceColumn: internal_country_src_db
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_time_stamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 408e5b60-ef60-4f74-87c7-b55793b12b60
+		sourceLineageTag: dte_time_stamp
+		summarizeBy: none
+		sourceColumn: dte_time_stamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f32df00-775c-4c55-b0e1-f0f08b021b78
+		sourceLineageTag: agent_id
+		summarizeBy: sum
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column queue_key
+		dataType: string
+		lineageTag: 9de1bd66-5f42-4a59-90a1-0a9b22924502
+		sourceLineageTag: queue_key
+		summarizeBy: none
+		sourceColumn: queue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column enquiry_media_type
+		dataType: string
+		lineageTag: d692dd49-8504-4066-bf24-df5a8afcf396
+		sourceLineageTag: enquiry_media_type
+		summarizeBy: none
+		sourceColumn: enquiry_media_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column related_iq_session_id
+		dataType: string
+		lineageTag: 01d3cfe1-2f5c-4c1d-a9ba-d36281bbfe5b
+		sourceLineageTag: related_iq_session_id
+		summarizeBy: none
+		sourceColumn: related_iq_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bc6023b1-fa95-4d3e-b266-0be237a45d99
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		lineageTag: 36baaec9-44c4-498a-8b32-06b284c82e83
+		sourceLineageTag: comment
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column reschedule_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 77a4c683-0f16-4109-85af-5b7e64e6d3c7
+		sourceLineageTag: reschedule_time
+		summarizeBy: none
+		sourceColumn: reschedule_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column marked_unansw
+		dataType: string
+		lineageTag: c70c96b2-80d8-47e9-9655-c17d62f1eadb
+		sourceLineageTag: marked_unansw
+		summarizeBy: none
+		sourceColumn: marked_unansw
+
+		annotation SummarizationSetBy = Automatic
+
+	column reserved
+		dataType: string
+		lineageTag: e9870737-9bbd-473e-99b3-e37406029b26
+		sourceLineageTag: reserved
+		summarizeBy: none
+		sourceColumn: reserved
+
+		annotation SummarizationSetBy = Automatic
+
+	partition enqreg_header = entity
+		mode: directLake
+		source
+			entityName: enqreg_header
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

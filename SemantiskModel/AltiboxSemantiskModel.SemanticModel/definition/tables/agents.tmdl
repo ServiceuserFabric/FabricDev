@@ -1,0 +1,190 @@
+table agents
+	lineageTag: 7f6ce35e-b61c-48b3-a283-97f1844eaa6c
+	sourceLineageTag: [puz].[agents]
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d4ed43f6-14c4-4086-a9f9-33403dc84355
+		sourceLineageTag: agent_id
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_key
+		dataType: string
+		lineageTag: 6990f407-aaf3-408d-b4ba-30da4f106fea
+		sourceLineageTag: customer_key
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_name
+		dataType: string
+		lineageTag: a165dc20-6235-43d1-a835-8f054652981a
+		sourceLineageTag: user_name
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_num
+		dataType: string
+		lineageTag: c07cd20b-a148-4d0e-b5bb-22a11fa7692a
+		sourceLineageTag: user_num
+		summarizeBy: none
+		sourceColumn: user_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_name
+		dataType: string
+		lineageTag: 1b44e257-e563-4a60-bb3f-fb0ffe780def
+		sourceLineageTag: full_name
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d595f329-492f-47fd-ad68-7754a475435f
+		sourceLineageTag: usergroup_id
+		summarizeBy: none
+		sourceColumn: usergroup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_name
+		dataType: string
+		lineageTag: 0c35dda2-2914-4938-b1a1-67dbb1581377
+		sourceLineageTag: usergroup_name
+		summarizeBy: none
+		sourceColumn: usergroup_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 87334a5f-1fcb-4668-8320-c017c57c1fd5
+		sourceLineageTag: email
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile
+		dataType: string
+		lineageTag: e3907b60-bdf0-49c3-9d29-b57e6612e1c8
+		sourceLineageTag: mobile
+		summarizeBy: none
+		sourceColumn: mobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f821412-5230-4f80-a6b2-95ed4f856382
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column chat_role
+		dataType: int64
+		formatString: 0
+		lineageTag: 3344bb00-b09e-41d0-8f04-23f96a6caebd
+		sourceLineageTag: chat_role
+		summarizeBy: sum
+		sourceColumn: chat_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column chat_master_user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c2e71029-c216-4ae6-82de-ce6584ce9800
+		sourceLineageTag: chat_master_user_id
+		summarizeBy: sum
+		sourceColumn: chat_master_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column unblockable_role
+		dataType: int64
+		formatString: 0
+		lineageTag: d8f1ea8f-e984-49d9-aa1e-2a73f0404e2b
+		sourceLineageTag: unblockable_role
+		summarizeBy: sum
+		sourceColumn: unblockable_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column unblockable_group
+		dataType: int64
+		formatString: 0
+		lineageTag: d8256c47-70b5-4451-8660-195eded6c97b
+		sourceLineageTag: unblockable_group
+		summarizeBy: sum
+		sourceColumn: unblockable_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3ed445a2-4d91-459a-9272-c7c31f04b1ab
+		sourceLineageTag: deleted
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column puzzel_id
+		dataType: string
+		lineageTag: 84548de1-0447-4c19-98b1-2b7b8e8cce36
+		sourceLineageTag: puzzel_id
+		summarizeBy: none
+		sourceColumn: puzzel_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column master_user_name
+		dataType: string
+		lineageTag: 921589fe-8a02-459d-9365-3e07ee5fe909
+		sourceLineageTag: master_user_name
+		summarizeBy: none
+		sourceColumn: master_user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column master_full_name
+		dataType: string
+		lineageTag: 4d633dc1-dd0d-4e80-968e-b38e907d0824
+		sourceLineageTag: master_full_name
+		summarizeBy: none
+		sourceColumn: master_full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column master_email
+		dataType: string
+		lineageTag: 959c0acf-0c98-42a3-a243-77bc7e9ede4d
+		sourceLineageTag: master_email
+		summarizeBy: none
+		sourceColumn: master_email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agents = entity
+		mode: directLake
+		source
+			entityName: agents
+			schemaName: puz
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

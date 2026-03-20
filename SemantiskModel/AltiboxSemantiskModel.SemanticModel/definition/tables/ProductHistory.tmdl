@@ -1,0 +1,266 @@
+table ProductHistory
+	lineageTag: ddbd20dc-55e5-404f-ba05-c557c0cfded0
+	sourceLineageTag: [dbo].[ProductHistory]
+
+	column hasBeenBilledOnce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3d297664-ce36-4999-979c-2836449f327e
+		sourceLineageTag: hasBeenBilledOnce
+		summarizeBy: none
+		sourceColumn: hasBeenBilledOnce
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kunde_Status
+		dataType: string
+		lineageTag: c280e7b5-89c8-4ce0-bfc8-1d3d019da58f
+		sourceLineageTag: Kunde_Status
+		summarizeBy: none
+		sourceColumn: Kunde_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 633122d0-81e5-4cec-80a6-a28b91f93563
+		sourceLineageTag: startDate
+		summarizeBy: none
+		sourceColumn: startDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		lineageTag: 9f31d0bd-dde6-4561-b156-fa487a045f42
+		sourceLineageTag: Partner
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produkt_Status
+		dataType: string
+		lineageTag: 32df11fa-6c69-4388-997c-e077e4b46c0c
+		sourceLineageTag: Produkt_Status
+		summarizeBy: none
+		sourceColumn: Produkt_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column KundeNO
+		dataType: string
+		lineageTag: a8b8778e-0791-45f4-8b51-47dc7a040bf6
+		sourceLineageTag: KundeNO
+		summarizeBy: none
+		sourceColumn: KundeNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d4222c5c-6075-42af-8eec-dfd727171fdf
+		sourceLineageTag: accountKey
+		summarizeBy: none
+		sourceColumn: accountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ea7805e-2380-4c2b-b129-a9e043b40d8a
+		sourceLineageTag: id
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b992cc43-baba-4548-8f51-cb2fbb125c61
+		sourceLineageTag: createdDate
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4798d1db-fac8-474e-95be-3cf032d7dde9
+		sourceLineageTag: modifiedDate
+		summarizeBy: none
+		sourceColumn: modifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column activeProvisioning
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 68a02198-1fc1-449f-9484-285abe9dcf5f
+		sourceLineageTag: activeProvisioning
+		summarizeBy: none
+		sourceColumn: activeProvisioning
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduktID
+		dataType: int64
+		formatString: 0
+		lineageTag: e82b2d9b-e0ca-4b5a-8c80-8cad2f78a907
+		sourceLineageTag: ProduktID
+		summarizeBy: none
+		sourceColumn: ProduktID
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 77738c6e-2954-450c-ab15-cf4f5d1dbdcb
+		sourceLineageTag: endDate
+		summarizeBy: none
+		sourceColumn: endDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column NySalg
+		dataType: string
+		lineageTag: dfd46385-9ff7-44a0-99bf-81bf1504b63f
+		sourceLineageTag: NySalg
+		summarizeBy: none
+		sourceColumn: NySalg
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f34322b-043f-4fc0-be78-a53940ef88d9
+		sourceLineageTag: orderedDate
+		summarizeBy: none
+		sourceColumn: orderedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c61b497-abd9-4b11-85ac-6fc56d8370f9
+		sourceLineageTag: orderedDateTime
+		summarizeBy: none
+		sourceColumn: orderedDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d9afcc4c-e9e5-4aec-a508-f338bc69a6c3
+		sourceLineageTag: FromDate
+		summarizeBy: none
+		sourceColumn: FromDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 395a182c-8743-48b6-85b2-7aa2ae65ad6f
+		sourceLineageTag: ToDate
+		summarizeBy: none
+		sourceColumn: ToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastVersion
+		dataType: int64
+		formatString: 0
+		lineageTag: ed6f127a-9a4e-473f-8451-eed12f30a8da
+		sourceLineageTag: LastVersion
+		summarizeBy: sum
+		sourceColumn: LastVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	column PC_DiscountValue
+		dataType: decimal
+		formatString: #,0.###############\ "kr.";-#,0.###############\ "kr.";#,0.###############\ "kr."
+		lineageTag: 3c1cbb61-7d51-4302-b69b-75a73d4f85d3
+		sourceLineageTag: PC_DiscountValue
+		summarizeBy: sum
+		sourceColumn: PC_DiscountValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"da"}
+
+	column PC_Sub_Price
+		dataType: decimal
+		formatString: #,0.###############\ "kr.";-#,0.###############\ "kr.";#,0.###############\ "kr."
+		lineageTag: 8b4e5b16-8f45-47f3-a0b6-ecb12f02063d
+		sourceLineageTag: PC_Sub_Price
+		summarizeBy: sum
+		sourceColumn: PC_Sub_Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"da"}
+
+	column BillDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8d22d84b-4e96-4100-9877-5651b4dfd12c
+		sourceLineageTag: BillDate
+		summarizeBy: none
+		sourceColumn: BillDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column PC_Pricecategorycode
+		dataType: string
+		lineageTag: 69befce4-0311-4f99-affb-37c3c10c48a9
+		sourceLineageTag: PC_Pricecategorycode
+		summarizeBy: none
+		sourceColumn: PC_Pricecategorycode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PC_Sub_discount_rule
+		dataType: string
+		lineageTag: db1b6dca-f20d-4dfe-bb25-c6862f1962b8
+		sourceLineageTag: PC_Sub_discount_rule
+		summarizeBy: none
+		sourceColumn: PC_Sub_discount_rule
+
+		annotation SummarizationSetBy = Automatic
+
+	column PC_ProvisioningModel
+		dataType: string
+		lineageTag: d6871708-91e9-4b3c-92b6-b58e67e1a488
+		sourceLineageTag: PC_ProvisioningModel
+		summarizeBy: none
+		sourceColumn: PC_ProvisioningModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column PC_BillingPeriodUnit
+		dataType: string
+		lineageTag: bb5fcd9c-9507-44f8-91fe-138cfaa637e8
+		sourceLineageTag: PC_BillingPeriodUnit
+		summarizeBy: none
+		sourceColumn: PC_BillingPeriodUnit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProductHistory = entity
+		mode: directLake
+		source
+			entityName: ProductHistory
+			schemaName: dbo
+			expressionSource: 'DirectLake - AltiboxMetadata'
+

@@ -1,0 +1,59 @@
+table Realiseret_vs_Budget
+	lineageTag: 5cb36d9c-e81e-4ecd-89e3-a88b131e1e7b
+	sourceLineageTag: [dbo].[Realiseret_vs_Budget]
+
+	column Dato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d41cd7ed-34cc-469e-b63d-b6268f8701ca
+		sourceLineageTag: Dato
+		summarizeBy: none
+		sourceColumn: Dato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Periode
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0f367dee-488e-44d9-9272-c6e953b87cb8
+		sourceLineageTag: Periode
+		summarizeBy: none
+		sourceColumn: Periode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		lineageTag: c1671a53-9327-416d-807e-85d8b0fdbd77
+		sourceLineageTag: Partner
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: d39f3ee5-ed4a-463b-94eb-22e1869b9c1f
+		sourceLineageTag: Antal_Kunder_Budget
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		lineageTag: bfee153b-3a19-49d6-b199-c24f6dae7ac6
+		sourceLineageTag: Antal_Kunder_Realiseret
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Realiseret_vs_Budget = entity
+		mode: directLake
+		source
+			entityName: Realiseret_vs_Budget
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

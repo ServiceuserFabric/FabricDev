@@ -1,0 +1,275 @@
+table surveys
+	lineageTag: 83c96577-5f21-4388-946c-ef0c2034f2fd
+	sourceLineageTag: [dbo].[surveys]
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b7da0003-28f4-4cb0-8107-d841d267d88a
+		sourceLineageTag: rec_id
+		summarizeBy: none
+		sourceColumn: rec_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column internal_session_id
+		dataType: string
+		lineageTag: b3cc20ba-c514-42b3-887f-0f8d98061744
+		sourceLineageTag: internal_session_id
+		summarizeBy: none
+		sourceColumn: internal_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_key
+		dataType: string
+		lineageTag: 8cc1c391-1634-4fac-ae30-12f1ba61743d
+		sourceLineageTag: customer_key
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: 5f83f713-186b-4f8a-902f-6004f65367ca
+		sourceLineageTag: country_code
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column related_iq_session_id
+		dataType: string
+		lineageTag: 138e9061-381f-49d6-8522-84e40f856c7a
+		sourceLineageTag: related_iq_session_id
+		summarizeBy: none
+		sourceColumn: related_iq_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column related_call_id
+		dataType: double
+		lineageTag: 748ab429-9f43-4285-84df-1f551522a945
+		sourceLineageTag: related_call_id
+		summarizeBy: none
+		sourceColumn: related_call_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column survey_type
+		dataType: string
+		lineageTag: 9d7584b8-c15e-45c0-bb51-88df814c8d3e
+		sourceLineageTag: survey_type
+		summarizeBy: none
+		sourceColumn: survey_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column sequence
+		dataType: int64
+		formatString: 0
+		lineageTag: c5e5617c-6d65-4c1c-806f-15bd431a2174
+		sourceLineageTag: sequence
+		summarizeBy: none
+		sourceColumn: sequence
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column dte_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e697440b-9873-47a8-8fcb-dad6d8f48751
+		sourceLineageTag: dte_time
+		summarizeBy: none
+		sourceColumn: dte_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination
+		dataType: string
+		lineageTag: 601e1137-601e-4f26-b3e8-470a29d61be4
+		sourceLineageTag: destination
+		summarizeBy: none
+		sourceColumn: destination
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c76ee18-530c-48c7-b717-623fc0654a88
+		sourceLineageTag: agent_id
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column queue_key
+		dataType: string
+		lineageTag: 601d1b03-b264-4a08-a1d6-3fffa966d723
+		sourceLineageTag: queue_key
+		summarizeBy: none
+		sourceColumn: queue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column fertile
+		dataType: int64
+		formatString: 0
+		lineageTag: 84fe110a-d57a-414f-bb0f-9367a11f2cef
+		sourceLineageTag: fertile
+		summarizeBy: sum
+		sourceColumn: fertile
+
+		annotation SummarizationSetBy = Automatic
+
+	column question
+		dataType: string
+		lineageTag: 7aec79c2-a38f-4e35-a194-136eef5e9b11
+		sourceLineageTag: question
+		summarizeBy: none
+		sourceColumn: question
+
+		annotation SummarizationSetBy = Automatic
+
+	column score
+		dataType: string
+		lineageTag: e6d0a15f-b56e-4b79-9f7e-1b77e810918f
+		sourceLineageTag: score
+		summarizeBy: none
+		sourceColumn: score
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_score
+		dataType: string
+		lineageTag: 3e92c200-5c2b-48ff-95be-d7544e4e61e0
+		sourceLineageTag: max_score
+		summarizeBy: none
+		sourceColumn: max_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column min_score
+		dataType: string
+		lineageTag: 4532ff09-8597-4989-bca2-3412b566f015
+		sourceLineageTag: min_score
+		summarizeBy: none
+		sourceColumn: min_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		lineageTag: 59174b97-8f3a-48ea-8092-16d804b96690
+		sourceLineageTag: comment
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 014ad475-084e-412c-9f94-41d219b3c757
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column element_type
+		dataType: string
+		lineageTag: 59f4706f-7683-4a40-8297-8e62d02412d9
+		sourceLineageTag: element_type
+		summarizeBy: none
+		sourceColumn: element_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column element_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b2941f5-91cf-44ec-b57a-50e85455a7fc
+		sourceLineageTag: element_id
+		summarizeBy: none
+		sourceColumn: element_id
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column ci_session_id
+		dataType: string
+		lineageTag: 76d5536d-e4ec-4ffa-a4cc-45ab6c2733e8
+		sourceLineageTag: ci_session_id
+		summarizeBy: none
+		sourceColumn: ci_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column survey_id
+		dataType: string
+		lineageTag: f2324e47-d997-4e7d-92f5-cc1a7b268c49
+		sourceLineageTag: survey_id
+		summarizeBy: none
+		sourceColumn: survey_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column survey_name
+		dataType: string
+		lineageTag: 464fc370-a18c-4ba6-b803-26e159d99579
+		sourceLineageTag: survey_name
+		summarizeBy: none
+		sourceColumn: survey_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column related_ticket_id
+		dataType: string
+		lineageTag: 6c37995c-a259-4820-9b08-18e7df0fef6c
+		sourceLineageTag: related_ticket_id
+		summarizeBy: none
+		sourceColumn: related_ticket_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_time_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d5719916-01d6-4ed1-8bfe-2bac1883ee20
+		sourceLineageTag: dte_time_UTC
+		summarizeBy: none
+		sourceColumn: dte_time_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 521801d1-068e-4e07-8a6c-534872cf6e13
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition surveys = entity
+		mode: directLake
+		source
+			entityName: surveys
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

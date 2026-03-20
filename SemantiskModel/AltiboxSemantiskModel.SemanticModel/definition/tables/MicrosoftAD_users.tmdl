@@ -1,0 +1,118 @@
+table MicrosoftAD_users
+	lineageTag: 41d779bf-db59-4503-b969-c6d841a03072
+	sourceLineageTag: [dbo].[MicrosoftAD_users]
+
+	column businessPhones
+		dataType: string
+		lineageTag: 91e0842d-57d4-436d-bce4-74d45eadead5
+		sourceLineageTag: businessPhones
+		summarizeBy: none
+		sourceColumn: businessPhones
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 07788ce5-ac41-4c2c-b5ce-b2e6df19c8ce
+		sourceLineageTag: displayName
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column givenName
+		dataType: string
+		lineageTag: 25649d81-5f2b-4e66-bb24-d5f8ff51e5b3
+		sourceLineageTag: givenName
+		summarizeBy: none
+		sourceColumn: givenName
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: af32a4a0-4eaf-48b8-8a53-5a6978e389ef
+		sourceLineageTag: id
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column jobTitle
+		dataType: string
+		lineageTag: 046a4b7b-aaff-4a6e-85ca-708364c0dbf5
+		sourceLineageTag: jobTitle
+		summarizeBy: none
+		sourceColumn: jobTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column mail
+		dataType: string
+		lineageTag: a2703360-77ce-48c8-b392-74a3140887b8
+		sourceLineageTag: mail
+		summarizeBy: none
+		sourceColumn: mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobilePhone
+		dataType: string
+		lineageTag: f9c923be-733e-4c1f-9566-0137f726e0dd
+		sourceLineageTag: mobilePhone
+		summarizeBy: none
+		sourceColumn: mobilePhone
+
+		annotation SummarizationSetBy = Automatic
+
+	column officeLocation
+		dataType: string
+		lineageTag: 85678a4b-9728-4cc5-bafc-7dc0f4a6d968
+		sourceLineageTag: officeLocation
+		summarizeBy: none
+		sourceColumn: officeLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferredLanguage
+		dataType: string
+		lineageTag: 15940bd1-c6df-4541-8d38-eb23c167d864
+		sourceLineageTag: preferredLanguage
+		summarizeBy: none
+		sourceColumn: preferredLanguage
+
+		annotation SummarizationSetBy = Automatic
+
+	column surname
+		dataType: string
+		lineageTag: 0221b7ae-8275-4a2f-be49-e46c88c2c7d6
+		sourceLineageTag: surname
+		summarizeBy: none
+		sourceColumn: surname
+
+		annotation SummarizationSetBy = Automatic
+
+	column userPrincipalName
+		dataType: string
+		lineageTag: 717a1130-fdc9-49c6-8102-0b4d294be0ca
+		sourceLineageTag: userPrincipalName
+		summarizeBy: none
+		sourceColumn: userPrincipalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column initials
+		dataType: string
+		lineageTag: 8b4516d5-18aa-45da-affb-b423d213364b
+		sourceLineageTag: initials
+		summarizeBy: none
+		sourceColumn: initials
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MicrosoftAD_users = entity
+		mode: directLake
+		source
+			entityName: MicrosoftAD_users
+			expressionSource: 'DirectLake - MicrosoftAD'
+

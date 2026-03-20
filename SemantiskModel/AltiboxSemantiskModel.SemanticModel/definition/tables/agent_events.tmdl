@@ -1,0 +1,222 @@
+table agent_events
+	lineageTag: 17bf3ef7-9814-4f3c-87b0-1900b328c7e5
+	sourceLineageTag: [dbo].[agent_events]
+
+	column rec_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bb91a27-5b0c-46d5-9649-26d9c17f52d6
+		sourceLineageTag: rec_id
+		summarizeBy: none
+		sourceColumn: rec_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f8473422-c3b3-46e0-84db-de368f9f1677
+		sourceLineageTag: agent_id
+		summarizeBy: sum
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6564453e-1ffc-41bc-8e57-955e592a8672
+		sourceLineageTag: dte_start
+		summarizeBy: none
+		sourceColumn: dte_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column profile
+		dataType: string
+		lineageTag: 6dad7cdc-c044-4ac9-beb6-b4876fcde5bf
+		sourceLineageTag: profile
+		summarizeBy: none
+		sourceColumn: profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_num
+		dataType: string
+		lineageTag: 7e1afcbb-5299-4185-995e-430393ca9e34
+		sourceLineageTag: service_num
+		summarizeBy: none
+		sourceColumn: service_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone_num
+		dataType: string
+		lineageTag: ca6e7641-791e-47b9-90db-550948af5f9d
+		sourceLineageTag: phone_num
+		summarizeBy: none
+		sourceColumn: phone_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: e59ea749-1de0-4a23-b16c-eced19836c31
+		sourceLineageTag: duration_sec
+		summarizeBy: sum
+		sourceColumn: duration_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type
+		dataType: string
+		lineageTag: 070df60a-3383-481a-8d0a-4b0e6a76044e
+		sourceLineageTag: event_type
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_source
+		dataType: string
+		lineageTag: d1e76ccc-ae30-4334-b82f-5a53a01070e4
+		sourceLineageTag: event_source
+		summarizeBy: none
+		sourceColumn: event_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column result_code
+		dataType: string
+		lineageTag: cf8c3b3b-da13-4158-83ee-7fa4e6970124
+		sourceLineageTag: result_code
+		summarizeBy: none
+		sourceColumn: result_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column queue_key
+		dataType: string
+		lineageTag: 23cc4693-4243-41cc-b9db-8423939ce5e9
+		sourceLineageTag: queue_key
+		summarizeBy: none
+		sourceColumn: queue_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column pause_type_name
+		dataType: string
+		lineageTag: e5d6a282-fca1-4de9-b49b-eb333aa5de82
+		sourceLineageTag: pause_type_name
+		summarizeBy: none
+		sourceColumn: pause_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column pause_type_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f4f2e166-a6f7-43af-a649-ccf7b077d511
+		sourceLineageTag: pause_type_id
+		summarizeBy: sum
+		sourceColumn: pause_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 15535b42-4278-48b5-b45a-bf06db39dd78
+		sourceLineageTag: call_transfer
+		summarizeBy: none
+		sourceColumn: call_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column wrap_up_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 131dd3fe-1529-465d-9a5d-8b01a21210bc
+		sourceLineageTag: wrap_up_sec
+		summarizeBy: sum
+		sourceColumn: wrap_up_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column block_duration_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 40987da6-3907-494d-8393-9b45768d530c
+		sourceLineageTag: block_duration_sec
+		summarizeBy: sum
+		sourceColumn: block_duration_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_adr_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6728e833-3835-40e8-9363-a76cb3da7301
+		sourceLineageTag: internal_adr_id
+		summarizeBy: sum
+		sourceColumn: internal_adr_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_odr_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 87d41890-0adc-4dc1-8af6-8fd72f7ab764
+		sourceLineageTag: internal_odr_id
+		summarizeBy: sum
+		sourceColumn: internal_odr_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_country_src_db
+		dataType: string
+		lineageTag: e84224e9-2e39-41db-8653-c318f0945092
+		sourceLineageTag: internal_country_src_db
+		summarizeBy: none
+		sourceColumn: internal_country_src_db
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5728bb9f-7f3a-4261-889c-d6c424a059c2
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d8cfb589-f3ff-4e1e-b5ee-e15dae256835
+		sourceLineageTag: usergroup_id
+		summarizeBy: sum
+		sourceColumn: usergroup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone_type
+		dataType: int64
+		formatString: 0
+		lineageTag: fd8f216a-c50c-4510-9eda-25a139db36f2
+		sourceLineageTag: phone_type
+		summarizeBy: none
+		sourceColumn: phone_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agent_events = entity
+		mode: directLake
+		source
+			entityName: agent_events
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+

@@ -1,0 +1,337 @@
+relationship b90259e1-8f26-c6a2-25b6-724c7485d041
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship d54ce864-0aca-6043-66ca-4086605e3c56
+	fromColumn: status.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 11605dd6-a55a-3352-4bf4-ca3b70bf0995
+	fromColumn: status.Dato
+	toColumn: Calendar.Date
+
+relationship 9d61e29c-bf8c-19e5-2ae1-b2bf7192a14e
+	isActive: false
+	fromColumn: status.createdDate
+	toColumn: Calendar.Date
+
+relationship 38227c43-9f7c-d6af-b715-126d278bc182
+	isActive: false
+	fromColumn: status.endDate
+	toColumn: Calendar.Date
+
+relationship 8e1691ce-2fa6-fc35-2719-97dd3a92be25
+	isActive: false
+	fromColumn: status.orderedDate
+	toColumn: Calendar.Date
+
+relationship 2bd3dc05-b75f-263b-6b4f-2ac9de7f98dd
+	fromColumn: status.ProduktID
+	toColumn: Product_config.id
+
+relationship 36f62af0-cda5-6c1c-e739-639789e2522a
+	fromColumn: call_variables.internal_session_id
+	toColumn: call_relations.internal_session_id
+
+relationship eb2fcf12-d6c3-7323-11ca-90c90a8dc914
+	fromColumn: enqreg_category.enqreg_category_recid
+	toColumn: enqreg_topic.enqreg_category_recid
+
+relationship 4d01e66f-9ed6-3f39-7931-d70d3d406c6f
+	fromColumn: surveys.internal_session_id
+	toColumn: call_relations.internal_session_id
+
+relationship 85cd83ca-703c-1dac-0246-14a18e1d2470
+	fromColumn: MicrosoftAD_group_memberships.id
+	toColumn: MicrosoftAD_users.id
+
+relationship f356dd72-5b03-8f81-25b7-4f3e6d9a59a5
+	fromColumn: MicrosoftAD_group_memberships.'relationship.groupId'
+	toColumn: MicrosoftAD_groups.id
+
+relationship 0d72b6c7-99bf-3a0b-b1ed-5553c9508d5d
+	fromColumn: Audience_name.date
+	toColumn: Calendar.Date
+
+relationship 41c187eb-e7eb-9045-bc4c-758a4ef7c233
+	fromColumn: Engagement.date
+	toColumn: Calendar.Date
+
+relationship c532ebc1-bce2-3585-92b8-0118d10070d3
+	fromColumn: TrafficSource.date
+	toColumn: Calendar.Date
+
+relationship 9721c59b-1bff-2790-2dc8-055b8db2f23a
+	fromColumn: Demographics.date
+	toColumn: Calendar.Date
+
+relationship c10d6d56-3aef-5913-15d3-d04f079f62ed
+	fromColumn: Cust_Group.customAttributes_groupiocode
+	toColumn: IO.key
+
+relationship f4f714c8-03eb-4781-9264-0cc3284e7ea6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Month_Current_Filter.MonthStart
+	toColumn: LocalDateTable_6b21b8de-0016-4c0f-9898-f60bc0f0ddb7.Date
+
+relationship a9df07c2-d08c-4ff5-837b-69378eb7fcce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Month_Compare_Filter.MonthStart
+	toColumn: LocalDateTable_f651335d-69fe-4e11-be67-60c9f056c102.Date
+
+relationship 8e7869ee-b6e2-221a-481b-0cd8cae1dd03
+	fromColumn: Customer.customAttributes_internalsaleinitials
+	toColumn: MicrosoftAD_users.initials
+
+relationship 1d34a6b2-41aa-4dfd-b841-9ba5323d3036
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Calendar Comparison'.Date
+	toColumn: LocalDateTable_2a74af26-1120-4f9c-91c9-34d327a77d2f.Date
+
+relationship 4583c810-ee85-1f69-ee8f-e1a9fd0d369b
+	fromColumn: TrafficSource.date
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 36716783-b548-4793-41c8-4a0e810ec55a
+	fromColumn: Demographics.date
+	toColumn: 'Calendar Comparison'.Date
+
+relationship b4a5c36d-1d2d-94f2-469f-b2268da9f08f
+	fromColumn: Audience_name.date
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 9eb37db4-5457-ee4c-af05-941d8facf394
+	fromColumn: Engagement.date
+	toColumn: 'Calendar Comparison'.Date
+
+relationship e58df680-4bb6-0873-7a88-92cb85ea4bd4
+	fromColumn: AltiboxMobil_Nuuday.Bestillingsdato
+	toColumn: Calendar.Date
+
+relationship 28076b46-904d-9842-6c1e-2a350bed37f1
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Aktiveringsdato
+	toColumn: Calendar.Date
+
+relationship 44258d83-93f1-2050-5b36-53302ff5fa01
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Opsigelsesdato
+	toColumn: Calendar.Date
+
+relationship 7c9385e8-fcc8-920b-e25b-881a65330686
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.'Bindingsperiode slutter'
+	toColumn: Calendar.Date
+
+relationship e6daf92e-6727-c041-49db-3f9261364958
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Udporteringsdato
+	toColumn: Calendar.Date
+
+relationship 93f2cd17-5ea3-4b69-852c-61eaf19b9c2f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Calendar Comparison'.'MonthStart Comparison'
+	toColumn: LocalDateTable_64b34e55-865a-42f7-8209-dbc0ea624f37.Date
+
+relationship adec0ac1-3e6d-6b2a-35c8-aeaa86255d53
+	fromColumn: ProductHistory.accountKey
+	toColumn: Customer.accounts_id
+
+relationship 59c385fa-c6d0-ae6d-7732-db899578146d
+	fromColumn: ProductHistory.ProduktID
+	toColumn: Product_config.id
+
+relationship 737fb943-980f-b5c8-4ce2-202cee1938b8
+	fromColumn: ProductHistory.FromDate
+	toColumn: Calendar.Date
+
+relationship 7103e105-858a-61d1-4049-4fe792b16ef9
+	isActive: false
+	fromColumn: ProductHistory.createdDate
+	toColumn: Calendar.Date
+
+relationship 7dfbcf5b-2e5f-52bb-e6fc-c168e8e8c2a1
+	isActive: false
+	fromColumn: ProductHistory.ToDate
+	toColumn: Calendar.Date
+
+relationship 1b4afeeb-bf57-ab93-890e-05b0fd0f4399
+	isActive: false
+	fromColumn: ProductHistory.orderedDate
+	toColumn: Calendar.Date
+
+relationship 4a08305c-f9c5-b1f8-cf10-81b0e8ca5042
+	isActive: false
+	fromColumn: ProductHistory.endDate
+	toColumn: Calendar.Date
+
+relationship 4df1c4e1-e73f-820a-a4d7-8b44ef24c379
+	fromColumn: ProductHistory.FromDate
+	toColumn: 'Calendar Comparison'.Date
+
+relationship e43578aa-da5e-0e48-9348-fc03c45c8aab
+	isActive: false
+	fromColumn: ProductHistory.ToDate
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 2a6d8c93-1362-5b08-9387-05b00e443180
+	isActive: false
+	fromColumn: ProductHistory.createdDate
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 774a21d9-8bbf-3378-bdf3-b7c88e1cde7d
+	isActive: false
+	fromColumn: ProductHistory.orderedDate
+	toColumn: 'Calendar Comparison'.Date
+
+relationship b303751f-ad15-dd42-1f77-1ffb6c303a97
+	isActive: false
+	fromColumn: ProductHistory.endDate
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 6da41085-5527-b8d0-bbaa-6d97bbdf9c86
+	fromColumn: agents.usergroup_id
+	toColumn: user_groups.usergroup_id
+
+relationship 5aadf36b-64fe-2b86-50f8-638ebd22320e
+	fromColumn: surveys.agent_id
+	toColumn: agents.agent_id
+
+relationship 470bf673-a9ee-73f0-acc6-5178d376ecc7
+	isActive: false
+	fromColumn: call_variables.call_id
+	toColumn: call_relations.call_id
+
+relationship 7c148c1b-d574-7f88-784c-9d4c38716a15
+	fromColumn: call_events.result_code
+	toColumn: call_result_codes.result_code
+
+relationship a20a4fd7-e511-39fc-be29-07e21c7e9284
+	fromColumn: call_events.dte_start
+	toColumn: Calendar.Date
+
+relationship 4751fbf9-8b97-c5d4-6ce4-2870dc3d9c6e
+	fromColumn: call_events.event_type
+	toColumn: call_event_types.event_type
+
+relationship 26f41bfc-9b54-bdff-5a1f-2b821e4fface
+	fromColumn: call_events.media_type_id
+	toColumn: media_types.media_type_id
+
+relationship 28cb97c8-d200-25fc-48bd-5731f9298b34
+	fromColumn: call_events.rec_id
+	toColumn: call_event_extras.call_events_rec_id
+
+relationship f11b5039-981b-1d40-eddf-61589744577f
+	fromColumn: call_events.dte_start_time
+	toColumn: Tid.Tid
+
+relationship 40d801d2-8209-b931-f3bf-3676661fde6d
+	fromColumn: agents_history.agent_id
+	toColumn: agents.agent_id
+
+relationship 82775e77-7e88-ca8d-ca71-3bdeda7e8b90
+	fromColumn: agents.master_email
+	toColumn: MicrosoftAD_users.userPrincipalName
+
+relationship e3ab226c-ac03-3cad-ee7a-64328ac4c492
+	fromColumn: call_events.agent_id
+	toColumn: agents.agent_id
+
+relationship 9245ba64-9513-45bc-8b2f-b716a0ed8fa5
+	fromColumn: call_events.dte_start
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 5e9e993b-d375-4789-825b-57013c385f4a
+	fromColumn: agent_events.phone_type
+	toColumn: phone_types.phone_type
+
+relationship 8ef5ba67-0039-7d80-b4c5-d667528611d3
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Agent_events_pause_durations.rec_id_pause_start
+	toColumn: agent_events.rec_id
+
+relationship 034f91fa-43f9-b8ff-6227-bf8fd3367af1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Agent_events_signed_in_sessions.rec_id_signed_in
+	toColumn: agent_events.phone_type
+
+relationship 12164c8f-2ba9-c8e2-591c-fc963d7730a3
+	fromColumn: agent_events.event_type
+	toColumn: agent_event_types.event_type
+
+relationship 097c20ce-5f6e-2020-c839-e75500b02c73
+	fromColumn: agent_events.result_code
+	toColumn: agent_result_codes.result_code
+
+relationship d6021744-45f5-2b4b-99d6-6ef66bc9cd8d
+	fromColumn: agent_events.event_source
+	toColumn: agent_event_sources.event_source
+
+relationship 0b9bd56c-dc9c-f3ec-cf4d-320df69f9bc6
+	fromColumn: Agent_events_pause_durations.agent_id
+	toColumn: agents.agent_id
+
+relationship 1c212975-b070-d678-c742-e38b241bf079
+	isActive: false
+	fromColumn: Agent_events_signed_in_sessions.agent_id
+	toColumn: agents.agent_id
+
+relationship 4986f8fb-dbad-d28f-d667-f3e82658df04
+	fromColumn: Agent_events_pause_durations.dte_start_date
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 1a748330-6d10-b1e7-59d6-af99bec2bbc9
+	fromColumn: Agent_events_signed_in_sessions.dte_start_date
+	toColumn: Calendar.Date
+
+relationship 989a23c8-f70f-80ea-6984-359d66137125
+	fromColumn: AltiboxMobil_Nuuday.Sælgerreference
+	toColumn: MicrosoftAD_users.displayName
+
+relationship b43d3567-ad2f-e619-9be8-bf3e7ad8b1cd
+	fromColumn: AltiboxMobil_Nuuday.Bestillingsdato
+	toColumn: 'Calendar Comparison'.Date
+
+relationship dea5101f-e1e0-cd63-c819-6f91c1b3a829
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Aktiveringsdato
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 9dea9b8f-7515-0ec4-b2c6-5b39b333241d
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Opsigelsesdato
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 750a3587-96bf-0773-f9c1-f89e7fd58543
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.'Bindingsperiode slutter'
+	toColumn: 'Calendar Comparison'.Date
+
+relationship d5d4f4f4-e139-3bdc-c426-31e829d51613
+	isActive: false
+	fromColumn: AltiboxMobil_Nuuday.Udporteringsdato
+	toColumn: 'Calendar Comparison'.Date
+
+relationship 954f844b-b4b8-f749-370f-3c265c5a283b
+	fromColumn: vw_enqreg_total.internal_session_id
+	toColumn: call_relations.internal_session_id
+
+relationship 303a3089-edfc-75e0-20dd-71915e129e53
+	fromColumn: vw_enqreg_total.queue_key
+	toColumn: queues.queue_key
+
+relationship 896e31ab-e7f3-ab30-680f-4a72bb625fc3
+	fromColumn: vw_enqreg_total.dte_start_date
+	toColumn: Calendar.Date
+
+relationship e1bc76b7-78af-20a1-e802-04dcbc79863a
+	fromColumn: vw_enqreg_total.agent_id
+	toColumn: agents.agent_id
+
+relationship 80dc8488-f077-5162-c819-09cb5e551097
+	fromColumn: vw_enqreg_total.dte_start_date
+	toColumn: 'Calendar Comparison'.Date
+

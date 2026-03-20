@@ -1,0 +1,163 @@
+table 'dbo agents'
+	lineageTag: ce32fab2-1374-4fe3-b79f-5deaf5a95c36
+	sourceLineageTag: [dbo].[agents]
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 96776c98-22f1-423e-a1fc-803a467a331a
+		sourceLineageTag: agent_id
+		summarizeBy: sum
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_key
+		dataType: string
+		lineageTag: 5be30422-0782-44eb-a6e7-f2d740411115
+		sourceLineageTag: customer_key
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_name
+		dataType: string
+		lineageTag: 22504588-af0e-416b-aca5-7860e121f3f2
+		sourceLineageTag: user_name
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_num
+		dataType: string
+		lineageTag: 5b204468-2b22-4009-8a02-bf3eeef1c6b0
+		sourceLineageTag: user_num
+		summarizeBy: none
+		sourceColumn: user_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_name
+		dataType: string
+		lineageTag: 8273e012-0dd8-4b38-b04b-035460a09cbb
+		sourceLineageTag: full_name
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e7071ed4-1e8b-4841-a427-c50e7ccf8344
+		sourceLineageTag: usergroup_id
+		summarizeBy: sum
+		sourceColumn: usergroup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column usergroup_name
+		dataType: string
+		lineageTag: 588eb6ea-a444-4075-87f8-906f67730e16
+		sourceLineageTag: usergroup_name
+		summarizeBy: none
+		sourceColumn: usergroup_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 22d6d265-27c7-434f-9b04-9316e18e9c80
+		sourceLineageTag: email
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile
+		dataType: string
+		lineageTag: 36c4b670-4380-4ee0-9b7b-374aa4b88e01
+		sourceLineageTag: mobile
+		summarizeBy: none
+		sourceColumn: mobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf7afdd7-e6f3-4b7a-a90e-7eabef92b21e
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column chat_role
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b6685a3-bf55-4fc2-8205-07865ae004c6
+		sourceLineageTag: chat_role
+		summarizeBy: sum
+		sourceColumn: chat_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column chat_master_user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ca131d15-490a-4cf5-aa38-ee2790c36a35
+		sourceLineageTag: chat_master_user_id
+		summarizeBy: sum
+		sourceColumn: chat_master_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column unblockable_role
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e24c241-e871-485a-a4f1-ff8b11b5f871
+		sourceLineageTag: unblockable_role
+		summarizeBy: sum
+		sourceColumn: unblockable_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column unblockable_group
+		dataType: int64
+		formatString: 0
+		lineageTag: 1feb1118-bcab-45de-bd66-e6d4fd46674f
+		sourceLineageTag: unblockable_group
+		summarizeBy: sum
+		sourceColumn: unblockable_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9f064b39-0b2e-4b3c-a606-0c85dcab6212
+		sourceLineageTag: deleted
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column puzzel_id
+		dataType: string
+		lineageTag: 1934ec7b-74d4-4b90-9ca3-e228989aa5c5
+		sourceLineageTag: puzzel_id
+		summarizeBy: none
+		sourceColumn: puzzel_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbo agents' = entity
+		mode: directLake
+		source
+			entityName: agents
+			schemaName: dbo
+			expressionSource: 'DirectLake - Puzzel_Altibox'
+
