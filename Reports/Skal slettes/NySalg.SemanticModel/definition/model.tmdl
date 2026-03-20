@@ -1,0 +1,40 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: da-DK
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectQuery to AS - Status_i_dagV2","Sortering","Dato","All Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
+
+ref table Sortering
+ref table 'Status Measure'
+ref table Dato
+ref table 'All Measures'
+ref table Realiseret_vs_Budget_Dagligt_
+ref table Kalendar
+ref table Status_I_dag_
+ref table 'Realiseret_vs_Budget_Dagligt_ 2'
+ref table Cust_Group
+ref table IO
+ref table Customer
+ref table Product_config
+ref table LocalDateTable_eb7c6dc6-0975-411a-95f1-8e7bc396c9a1
+ref table LocalDateTable_d939a60d-de76-432d-9466-f3d2041ad7e8
+ref table LocalDateTable_d93600f1-14c3-442b-b5a9-190af0470c29
+ref table LocalDateTable_02c1a297-7e3b-4f67-8b02-3352beecd6ec
+ref table LocalDateTable_4dd12603-e323-4e1e-a4ef-5cfa30fa8eb2
+ref table LocalDateTable_633f4234-7afe-44e4-9316-5aec4d759c07
+ref table LocalDateTable_3883417b-547f-4cc7-9904-2a5adfb08623
+ref table LocalDateTable_891bcfd7-f638-429f-87e7-446303c39376
+ref table LocalDateTable_7f793165-82c9-4de8-89d2-3be658c82e73
+ref table LocalDateTable_a60a4bac-5e2f-4fe9-af59-a2d88be881cb
+ref table LocalDateTable_31900d35-da3c-4e23-b583-d5af6d7599f8
+
+ref cultureInfo en-US
+

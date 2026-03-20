@@ -1,0 +1,48 @@
+table IO
+	lineageTag: b3b0fe3c-9111-4f6f-b0f5-cb50a4b4d7df
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7531ce7e-53c6-4efd-847d-ac5019832b08
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column key
+		dataType: string
+		lineageTag: c76638e9-5e95-41f8-ab21-1967444c8411
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: ffb4e448-5c69-4775-af97-c9de395221e1
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: f070fe2c-64b1-4cfd-b59a-614db1deb59c
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition IO = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_IO = Golden_lakehouse{[Schema="dbo",Item="IO"]}[Data]
+				in
+				    dbo_IO
+
+	annotation PBI_ResultType = Table
+

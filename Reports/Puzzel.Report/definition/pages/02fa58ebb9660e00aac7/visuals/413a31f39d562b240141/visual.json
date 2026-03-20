@@ -1,0 +1,171 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "413a31f39d562b240141",
+  "position": {
+    "x": 36.041248618428817,
+    "y": 171.41569464862485,
+    "z": 1,
+    "height": 188.99679153566331,
+    "width": 559.07888100782259,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MicrosoftAD_users"
+                    }
+                  },
+                  "Property": "jobTitle"
+                }
+              },
+              "queryRef": "MicrosoftAD_users.jobTitle",
+              "nativeQueryRef": "jobTitle",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MicrosoftAD_users"
+                    }
+                  },
+                  "Property": "displayName"
+                }
+              },
+              "queryRef": "MicrosoftAD_users.displayName",
+              "nativeQueryRef": "displayName",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal besvarede opkald"
+                }
+              },
+              "queryRef": "All Measures.Antal besvarede opkald",
+              "nativeQueryRef": "Antal besvarede opkald"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MicrosoftAD_users"
+                  }
+                },
+                "Property": "jobTitle"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "MicrosoftAD_users.jobTitle"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MicrosoftAD_users"
+                    }
+                  },
+                  "Property": "jobTitle"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "MicrosoftAD_users.displayName"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cac085469759e97cc15e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ab42a52c3a3554a671da",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MicrosoftAD_users"
+              }
+            },
+            "Property": "displayName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "34b20101a65e067adba7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MicrosoftAD_users"
+              }
+            },
+            "Property": "jobTitle"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

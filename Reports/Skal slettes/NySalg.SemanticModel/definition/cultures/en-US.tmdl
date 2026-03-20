@@ -1,0 +1,113 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "status_measure.status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Status Measure",
+			          "ConceptualProperty": "Status"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "status_measure.selected_kunde_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Status Measure",
+			          "ConceptualProperty": "Selected Kunde Status"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "realiseret_vs_budget_dagligt_.antal_kunder_realiseret_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Realiseret_vs_Budget_Dagligt_",
+			          "ConceptualProperty": "Antal Kunder Realiseret_"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Antal Realiseret Kunder": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "realiseret_vs_budget_dagligt_.antal_kunder_budgeteret": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Realiseret_vs_Budget_Dagligt_",
+			          "ConceptualProperty": "Antal Kunder Budgeteret"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Antal Budgeteret Kunder": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "kalendar.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Kalendar",
+			          "ConceptualProperty": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Bestillingsdato": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "all_measures.accumulated_nysalg_customers": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "All Measures",
+			          "ConceptualProperty": "Accumulated NySalg Customers"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Accumulated kunder med NySalg": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

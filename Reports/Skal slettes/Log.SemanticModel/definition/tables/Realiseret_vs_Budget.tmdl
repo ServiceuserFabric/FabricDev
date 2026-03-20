@@ -1,0 +1,74 @@
+table Realiseret_vs_Budget
+	lineageTag: 828f32dd-a3dc-42cd-9da3-ef25ada59c50
+	sourceLineageTag: 53bb55b9-2ae9-4296-bddb-903ac7356ae6
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b6b65da4-1fb0-4816-80f5-ae58ffed912e
+		sourceLineageTag: d711e6bb-a4e7-4bc1-9c33-7b6d94ac0ae4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 4dabb1b3-7386-449a-9a06-8a6ee6a34ae4
+			defaultHierarchy: LocalDateTable_7fe4b3dc-9f6f-4888-87ef-8f17f521a449.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Periode
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dad100fd-5298-483f-903a-2eaa24c695ef
+		sourceLineageTag: 1a67f2b7-eede-4785-bfbf-1a152724994d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Periode
+
+		variation Variation
+			isDefault
+			relationship: e7a633d8-3b1a-407e-96bf-e8e9d5b0c5c7
+			defaultHierarchy: LocalDateTable_75aead4b-ceeb-40f6-ae6d-a73003d11a7b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: e16b74de-ac18-465a-9568-1374f3c744a4
+		sourceLineageTag: 05499e4c-99e4-46e8-9f9b-7e4d92a75ef2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c04915d-1fce-4890-8e9e-e1c135bec0f8
+		sourceLineageTag: c36720bc-3337-467a-b407-f18764ac30ad
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: 123e9cc1-86cc-42f6-976f-dea4ffb86bf3
+		sourceLineageTag: c7f2a787-d2b9-48b7-a1d3-903f591ad08e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = User
+
+	partition Realiseret_vs_Budget = entity
+		mode: directQuery
+		source
+			entityName: Realiseret_vs_Budget
+			expressionSource: 'DirectQuery to AS - Status_modelV3'
+

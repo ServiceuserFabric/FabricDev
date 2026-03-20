@@ -1,0 +1,106 @@
+table Kalendar
+	lineageTag: 5e662e3a-b912-4f16-b888-5f134898721d
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: c8f5c338-f012-4ba4-9d8a-2a650b4eb84b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		isHidden
+		formatString: 0
+		lineageTag: e942a76c-4aea-4e57-b811-557f708732f3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		isHidden
+		formatString: 0
+		lineageTag: d0fbb11d-57f0-4c69-8456-f36d509ec276
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		isHidden
+		formatString: 0
+		lineageTag: 318eed9c-b1ce-40a5-8f5f-ee547b0153dd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		isHidden
+		lineageTag: 7d7296e3-4dbb-4395-99ab-89f2634ab91b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		isHidden
+		lineageTag: 4ceefc18-9125-448c-bf60-93564b3f1a72
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		isHidden
+		formatString: Short Date
+		lineageTag: b3877941-546d-4d60-b868-9f5e12ee64e4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FullDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'NySalg Dato'
+		lineageTag: f83d98bf-eec8-475f-9689-bac18949692b
+
+		level Year
+			lineageTag: c4d61123-467e-49c5-bd6f-da5eaaea698e
+			column: Year
+
+		level MonthName
+			lineageTag: d9ea8db1-e4f1-4ee6-a033-ce56a36e0578
+			column: MonthName
+
+		level FullDate
+			lineageTag: d5f7b1c6-7c86-413a-946f-ef856a3b6b87
+			column: FullDate
+
+	partition Kalendar = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR (DATE(2024, 05, 01), DATE(2025, 12, 31)),
+				    "Year", YEAR([Date]),
+				    "Month", MONTH([Date]),
+				    "Day", DAY([Date]),
+				    "MonthName", FORMAT([Date], "MMMM"),
+				    "Quarter", "Q" & FORMAT([Date], "Q"),
+				    "FullDate", [Date]
+				)
+				
+				```
+
+	annotation PBI_Id = 085535af873e40ff8d3d3e137643db8d
+

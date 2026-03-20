@@ -1,0 +1,56 @@
+table Product_config
+	lineageTag: c1758c14-7be9-4813-8ff9-058af282646c
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: bea72529-c5eb-4fff-bd52-18fcf3484c51
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column HovedProduktGruppe
+		dataType: string
+		lineageTag: 1b31ba7e-e088-4851-a788-ddea04989542
+		summarizeBy: none
+		sourceColumn: HovedProduktGruppe
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductMainGroup
+		dataType: string
+		lineageTag: 4462eb78-e83a-46cf-8296-c33f291baed0
+		summarizeBy: none
+		sourceColumn: ProductMainGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column productGroup
+		dataType: string
+		lineageTag: 9a00f15a-d3c4-4761-b6fb-0d74551f08cf
+		summarizeBy: none
+		sourceColumn: productGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column selfserviceNames_da
+		dataType: string
+		lineageTag: 960bfc52-8a39-41ef-8673-c557a107cc76
+		summarizeBy: none
+		sourceColumn: selfserviceNames_da
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_config = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_Product_config = Golden_lakehouse{[Schema="dbo",Item="Product_config"]}[Data]
+				in
+				    dbo_Product_config
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,45 @@
+table Sortering
+	isHidden
+	lineageTag: e6ee057a-1061-42cb-b182-b37edc8f2ad5
+
+	column Value
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ecaaf130-c471-459d-9585-6a18a7f2f4b7
+		summarizeBy: sum
+		sourceColumn: Value
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Produkt Gruppe'
+		dataType: string
+		isHidden
+		lineageTag: 4037368a-a5bf-4b63-bed5-8c85c25932c5
+		summarizeBy: none
+		sourceColumn: Produkt Gruppe
+		sortByColumn: Value
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sortering = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8swrSS3KSy1R0lEyVIrViVYKCQMyjSDM1JzUtPy8TKCAMVjAMS8FrNJEKTYWAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Produkt Gruppe" = _t, Value = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Produkt Gruppe", type text}, {"Value", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

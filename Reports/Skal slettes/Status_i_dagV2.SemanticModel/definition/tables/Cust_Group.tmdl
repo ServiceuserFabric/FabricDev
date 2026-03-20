@@ -1,0 +1,88 @@
+table Cust_Group
+	lineageTag: d89d37cc-24d2-418f-8495-302b5171d383
+
+	column account
+		dataType: string
+		lineageTag: 750be6d7-a8b8-4875-96e0-4c1d522ee69f
+		summarizeBy: none
+		sourceColumn: account
+
+		annotation SummarizationSetBy = Automatic
+
+	column bookkeepingId
+		dataType: string
+		lineageTag: 9e881190-3ba5-4f3d-83a3-75b14fe729f6
+		summarizeBy: none
+		sourceColumn: bookkeepingId
+
+		annotation SummarizationSetBy = Automatic
+
+	column fullPath
+		dataType: string
+		lineageTag: 9a0823e2-bb35-44e2-8e19-5bb96982df1c
+		summarizeBy: none
+		sourceColumn: fullPath
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 15f58f07-c22e-40e8-8539-845a848e802a
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ident
+		dataType: string
+		lineageTag: db0c682b-b40f-4d59-a071-d3cdb13596d6
+		summarizeBy: none
+		sourceColumn: ident
+
+		annotation SummarizationSetBy = Automatic
+
+	column modified
+		dataType: int64
+		formatString: 0
+		lineageTag: da34fab8-e868-4226-96e5-33bae0b73a5e
+		summarizeBy: none
+		sourceColumn: modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedISO
+		dataType: string
+		lineageTag: 8e8508f5-4079-4b5e-8ffb-df9c0d8bb188
+		summarizeBy: none
+		sourceColumn: modifiedISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 90f5e206-1629-4f90-b66b-c34024a43870
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column parentCustomerGroupId
+		dataType: string
+		lineageTag: 05981f68-5146-4e61-bd6e-3f34db94eb8d
+		summarizeBy: none
+		sourceColumn: parentCustomerGroupId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cust_Group = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_Cust_Group = Golden_lakehouse{[Schema="dbo",Item="Cust_Group"]}[Data]
+				in
+				    dbo_Cust_Group
+
+	annotation PBI_ResultType = Table
+

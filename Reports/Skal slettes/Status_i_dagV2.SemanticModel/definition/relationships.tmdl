@@ -1,0 +1,72 @@
+relationship 84120bf1-4ce2-4445-a68e-dfb32cda0519
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.Dato
+	toColumn: LocalDateTable_eb7c6dc6-0975-411a-95f1-8e7bc396c9a1.Date
+
+relationship b2387bc0-21ae-4c21-9318-2cf23302ec63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.orderedDate
+	toColumn: LocalDateTable_d939a60d-de76-432d-9466-f3d2041ad7e8.Date
+
+relationship 14149c93-bfd5-4b0d-b616-dabb2c209dcd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.orderedDateTime
+	toColumn: LocalDateTable_d93600f1-14c3-442b-b5a9-190af0470c29.Date
+
+relationship 02961040-12a4-4c55-b6cd-97ea0996dad4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.startDate
+	toColumn: LocalDateTable_02c1a297-7e3b-4f67-8b02-3352beecd6ec.Date
+
+relationship 2f5d7613-8400-478c-afbf-a6e60f878d6a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.endDate
+	toColumn: LocalDateTable_4dd12603-e323-4e1e-a4ef-5cfa30fa8eb2.Date
+
+relationship 426ebbfc-7212-453d-8eb1-3daf73a42d19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.createdDate
+	toColumn: LocalDateTable_633f4234-7afe-44e4-9316-5aec4d759c07.Date
+
+relationship b366c0d4-dc28-408f-b26d-ceec6054dbcb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Status_I_dag_.modifiedDate
+	toColumn: LocalDateTable_3883417b-547f-4cc7-9904-2a5adfb08623.Date
+
+relationship 3e4d5cc6-e04c-4a39-aead-401df7c00bf0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Realiseret_vs_Budget_Dagligt_.Dato
+	toColumn: LocalDateTable_891bcfd7-f638-429f-87e7-446303c39376.Date
+
+relationship ca524211-6490-4bfa-a147-3c560d4a479b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.accounts_modified
+	toColumn: LocalDateTable_7f793165-82c9-4de8-89d2-3be658c82e73.Date
+
+relationship 594db7c0-8fa6-4097-bd96-f85bde188ddc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.endDate
+	toColumn: LocalDateTable_a60a4bac-5e2f-4fe9-af59-a2d88be881cb.Date
+
+relationship 29ae5b19-2a6c-4338-8f39-5d0536e62727
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.startDate
+	toColumn: LocalDateTable_31900d35-da3c-4e23-b583-d5af6d7599f8.Date
+
+relationship 72be4da5-d960-fee6-357f-5bd448e84314
+	fromColumn: Customer.customerGroupKey
+	toColumn: Cust_Group.id
+
+relationship c4ea5b8d-d64a-4cb7-eec6-605cc10f1304
+	toCardinality: many
+	fromColumn: Status_I_dag_.accountKey
+	toColumn: Customer.accounts_id
+
+relationship cace6ddc-813d-549f-1cde-f469f668b5f3
+	fromColumn: Status_I_dag_.Partner
+	toColumn: IO.id
+
+relationship e56b9755-3616-3320-a3c7-d15e3460ff4f
+	fromColumn: Status_I_dag_.ProduktID
+	toColumn: Product_config.id
+

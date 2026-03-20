@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "179863c1ae5832de7939",
+  "position": {
+    "x": 33.843929278987446,
+    "y": 169.98882660582333,
+    "z": 2000,
+    "height": 509.96647981747,
+    "width": 1221.4581748870924,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AltiboxMobil_Nuuday"
+                    }
+                  },
+                  "Property": "Bestillingsdato"
+                }
+              },
+              "queryRef": "AltiboxMobil_Nuuday.Bestillingsdato",
+              "nativeQueryRef": "Bestillingsdato",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Aktive mobilkunder"
+                }
+              },
+              "queryRef": "All Measures.Aktive mobilkunder",
+              "nativeQueryRef": "Aktive mobilkunder"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AltiboxMobil_Nuuday"
+                  }
+                },
+                "Property": "Bestillingsdato"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Salg af mobilabonnementer'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f463a038351955a1d08b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AltiboxMobil_Nuuday"
+              }
+            },
+            "Property": "Bestillingsdato"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1f300b920252d92b0a54",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Aktive mobilkunder"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

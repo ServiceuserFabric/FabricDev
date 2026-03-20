@@ -1,0 +1,138 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU12",
+      "reportVersionAtImport": {
+        "visual": "2.5.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Altibox942391770815549.json",
+      "reportVersionAtImport": {
+        "visual": "2.7.0",
+        "report": "3.2.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "reportSource": "QuickCreate",
+  "publicCustomVisuals": [
+    "ChicletSlicer1448559807354",
+    "Datepicker_1687358625",
+    "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+    "ZebraBITablesBAE31B370F254F808553548EFB35BFA5"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY25SU12",
+          "path": "BaseThemes/CY25SU12.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Altibox_logo_20224953614063602285.png",
+          "path": "Altibox_logo_20224953614063602285.png",
+          "type": "Image"
+        },
+        {
+          "name": "Altibox942391770815549.json",
+          "path": "Altibox942391770815549.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_1712291936546447635.jpg",
+          "path": "Skabelon_PowerBI_type_1712291936546447635.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_178611182736508558.jpg",
+          "path": "Skabelon_PowerBI_type_178611182736508558.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_1803176793997677685.jpg",
+          "path": "Skabelon_PowerBI_type_1803176793997677685.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_18856308628098381.jpg",
+          "path": "Skabelon_PowerBI_type_18856308628098381.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_208606958854877648.jpg",
+          "path": "Skabelon_PowerBI_type_208606958854877648.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_24430720708024042.jpg",
+          "path": "Skabelon_PowerBI_type_24430720708024042.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Skabelon_PowerBI_type_Forside09309462384237122.jpg",
+          "path": "Skabelon_PowerBI_type_Forside09309462384237122.jpg",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "allowInlineExploration": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

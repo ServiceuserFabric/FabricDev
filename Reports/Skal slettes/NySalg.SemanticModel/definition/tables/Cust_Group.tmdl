@@ -1,0 +1,102 @@
+table Cust_Group
+	lineageTag: 0cb25449-2b58-47f9-ba22-90d8665ea56d
+	sourceLineageTag: d89d37cc-24d2-418f-8495-302b5171d383
+
+	column account
+		dataType: string
+		lineageTag: cedb4ab7-4cc7-422b-b483-af05cc54738e
+		sourceLineageTag: 750be6d7-a8b8-4875-96e0-4c1d522ee69f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: account
+
+		annotation SummarizationSetBy = User
+
+	column bookkeepingId
+		dataType: string
+		lineageTag: 585083d5-ebf0-4368-a2a9-6bf552ece216
+		sourceLineageTag: 9e881190-3ba5-4f3d-83a3-75b14fe729f6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: bookkeepingId
+
+		annotation SummarizationSetBy = User
+
+	column fullPath
+		dataType: string
+		lineageTag: c1eb58e4-709c-44e6-91ea-c89b841091d2
+		sourceLineageTag: 9a0823e2-bb35-44e2-8e19-5bb96982df1c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: fullPath
+
+		annotation SummarizationSetBy = User
+
+	column id
+		dataType: string
+		isNullable: false
+		lineageTag: d043c2ae-3f39-4e7d-87fe-e55810b42aff
+		sourceLineageTag: 15f58f07-c22e-40e8-8539-845a848e802a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column ident
+		dataType: string
+		lineageTag: a2c3d939-57b3-4131-8406-a3446b00fd84
+		sourceLineageTag: db0c682b-b40f-4d59-a071-d3cdb13596d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ident
+
+		annotation SummarizationSetBy = User
+
+	column modified
+		dataType: int64
+		formatString: 0
+		lineageTag: 95573218-353c-40b2-9f4c-e2dd0a3610ae
+		sourceLineageTag: da34fab8-e868-4226-96e5-33bae0b73a5e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modified
+
+		annotation SummarizationSetBy = User
+
+	column modifiedISO
+		dataType: string
+		lineageTag: 5870300e-fde1-4f4d-99aa-1002e92d480e
+		sourceLineageTag: 8e8508f5-4079-4b5e-8ffb-df9c0d8bb188
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modifiedISO
+
+		annotation SummarizationSetBy = User
+
+	column name
+		dataType: string
+		lineageTag: 8e37bc0b-e981-4da5-8c07-9986c0d1cb1f
+		sourceLineageTag: 90f5e206-1629-4f90-b66b-c34024a43870
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = User
+
+	column parentCustomerGroupId
+		dataType: string
+		lineageTag: 62d7dcb8-bcd9-4acd-a5dc-00200a556a24
+		sourceLineageTag: 05981f68-5146-4e61-bd6e-3f34db94eb8d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: parentCustomerGroupId
+
+		annotation SummarizationSetBy = User
+
+	partition Cust_Group = entity
+		mode: directQuery
+		source
+			entityName: Cust_Group
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+

@@ -1,0 +1,52 @@
+table IO
+	lineageTag: 15f64913-66e0-454d-bcf0-761d99291548
+	sourceLineageTag: 857e9618-24db-4d86-a4f3-11eaa2618bd4
+
+	column id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 1bd585ad-42fb-4040-b4f8-4f3057a4c4a0
+		sourceLineageTag: 270f815f-f037-4baf-b855-ce06d56b0879
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column key
+		dataType: string
+		lineageTag: 180cb44a-68b9-4df0-9dda-94b7fe9bbd9a
+		sourceLineageTag: a43a9756-a5b3-4836-83ba-62b3a3f00bbf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: key
+
+		annotation SummarizationSetBy = User
+
+	column name
+		dataType: string
+		lineageTag: 5216aa02-bc0c-4728-b451-4dfbadae0f5b
+		sourceLineageTag: c02dab52-09bc-4a27-80c6-84e85132a462
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: string
+		lineageTag: 19aa8086-0f9f-4d53-8abf-bff0ee71061c
+		sourceLineageTag: 01581fc6-6163-436c-a224-7f8cca58ba8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+	partition IO = entity
+		mode: directQuery
+		source
+			entityName: IO
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+

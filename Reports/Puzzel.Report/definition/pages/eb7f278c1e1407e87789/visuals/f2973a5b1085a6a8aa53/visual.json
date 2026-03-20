@@ -1,0 +1,307 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "f2973a5b1085a6a8aa53",
+  "position": {
+    "x": 34,
+    "y": 169,
+    "z": 1000,
+    "height": 523,
+    "width": 1212,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Hierarchy": "ÅMD"
+                    }
+                  },
+                  "Level": "År"
+                }
+              },
+              "queryRef": "Calendar.ÅMD.År",
+              "nativeQueryRef": "ÅMD År",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Hierarchy": "ÅMD"
+                    }
+                  },
+                  "Level": "Måned"
+                }
+              },
+              "queryRef": "Calendar.ÅMD.Måned",
+              "nativeQueryRef": "ÅMD Måned",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Hierarchy": "ÅMD"
+                    }
+                  },
+                  "Level": "Date"
+                }
+              },
+              "queryRef": "Calendar.ÅMD.Date",
+              "nativeQueryRef": "ÅMD Date",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Hierarchy": "ÅMD"
+                    }
+                  },
+                  "Level": "ÅrMåned"
+                }
+              },
+              "queryRef": "Calendar.ÅMD.ÅrMåned",
+              "nativeQueryRef": "ÅMD ÅrMåned",
+              "active": false
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "agents"
+                    }
+                  },
+                  "Property": "master_full_name"
+                }
+              },
+              "queryRef": "agents.master_full_name",
+              "nativeQueryRef": "master_full_name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal besvarede opkald"
+                }
+              },
+              "queryRef": "All Measures.Antal besvarede opkald",
+              "nativeQueryRef": "Antal besvarede opkald"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ad46c4c8a53cb9a094dd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "agents"
+              }
+            },
+            "Property": "master_full_name"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "agents",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "a"
+                              }
+                            },
+                            "Property": "master_full_name"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "d4fe23b5449738390328",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "033fe6008c0d38d4c12a",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Hierarchy": "ÅMD"
+              }
+            },
+            "Level": "År"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "06786cfec6b5daa10720",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Hierarchy": "ÅMD"
+              }
+            },
+            "Level": "Måned"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "41e331fe0ee9034483e3",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Hierarchy": "ÅMD"
+              }
+            },
+            "Level": "Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2eb25494060113188cde",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Hierarchy": "ÅMD"
+              }
+            },
+            "Level": "ÅrMåned"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

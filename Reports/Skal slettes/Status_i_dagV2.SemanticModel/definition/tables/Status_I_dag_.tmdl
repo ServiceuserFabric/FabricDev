@@ -1,0 +1,209 @@
+table Status_I_dag_
+	lineageTag: c0269e21-ca9c-4cd2-a56c-b6b72234fbcc
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: e14c1ec2-d66f-4bd0-9962-5846e2589de1
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f351d4af-56f4-4e71-b404-749e07bba168
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 84120bf1-4ce2-4445-a68e-dfb32cda0519
+			defaultHierarchy: LocalDateTable_eb7c6dc6-0975-411a-95f1-8e7bc396c9a1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column accountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: de165325-ecb4-4129-b688-298ce031b00a
+		summarizeBy: none
+		sourceColumn: accountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column KundeNO
+		dataType: string
+		lineageTag: 420356ee-9bad-4c37-b268-1aa8bf0fad4b
+		summarizeBy: none
+		sourceColumn: KundeNO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduktID
+		dataType: int64
+		formatString: 0
+		lineageTag: 49fe27cc-4fb9-40c2-9d3d-f1b01d01d898
+		summarizeBy: none
+		sourceColumn: ProduktID
+
+		annotation SummarizationSetBy = Automatic
+
+	column activeProvisioning
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dc499c2b-0b44-4ad7-8296-fa4d6c8ea547
+		summarizeBy: none
+		sourceColumn: activeProvisioning
+
+		annotation SummarizationSetBy = Automatic
+
+	column hasBeenBilledOnce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 342d73a2-5d3b-4921-926c-bc40a65d16b1
+		summarizeBy: none
+		sourceColumn: hasBeenBilledOnce
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		lineageTag: 8b5dfdf2-56f4-47d6-914d-e26024675533
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kunde_Status
+		dataType: string
+		lineageTag: 2afef526-6096-4f96-8431-ed70cbd41d78
+		summarizeBy: none
+		sourceColumn: Kunde_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column NySalg
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 816b2900-af06-4d42-b9c0-a3fa7ab3a46a
+		summarizeBy: none
+		sourceColumn: NySalg
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produkt_Status
+		dataType: string
+		lineageTag: 527862fa-cab9-49ac-b4ef-9924dcfb5fdd
+		summarizeBy: none
+		sourceColumn: Produkt_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8db75893-7fab-41b0-9b22-b674f7fa4390
+		summarizeBy: none
+		sourceColumn: orderedDate
+
+		variation Variation
+			isDefault
+			relationship: b2387bc0-21ae-4c21-9318-2cf23302ec63
+			defaultHierarchy: LocalDateTable_d939a60d-de76-432d-9466-f3d2041ad7e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column orderedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b0ff3512-62f9-49b5-8de7-451d1ffea8cf
+		summarizeBy: none
+		sourceColumn: orderedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 14149c93-bfd5-4b0d-b616-dabb2c209dcd
+			defaultHierarchy: LocalDateTable_d93600f1-14c3-442b-b5a9-190af0470c29.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 172a15e5-2acd-4ec1-a309-212a1ee1ec0c
+		summarizeBy: none
+		sourceColumn: startDate
+
+		variation Variation
+			isDefault
+			relationship: 02961040-12a4-4c55-b6cd-97ea0996dad4
+			defaultHierarchy: LocalDateTable_02c1a297-7e3b-4f67-8b02-3352beecd6ec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column endDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6925f39b-94a8-4751-a526-169ddeaaf75a
+		summarizeBy: none
+		sourceColumn: endDate
+
+		variation Variation
+			isDefault
+			relationship: 2f5d7613-8400-478c-afbf-a6e60f878d6a
+			defaultHierarchy: LocalDateTable_4dd12603-e323-4e1e-a4ef-5cfa30fa8eb2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column createdDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0cab8f80-3a2a-48ea-87a7-c71c0d740267
+		summarizeBy: none
+		sourceColumn: createdDate
+
+		variation Variation
+			isDefault
+			relationship: 426ebbfc-7212-453d-8eb1-3daf73a42d19
+			defaultHierarchy: LocalDateTable_633f4234-7afe-44e4-9316-5aec4d759c07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column modifiedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: abd344b4-38ec-4660-82a4-8721a3a93dad
+		summarizeBy: none
+		sourceColumn: modifiedDate
+
+		variation Variation
+			isDefault
+			relationship: b366c0d4-dc28-408f-b26d-ceec6054dbcb
+			defaultHierarchy: LocalDateTable_3883417b-547f-4cc7-9904-2a5adfb08623.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Status_I_dag_ = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_Status_I_dag_ = Golden_lakehouse{[Schema="dbo",Item="Status_I_dag_"]}[Data]
+				in
+				    dbo_Status_I_dag_
+

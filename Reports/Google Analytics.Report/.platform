@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Google Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "63eba180-066c-b64e-4f88-aa7f77e75a44"
+  }
+}

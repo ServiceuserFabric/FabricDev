@@ -1,0 +1,709 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "2a3fc4716c2590004122",
+  "position": {
+    "x": 33.655037640736381,
+    "y": 155.54084963691679,
+    "z": 3000,
+    "height": 254.68677133530232,
+    "width": 1212.4909506784215,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MicrosoftAD_users"
+                    }
+                  },
+                  "Property": "displayName"
+                }
+              },
+              "queryRef": "MicrosoftAD_users.displayName",
+              "nativeQueryRef": "Medarbejder",
+              "active": true,
+              "displayName": "Medarbejder"
+            }
+          ],
+          "showAll": true
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "AST per opkald (mm:ss)"
+                }
+              },
+              "queryRef": "All Measures.AST per opkald (mm:ss)",
+              "nativeQueryRef": "GNM. Taletid",
+              "displayName": "GNM. Taletid"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "AWT per opkald (mm:ss)"
+                }
+              },
+              "queryRef": "All Measures.AWT per opkald (mm:ss)",
+              "nativeQueryRef": "GNM. Efterbehandlingstid",
+              "displayName": "GNM. Efterbehandlingstid"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal ringede servicekald"
+                }
+              },
+              "queryRef": "All Measures.Antal ringede servicekald",
+              "nativeQueryRef": "Antal ringede servicekald"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal tilbudte opkald"
+                }
+              },
+              "queryRef": "All Measures.Antal tilbudte opkald",
+              "nativeQueryRef": "Antal tilbudte opkald"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal besvarede opkald"
+                }
+              },
+              "queryRef": "All Measures.Antal besvarede opkald",
+              "nativeQueryRef": "Antal besvarede opkald"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal udgående opkald"
+                }
+              },
+              "queryRef": "All Measures.Antal udgående opkald",
+              "nativeQueryRef": "Antal udgående opkald"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal Nysalg Kunder Medarbejdere Internet %Calendar"
+                }
+              },
+              "queryRef": "All Measures.Antal Nysalg Kunder Medarbejdere Internet %Calendar",
+              "nativeQueryRef": "Internet",
+              "displayName": "Internet"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Hitrate internetsalg"
+                }
+              },
+              "queryRef": "All Measures.Hitrate internetsalg",
+              "nativeQueryRef": "Hitrate internetsalg"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal Nysalg Kunder Medarbejdere TV %Calendar"
+                }
+              },
+              "queryRef": "All Measures.Antal Nysalg Kunder Medarbejdere TV %Calendar",
+              "nativeQueryRef": "TV",
+              "displayName": "TV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Hitrate tvsalg"
+                }
+              },
+              "queryRef": "All Measures.Hitrate tvsalg",
+              "nativeQueryRef": "Hitrate tvsalg"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal Nysalg Kunder Medarbejdere Mobil %Calendar"
+                }
+              },
+              "queryRef": "All Measures.Antal Nysalg Kunder Medarbejdere Mobil %Calendar",
+              "nativeQueryRef": "Mobil",
+              "displayName": "Mobil"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal reddede Retention"
+                }
+              },
+              "queryRef": "All Measures.Antal reddede Retention",
+              "nativeQueryRef": "Retention",
+              "displayName": "Retention"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Antal besvarede retentionkald"
+                }
+              },
+              "queryRef": "All Measures.Antal besvarede retentionkald",
+              "nativeQueryRef": "Antal besvarede retentionkald"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "Hitrate retention"
+                }
+              },
+              "queryRef": "All Measures.Hitrate retention",
+              "nativeQueryRef": "Hitrate retention"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "All Measures"
+                  }
+                },
+                "Property": "Antal besvarede retentionkald"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "perRowLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Times New Roman'''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.34862145030283D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal ringede servicekald"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72.04045584812171D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.AWT per opkald (mm:ss)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "61.468962688786206D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal tilbudte opkald"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.33901820628532D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal besvarede opkald"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "80.04308693723114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal udgående opkald"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.49293143952002D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal besvarede retentionkald"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "80.2712017489196D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Hitrate internetsalg"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "60.40810967436979D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Hitrate tvsalg"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.65842926888072D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Hitrate retention"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CC4141'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Uge'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Times New Roman'''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "849cf1711d549903eea0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Product_config"
+              }
+            },
+            "Property": "HovedProduktGruppe"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "37f0ffa59d4492511101",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MicrosoftAD_users"
+              }
+            },
+            "Property": "displayName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4fd20809d77ab57eac01",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Nysalg Kunder Medarbejdere Internet %Calendar"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "056a3c08127195e454b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Nysalg Kunder Medarbejdere TV %Calendar"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f5c94a140cba3029628d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate internetsalg"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "46e6767b8a5670ea7e02",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fdb8da8267813c031cb5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate tvsalg"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3b48245f01886a107037",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal tilbudte opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e83a0737b82494bd1799",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal udgående opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3199a4390b10401d6800",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal ringede servicekald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d1be9d0fbd3362569703",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "AST per opkald (mm:ss)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b564a5c23480213a530a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "AWT per opkald (mm:ss)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e62084b7e90b24979ac3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Nysalg Kunder Medarbejdere Mobil %Calendar"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "48ae465818cefd09c6d5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal reddede Retention"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ae39cc0f172958c4cd18",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede retentionkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "295c93cd73f7b907f18f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate retention"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

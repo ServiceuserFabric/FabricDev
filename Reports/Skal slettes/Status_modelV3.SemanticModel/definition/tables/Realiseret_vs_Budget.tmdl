@@ -1,0 +1,73 @@
+table Realiseret_vs_Budget
+	lineageTag: 53bb55b9-2ae9-4296-bddb-903ac7356ae6
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d711e6bb-a4e7-4bc1-9c33-7b6d94ac0ae4
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 8dd082e1-9bba-450f-b5c4-9f6aef0a5844
+			defaultHierarchy: LocalDateTable_7fe4b3dc-9f6f-4888-87ef-8f17f521a449.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Periode
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1a67f2b7-eede-4785-bfbf-1a152724994d
+		summarizeBy: none
+		sourceColumn: Periode
+
+		variation Variation
+			isDefault
+			relationship: 723b4183-8527-4f29-aba3-56ef1bd2c5c5
+			defaultHierarchy: LocalDateTable_75aead4b-ceeb-40f6-ae6d-a73003d11a7b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Partner
+		dataType: string
+		lineageTag: 05499e4c-99e4-46e8-9f9b-7e4d92a75ef2
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		lineageTag: c36720bc-3337-467a-b407-f18764ac30ad
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = Automatic
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: c7f2a787-d2b9-48b7-a1d3-903f591ad08e
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Realiseret_vs_Budget = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com"),
+				    Golden_lakehouse = Source{[Name="Golden_lakehouse"]}[Data],
+				    dbo_Realiseret_vs_Budget = Golden_lakehouse{[Schema="dbo",Item="Realiseret_vs_Budget"]}[Data]
+				in
+				    dbo_Realiseret_vs_Budget
+
+	annotation PBI_ResultType = Table
+

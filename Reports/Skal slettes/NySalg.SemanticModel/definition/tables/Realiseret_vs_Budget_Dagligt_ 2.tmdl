@@ -1,0 +1,68 @@
+table 'Realiseret_vs_Budget_Dagligt_ 2'
+	lineageTag: 6a1a82b0-bb42-44dd-ae27-429496384776
+	sourceLineageTag: c7e70191-1b53-4e70-8341-5649a51c6ccd
+
+	column Dato
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1bff0ad8-21b9-459e-a36c-5214407e1ac0
+		sourceLineageTag: 730bb969-2c47-46db-859a-8cab0214f4ca
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dato
+
+		variation Variation
+			isDefault
+			relationship: 6eeeae60-f3a2-41c0-a40b-582be95642ac
+			defaultHierarchy: LocalDateTable_891bcfd7-f638-429f-87e7-446303c39376.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Periode
+		dataType: string
+		lineageTag: ed19ac5b-fdc9-41b0-a7a3-d10c53bcb4c3
+		sourceLineageTag: f3602c81-145f-458b-9c86-85c202f0f498
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Periode
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: 71b390b1-5938-4ebd-a211-8d126fe3154e
+		sourceLineageTag: bc62abae-5378-450e-a1d5-9defa1bbb0d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Realiseret
+		dataType: int64
+		formatString: 0
+		lineageTag: 2750bdc2-cf82-487e-92a1-2cb6d7596a92
+		sourceLineageTag: 05a7c610-b930-46f2-9d26-60e2da4cceb0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Realiseret
+
+		annotation SummarizationSetBy = User
+
+	column Antal_Kunder_Budget
+		dataType: int64
+		formatString: 0
+		lineageTag: 93c00963-39e2-4966-afb0-b75633a8b66b
+		sourceLineageTag: 8d3ebd8d-5e22-46b3-a0a4-00fee6a41157
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Antal_Kunder_Budget
+
+		annotation SummarizationSetBy = User
+
+	partition 'Realiseret_vs_Budget_Dagligt_ 2' = entity
+		mode: directQuery
+		source
+			entityName: Realiseret_vs_Budget_Dagligt_
+			expressionSource: 'DirectQuery to AS - Status_i_dagV2'
+
