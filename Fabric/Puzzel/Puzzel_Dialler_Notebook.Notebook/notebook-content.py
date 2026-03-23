@@ -73,7 +73,7 @@ import json # To handle exit message for pipeline
 dToday = datetime.now()
 dToday = dToday.date() # - timedelta(days=1)
 # For testing, set a manual date
-# dToday = datetime(2026, 3, 9).date()
+# dToday = datetime(2026, 3, 21).date()
 
 # Is monday
 # is_monday = ((dToday + timedelta(days=1)).weekday()) == 0
@@ -118,7 +118,7 @@ spark.sql("SHOW TABLES").show(truncate=False)
 # CELL ********************
 
 # Load data ########################################################################
-## Panther ----
+## Panther: Her henter vi oplysninger om nysalgskunder ved nedenstående SQL. 
 # Connect to Fabrics sql endpoint 
 
 query_Golden_Lakehouse = f"""
@@ -182,6 +182,29 @@ HAVING
     SUM(CAST(activeProvisioning AS INT)) = 1
 """
 
+Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
+Golden_Lakehouse.show(100, truncate=False)
+Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
+print(f"Number of rows: {Golden_Lakehouse.count()}")
+
+if Golden_Lakehouse.isEmpty():
+    print("No data found in Golden Lakehouse for the given criteria")
+    mssparkutils.notebook.exit("TOM DATAFRAME")
+    # raise SystemExit(0) # Ikke nødvendig efter notebook.exit
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Load data ########################################################################
+## Panther: Her henter vi oplysninger om eventuelle nysalgskunder har annulleret sin bestilling
+# Connect to Fabrics sql endpoint 
 query_Churn_Kunder = f"""
 SELECT
     KundeNO
@@ -197,23 +220,18 @@ HAVING
     MAX(CASE WHEN endDate IS NOT NULL THEN 1 ELSE 0 END) = 1
 AND MAX(CASE WHEN endDate IS NULL THEN 1 ELSE 0 END) = 0;"""
 
-
-Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
-Golden_Lakehouse.show(100, truncate=False)
-
-Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
-
 Golden_Lakehouse_Churn = spark.sql(query_Churn_Kunder)
 Golden_Lakehouse_Churn.show(100, truncate=False)
 # Print rows
-print(f"Number of rows: {Golden_Lakehouse.count()}")
-
+print(f"Number of rows: {Golden_Lakehouse_Churn.count()}")
 
 # METADATA ********************
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }
 
 # CELL ********************
@@ -228,19 +246,18 @@ spark.sql("SHOW TABLES").show(truncate=False)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }
 
 # CELL ********************
 
-# Return all values from status.accountkey to filter for bronze lakehouse and use as variable for the query below
 
+
+# Return all values from status.accountkey to filter for bronze lakehouse and use as variable for the query below
 account_keys = [r["accountKey"] for r in Golden_Lakehouse.select("accountKey").distinct().collect()]
 
-# Hvis ingen nye kunder, så afsluttes scriptet
-if Golden_Lakehouse.isEmpty():
-    print("No data found in Golden Lakehouse for the given criteria. Exiting script.")
-    raise SystemExit(0)
 # Print keys 
 print("Account keys to filter for Bronze Lakehouse:", account_keys)
 
@@ -276,7 +293,7 @@ migration_dates = [
     "2025-12-15"
 ]
 
-result = (
+bronze_lakehouse = (
     filtered
     .withColumn("startDate_d", F.to_date("startDate"))
     .withColumn(
@@ -292,13 +309,15 @@ result = (
     .drop("startDate_d")
 )
 
-result.show(500, truncate=False)
+bronze_lakehouse.show(500, truncate=False)
 
 # METADATA ********************
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }
 
 # CELL ********************
@@ -306,24 +325,38 @@ result.show(500, truncate=False)
 # Import Window from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
+# Merge two dateframes from lakehouses
+
 # Manipulate data to prepare for dialler output  
 merged = (
     Golden_Lakehouse.alias("g")
     .join(
-        result.alias("b"),
+        bronze_lakehouse.alias("b"),
         F.col("g.accountKey").cast("string") == F.col("b.accounts_id").cast("string"),
         "left"
     )
 )
 
+merged.show(500, truncate=False)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
+# META }
+
+# CELL ********************
+
 # =========================================
 # 7) Phone cleaning rules 
 # =========================================
-
 # accounts_mobile = accounts_mobile if present, else use mobile
 merged = merged.withColumn(
     "accounts_mobile",
-    F.coalesce(F.col("b.accounts_mobile"), F.col("b.mobile"))
+    F.coalesce(F.col("accounts_mobile"), F.col("mobile"))
 )
 
 # Trim spaces
@@ -350,6 +383,17 @@ merged = merged.withColumn(
 # Keep only rows where accounts_mobile starts with '0045'
 merged = merged.filter(F.col("accounts_mobile").startswith("0045"))
 
+merged.show(500, truncate=False)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # Drop duplicates on phone number deterministically:
 # Keep the lowest KundeNO per phone (change orderBy if you prefer something else)
 w = Window.partitionBy("accounts_mobile").orderBy(F.col("g.KundeNO").asc_nulls_last())
@@ -362,26 +406,25 @@ merged = merged.join(
     "left_anti"
 )
 
-Merged_Data = merged.cache()
-print("Merged_Data sample:")
-Merged_Data.show(20, truncate=False)
+#Merged_Data = merged.cache()
+print("merged sample:")
+merged.show(20, truncate=False)
 
 
 # =========================================
 # 8) Split into Privat / Migrering / Erhverv
 # =========================================
-Privat_Data = Merged_Data.filter(
-    F.col("g.fullPath").contains("Privat") & (F.col("b.Kundetype") != "PARTNERNET MIGRERING" & F.col("b.Kundetype") != "ON MIGRERING")
+Privat_Data = merged.filter(
+    F.col("fullPath").contains("Privat") & (F.col("Kundetype") != "PARTNERNET MIGRERING") & (F.col("Kundetype") != "ON MIGRERING")
 )
 
-Migrering_Data = Merged_Data.filter(
-    F.col("g.fullPath").contains("Privat") & (F.col("b.Kundetype") == "PARTNERNET MIGRERING" & F.col("b.Kundetype") == "ON MIGRERING")
+Migrering_Data = merged.filter(
+    F.col("fullPath").contains("Privat") & (F.col("Kundetype") == "PARTNERNET MIGRERING") & (F.col("Kundetype") == "ON MIGRERING")
 )
 
-Erhverv_Data = Merged_Data.filter(
-    F.col("g.fullPath").contains("Erhverv")
+Erhverv_Data = merged.filter(
+    F.col("fullPath").contains("Erhverv")
 )
-
 
 # =========================================
 def format_output(df):
@@ -410,7 +453,9 @@ Erhverv_Out.show(20, truncate=False)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }
 
 # CELL ********************
@@ -458,21 +503,22 @@ def write_single_csv(df, target_dir, file_name, header=True, sep=";"):
     return final_path
 
 
-
 # METADATA ********************
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }
 
 # CELL ********************
 
-# Example target in Lakehouse Files (adjust to your lakehouse)
+# Example target in Lakehouse Files
 # Load to Puzzel_Altibox Lakehouse
 from datetime import datetime
 
-run_date = datetime.now().strftime("%Y-%m-%d")  # e.g. 2026-02-25
+run_date = dToday.strftime("%Y-%m-%d")  # e.g. 2026-02-25
 base_dir = f"Files/Puzzel_Dialler/{run_date}"
 
 privat_path    = write_single_csv(Privat_Out,    base_dir, "Privat_Out.csv")
@@ -485,5 +531,7 @@ print(privat_path, migrering_path, erhverv_path)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
 # META }

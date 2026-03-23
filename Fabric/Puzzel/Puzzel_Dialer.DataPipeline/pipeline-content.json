@@ -36,8 +36,8 @@
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "artifactId": "dcddaf9e-0415-4d65-894b-104157b74950",
+                    "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec",
                     "rootFolder": "Files"
                   },
                   "annotations": []
@@ -94,15 +94,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Erhverv_SFTP",
-        "dependsOn": [
-          {
-            "activity": "Notebook1",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "name": "Erhverv_SFTP_BACKUP",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
       },
       {
         "type": "TridentNotebook",
@@ -116,7 +111,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Notebook1",
+        "name": "NB_Check_Golden_Lakehouse",
         "dependsOn": []
       },
       {
@@ -154,8 +149,8 @@
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "artifactId": "dcddaf9e-0415-4d65-894b-104157b74950",
+                    "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec",
                     "rootFolder": "Files"
                   },
                   "annotations": []
@@ -212,15 +207,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Privat_SFTP",
-        "dependsOn": [
-          {
-            "activity": "Notebook1",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "name": "Privat_SFTP_BACKUP",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
       },
       {
         "type": "Copy",
@@ -257,8 +247,8 @@
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "artifactId": "dcddaf9e-0415-4d65-894b-104157b74950",
+                    "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec",
                     "rootFolder": "Files"
                   },
                   "annotations": []
@@ -315,15 +305,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Migrering_SFTP",
-        "dependsOn": [
-          {
-            "activity": "Notebook1",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "name": "Migrering_SFTP_BACKUP",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
       },
       {
         "type": "Office365Email",
@@ -345,9 +330,340 @@
         "name": "Office365Email1",
         "dependsOn": [
           {
-            "activity": "Notebook1",
+            "activity": "NB_Check_Golden_Lakehouse",
             "dependencyConditions": [
               "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "IfCondition",
+        "typeProperties": {
+          "expression": {
+            "value": "@equals(\n  activity('NB_Check_Golden_Lakehouse').output.result.exitValue,\n  'TOM DATAFRAME'\n)",
+            "type": "Expression"
+          },
+          "ifTrueActivities": [
+            {
+              "type": "Office365Email",
+              "typeProperties": {
+                "body": "<p>Der er ikke opstået en fejl i notebook, der er blot ingen nye kunder i dag.&nbsp;</p>",
+                "to": "driftbi@altibox.dk",
+                "subject": "Ingen nye kunder i dag"
+              },
+              "externalReferences": {
+                "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Office365Email2",
+              "dependsOn": []
+            }
+          ],
+          "ifFalseActivities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseReadSettings",
+                    "recursive": true,
+                    "enablePartitionDiscovery": false
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "Puzzel_Dialler",
+                        "fileName": {
+                          "value": "@concat(   formatDateTime(utcNow(), 'yyyy-MM-dd'),   '/Erhverv_Out.csv' )",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Puzzel_Altibox",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "storeSettings": {
+                    "type": "SftpWriteSettings",
+                    "operationTimeout": "01:00:00",
+                    "useTempFileRename": true
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "SftpLocation",
+                        "folderPath": "/Dialer",
+                        "fileName": "Erhverv.csv"
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "37ff433e-d594-4a42-ae1d-18b2e7b8a25f"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Erhverv_SFTP",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseReadSettings",
+                    "recursive": true,
+                    "enablePartitionDiscovery": false
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "Puzzel_Dialler",
+                        "fileName": {
+                          "value": "@concat(\n  formatDateTime(utcNow(), 'yyyy-MM-dd'),\n  '/Privat_Out.csv'\n)",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Puzzel_Altibox",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "storeSettings": {
+                    "type": "SftpWriteSettings",
+                    "operationTimeout": "01:00:00",
+                    "useTempFileRename": true
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "SftpLocation",
+                        "folderPath": "/Dialer",
+                        "fileName": "Privat.csv"
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "37ff433e-d594-4a42-ae1d-18b2e7b8a25f"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Privat_SFTP",
+              "dependsOn": []
+            },
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseReadSettings",
+                    "recursive": true,
+                    "enablePartitionDiscovery": false
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": "Puzzel_Dialler",
+                        "fileName": {
+                          "value": "@concat(\n  formatDateTime(utcNow(), 'yyyy-MM-dd'),\n  '/Migrering_Out.csv'\n)",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Puzzel_Altibox",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "57b74950-1041-894b-4d65-0415dcddaf9e",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "storeSettings": {
+                    "type": "SftpWriteSettings",
+                    "operationTimeout": "01:00:00",
+                    "useTempFileRename": true
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "SftpLocation",
+                        "folderPath": "/Dialer",
+                        "fileName": "Migrering.csv"
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "37ff433e-d594-4a42-ae1d-18b2e7b8a25f"
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Migrering_SFTP",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "Mail_Ingen_Nye_Kunder",
+        "description": "Sender mail for at oplyse om manglende levering af diallerliste",
+        "dependsOn": [
+          {
+            "activity": "NB_Check_Golden_Lakehouse",
+            "dependencyConditions": [
+              "Completed"
             ]
           }
         ]
