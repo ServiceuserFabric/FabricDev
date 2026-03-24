@@ -73,7 +73,7 @@ import json # To handle exit message for pipeline
 dToday = datetime.now()
 dToday = dToday.date() # - timedelta(days=1)
 # For testing, set a manual date
-# dToday = datetime(2026, 3, 21).date()
+# dToday = datetime(2026, 3, 17).date()
 
 # Is monday
 # is_monday = ((dToday + timedelta(days=1)).weekday()) == 0
@@ -184,7 +184,6 @@ HAVING
 
 Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
 Golden_Lakehouse.show(100, truncate=False)
-Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
 print(f"Number of rows: {Golden_Lakehouse.count()}")
 
 if Golden_Lakehouse.isEmpty():
