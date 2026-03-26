@@ -785,6 +785,15 @@ table MicrosoftAD_group_memberships
 
 		annotation SummarizationSetBy = Automatic
 
+	column infoCatalogs
+		dataType: string
+		lineageTag: 800f74ad-fd4f-4130-af40-c3322b4b6dc4
+		sourceLineageTag: infoCatalogs
+		summarizeBy: none
+		sourceColumn: infoCatalogs
+
+		annotation SummarizationSetBy = Automatic
+
 	partition MicrosoftAD_group_memberships = entity
 		mode: directLake
 		source
