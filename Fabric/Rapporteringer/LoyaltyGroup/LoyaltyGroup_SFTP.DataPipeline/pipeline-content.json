@@ -19,10 +19,13 @@
               "typeProperties": {
                 "location": {
                   "type": "LakehouseLocation",
-                  "folderPath": "LoyaltyGroup",
-                  "fileName": "20260216_LoyaltyGroup.csv"
+                  "folderPath": {
+                    "value": "@concat('LoyaltyGroup/',formatDateTime(utcNow(), 'yyyy-MM-dd'),'_LoyaltyGroup' )",
+                    "type": "Expression"
+                  },
+                  "fileName": "Emner.csv"
                 },
-                "columnDelimiter": ";",
+                "columnDelimiter": ",",
                 "quoteChar": "\"",
                 "escapeChar": "\\",
                 "firstRowAsHeader": true
@@ -44,27 +47,32 @@
             }
           },
           "sink": {
-            "type": "LakehouseTableSink",
-            "tableActionOption": "Append",
-            "applyVOrder": false,
+            "type": "DelimitedTextSink",
+            "formatSettings": {
+              "type": "DelimitedTextWriteSettings",
+              "fileExtension": ".txt"
+            },
+            "storeSettings": {
+              "type": "SftpWriteSettings",
+              "operationTimeout": "01:00:00",
+              "useTempFileRename": true
+            },
             "datasetSettings": {
-              "type": "LakehouseTable",
+              "type": "DelimitedText",
               "typeProperties": {
-                "schema": "dbo",
-                "table": "LoyaltyGroup"
+                "location": {
+                  "type": "SftpLocation",
+                  "folderPath": "/home/sftp-rootdir/loyalty/Emner",
+                  "fileName": "Emner.txt"
+                },
+                "columnDelimiter": ";",
+                "quoteChar": "",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
               },
               "schema": [],
-              "linkedService": {
-                "name": "Rapporteringer",
-                "properties": {
-                  "type": "Lakehouse",
-                  "typeProperties": {
-                    "artifactId": "daf52bc3-7ba8-8f00-49f4-25e38c6daa7e",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000",
-                    "rootFolder": "Tables"
-                  },
-                  "annotations": []
-                }
+              "externalReferences": {
+                "connection": "bd6d1062-3e63-4387-a4b4-49d6ad430fef"
               },
               "annotations": []
             }
@@ -86,7 +94,30 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "LoyaltyGroup_CopyData",
+        "name": "SFTP copy",
+        "dependsOn": [
+          {
+            "activity": "LoyaltyGroup",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "9131e28a-e4dd-9cb8-4fc9-c3c7267860ef",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "LoyaltyGroup",
         "dependsOn": []
       }
     ]
