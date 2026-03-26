@@ -2,10 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "Puzzel_Dialler__Migrering_Notebook"
+    "displayName": "Puzzel_Dialler_Notebook",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "0f452c5f-725a-b3d5-4e04-9e655c5e9638"
+    "logicalId": "eddd1481-f50a-b553-403a-2bbb208687ef"
   }
 }

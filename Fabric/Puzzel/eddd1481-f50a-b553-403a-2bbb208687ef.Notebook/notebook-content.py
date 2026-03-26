@@ -40,12 +40,9 @@
 #__________________________________________________________________________________
 #                             HEADER                                           ----  
 
-# Script Name:                Servicekald_Migrering.py
+# Script Name:                Servicekald.py
 # Description:                A script to make lists for service calls. 
 #                             There are three types of service calls: Privat, Erhverv and Migrering.
-
-#                             BEMÆRK: Denne er lavet som en kopi på andre servicekald, da der er fejl i startdatoen.
-#                             Vi anvender created date i stedet og 3 uger siden i stedet. 
 
 # Dependencies:               Dependencies to other scripts
 # Input:                      Golden Lakehouse 
@@ -83,7 +80,7 @@ dToday = dToday.date() # - timedelta(days=1)
 # print(is_monday)
 
 # From date. If today is monday, subtract 9 days, else subtract 8 days
-dDate = dToday - timedelta(days=21)
+dDate = dToday - timedelta(days=8)
 # dFromDate = dToday - timedelta(days=8) # if is_monday else dToday - timedelta(days=7)
 
 # Subtract 8 days from today and format as date only without time
@@ -164,7 +161,7 @@ WITH ranked AS (
     WHERE
         ph.FromDate <= DATE '{dToday.isoformat()}'
         AND ph.ToDate  > DATE '{dToday.isoformat()}'
-        AND ph.createdDate = DATE '{dDate.isoformat()}'
+        AND ph.startDate = DATE '{dDate.isoformat()}'
         AND ph.Kunde_Status = 'Aktive'
         AND ph.NySalg = '1'
         AND (
@@ -269,6 +266,8 @@ spark.sql("SHOW TABLES").show(truncate=False)
 # META }
 
 # CELL ********************
+
+
 
 # Return all values from status.accountkey to filter for bronze lakehouse and use as variable for the query below
 account_keys = [r["accountKey"] for r in Golden_Lakehouse.select("accountKey").distinct().collect()]
@@ -429,9 +428,16 @@ merged.show(20, truncate=False)
 # =========================================
 # 8) Split into Privat / Migrering / Erhverv
 # =========================================
+Privat_Data = merged.filter(
+    F.col("fullPath").contains("Privat") & (F.col("Kundetype") != "PARTNERNET MIGRERING") & (F.col("Kundetype") != "ON MIGRERING")
+)
 
-Migrering_Data = merged.filter(
-    F.col("fullPath").contains("Privat") & (F.col("Kundetype") == "PARTNERNET MIGRERING") | (F.col("Kundetype") == "ON MIGRERING")
+#Migrering_Data = merged.filter(
+#    F.col("fullPath").contains("Privat") & (F.col("Kundetype") == "PARTNERNET MIGRERING") | (F.col("Kundetype") == "ON MIGRERING")
+#)
+
+Erhverv_Data = merged.filter(
+    F.col("fullPath").contains("Erhverv")
 )
 
 # =========================================
@@ -443,11 +449,18 @@ def format_output(df):
         F.col("g.name").alias("var3")
     )
 
-Migrering_Out = format_output(Migrering_Data)
+Privat_Out    = format_output(Privat_Data)
+#Migrering_Out = format_output(Migrering_Data)
+Erhverv_Out   = format_output(Erhverv_Data)
 
-print("Migrering_Out:")
-Migrering_Out.show(20, truncate=False)
+print("Privat_Out:")
+Privat_Out.show(100, truncate=False)
 
+#print("Migrering_Out:")
+#Migrering_Out.show(20, truncate=False)
+
+print("Erhverv_Out:")
+Erhverv_Out.show(20, truncate=False)
 
 
 # METADATA ********************
@@ -522,8 +535,11 @@ from datetime import datetime
 run_date = dToday.strftime("%Y-%m-%d")  # e.g. 2026-02-25
 base_dir = f"Files/Puzzel_Dialler/{run_date}"
 
-migrering_path = write_single_csv(Migrering_Out, base_dir, "Migrering_Out.csv")
+privat_path    = write_single_csv(Privat_Out,    base_dir, "Privat_Out.csv")
+#migrering_path = write_single_csv(Migrering_Out, base_dir, "Migrering_Out.csv")
+erhverv_path   = write_single_csv(Erhverv_Out,   base_dir, "Erhverv_Out.csv")
 
+print(privat_path, migrering_path, erhverv_path)
 
 # METADATA ********************
 
