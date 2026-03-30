@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "135a1a000d084b00465a",
+  "name": "20cf5a7ff2f311aa1c62",
   "position": {
-    "x": 1074.5028620520864,
-    "y": 21.277284397071018,
-    "z": 4000,
-    "height": 90.837637233649346,
-    "width": 166.12648971559295,
-    "tabOrder": 4000
+    "x": 695.33333333333337,
+    "y": 23.333333333333332,
+    "z": 7000,
+    "height": 89.333333333333329,
+    "width": 168.66666666666666,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,35 +20,18 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar Comparison"
+                      "Entity": "MicrosoftAD_users"
                     }
                   },
-                  "Property": "ÅrMåned"
+                  "Property": "jobTitle"
                 }
               },
-              "queryRef": "Calendar Comparison.ÅrMåned",
-              "nativeQueryRef": "ÅrMåned",
+              "queryRef": "MicrosoftAD_users.jobTitle",
+              "nativeQueryRef": "jobTitle",
               "active": true
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Calendar Comparison"
-                  }
-                },
-                "Property": "ÅrMåned"
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {
@@ -68,13 +51,20 @@
       "general": [
         {
           "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
             "filter": {
               "filter": {
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "c",
-                    "Entity": "Calendar Comparison",
+                    "Name": "m",
+                    "Entity": "MicrosoftAD_users",
                     "Type": 0
                   }
                 ],
@@ -87,10 +77,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "c"
+                                  "Source": "m"
                                 }
                               },
-                              "Property": "ÅrMåned"
+                              "Property": "jobTitle"
                             }
                           }
                         ],
@@ -98,7 +88,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'2026-03'"
+                                "Value": "'Salg'"
                               }
                             }
                           ]
@@ -124,6 +114,19 @@
             }
           }
         }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -140,7 +143,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Vælg måned'"
+                  "Value": "'Vælg afdeling'"
                 }
               }
             },
@@ -160,83 +163,54 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "07c8494236c29e91bbae",
-        "ordinal": 0,
+        "name": "ac96b45c992015a69266",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Calendar Comparison"
+                "Entity": "MicrosoftAD_users"
               }
             },
-            "Property": "ÅrMåned"
+            "Property": "displayName"
           }
         },
-        "type": "Categorical"
-      },
-      {
-        "name": "c6cc4a9b5904ade442b7",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendar Comparison"
-              }
-            },
-            "Property": "Date"
-          }
-        },
-        "type": "RelativeDate",
+        "type": "Categorical",
         "filter": {
           "Version": 2,
           "From": [
             {
-              "Name": "c",
-              "Entity": "Calendar Comparison",
+              "Name": "m",
+              "Entity": "MicrosoftAD_users",
               "Type": 0
             }
           ],
           "Where": [
             {
               "Condition": {
-                "Between": {
+                "Not": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "c"
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "m"
+                              }
+                            },
+                            "Property": "displayName"
+                          }
                         }
-                      },
-                      "Property": "Date"
-                    }
-                  },
-                  "LowerBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "DateAdd": {
-                              "Expression": {
-                                "Now": {}
-                              },
-                              "Amount": 1,
-                              "TimeUnit": 0
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Merle Winther Jørgensen'"
                             }
-                          },
-                          "Amount": -3,
-                          "TimeUnit": 3
-                        }
-                      },
-                      "TimeUnit": 0
-                    }
-                  },
-                  "UpperBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "Now": {}
-                      },
-                      "TimeUnit": 0
+                          }
+                        ]
+                      ]
                     }
                   }
                 }
@@ -244,9 +218,23 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
-    ],
-    "filterSortOrder": "Custom"
+    ]
   }
 }

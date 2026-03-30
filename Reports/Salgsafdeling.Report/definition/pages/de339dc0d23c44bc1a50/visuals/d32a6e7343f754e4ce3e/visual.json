@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "2f8b47f2b0e826a09c37",
+  "name": "d32a6e7343f754e4ce3e",
   "position": {
-    "x": 33.333333333333336,
-    "y": 426.66666666666669,
-    "z": 3000,
-    "height": 265.33333333333331,
+    "x": 34.666666666666664,
+    "y": 161.33333333333334,
+    "z": 9000,
+    "height": 240.66666666666666,
     "width": 1212.6666666666667,
-    "tabOrder": 3000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -36,36 +36,6 @@
         },
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "All Measures"
-                    }
-                  },
-                  "Property": "Antal mailhenvendelser"
-                }
-              },
-              "queryRef": "All Measures.Antal mailhenvendelser",
-              "nativeQueryRef": "Mails",
-              "displayName": "Mails"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "All Measures"
-                    }
-                  },
-                  "Property": "Antal chathenvendelser"
-                }
-              },
-              "queryRef": "All Measures.Antal chathenvendelser",
-              "nativeQueryRef": "Chats",
-              "displayName": "Chats"
-            },
             {
               "field": {
                 "Measure": {
@@ -279,7 +249,7 @@
                     "Entity": "All Measures"
                   }
                 },
-                "Property": "Antal ringede servicekald"
+                "Property": "Hitrate retention"
               }
             },
             "direction": "Descending"
@@ -334,7 +304,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75.74668858685992D"
+                  "Value": "83.76923833842883D"
                 }
               }
             }
@@ -440,20 +410,6 @@
           "selector": {
             "metadata": "All Measures.Hitrate retention"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "55D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "All Measures.Behandlingstid"
-          }
         }
       ],
       "grid": [
@@ -488,7 +444,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Måned'"
+                  "Value": "'Uge'"
                 }
               }
             },
@@ -508,7 +464,160 @@
   "filterConfig": {
     "filters": [
       {
+        "name": "5bd70ac37c7508af0be6",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b2b348ae6ee0cbb510b0",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal besvarede retentionkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "09f3d9c22b51c5338a31",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal ringede servicekald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9340f4fd530dd296fd0f",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal tilbudte opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3d05fe7384f7614f7ced",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal udgående opkald"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c0b7f22c23b552a2839",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "AWT per opkald (mm:ss)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ebf8a6fbd7e59c4e4ff2",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "AST per opkald (mm:ss)"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "327dcfdf315b427181f3",
+        "ordinal": 7,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate internetsalg"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6c6dc11c8ef9f163ad7a",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate retention"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "30ac94cd555f3d85e19a",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Hitrate tvsalg"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
         "name": "849cf1711d549903eea0",
+        "ordinal": 10,
         "field": {
           "Column": {
             "Expression": {
@@ -523,77 +632,8 @@
         "howCreated": "User"
       },
       {
-        "name": "0e80d7d1ecb8fa7cc588",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MicrosoftAD_users"
-              }
-            },
-            "Property": "displayName"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "870402d038d88b0866c2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal ringede servicekald"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d0594e1edd52d0ab6169",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal tilbudte opkald"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bdabbeebf39f6403e710",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal besvarede opkald"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0d650ccfbccb03765ce8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal udgående opkald"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ae589fa31c4fc15e2fe8",
+        "name": "1eedec7b0b081688d92f",
+        "ordinal": 11,
         "field": {
           "Measure": {
             "Expression": {
@@ -607,49 +647,39 @@
         "type": "Advanced"
       },
       {
-        "name": "2dfde85f7ecf727a21d1",
+        "name": "649a10ce020fff261d08",
+        "ordinal": 12,
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "All Measures"
+                "Entity": "call_events"
               }
             },
-            "Property": "Hitrate internetsalg"
+            "Property": "dte_start"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
-        "name": "ff1dbc2832c599f884cc",
+        "name": "ce77b760dd9c877b685b",
+        "ordinal": 13,
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "All Measures"
+                "Entity": "MicrosoftAD_users"
               }
             },
-            "Property": "Antal Nysalg Kunder Medarbejdere TV %Calendar"
+            "Property": "displayName"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical"
       },
       {
-        "name": "be97ff7f8ebb83aa671f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Hitrate tvsalg"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "da377ae1608c2bb9cd6b",
+        "name": "405537ce30d5f1ba8989",
+        "ordinal": 14,
         "field": {
           "Measure": {
             "Expression": {
@@ -663,7 +693,8 @@
         "type": "Advanced"
       },
       {
-        "name": "d34d8cb9a64359628eb8",
+        "name": "b9a741d1247887dee035",
+        "ordinal": 15,
         "field": {
           "Measure": {
             "Expression": {
@@ -677,7 +708,8 @@
         "type": "Advanced"
       },
       {
-        "name": "3af708e623138d2989d6",
+        "name": "80c67b189296cff5f240",
+        "ordinal": 16,
         "field": {
           "Measure": {
             "Expression": {
@@ -685,81 +717,12 @@
                 "Entity": "All Measures"
               }
             },
-            "Property": "Antal besvarede retentionkald"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "01db891718b53cf262cd",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Hitrate retention"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "50e2e5fb6e402e6a61ac",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Taletid"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "49ce856c0cf6d6996ff1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Behandlingstid"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d7bfa1e910cd0e34ac52",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal chathenvendelser"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f736815e8b5a0c3b1dc2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal mailhenvendelser"
+            "Property": "Antal Nysalg Kunder Medarbejdere TV %Calendar"
           }
         },
         "type": "Advanced"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

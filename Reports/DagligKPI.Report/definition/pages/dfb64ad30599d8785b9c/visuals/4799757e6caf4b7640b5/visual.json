@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "4799757e6caf4b7640b5",
   "position": {
     "x": 453.33333333333337,
@@ -250,6 +250,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "ba4d0455d9a8ee4095da",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder %Calendar"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

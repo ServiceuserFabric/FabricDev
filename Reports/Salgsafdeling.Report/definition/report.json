@@ -34,6 +34,13 @@
                 "Value": "true"
               }
             }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
           }
         }
       }
@@ -62,8 +69,8 @@
           "type": "Image"
         },
         {
-          "name": "Skabelon_PowerBI_type_2119473133272579068.jpg",
-          "path": "Skabelon_PowerBI_type_2119473133272579068.jpg",
+          "name": "Skabelon_PowerBI_type_228575492941922471.jpg",
+          "path": "Skabelon_PowerBI_type_228575492941922471.jpg",
           "type": "Image"
         }
       ]

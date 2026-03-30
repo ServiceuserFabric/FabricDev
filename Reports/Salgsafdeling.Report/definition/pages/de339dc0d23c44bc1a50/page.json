@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "959499bde2a6e0735aa4",
-  "displayName": "KPI'er",
+  "name": "de339dc0d23c44bc1a50",
+  "displayName": "Dublet af KPI'er",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
@@ -217,13 +217,13 @@
   },
   "visualInteractions": [
     {
-      "source": "3447fd9db2a7a7681d37",
-      "target": "2f8b47f2b0e826a09c37",
+      "source": "13dd31d3c58a7231a8f2",
+      "target": "85e7ae75612db4addbf2",
       "type": "NoFilter"
     },
     {
-      "source": "135a1a000d084b00465a",
-      "target": "e90427b727fedebc1c4c",
+      "source": "4dcc2ae486b8806e98a1",
+      "target": "d32a6e7343f754e4ce3e",
       "type": "NoFilter"
     }
   ]

@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "6a1a09afc5a585b15394",
+  "name": "68f50f9eae4feafbfc4e",
   "position": {
-    "x": 30,
-    "y": 360,
+    "x": 452.35531359368923,
+    "y": 435.06205210821622,
     "z": 7000,
-    "height": 337.5,
-    "width": 379.16666666666669,
-    "tabOrder": 6000
+    "height": 252.11754902505416,
+    "width": 373.17037942336538,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,33 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Product_config"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Internet_speed"
+                  "Property": "UgedagNavn"
                 }
               },
-              "queryRef": "Product_config.Internet_speed",
-              "nativeQueryRef": "Internet_speed",
+              "queryRef": "Calendar.UgedagNavn",
+              "nativeQueryRef": "UgedagNavn",
               "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "ProductHistory"
-                    }
-                  },
-                  "Property": "PC_ProvisioningModel"
-                }
-              },
-              "queryRef": "ProductHistory.PC_ProvisioningModel",
-              "nativeQueryRef": "PC_ProvisioningModel"
             }
           ]
         },
@@ -60,12 +42,27 @@
                       "Entity": "All Measures"
                     }
                   },
-                  "Property": "Antal Kunder %Calendar"
+                  "Property": "Antal Nysalg Kunder %Calendar 7 dage"
                 }
               },
-              "queryRef": "All Measures.Antal Kunder %Calendar",
-              "nativeQueryRef": "Antal Kunder %Calendar",
-              "format": "#,0"
+              "queryRef": "All Measures.Antal Nysalg Kunder %Calendar 7 dage",
+              "nativeQueryRef": "Indeværende uge",
+              "displayName": "Indeværende uge"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "All Measures"
+                    }
+                  },
+                  "Property": "KPI Internet GNM (pr. ugedag)"
+                }
+              },
+              "queryRef": "All Measures.KPI Internet GNM (pr. ugedag)",
+              "nativeQueryRef": "GNM (pr. ugedag) 2 år",
+              "displayName": "GNM (pr. ugedag) 2 år"
             }
           ]
         }
@@ -74,32 +71,24 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "All Measures"
+                    "Entity": "Calendar"
                   }
                 },
-                "Property": "Antal Kunder %Calendar"
+                "Property": "UgedagNavn"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
       "labels": [
         {
           "properties": {
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Times New Roman'''"
-                }
-              }
-            },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
@@ -107,26 +96,50 @@
                 }
               }
             },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "36D"
-                }
-              }
-            },
             "color": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "All Measures"
-                        }
-                      },
-                      "Property": "Antal Kunder Color"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'OutsideEnd'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Times New Roman'''"
+                }
+              }
+            },
+            "labelOrientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "enableTitleDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -136,10 +149,24 @@
       "valueAxis": [
         {
           "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "50000D"
                 }
               }
             }
@@ -153,39 +180,14 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#CC4141'"
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0
                     }
                   }
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "ProductHistory"
-                          }
-                        },
-                        "Property": "PC_ProvisioningModel"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'opennet_fiber'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
           }
         },
         {
@@ -194,8 +196,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#A8337D'"
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0
                     }
                   }
                 }
@@ -212,15 +215,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "ProductHistory"
+                            "Entity": "Product_config"
                           }
                         },
-                        "Property": "PC_ProvisioningModel"
+                        "Property": "HovedProduktGruppe"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'wholesale_coax'"
+                        "Value": "'Internet'"
                       }
                     }
                   }
@@ -236,8 +239,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": -0.25
+                      "ColorId": 9,
+                      "Percent": 0.6
                     }
                   }
                 }
@@ -254,15 +257,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "ProductHistory"
+                            "Entity": "Product_config"
                           }
                         },
-                        "Property": "PC_ProvisioningModel"
+                        "Property": "HovedProduktGruppe"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'netco_wholesale_fiber'"
+                        "Value": "'TV'"
                       }
                     }
                   }
@@ -270,10 +273,114 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.KPI Internet GNM (pr. ugedag)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CC4141'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "All Measures.Antal Nysalg Kunder %Calendar 7 dage"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Times New Roman'''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
         }
       ]
     },
     "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Salg TV sidste 7 dage'"
+                }
+              }
+            }
+          }
+        }
+      ],
       "background": [
         {
           "properties": {
@@ -281,6 +388,18 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.2
+                    }
+                  }
                 }
               }
             }
@@ -299,107 +418,6 @@
             }
           }
         }
-      ],
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Antal aktive internetkunder'"
-                }
-              }
-            },
-            "heading": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Normal'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Times New Roman'''"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "14D"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "divider": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "spaceBelowTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Times New Roman'''"
-                }
-              }
-            },
-            "showActionsInTooltips": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -407,7 +425,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f24e10f4b5c2eb355982",
+        "name": "5ec31398f65a8b5abdf0",
         "field": {
           "Column": {
             "Expression": {
@@ -448,7 +466,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Internet'"
+                          "Value": "'TV'"
                         }
                       }
                     ]
@@ -458,17 +476,10 @@
             }
           ]
         },
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {}
-            }
-          ]
-        }
+        "howCreated": "User"
       },
       {
-        "name": "abbc24cf3c02a0708814",
+        "name": "b9fff4b14bf851fc33b8",
         "field": {
           "Column": {
             "Expression": {
@@ -476,7 +487,7 @@
                 "Entity": "Product_config"
               }
             },
-            "Property": "Internet_speed"
+            "Property": "ProductMainGroup"
           }
         },
         "type": "Categorical",
@@ -492,37 +503,71 @@
           "Where": [
             {
               "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "p"
-                              }
-                            },
-                            "Property": "Internet_speed"
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
                           }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Beløbsrabat (Migrering)'"
-                            }
-                          }
-                        ]
-                      ]
+                        },
+                        "Property": "ProductMainGroup"
+                      }
                     }
-                  }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TV'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'TVSA'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
           ]
         },
+        "howCreated": "User"
+      },
+      {
+        "name": "d08947e84b5e0a833b24",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
+      },
+      {
+        "name": "b5ebf57d1b7f5ddb0f19",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MicrosoftAD_users"
+              }
+            },
+            "Property": "displayName"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
         "objects": {
           "general": [
             {
@@ -540,7 +585,7 @@
         }
       },
       {
-        "name": "bd4777c429ba29703401",
+        "name": "b678ec81bb71f7b446aa",
         "field": {
           "Column": {
             "Expression": {
@@ -548,10 +593,10 @@
                 "Entity": "ProductHistory"
               }
             },
-            "Property": "PC_ProvisioningModel"
+            "Property": "orderedDate"
           }
         },
-        "type": "Advanced",
+        "type": "RelativeDate",
         "filter": {
           "Version": 2,
           "From": [
@@ -564,25 +609,43 @@
           "Where": [
             {
               "Condition": {
-                "Not": {
+                "Between": {
                   "Expression": {
-                    "Comparison": {
-                      "ComparisonKind": 0,
-                      "Left": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Source": "p"
-                            }
-                          },
-                          "Property": "PC_ProvisioningModel"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
                         }
                       },
-                      "Right": {
-                        "Literal": {
-                          "Value": "null"
+                      "Property": "orderedDate"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -2,
+                          "TimeUnit": 3
                         }
-                      }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
                     }
                   }
                 }
@@ -590,24 +653,24 @@
             }
           ]
         },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "howCreated": "User"
       },
       {
-        "name": "bf94a67b9e54f954c276",
+        "name": "8d678fb4d26d640fcfd1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "UgedagNavn"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8836d39eb58b8ab89d27",
         "field": {
           "Measure": {
             "Expression": {
@@ -615,7 +678,21 @@
                 "Entity": "All Measures"
               }
             },
-            "Property": "Antal Kunder %Calendar"
+            "Property": "Antal Nysalg Kunder %Calendar 7 dage"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e5d129be03dbbb54afd6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "KPI Internet GNM (pr. ugedag)"
           }
         },
         "type": "Advanced"

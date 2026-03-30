@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "1a4c0d1955d31f5590c4",
   "position": {
     "x": 33.344866185000505,
@@ -121,7 +121,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'InsideEnd'"
+                  "Value": "'InsideCenter'"
                 }
               }
             },
@@ -484,7 +484,7 @@
         "howCreated": "User"
       },
       {
-        "name": "d5e088b03e173107b460",
+        "name": "05f5708fe260193afb3a",
         "field": {
           "Column": {
             "Expression": {
@@ -498,7 +498,7 @@
         "type": "Categorical"
       },
       {
-        "name": "451dc605c75b03818451",
+        "name": "f5b15962d102e625932b",
         "field": {
           "Measure": {
             "Expression": {

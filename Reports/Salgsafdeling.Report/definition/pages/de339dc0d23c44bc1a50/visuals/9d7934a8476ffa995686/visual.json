@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "ea44e54944ab0032a6ee",
+  "name": "9d7934a8476ffa995686",
   "position": {
-    "x": 588.50836090693076,
-    "y": 22.739890297794851,
-    "z": 8000,
-    "height": 80.954009460149663,
-    "width": 201.93022584441826,
-    "tabOrder": 8000
+    "x": 695.33333333333337,
+    "y": 23.333333333333332,
+    "z": 7000,
+    "height": 89.333333333333329,
+    "width": 168.66666666666666,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -88,13 +88,6 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Kundekonsulent'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
                                 "Value": "'Salg'"
                               }
                             }
@@ -170,7 +163,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "0e943f6845a039b65867",
+        "name": "ac96b45c992015a69266",
         "field": {
           "Column": {
             "Expression": {
@@ -178,10 +171,69 @@
                 "Entity": "MicrosoftAD_users"
               }
             },
-            "Property": "jobTitle"
+            "Property": "displayName"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "MicrosoftAD_users",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "m"
+                              }
+                            },
+                            "Property": "displayName"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Merle Winther Jørgensen'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   }

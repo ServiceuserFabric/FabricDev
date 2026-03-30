@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
-  "name": "135a1a000d084b00465a",
+  "name": "13dd31d3c58a7231a8f2",
   "position": {
-    "x": 1074.5028620520864,
-    "y": 21.277284397071018,
-    "z": 4000,
+    "x": 886.28073084722746,
+    "y": 22.095641489266058,
+    "z": 2000,
     "height": 90.837637233649346,
     "width": 166.12648971559295,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar Comparison"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "ÅrMåned"
+                  "Property": "ÅrUge"
                 }
               },
-              "queryRef": "Calendar Comparison.ÅrMåned",
-              "nativeQueryRef": "ÅrMåned",
+              "queryRef": "Calendar.ÅrUge",
+              "nativeQueryRef": "ÅrUge",
               "active": true
             }
           ]
@@ -40,10 +40,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Calendar Comparison"
+                    "Entity": "Calendar"
                   }
                 },
-                "Property": "ÅrMåned"
+                "Property": "ÅrUge"
               }
             },
             "direction": "Descending"
@@ -68,13 +68,20 @@
       "general": [
         {
           "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
             "filter": {
               "filter": {
                 "Version": 2,
                 "From": [
                   {
                     "Name": "c",
-                    "Entity": "Calendar Comparison",
+                    "Entity": "Calendar",
                     "Type": 0
                   }
                 ],
@@ -90,7 +97,7 @@
                                   "Source": "c"
                                 }
                               },
-                              "Property": "ÅrMåned"
+                              "Property": "ÅrUge"
                             }
                           }
                         ],
@@ -98,7 +105,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'2026-03'"
+                                "Value": "'2026-13'"
                               }
                             }
                           ]
@@ -140,7 +147,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Vælg måned'"
+                  "Value": "'Vælg uge'"
                 }
               }
             },
@@ -160,28 +167,27 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "07c8494236c29e91bbae",
-        "ordinal": 0,
+        "name": "b69c1bc71298a5072e60",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Calendar Comparison"
+                "Entity": "Calendar"
               }
             },
-            "Property": "ÅrMåned"
+            "Property": "Date"
           }
         },
-        "type": "Categorical"
+        "type": "RelativeDate",
+        "howCreated": "User"
       },
       {
-        "name": "c6cc4a9b5904ade442b7",
-        "ordinal": 1,
+        "name": "649514d773fff5d1d592",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Calendar Comparison"
+                "Entity": "Calendar"
               }
             },
             "Property": "Date"
@@ -193,7 +199,7 @@
           "From": [
             {
               "Name": "c",
-              "Entity": "Calendar Comparison",
+              "Entity": "Calendar",
               "Type": 0
             }
           ],
@@ -246,7 +252,6 @@
         },
         "howCreated": "User"
       }
-    ],
-    "filterSortOrder": "Custom"
+    ]
   }
 }
