@@ -55,11 +55,11 @@
         "type": "Office365Email",
         "typeProperties": {
           "body": "<p>Fejl i beregning for pause og signed duration</p>",
-          "to": "driftbi@altuibox.dk",
+          "to": "driftbi@altibox.dk",
           "subject": "Fejl i beregning for pause og signed duration"
         },
         "externalReferences": {
-          "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
         },
         "policy": {
           "timeout": "0.12:00:00",

@@ -84,6 +84,94 @@ now_ts = F.current_timestamp()
 def end_of_day(col_date):
     return F.expr("timestampadd(microsecond, -1, date_add({0}, 1))".format(col_date))
 
+#Print variable end_of_day(today))
+example = spark.createDataFrame([[1]], ['dummy'])
+example = example.withColumn('today', F.current_date())
+example = example.withColumn('end_of_day_today', end_of_day('today'))
+example.show()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+from pyspark.sql import functions as F
+from pyspark.sql import Window
+
+# Ensure event_date exists and is a DATE (not timestamp)
+events2 = events.withColumn("event_date", F.to_date("dte_start"))
+
+# Stable ordering (important if multiple events share same timestamp)
+w_day = Window.partitionBy("agent_id", "event_date").orderBy(F.col("dte_start"), F.col("rec_id"))
+w_future = w_day.rowsBetween(1, Window.unboundedFollowing)
+
+# Find the next event (timestamp + type) where event_type is 'i' or 'o'
+next_io_struct = F.min(
+    F.when(
+        F.col("event_type").isin("i", "o"),
+        F.struct(
+            F.col("dte_start").alias("ts"),
+            F.col("event_type").alias("typ")
+        )
+    )
+).over(w_future)
+
+events3 = (
+    events2
+    .withColumn("next_dte_start", next_io_struct["ts"])
+    .withColumn("next_event_type", next_io_struct["typ"])
+)
+
+# Keep only sign-in rows
+sign = events3.filter(F.col("event_type") == "i")
+
+sign_sessions = (
+    sign
+    .withColumn(
+        "dte_end",
+        F.when(
+            F.col("next_dte_start").isNotNull(),
+            F.col("next_dte_start")          # closes on next 'o' OR next 'i'
+        )
+        .when(F.col("event_date") == today, F.col("dte_start"))
+        .otherwise(
+            F.col("dte_start")                # past unclosed -> 0 seconds (end=start)
+        )
+    )
+    .withColumn(
+        "duration_seconds",
+        (F.col("dte_end").cast("long") - F.col("dte_start").cast("long")).cast("long")
+    )
+    .withColumn("duration_seconds", F.greatest(F.col("duration_seconds"), F.lit(0)))
+    .select(
+        "agent_id",
+        F.col("rec_id").alias("rec_id_signed_in"),
+        "dte_start",
+        "dte_end",
+        "profile",
+        F.lit("i").alias("event_type_signed_in"),
+        F.col("next_event_type").alias("event_type_signed_out"),
+        "duration_seconds",
+        "event_date"
+    )
+)
+
+# Add columns for time
+sign_sessions = (
+    sign_sessions
+    .withColumn("dte_start_date", F.to_date("dte_start"))
+    .withColumn("dte_start_time", F.date_format("dte_start", "HH:mm:ss"))
+    .withColumn("dte_start_hour", F.hour("dte_start"))
+    .withColumn("dte_start_minute", F.minute("dte_start"))
+    .withColumn("dte_start_index", F.col("dte_start_hour") * 100 + F.col("dte_start_minute"))
+)
+
+sign_sessions.show(truncate=False)
+
 # METADATA ********************
 
 # META {
@@ -108,8 +196,11 @@ sign_sessions = (
     sign
     .withColumn(
         "dte_end",
-        F.when(
-            (F.col("next_event_type") == "o") &
+        F.when((
+    (F.col("next_event_type") == "o") |
+    (F.col("next_event_type") == "i")
+) &
+
             (F.col("event_date") == F.col("next_event_date")),
             F.col("next_dte_start")
         )
@@ -117,9 +208,10 @@ sign_sessions = (
             F.col("event_date") == today,
             now_ts
         )
-        .otherwise(
-            end_of_day("event_date")
-        )
+      .otherwise(
+        F.col("dte_start")   
+    )
+
     )
     .withColumn(
         "duration_seconds",
@@ -159,10 +251,15 @@ sign_sessions.show()
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": true,
+# META   "editable": false
 # META }
 
 # CELL ********************
+
+# Sign in and out 
+w = Window.partitionBy("agent_id").orderBy("dte_start")
 
 # Pause duration 
 pause = (
@@ -182,7 +279,8 @@ pause_sessions = (
             F.col("next_dte_start")
         )
         .when(F.col("event_date") == today, now_ts)
-        .otherwise(end_of_day("event_date"))
+              .otherwise(F.col("dte_start")   
+    )
     )
     .withColumn(
         "duration_seconds",

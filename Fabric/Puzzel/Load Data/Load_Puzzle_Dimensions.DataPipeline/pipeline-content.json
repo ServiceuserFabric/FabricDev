@@ -37,7 +37,7 @@
             "type": "DataWarehouseTable",
             "schema": [],
             "connectionSettings": {
-              "name": "AltiboxMetadata",
+              "name": "Golden_warehouse",
               "properties": {
                 "type": "DataWarehouse",
                 "typeProperties": {
@@ -164,7 +164,7 @@
           "storedProcedureName": "[dbo].[Update_Puzzel_Agent_T2]"
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
@@ -201,7 +201,7 @@
           "storedProcedureName": "[dbo].[Update_Puzzel_Agents]"
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
@@ -228,6 +228,48 @@
             "activity": "Get data from tables",
             "dependencyConditions": [
               "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Der er opstået en fejl i @{pipeline().PipelineName}.&nbsp;</p>\n<p>Denne pipeline består af at hente dimensionstabeller fra Puzzel og to procedures.&nbsp;</p>\n<p>- @{activity('Copy one table').output}</p>\n<p>-@{activity('Copy one table').output.dataRead}</p>\n<p>-@{activity('Copy one table').output.filesRead}</p>\n<p>-@{activity('Copy one table').output.dataWritten}</p>\n<p>-@{activity('Copy one table').output.filesWritten}</p>\n<p>-@{activity('Copy one table').output.rowsRead}</p>\n<p>-@{activity('Copy one table').output.rowsCopied}</p>\n<p>-@{activity('Copy one table').output.copyDuration}</p>\n<p>-@{activity('Copy one table').output.throughput}</p>\n<p><br></p>\n<p><br></p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@pipeline().PipelineName",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Update agents master names and email",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Update agents T2",
+            "dependencyConditions": [
+              "Failed"
             ]
           }
         ]
