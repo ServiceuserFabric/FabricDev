@@ -979,7 +979,7 @@
           }
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
@@ -1040,7 +1040,7 @@
           "storedProcedureName": "[dbo].[Update_ProductHistory]"
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
@@ -1095,6 +1095,66 @@
         "dependsOn": [
           {
             "activity": "Notebook- import all data to bronze lakehouse",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>@{activity('Update ProductHistory').output} i @{pipeline().PipelineName} er fejlet. </p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@concat(pipeline().PipelineName,' failed')",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "MailOnNotebookError_copy1",
+        "dependsOn": [
+          {
+            "activity": "Update ProductHistory",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Notebook 'Update statusalle' er fejlet @{pipeline().PipelineName}. </p>\n<p></p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@concat(pipeline().PipelineName,' failed')",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "MailOnNotebookError_copy1_copy1",
+        "dependsOn": [
+          {
+            "activity": "Update statusalle",
             "dependencyConditions": [
               "Failed"
             ]
