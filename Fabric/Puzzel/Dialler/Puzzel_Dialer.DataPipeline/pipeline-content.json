@@ -311,33 +311,6 @@
         "dependsOn": []
       },
       {
-        "type": "Office365Email",
-        "typeProperties": {
-          "body": "<p>Der er opstået en fejl i notebook, som danner listen til Servicekald. Fejlen kan være midlertidig, hvis ikke at der er nye kunder.&nbsp;</p>",
-          "to": "driftbi@altibox.dk",
-          "subject": "Fejl i servicekaldsliste Notebook"
-        },
-        "externalReferences": {
-          "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "Office365Email1",
-        "dependsOn": [
-          {
-            "activity": "Notebook Dialler",
-            "dependencyConditions": [
-              "Failed"
-            ]
-          }
-        ]
-      },
-      {
         "type": "IfCondition",
         "typeProperties": {
           "expression": {
@@ -353,7 +326,7 @@
                 "subject": "Ingen nye kunder i dag"
               },
               "externalReferences": {
-                "connection": "6adb8103-e8bb-4785-a50b-718fc7c2a6b8"
+                "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
               },
               "policy": {
                 "timeout": "0.12:00:00",
@@ -438,7 +411,7 @@
                     },
                     "schema": [],
                     "externalReferences": {
-                      "connection": "37ff433e-d594-4a42-ae1d-18b2e7b8a25f"
+                      "connection": "14afd28a-af92-49ad-a885-f69d8c1292e2"
                     },
                     "annotations": []
                   }
@@ -534,7 +507,7 @@
                     },
                     "schema": [],
                     "externalReferences": {
-                      "connection": "37ff433e-d594-4a42-ae1d-18b2e7b8a25f"
+                      "connection": "14afd28a-af92-49ad-a885-f69d8c1292e2"
                     },
                     "annotations": []
                   }

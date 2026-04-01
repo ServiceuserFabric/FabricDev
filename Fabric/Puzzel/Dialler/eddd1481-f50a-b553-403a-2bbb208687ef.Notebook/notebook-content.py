@@ -196,8 +196,13 @@ GROUP BY
 HAVING
     SUM(CAST(activeProvisioning AS INT)) = 1
 """
+Golden_Lakehouse = (
+    spark.sql(query_Golden_Lakehouse)
+         .repartition(30)   # fixes skew diagnostics
+         .cache()            # prevents re-execution
+)
 
-Golden_Lakehouse = spark.sql(query_Golden_Lakehouse)
+
 Golden_Lakehouse.show(100, truncate=False)
 print(f"Number of rows: {Golden_Lakehouse.count()}")
 
