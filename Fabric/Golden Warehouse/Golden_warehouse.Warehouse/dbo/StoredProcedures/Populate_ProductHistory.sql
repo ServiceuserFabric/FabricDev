@@ -6,7 +6,7 @@
 CREATE PROCEDURE [dbo].[Populate_ProductHistory]
 (
     @FromDate DATE = '2025-01-01',
-    @ToDate DATE = '2026-02-23'
+    @ToDate DATE = '2025-05-31'
 )
 AS
 BEGIN

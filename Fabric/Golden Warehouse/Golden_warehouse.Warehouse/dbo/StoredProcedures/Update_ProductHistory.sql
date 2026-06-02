@@ -38,31 +38,53 @@ INSERT INTO dbo.ProductHistory (
     hasBeenBilledOnce
     ,Kunde_Status
     ,startDate
-    ,Partner
+    ,ISNULL(Partner,'')
     ,Produkt_Status
-    ,isnull(KundeNO,'')
+    ,KundeNO
     ,isnull(accountKey,-1)
     ,id
     ,createdDate
-    ,modifiedDate
+    ,MAX(modifiedDate) AS modifiedDate
     ,activeProvisioning
     ,isnull(ProduktID,-1)
-    ,endDate
+    ,isnull(endDate,'9999-12-31')
     ,NySalg
     ,orderedDate
     ,orderedDateTime
     ,@Insertdate
     ,'9999-12-31'
     ,1
-    ,PC_DiscountValue
-    ,PC_Sub_Price
-    ,BillDate
-    ,PC_Pricecategorycode
-    ,PC_Sub_discount_rule
-    ,PC_ProvisioningModel
-    ,PC_BillingPeriodUnit
+    ,ISNULL(PC_DiscountValue,0)
+    ,ISNULL(PC_Sub_Price,0)
+    ,isnull(MAX(BillDate),'9999-12-31') AS BillDate
+    ,ISNULL(PC_Pricecategorycode,'')
+    ,ISNULL(PC_Sub_discount_rule,'')
+    ,ISNULL(PC_ProvisioningModel,'')
+    ,ISNULL(PC_BillingPeriodUnit,'')
 FROM Silver_lakehouse.dbo.Status_I_dag_ AS V
-WHERE NOT EXISTS (SELECT 1 FROM dbo.ProductHistory H WHERE ISNULL(H.id,-1) = ISNULL(V.id,-1) AND ISNULL(H.accountKey,-1) = ISNULL(V.accountKey,-1) AND ISNULL(H.KundeNO,'') = ISNULL(V.KundeNO,'') AND ISNULL(H.ProduktID,-1) = ISNULL(V.ProduktID,-1) AND H.LastVersion = 1);
+WHERE NOT EXISTS (SELECT 1 FROM dbo.ProductHistory H WHERE ISNULL(H.id,-1) = ISNULL(V.id,-1) AND ISNULL(H.accountKey,-1) = ISNULL(V.accountKey,-1) AND H.KundeNO = V.KundeNO AND ISNULL(H.ProduktID,-1) = ISNULL(V.ProduktID,-1) AND H.LastVersion = 1)
+AND V.KundeNO IS NOT NULL
+GROUP BY hasBeenBilledOnce
+    ,Kunde_Status
+    ,startDate
+    ,ISNULL(Partner,'')
+    ,Produkt_Status
+    ,KundeNO
+    ,isnull(accountKey,-1)
+    ,id
+    ,createdDate
+    ,activeProvisioning
+    ,isnull(ProduktID,-1)
+    ,isnull(endDate,'9999-12-31')
+    ,NySalg
+    ,orderedDate
+    ,orderedDateTime
+    ,ISNULL(PC_DiscountValue,0)
+    ,ISNULL(PC_Sub_Price,0)
+    ,ISNULL(PC_Pricecategorycode,'')
+    ,ISNULL(PC_Sub_discount_rule,'')
+    ,ISNULL(PC_ProvisioningModel,'')
+    ,ISNULL(PC_BillingPeriodUnit,'');
 
 
 -- =====================================================================
@@ -101,76 +123,88 @@ SELECT
 V.hasBeenBilledOnce
 ,V.Kunde_Status
 ,V.startDate
-,V.Partner
+,ISNULL(V.Partner,'')
 ,V.Produkt_Status
 ,isnull(V.KundeNO,'')
 ,isnull(V.accountKey,-1)
 ,V.id
 ,V.createdDate
-,V.modifiedDate
+,max(V.modifiedDate) as modifiedDate
 ,V.activeProvisioning
 ,isnull(V.ProduktID,-1)
-,V.endDate
+,isnull(V.endDate,'9999-12-31')
 ,V.NySalg
 ,V.orderedDate
 ,V.orderedDateTime
 ,@Insertdate
 ,'9999-12-31'
 ,1
-,V.PC_DiscountValue
-,V.PC_Sub_Price
-,V.BillDate
-,V.PC_Pricecategorycode
-,V.PC_Sub_discount_rule
-,V.PC_ProvisioningModel
-,V.PC_BillingPeriodUnit
+,ISNULL(V.PC_DiscountValue,0)
+,ISNULL(V.PC_Sub_Price,0)
+,isnull(max(V.BillDate),'9999-12-31')
+,ISNULL(V.PC_Pricecategorycode,'')
+,ISNULL(V.PC_Sub_discount_rule,'')
+,ISNULL(V.PC_ProvisioningModel,'')
+,ISNULL(V.PC_BillingPeriodUnit,'')
 FROM Silver_lakehouse.dbo.Status_I_dag_ AS V
-JOIN dbo.ProductHistory AS H ON H.id = ISNULL(V.id,-1) AND H.accountKey = ISNULL(V.accountKey,-1) AND H.KundeNO = ISNULL(V.KundeNO,'') AND H.ProduktID = ISNULL(V.ProduktID,-1) AND V.startDate = H.startDate
+JOIN dbo.ProductHistory AS H ON H.id = ISNULL(V.id,-1) AND H.accountKey = ISNULL(V.accountKey,-1) AND H.KundeNO = V.KundeNO AND H.ProduktID = ISNULL(V.ProduktID,-1) AND V.startDate = H.startDate
    AND H.LastVersion = 1
    AND (
         H.hasBeenBilledOnce <> V.hasBeenBilledOnce OR
         H.Kunde_Status <> V.Kunde_Status OR
-        H.Partner <> V.Partner OR
+        ISNULL(H.Partner,'') <> ISNULL(V.Partner,'') OR
         H.Produkt_Status <> V.Produkt_Status OR
-        H.modifiedDate <> V.modifiedDate OR
         H.activeProvisioning <> V.activeProvisioning OR
-        H.startDate <> V.startDate OR
-        H.endDate <> V.endDate OR
-        H.NySalg <> V.NySalg OR
+        ISNULL(H.endDate,'9999-12-31') <> ISNULL(V.endDate,'9999-12-31') OR
         H.orderedDateTime <> V.orderedDateTime OR        
-        H.PC_DiscountValue <> V.PC_DiscountValue OR
-        H.PC_Sub_Price <> V.PC_Sub_Price OR
-        H.BillDate <> V.BillDate OR
-        H.PC_Pricecategorycode <> V.PC_Pricecategorycode OR
-        H.PC_Sub_discount_rule <> V.PC_Sub_discount_rule OR
-        H.PC_ProvisioningModel <> V.PC_ProvisioningModel OR
-        H.PC_BillingPeriodUnit <> V.PC_BillingPeriodUnit
+        ISNULL(H.PC_DiscountValue,0) <> ISNULL(V.PC_DiscountValue,0) OR
+        ISNULL(H.PC_Sub_Price,0) <> ISNULL(V.PC_Sub_Price,0) OR
+        ISNULL(H.PC_Pricecategorycode,'') <> ISNULL(V.PC_Pricecategorycode,'') OR
+        ISNULL(H.PC_Sub_discount_rule,'') <> ISNULL(V.PC_Sub_discount_rule,'') OR
+        ISNULL(H.PC_ProvisioningModel,'') <> ISNULL(V.PC_ProvisioningModel,'') OR
+        ISNULL(H.PC_BillingPeriodUnit,'') <> ISNULL(V.PC_BillingPeriodUnit,'')
    )
- GROUP BY 
- V.hasBeenBilledOnce
-,V.Kunde_Status
-,V.startDate
-,V.Partner
-,V.Produkt_Status
-,isnull(V.KundeNO,'')
-,isnull(V.accountKey,-1)
-,V.id
-,V.createdDate
-,V.modifiedDate
-,V.activeProvisioning
-,isnull(V.ProduktID,-1)
-,V.endDate
-,V.NySalg
-,V.orderedDate
-,V.orderedDateTime
-,V.PC_DiscountValue
-,V.PC_Sub_Price
-,V.BillDate
-,V.PC_Pricecategorycode
-,V.PC_Sub_discount_rule
-,V.PC_ProvisioningModel
-,V.PC_BillingPeriodUnit
- ;
+WHERE V.KundeNO IS NOT NULL
+ GROUP BY V.hasBeenBilledOnce
+    ,V.Kunde_Status
+    ,V.startDate
+    ,isnull(V.Partner,'')
+    ,V.Produkt_Status
+    ,isnull(V.KundeNO,'')
+    ,isnull(V.accountKey,-1)
+    ,V.id
+    ,V.createdDate
+    ,V.activeProvisioning
+    ,isnull(V.ProduktID,-1)
+    ,isnull(V.endDate,'9999-12-31')
+    ,V.NySalg
+    ,V.orderedDate
+    ,V.orderedDateTime
+    ,ISNULL(V.PC_DiscountValue,0)
+    ,ISNULL(V.PC_Sub_Price,0)
+    ,ISNULL(V.PC_Pricecategorycode,'')
+    ,ISNULL(V.PC_Sub_discount_rule,'')
+    ,ISNULL(V.PC_ProvisioningModel,'')
+    ,ISNULL(V.PC_BillingPeriodUnit,'');
+
+ 
+-- =====================================================================
+-- Luk gamle records, hvis der er kommet en nyere aktiv version af samme række
+-- (den med lavere Startdato bliver inaktiv og får Slutdato sat)
+-- =====================================================================
+UPDATE dbo.ProductHistory
+SET
+  NySalg  = 0
+FROM dbo.ProductHistory AS T
+WHERE LastVersion = 1
+  AND EXISTS (
+        SELECT 1
+        FROM Silver_lakehouse.dbo.Status_I_dag_ AS S
+        WHERE S.accountKey = T.accountKey AND S.KundeNO = T.KundeNO AND S.ProduktID = T.ProduktID AND S.id = T.id AND (T.NySalg = 1 AND S.NySalg = 0)
+          AND T.LastVersion = 1
+          AND S.Dato = @Insertdate
+  )
+  
 
 -- =====================================================================
 -- Luk gamle records, hvis der er kommet en nyere aktiv version af samme række
