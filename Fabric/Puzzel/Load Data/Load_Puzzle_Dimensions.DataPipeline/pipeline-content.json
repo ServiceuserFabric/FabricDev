@@ -41,9 +41,9 @@
               "properties": {
                 "type": "DataWarehouse",
                 "typeProperties": {
-                  "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+                  "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
                   "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-                  "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
                 },
                 "externalReferences": {
                   "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -64,6 +64,122 @@
         },
         "name": "GetQueries",
         "dependsOn": []
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_Agent_T2]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update agents T2",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Update_Puzzel_Agents]"
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update agents master names and email",
+        "dependsOn": [
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Der er opstået en fejl i @{pipeline().PipelineName}.&nbsp;</p>\n<p>Denne pipeline består af at hente dimensionstabeller fra Puzzel og to procedures.&nbsp;</p>\n<p>- </p>\n<p><br></p>\n<p><br></p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@pipeline().PipelineName",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Update agents master names and email",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Update agents T2",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Get data from tables",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
       },
       {
         "type": "ForEach",
@@ -154,122 +270,6 @@
             "activity": "GetQueries",
             "dependencyConditions": [
               "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "SqlServerStoredProcedure",
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[Update_Puzzel_Agent_T2]"
-        },
-        "connectionSettings": {
-          "name": "Golden_warehouse",
-          "properties": {
-            "type": "DataWarehouse",
-            "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
-              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
-            },
-            "externalReferences": {
-              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
-            },
-            "annotations": []
-          }
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "Update agents T2",
-        "dependsOn": [
-          {
-            "activity": "Get data from tables",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "SqlServerStoredProcedure",
-        "typeProperties": {
-          "storedProcedureName": "[dbo].[Update_Puzzel_Agents]"
-        },
-        "connectionSettings": {
-          "name": "Golden_warehouse",
-          "properties": {
-            "type": "DataWarehouse",
-            "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
-              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
-            },
-            "externalReferences": {
-              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
-            },
-            "annotations": []
-          }
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "Update agents master names and email",
-        "dependsOn": [
-          {
-            "activity": "Get data from tables",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "Office365Email",
-        "typeProperties": {
-          "body": "<p>Der er opstået en fejl i @{pipeline().PipelineName}.&nbsp;</p>\n<p>Denne pipeline består af at hente dimensionstabeller fra Puzzel og to procedures.&nbsp;</p>\n<p>- @{activity('Copy one table').output}</p>\n<p>-@{activity('Copy one table').output.dataRead}</p>\n<p>-@{activity('Copy one table').output.filesRead}</p>\n<p>-@{activity('Copy one table').output.dataWritten}</p>\n<p>-@{activity('Copy one table').output.filesWritten}</p>\n<p>-@{activity('Copy one table').output.rowsRead}</p>\n<p>-@{activity('Copy one table').output.rowsCopied}</p>\n<p>-@{activity('Copy one table').output.copyDuration}</p>\n<p>-@{activity('Copy one table').output.throughput}</p>\n<p><br></p>\n<p><br></p>",
-          "to": "driftbi@altibox.dk",
-          "subject": {
-            "value": "@pipeline().PipelineName",
-            "type": "Expression"
-          }
-        },
-        "externalReferences": {
-          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "Office365Email1",
-        "dependsOn": [
-          {
-            "activity": "Get data from tables",
-            "dependencyConditions": [
-              "Failed"
-            ]
-          },
-          {
-            "activity": "Update agents master names and email",
-            "dependencyConditions": [
-              "Failed"
-            ]
-          },
-          {
-            "activity": "Update agents T2",
-            "dependencyConditions": [
-              "Failed"
             ]
           }
         ]
