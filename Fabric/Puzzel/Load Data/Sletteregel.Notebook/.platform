@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Dataflow",
-    "displayName": "Dataflow clean data into silver lakehouse old",
-    "description": ""
+    "type": "Notebook",
+    "displayName": "Sletteregel"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "e89a74f4-cbab-8d82-482e-f799c862616a"
+    "logicalId": "f1da532b-ebfa-8042-4f91-5457d297ff3d"
   }
 }
