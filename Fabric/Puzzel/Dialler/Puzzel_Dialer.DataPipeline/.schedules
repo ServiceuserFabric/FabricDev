@@ -6,8 +6,8 @@
       "jobType": "Execute",
       "configuration": {
         "type": "Daily",
-        "startDateTime": "2026-03-06T00:00:00",
-        "endDateTime": "2030-03-05T23:59:00",
+        "startDateTime": "2026-05-13T00:00:00",
+        "endDateTime": "2030-05-13T23:59:00",
         "localTimeZoneId": "Romance Standard Time",
         "times": [
           "07:59"

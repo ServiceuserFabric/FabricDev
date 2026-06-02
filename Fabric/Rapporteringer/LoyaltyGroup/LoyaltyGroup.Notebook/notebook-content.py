@@ -63,10 +63,6 @@ import os # For file path handling
 from notebookutils import mssparkutils # To handle exit message for pipeline
 import json # To handle exit message for pipeline
 
-
-
-# BEMÆRK! AI-genereret kode kan indeholde fejl eller handlinger, du ikke havde til hensigt. Gennemse koden i denne celle omhyggeligt, før du kører den.
-
 from datetime import datetime
 try:
     from dateutil.relativedelta import relativedelta
@@ -839,6 +835,11 @@ df_Loyalty = df_Loyalty.join(
     how="left_anti"
 )
 
+df_Loyalty = df_Loyalty.join(
+    df_rapporteringer.select("Email").distinct(),
+    on="Email",
+    how="left_anti"
+)
 
 
 # METADATA ********************
@@ -851,7 +852,7 @@ df_Loyalty = df_Loyalty.join(
 # CELL ********************
 
 # -----------------------------
-# 13) Anti-join: remove customers who started with Altibox within last two months, as they received KTU
+# 13) Anti-join: Remove customers from KTU
 # -----------------------------
 
 df_Loyalty = df_Loyalty.join(
@@ -860,11 +861,14 @@ df_Loyalty = df_Loyalty.join(
     how="left_anti"
 )
 
+
 # METADATA ********************
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": true,
+# META   "editable": false
 # META }
 
 # CELL ********************
@@ -895,7 +899,7 @@ key = (-F.log(u)) / weight_col
 df_sample = (df_Loyalty_unique
     .withColumn("_wkey", key)
     .orderBy(F.col("_wkey").asc())
-    .limit(12000)
+    .limit(6000)
     .drop("_wkey")
 )
 

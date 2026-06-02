@@ -5,13 +5,18 @@
       "enabled": true,
       "jobType": "Execute",
       "configuration": {
-        "type": "Daily",
-        "startDateTime": "2026-05-13T00:00:00",
-        "endDateTime": "2027-05-13T00:00:00",
+        "type": "Monthly",
+        "startDateTime": "2026-04-21T00:00:00",
+        "endDateTime": "2027-04-21T00:00:00",
         "localTimeZoneId": "Romance Standard Time",
         "times": [
-          "08:16"
-        ]
+          "12:00"
+        ],
+        "recurrence": 1,
+        "occurrence": {
+          "occurrenceType": "DayOfMonth",
+          "dayOfMonth": 10
+        }
       }
     }
   ]

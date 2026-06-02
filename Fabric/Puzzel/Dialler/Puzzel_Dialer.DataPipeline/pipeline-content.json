@@ -321,9 +321,9 @@
             {
               "type": "Office365Email",
               "typeProperties": {
-                "body": "<p>Der er ikke opstået en fejl i notebook, der er blot ingen nye kunder i dag.&nbsp;</p>",
+                "body": "<p>Der er ikke opstået en fejl i notebook til at danne listen til Puzzel Dialler, der er blot ingen nye kunder i dag.&nbsp;</p>",
                 "to": "driftbi@altibox.dk",
-                "subject": "Ingen nye kunder i dag"
+                "subject": "Ingen nye kunder i dag i Puzzel Dialler"
               },
               "externalReferences": {
                 "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
