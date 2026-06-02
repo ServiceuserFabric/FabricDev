@@ -540,11 +540,27 @@ from datetime import datetime
 run_date = dToday.strftime("%Y-%m-%d")  # e.g. 2026-02-25
 base_dir = f"Files/Puzzel_Dialler/{run_date}"
 
+# Before writing, clean up any existing target files so mv() won't fail
+from notebookutils import mssparkutils
+
+# Remove existing output files if they exist (idempotent behavior for reruns)
+try:
+    if mssparkutils.fs.exists(f"{base_dir}/Privat_Out.csv"):
+        mssparkutils.fs.rm(f"{base_dir}/Privat_Out.csv", False)
+    if mssparkutils.fs.exists(f"{base_dir}/Erhverv_Out.csv"):
+        mssparkutils.fs.rm(f"{base_dir}/Erhverv_Out.csv", False)
+    # If you later enable Migrering_Out, also clean it up here
+    # if mssparkutils.fs.exists(f"{base_dir}/Migrering_Out.csv"):
+    #     mssparkutils.fs.rm(f"{base_dir}/Migrering_Out.csv", False)
+except Exception as e:
+    print(f"Warning: cleanup step failed: {e}")
+
 privat_path    = write_single_csv(Privat_Out,    base_dir, "Privat_Out.csv")
-#migrering_path = write_single_csv(Migrering_Out, base_dir, "Migrering_Out.csv")
+# migrering_path = write_single_csv(Migrering_Out, base_dir, "Migrering_Out.csv")
 erhverv_path   = write_single_csv(Erhverv_Out,   base_dir, "Erhverv_Out.csv")
 
-print(privat_path, migrering_path, erhverv_path)
+# Only print paths that are actually defined
+print(privat_path, erhverv_path)
 
 # METADATA ********************
 
