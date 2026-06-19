@@ -52,9 +52,9 @@
 #                             Servicekald_Migrering_YYYYMMDD.csv
 # Created by:                 Mathias Liedtke
 # Created date:               21/01/2026
-# Last Modified by:           Author modified date
-# Last Modified date:         Date modified
-# Comments: 
+# Last Modified by:           Carsten Koudal, Fellowmind
+# Last Modified date:         4/06/2026
+# Comments: Changed check on result from empty to row_count, because the result was not ok
 #__________________________________________________________________________________
 
 # Load Libraries ##################################################################
@@ -205,8 +205,8 @@ Golden_Lakehouse = (
 
 Golden_Lakehouse.show(100, truncate=False)
 print(f"Number of rows: {Golden_Lakehouse.count()}")
-
-if Golden_Lakehouse.isEmpty():
+row_count = Golden_Lakehouse.count()
+if row_count == 0:
     print("No data found in Golden Lakehouse for the given criteria")
     mssparkutils.notebook.exit("TOM DATAFRAME")
     # raise SystemExit(0) # Ikke nødvendig efter notebook.exit
@@ -236,8 +236,8 @@ WHERE PC.Internet_speed is not null and
 GROUP BY
     KundeNO
 HAVING
-    MAX(CASE WHEN endDate IS NOT NULL THEN 1 ELSE 0 END) = 1
-AND MAX(CASE WHEN endDate IS NULL THEN 1 ELSE 0 END) = 0;"""
+    MAX(CASE WHEN endDate <> '9999-12-31' THEN 1 ELSE 0 END) = 1
+AND MAX(CASE WHEN endDate = '9999-12-31' THEN 1 ELSE 0 END) = 0;"""
 
 Golden_Lakehouse_Churn = spark.sql(query_Churn_Kunder)
 Golden_Lakehouse_Churn.show(100, truncate=False)
