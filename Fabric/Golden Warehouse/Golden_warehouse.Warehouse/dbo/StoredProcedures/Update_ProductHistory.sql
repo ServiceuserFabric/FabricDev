@@ -224,4 +224,9 @@ WHERE LastVersion = 1
           AND T.FromDate < S.FromDate
   )
 
+-- Opdater produkt_status hvis den er i brug
+  UPDATE dbo.ProductHistory
+    SET Produkt_Status = 'I brug'
+    WHERE startDate <= GETDATE() AND endDate >= GETDATE() 
+
 END
