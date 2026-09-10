@@ -23,9 +23,10 @@ shared Customer = let
   #"Sorted rows 1" = Table.Sort(#"Changed column type 4", {{"accounts_id", Order.Ascending}, {"memberNumber", Order.Ascending}}),
   #"Renamed columns 2" = Table.RenameColumns(#"Sorted rows 1", {{"accounts_customerGroupKey", "AccCustGroupKey"},{"customAttributes_created","ca_created"}}),
   #"Changed column type 5" = Table.TransformColumnTypes(#"Renamed columns 2", {{"memberNumber", type text}}),
-  #"Fjernede dubletter" = Table.Distinct(#"Changed column type 5", {"accounts_id"})
+  #"Fjernede dubletter" = Table.Distinct(#"Changed column type 5", {"accounts_id"}),
+  #"Filtered rows" = Table.SelectRows(#"Fjernede dubletter", each [accounts_id] <> null and [accounts_id] <> "")
 in
-  #"Fjernede dubletter";
+  #"Filtered rows";
 [DataDestinations = {[Definition = [Kind = "Reference", QueryName = "Cust prod_DataDestination", IsNewTarget = true], Settings = [Kind = "Automatic", TypeSettings = [Kind = "Table"]]]}]
 shared #"Cust prod" = let
   Source = Lakehouse.Contents(null){[workspaceId = "6b06974a-4346-4a38-bc5a-d42e564a6bec"]}[Data]{[lakehouseId = "b1df83e8-4963-4129-b9a8-db8ced7800dd"]}[Data],
