@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "LoyaltyGroup_SFTP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ccadb3ce-d547-b8fe-4abd-e5d6bf31f01c"
+  }
+}

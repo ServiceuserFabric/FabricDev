@@ -93,6 +93,95 @@
             ]
           }
         ]
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[UpdateOpdateretTidspunkt]",
+          "storedProcedureParameters": {
+            "Entitet": {
+              "value": "Google",
+              "type": "String"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update updated time",
+        "dependsOn": [
+          {
+            "activity": "Demographics",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Dataflow i Google Analytics er fejlet. Der kan sommetider godt opstå midlertidige fejl på udtræk. Afvent derfor 1-3 dage for gentagne fejl.&nbsp;</p>\n<p>Pipeline består af fire dele:&nbsp;</p>\n<p>- Demographics: @{activity('Demographics').output}</p>\n<p>- &nbsp;Audience_name: @{activity('Audience_name').output}</p>\n<p>- TrafficSource: @{activity('TrafficSource').output}</p>\n<p>- Engagement: @{activity('Engagement').output}</p>\n<p>&nbsp;Fejl i pipeline: @{pipeline().PipelineName}</p>",
+          "to": "driftbi@altibox.dk",
+          "subject": "Google Analytics Dataflow"
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "description": "Afsender en mail, hvis dataflow fejler. ",
+        "dependsOn": [
+          {
+            "activity": "Demographics",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Audience_name",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "TrafficSource",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Engagement",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
       }
     ]
   }

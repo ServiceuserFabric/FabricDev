@@ -40,6 +40,42 @@
         },
         "name": "Drop Tables",
         "dependsOn": []
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Der er opstået en fejl i at hente data fra MicrosoftAD.&nbsp;</p>\n<p>Denne pipeline består af to pipelines:&nbsp;</p>\n<p>- Drop Tables: @{activity('Drop Tables').output}<br>\n- Extract from AD: @{activity('Extract from AD').output}</p>\n<p></p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@pipeline().PipelineName",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Microsoft AD Outlook",
+        "dependsOn": [
+          {
+            "activity": "Drop Tables",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Extract from AD",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
       }
     ]
   }

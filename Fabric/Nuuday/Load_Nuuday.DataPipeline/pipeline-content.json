@@ -161,8 +161,6 @@
           "secureOutput": false
         },
         "name": "Set InsertDate",
-        "state": "Inactive",
-        "onInactiveMarkAs": "Succeeded",
         "dependsOn": []
       },
       {
@@ -177,7 +175,92 @@
         },
         "name": "Set InsertDate_copy1",
         "description": "Sæt dato i Settings med formatet dd-mm-yyyy",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
         "dependsOn": []
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[UpdateOpdateretTidspunkt]",
+          "storedProcedureParameters": {
+            "Entitet": {
+              "value": {
+                "value": "Nuuday",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update updated time",
+        "description": "Add date and transform data types",
+        "dependsOn": [
+          {
+            "activity": "Transform to warehouse",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>Der er opstået en fejl i at hente data Nuuday. <br>\nPotentielle fejlkilder kan være manglende data fra Nuuday eller fejl i Copy-job eller procedure.&nbsp;</p>",
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@pipeline().PipelineName",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Nuuday reports load",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Transform to warehouse",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
       }
     ],
     "variables": {

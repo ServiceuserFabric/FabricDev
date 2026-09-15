@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Budget_Excel"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3ad750a0-7611-9bb3-448a-1886d57853f3"
+  }
+}

@@ -170,74 +170,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "c0a2fb541d69618abca6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "call_events"
-              }
-            },
-            "Property": "queue_key"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "c",
-              "Entity": "call_events",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "c"
-                          }
-                        },
-                        "Property": "queue_key"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'q_Salg_Ekstern'"
-                        }
-                      }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'q_Salg_Erhverv'"
-                        }
-                      }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'q_Salg_Privat'"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
       }
     ]
   },
@@ -250,7 +182,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Skabelon PowerBI type 21.jpg'"
+                    "Value": "'Skabelon PowerBI type 22.jpg'"
                   }
                 }
               },
@@ -259,7 +191,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "Skabelon_PowerBI_type_2119473133272579068.jpg"
+                    "ItemName": "Skabelon_PowerBI_type_228575492941922471.jpg"
                   }
                 }
               },
@@ -285,23 +217,13 @@
   },
   "visualInteractions": [
     {
-      "source": "ea44e54944ab0032a6ee",
-      "target": "a5bf2669d76732848086",
-      "type": "NoFilter"
-    },
-    {
-      "source": "a5bf2669d76732848086",
-      "target": "ea44e54944ab0032a6ee",
-      "type": "NoFilter"
-    },
-    {
       "source": "3447fd9db2a7a7681d37",
       "target": "2f8b47f2b0e826a09c37",
       "type": "NoFilter"
     },
     {
       "source": "135a1a000d084b00465a",
-      "target": "2a3fc4716c2590004122",
+      "target": "e90427b727fedebc1c4c",
       "type": "NoFilter"
     }
   ]

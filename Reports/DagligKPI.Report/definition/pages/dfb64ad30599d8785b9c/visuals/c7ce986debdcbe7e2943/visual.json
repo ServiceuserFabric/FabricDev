@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "c7ce986debdcbe7e2943",
   "position": {
     "x": 872.8018723923883,
@@ -266,58 +266,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "573eaa3c0c647dc20754",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Audience_name"
-              }
-            },
-            "Property": "audienceName"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "44dd7df3c3d235c44c36",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Audience_name"
-                  }
-                },
-                "Property": "totalUsers"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "23c5665fd065c7ae5bce",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Audience_name"
-                  }
-                },
-                "Property": "sessions"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

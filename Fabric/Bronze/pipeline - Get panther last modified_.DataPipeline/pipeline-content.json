@@ -728,7 +728,7 @@
       {
         "type": "RefreshDataflow",
         "typeProperties": {
-          "dataflowId": "b9f6dd96-ae0d-96a5-4460-df34bc383a91",
+          "dataflowId": "12ce35bc-954e-b340-48ef-8ee75db9b12f",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "notifyOption": "NoNotification",
           "dataflowType": "DataflowFabric"
@@ -1022,7 +1022,7 @@
       {
         "type": "RefreshDataflow",
         "typeProperties": {
-          "dataflowId": "b9f6dd96-ae0d-96a5-4460-df34bc383a91",
+          "dataflowId": "12ce35bc-954e-b340-48ef-8ee75db9b12f",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "notifyOption": "NoNotification",
           "dataflowType": "DataflowFabric"
@@ -1056,7 +1056,7 @@
           }
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
@@ -1117,7 +1117,7 @@
           "storedProcedureName": "[dbo].[Update_ProductHistory]"
         },
         "connectionSettings": {
-          "name": "AltiboxMetadata",
+          "name": "Golden_warehouse",
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {

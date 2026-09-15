@@ -32,6 +32,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar"
+                  }
+                },
+                "Property": "ÅrMåned_Default"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -81,7 +98,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'2026-02'"
+                                "Value": "'Indeværende måned'"
                               }
                             }
                           ]

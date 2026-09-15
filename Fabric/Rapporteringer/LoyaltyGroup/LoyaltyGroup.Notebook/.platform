@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "LoyaltyGroup"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9131e28a-e4dd-9cb8-4fc9-c3c7267860ef"
+  }
+}

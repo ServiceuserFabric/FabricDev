@@ -1,6 +1,6 @@
 {
   "name": "{{Dataset_Name}}",
-  "compatibilityLevel": 1604,
+  "compatibilityLevel": 1606,
   "model": {
     "name": "{{Dataset_Name}}",
     "culture": "en-US",
@@ -12,6 +12,119 @@
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
     "sourceQueryCulture": "en-US",
     "tables": [
+      {
+        "name": "CustomerStatusHistory(1)",
+        "sourceLineageTag": "[dbo].[CustomerStatusHistory]",
+        "columns": [
+          {
+            "name": "accountKey",
+            "dataType": "int64",
+            "sourceColumn": "accountKey",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "accountKey",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Status",
+            "dataType": "string",
+            "sourceColumn": "Status",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Status",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Pending_Churned",
+            "dataType": "int64",
+            "sourceColumn": "Pending_Churned",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Pending_Churned",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "FromDate",
+            "dataType": "dateTime",
+            "sourceColumn": "FromDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "FromDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ToDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ToDate",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "ToDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LastVersion",
+            "dataType": "int64",
+            "sourceColumn": "LastVersion",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "LastVersion",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "CustomerStatusHistory",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
       {
         "name": "OpdateretTidspunkt",
         "sourceLineageTag": "[dbo].[OpdateretTidspunkt]",
@@ -1443,6 +1556,58 @@
             "source": {
               "type": "entity",
               "entityName": "Agent_events_signed_in_sessions",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "puz"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "Puzzel_FCR",
+        "sourceLineageTag": "[puz].[Puzzel_FCR]",
+        "columns": [
+          {
+            "name": "source",
+            "dataType": "string",
+            "sourceColumn": "source",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "source",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "internal_iq_session_id",
+            "dataType": "string",
+            "sourceColumn": "internal_iq_session_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "internal_iq_session_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Puzzel_FCR",
               "expressionSource": "DatabaseQuery",
               "schemaName": "puz"
             }

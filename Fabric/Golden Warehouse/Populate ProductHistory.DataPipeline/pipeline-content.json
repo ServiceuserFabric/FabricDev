@@ -1,0 +1,46 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[Populate_ProductHistory]",
+          "storedProcedureParameters": {
+            "FromDate": {
+              "value": "2025-01-01",
+              "type": "DateTime"
+            },
+            "ToDate": {
+              "value": "2026-05-21",
+              "type": "DateTime"
+            }
+          }
+        },
+        "connectionSettings": {
+          "name": "Golden_warehouse",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
+              "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
+            },
+            "externalReferences": {
+              "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Populate product history",
+        "dependsOn": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Puzzel_Dialer_Migrering"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "21cb730a-51bc-b473-43e7-8d5c38b58c54"
+  }
+}

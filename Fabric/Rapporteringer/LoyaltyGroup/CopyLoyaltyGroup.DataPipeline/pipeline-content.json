@@ -19,6 +19,7 @@
               "typeProperties": {
                 "location": {
                   "type": "LakehouseLocation",
+                  "folderPath": "LoyaltyGroup",
                   "fileName": "20260216_LoyaltyGroup.csv"
                 },
                 "columnDelimiter": ";",

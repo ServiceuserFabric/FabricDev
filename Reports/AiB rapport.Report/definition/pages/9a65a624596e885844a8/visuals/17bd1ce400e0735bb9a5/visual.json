@@ -152,5 +152,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b9d06aa4e25c5850c6a9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Total antal aktive kunder"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

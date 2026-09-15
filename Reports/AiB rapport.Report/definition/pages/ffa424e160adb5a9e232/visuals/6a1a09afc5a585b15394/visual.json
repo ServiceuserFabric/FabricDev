@@ -605,6 +605,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "bf94a67b9e54f954c276",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder %Calendar"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

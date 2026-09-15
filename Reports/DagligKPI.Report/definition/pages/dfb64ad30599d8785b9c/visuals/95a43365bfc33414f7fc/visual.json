@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "95a43365bfc33414f7fc",
   "position": {
     "x": 453.49018011600691,
@@ -10,7 +10,7 @@
     "tabOrder": 5000
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "lineClusteredColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -32,29 +32,6 @@
             }
           ]
         },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "MicrosoftAD_users"
-                        }
-                      },
-                      "Property": "givenName"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(MicrosoftAD_users.givenName)",
-              "nativeQueryRef": "Første givenName"
-            }
-          ]
-        },
         "Y": {
           "projections": [
             {
@@ -65,13 +42,17 @@
                       "Entity": "All Measures"
                     }
                   },
-                  "Property": "Antal Nysalg Kunder WEB %Calendar"
+                  "Property": "Antal Nysalg Kunder %Calendar 7 dage"
                 }
               },
-              "queryRef": "All Measures.Antal Nysalg Kunder WEB %Calendar",
-              "nativeQueryRef": "Web",
-              "displayName": "Web"
-            },
+              "queryRef": "All Measures.Antal Nysalg Kunder %Calendar 7 dage",
+              "nativeQueryRef": "Indeværende uge",
+              "displayName": "Indeværende uge"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -80,12 +61,12 @@
                       "Entity": "All Measures"
                     }
                   },
-                  "Property": "Antal Nysalg Kunder Medarbejdere %Calendar"
+                  "Property": "KPI Internet GNM (pr. ugedag)"
                 }
               },
-              "queryRef": "All Measures.Antal Nysalg Kunder Medarbejdere %Calendar",
-              "nativeQueryRef": "Medarbejdere",
-              "displayName": "Medarbejdere"
+              "queryRef": "All Measures.KPI Internet GNM (pr. ugedag)",
+              "nativeQueryRef": "GNM (pr. ugedag) 2 år",
+              "displayName": "GNM (pr. ugedag) 2 år"
             }
           ]
         }
@@ -141,7 +122,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'InsideEnd'"
+                  "Value": "'OutsideEnd'"
                 }
               }
             },
@@ -149,6 +130,20 @@
               "expr": {
                 "Literal": {
                   "Value": "'''Times New Roman'''"
+                }
+              }
+            },
+            "labelOrientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "enableTitleDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -291,7 +286,7 @@
                   "expr": {
                     "ThemeDataColor": {
                       "ColorId": 9,
-                      "Percent": 0.6
+                      "Percent": -0.5
                     }
                   }
                 }
@@ -299,26 +294,7 @@
             }
           },
           "selector": {
-            "metadata": "All Measures.Antal Nysalg Kunder WEB %Calendar"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 9,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "All Measures.Antal Nysalg Kunder Medarbejdere %Calendar"
+            "metadata": "All Measures.KPI Internet GNM (pr. ugedag)"
           }
         }
       ],
@@ -329,6 +305,20 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Times New Roman'''"
                 }
               }
             }
@@ -342,6 +332,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -363,7 +360,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Salg sidste 7 dage'"
+                  "Value": "'Salg Internet sidste 7 dage'"
                 }
               }
             }
@@ -458,13 +455,6 @@
                           "Value": "'Internet'"
                         }
                       }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'TV'"
-                        }
-                      }
                     ]
                   ]
                 }
@@ -526,13 +516,6 @@
                           "Value": "'InternetMB'"
                         }
                       }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'TVSA'"
-                        }
-                      }
                     ]
                   ]
                 }
@@ -555,62 +538,6 @@
           }
         },
         "type": "RelativeDate",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "c",
-              "Entity": "Calendar",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Between": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "c"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  },
-                  "LowerBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "DateAdd": {
-                          "Expression": {
-                            "DateAdd": {
-                              "Expression": {
-                                "Now": {}
-                              },
-                              "Amount": 1,
-                              "TimeUnit": 0
-                            }
-                          },
-                          "Amount": -7,
-                          "TimeUnit": 0
-                        }
-                      },
-                      "TimeUnit": 0
-                    }
-                  },
-                  "UpperBound": {
-                    "DateSpan": {
-                      "Expression": {
-                        "Now": {}
-                      },
-                      "TimeUnit": 0
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "User"
       },
       {
@@ -644,35 +571,78 @@
         }
       },
       {
-        "name": "0b1c9bb2909ec086beb0",
+        "name": "b678ec81bb71f7b446aa",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "All Measures"
+                "Entity": "ProductHistory"
               }
             },
-            "Property": "Antal Nysalg Kunder WEB %Calendar"
+            "Property": "orderedDate"
           }
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "96549ab60b24230448b0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "ProductHistory",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
+                        }
+                      },
+                      "Property": "orderedDate"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -2,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
               }
-            },
-            "Property": "Antal Nysalg Kunder Medarbejdere %Calendar"
-          }
+            }
+          ]
         },
-        "type": "Advanced"
+        "howCreated": "User"
       },
       {
-        "name": "8f4be750335762da0bcd",
+        "name": "0440d64c26f4f24148c6",
         "field": {
           "Column": {
             "Expression": {
@@ -686,20 +656,29 @@
         "type": "Categorical"
       },
       {
-        "name": "6f44d69bb5d0b62d3b04",
+        "name": "cf25c337134b89007985",
         "field": {
-          "Aggregation": {
+          "Measure": {
             "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "MicrosoftAD_users"
-                  }
-                },
-                "Property": "givenName"
+              "SourceRef": {
+                "Entity": "All Measures"
               }
             },
-            "Function": 3
+            "Property": "Antal Nysalg Kunder %Calendar 7 dage"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4a5eeb06573b720d16c3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "KPI Internet GNM (pr. ugedag)"
           }
         },
         "type": "Advanced"

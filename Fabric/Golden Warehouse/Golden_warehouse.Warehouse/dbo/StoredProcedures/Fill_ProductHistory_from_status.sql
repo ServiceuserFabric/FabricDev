@@ -40,16 +40,16 @@ BEGIN
     hasBeenBilledOnce
     ,Kunde_Status
     ,startDate
-    ,Partner
+    ,ISNULL(Partner,'')
     ,Produkt_Status
-    ,isnull(KundeNO,'')
+    ,KundeNO
     ,isnull(accountKey,-1)
     ,id
     ,createdDate
     ,modifiedDate
     ,activeProvisioning
     ,isnull(ProduktID,-1)
-    ,endDate
+    ,isnull(endDate,'9999-12-31')
     ,CASE 
       WHEN NySalg = 'true' THEN '1'
       WHEN NySalg = 'false' THEN '0'
@@ -60,16 +60,44 @@ BEGIN
     ,@Insertdate
     ,'9999-12-31'
     ,1
-    ,PC_DiscountValue
-    ,PC_Sub_Price
-    ,BillDate
-    ,PC_Pricecategorycode
-    ,PC_Sub_discount_rule
-    ,PC_ProvisioningModel
-    ,PC_BillingPeriodUnit
+    ,ISNULL(PC_DiscountValue,0)
+    ,ISNULL(PC_Sub_Price,0)
+    ,isnull(BillDate,'9999-12-31')
+    ,ISNULL(PC_Pricecategorycode,'')
+    ,ISNULL(PC_Sub_discount_rule,'')
+    ,ISNULL(PC_ProvisioningModel,'')
+    ,ISNULL(PC_BillingPeriodUnit,'')
 FROM Silver_lakehouse.dbo.[status] AS V
 WHERE V.Dato = @Insertdate AND
-    NOT EXISTS (SELECT 1 FROM dbo.ProductHistory H WHERE ISNULL(H.id,-1) = ISNULL(V.id,-1) AND ISNULL(H.accountKey,-1) = ISNULL(V.accountKey,-1) AND ISNULL(H.KundeNO,'') = ISNULL(V.KundeNO,'') AND ISNULL(H.ProduktID,-1) = ISNULL(V.ProduktID,-1) AND H.LastVersion = 1);
+    NOT EXISTS (SELECT 1 FROM dbo.ProductHistory H WHERE ISNULL(H.id,-1) = ISNULL(V.id,-1) AND ISNULL(H.accountKey,-1) = ISNULL(V.accountKey,-1) AND H.KundeNO = V.KundeNO AND ISNULL(H.ProduktID,-1) = ISNULL(V.ProduktID,-1) AND H.LastVersion = 1)
+    AND V.KundeNO IS NOT NULL
+    GROUP BY hasBeenBilledOnce
+    ,Kunde_Status
+    ,startDate
+    ,ISNULL(Partner,'')
+    ,Produkt_Status
+    ,KundeNO
+    ,isnull(accountKey,-1)
+    ,id
+    ,createdDate
+    ,modifiedDate
+    ,activeProvisioning
+    ,isnull(ProduktID,-1)
+    ,isnull(endDate,'9999-12-31')
+    ,CASE 
+      WHEN NySalg = 'true' THEN '1'
+      WHEN NySalg = 'false' THEN '0'
+      ELSE NySalg
+    END
+    ,orderedDate
+    ,orderedDateTime
+    ,ISNULL(PC_DiscountValue,0)
+    ,ISNULL(PC_Sub_Price,0)
+    ,isnull(BillDate,'9999-12-31')
+    ,ISNULL(PC_Pricecategorycode,'')
+    ,ISNULL(PC_Sub_discount_rule,'')
+    ,ISNULL(PC_ProvisioningModel,'')
+    ,ISNULL(PC_BillingPeriodUnit,'');
 
 
 -- =====================================================================
@@ -108,16 +136,16 @@ SELECT
 V.hasBeenBilledOnce
 ,V.Kunde_Status
 ,V.startDate
-,V.Partner
+,ISNULL(V.Partner,'')
 ,V.Produkt_Status
-,isnull(V.KundeNO,'')
+,V.KundeNO
 ,isnull(V.accountKey,-1)
 ,V.id
 ,V.createdDate
 ,V.modifiedDate
 ,V.activeProvisioning
 ,isnull(V.ProduktID,-1)
-,V.endDate
+,isnull(V.endDate,'9999-12-31')
 ,CASE 
       WHEN V.NySalg = 'true' THEN '1'
       WHEN V.NySalg = 'false' THEN '0'
@@ -128,58 +156,62 @@ V.hasBeenBilledOnce
 ,@Insertdate
 ,'9999-12-31'
 ,1
-,V.PC_DiscountValue
-,V.PC_Sub_Price
-,V.BillDate
-,V.PC_Pricecategorycode
-,V.PC_Sub_discount_rule
-,V.PC_ProvisioningModel
-,V.PC_BillingPeriodUnit
+    ,ISNULL(V.PC_DiscountValue,0)
+    ,ISNULL(V.PC_Sub_Price,0)
+    ,isnull(V.BillDate,'9999-12-31')
+    ,ISNULL(V.PC_Pricecategorycode,'')
+    ,ISNULL(V.PC_Sub_discount_rule,'')
+    ,ISNULL(V.PC_ProvisioningModel,'')
+    ,ISNULL(V.PC_BillingPeriodUnit,'')
 FROM Silver_lakehouse.dbo.[status] AS V
-JOIN dbo.ProductHistory AS H ON H.id = ISNULL(V.id,-1) AND H.accountKey = ISNULL(V.accountKey,-1) AND H.KundeNO = ISNULL(V.KundeNO,'') AND H.ProduktID = ISNULL(V.ProduktID,-1) AND V.Dato = @Insertdate
-   AND H.LastVersion = 1
+JOIN dbo.ProductHistory AS H ON H.id = ISNULL(V.id,-1) AND H.accountKey = ISNULL(V.accountKey,-1) AND H.KundeNO = V.KundeNO AND H.ProduktID = ISNULL(V.ProduktID,-1) AND V.Dato = @Insertdate AND V.Dato > H.FromDate
+   AND H.LastVersion = 1 AND V.KundeNO IS NOT NULL
    AND (
         H.hasBeenBilledOnce <> V.hasBeenBilledOnce OR
         H.Kunde_Status <> V.Kunde_Status OR
-        H.Partner <> V.Partner OR
+        ISNULL(H.Partner,'') <> ISNULL(V.Partner,'') OR
         H.Produkt_Status <> V.Produkt_Status OR
         H.modifiedDate <> V.modifiedDate OR
         H.activeProvisioning <> V.activeProvisioning OR
-        H.endDate <> V.endDate OR
-        H.NySalg <> V.NySalg OR
+        ISNULL(H.endDate,'9999-12-31') <> ISNULL(V.endDate,'9999-12-31') OR
+        H.NySalg <> (CASE 
+      WHEN V.NySalg = 'true' THEN '1'
+      WHEN V.NySalg = 'false' THEN '0'
+      ELSE V.NySalg
+    END) OR
         H.orderedDateTime <> V.orderedDateTime OR        
-        H.PC_DiscountValue <> V.PC_DiscountValue OR
-        H.PC_Sub_Price <> V.PC_Sub_Price OR
-        H.BillDate <> V.BillDate OR
-        H.PC_Pricecategorycode <> V.PC_Pricecategorycode OR
-        H.PC_Sub_discount_rule <> V.PC_Sub_discount_rule OR
-        H.PC_ProvisioningModel <> V.PC_ProvisioningModel OR
-        H.PC_BillingPeriodUnit <> V.PC_BillingPeriodUnit
+        ISNULL(H.PC_DiscountValue,0) <> ISNULL(V.PC_DiscountValue,0) OR
+        ISNULL(H.PC_Sub_Price,0) <> ISNULL(V.PC_Sub_Price,0) OR
+        ISNULL(H.BillDate,'9999-12-31') <> ISNULL(V.BillDate,'9999-12-31') OR
+        ISNULL(H.PC_Pricecategorycode,'') <> ISNULL(V.PC_Pricecategorycode,'') OR
+        ISNULL(H.PC_Sub_discount_rule,'') <> ISNULL(V.PC_Sub_discount_rule,'') OR
+        ISNULL(H.PC_ProvisioningModel,'') <> ISNULL(V.PC_ProvisioningModel,'') OR
+        ISNULL(H.PC_BillingPeriodUnit,'') <> ISNULL(V.PC_BillingPeriodUnit,'')
    )
 GROUP BY
      V.hasBeenBilledOnce
     ,V.Kunde_Status
     ,V.startDate
-    ,V.Partner
+    ,isnull(V.Partner,'')
     ,V.Produkt_Status
-    ,isnull(V.KundeNO,'')
+    ,V.KundeNO
     ,isnull(V.accountKey,-1)
     ,V.id
     ,V.createdDate
     ,V.modifiedDate
     ,V.activeProvisioning
     ,isnull(V.ProduktID,-1)
-    ,V.endDate
+    ,isnull(V.endDate,'9999-12-31')
     ,V.NySalg
     ,V.orderedDate
     ,V.orderedDateTime
-    ,V.PC_DiscountValue
-    ,V.PC_Sub_Price
-    ,V.BillDate
-    ,V.PC_Pricecategorycode
-    ,V.PC_Sub_discount_rule
-    ,V.PC_ProvisioningModel
-    ,V.PC_BillingPeriodUnit;
+    ,ISNULL(V.PC_DiscountValue,0)
+    ,ISNULL(V.PC_Sub_Price,0)
+    ,isnull(V.BillDate,'9999-12-31')
+    ,ISNULL(V.PC_Pricecategorycode,'')
+    ,ISNULL(V.PC_Sub_discount_rule,'')
+    ,ISNULL(V.PC_ProvisioningModel,'')
+    ,ISNULL(V.PC_BillingPeriodUnit,'');
 
 
 -- =====================================================================

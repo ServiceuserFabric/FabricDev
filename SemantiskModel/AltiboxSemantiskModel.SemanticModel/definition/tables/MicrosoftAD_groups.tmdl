@@ -308,6 +308,15 @@ table MicrosoftAD_groups
 
 		annotation SummarizationSetBy = Automatic
 
+	column infoCatalogs
+		dataType: string
+		lineageTag: 6aae337e-53a9-49de-a6a7-bd22f9924080
+		sourceLineageTag: infoCatalogs
+		summarizeBy: none
+		sourceColumn: infoCatalogs
+
+		annotation SummarizationSetBy = Automatic
+
 	partition MicrosoftAD_groups = entity
 		mode: directLake
 		source

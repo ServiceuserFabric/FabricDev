@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Budget_COERCE_INT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "77201201-46b0-8b8f-4a09-75311f0a2d0a"
+  }
+}
