@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "ENR_Contact",
+    "description": "Customer and Vendor Dimension"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2ee23121-e6e6-a854-4ca7-b82ed628fdf2"
+  }
+}
