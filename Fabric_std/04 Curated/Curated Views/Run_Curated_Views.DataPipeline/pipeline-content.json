@@ -15,14 +15,7 @@
           "secureOutput": false
         },
         "name": "Finance",
-        "dependsOn": [
-          {
-            "activity": "Schema Creator",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "dependsOn": []
       },
       {
         "type": "TridentNotebook",
@@ -54,14 +47,7 @@
           "secureOutput": false
         },
         "name": "Shared",
-        "dependsOn": [
-          {
-            "activity": "Schema Creator",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "dependsOn": []
       }
     ]
   }

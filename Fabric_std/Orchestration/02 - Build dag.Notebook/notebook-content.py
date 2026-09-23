@@ -454,3 +454,61 @@ for item in finance_DAG:
 # MARKDOWN ********************
 
 # ### Curated
+
+# CELL ********************
+
+# Curated notebooks are plain PySpark and read Enr Delta tables directly, so they
+# belong in the DAG alongside everything else rather than in a separate pipeline.
+# Each one starts as soon as its own enriched dependencies finish, instead of
+# waiting for every module to complete.
+curated_DAG = [
+        {
+            "name": "CUR_Shared",
+            "path": "CUR_Shared",
+            "timeoutPerCellInSeconds": 6000,
+            "args": {
+                "useRootDefaultLakehouse": True
+            },
+            "retry": 1,
+            "retryIntervalSeconds": 60,
+            "dependencies": [
+                "ENR_Calendar",
+                "ENR_Item",
+                "ENR_Company",
+                "ENR_Contact",
+                "ENR_Customer",
+                "ENR_SalespersonPurchaser",
+                "ENR_GenBusinessPostingGroups",
+                "ENR_GenProductPostingGroups",
+                "ENR_CreateDimensions"
+            ]
+        },
+        {
+            "name": "CUR_Finance",
+            "path": "CUR_Finance",
+            "timeoutPerCellInSeconds": 6000,
+            "args": {
+                "useRootDefaultLakehouse": True
+            },
+            "retry": 1,
+            "retryIntervalSeconds": 60,
+            "dependencies": [
+                "ENR_GLAccount",
+                "ENR_GLEntries",
+                "ENR_Budget",
+                "ENR_AccountSchedule",
+                "ENR_GLAccountHierarchy"
+            ]
+        },
+]
+
+for item in curated_DAG:
+    item["module"] = "Curated"
+    DAG["activities"].append(item)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

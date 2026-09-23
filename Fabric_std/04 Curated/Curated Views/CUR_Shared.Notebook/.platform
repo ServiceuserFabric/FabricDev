@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "CUR_Calendar",
+    "displayName": "CUR_Shared",
     "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "6cc69052-ad6c-8c52-4f0c-b2b56c360679"
+    "logicalId": "7a3eed14-f773-42ea-add5-eaf7e54e511f"
   }
 }

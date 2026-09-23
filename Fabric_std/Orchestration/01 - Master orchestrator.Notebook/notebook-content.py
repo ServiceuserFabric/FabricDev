@@ -35,21 +35,19 @@
 # | 1 | `FM_Utility` | Loads shared utility functions and global parameters used throughout the pipeline. |
 # | 2 | ETL load mode | Determines load strategy: **full load** on Sundays (`isoweekday() == 7`), otherwise **incremental** with a 90-day window. *(Currently overridden to full load for development.)* |
 # | 3 | `02 - Build dag` | Builds the DAG (Directed Acyclic Graph) that defines which project notebooks to run and in what order. |
-# | 4 | `notebookutils.notebook.runMultiple` | Executes all project notebooks **in parallel** using the DAG. Visualises the DAG via Graphviz. |
-# | 5 | `03 - refresh sql endpoint` | Refreshes the SQL endpoint for the `Enr` (Enriched) lakehouse after ETL completes. |
-# | 6 | Curated Views init *(first run only)* | Triggers the `Run_Curated_Views` Data Pipeline in Microsoft Fabric to create Power BI views in the `Cur` SQL endpoint. Writes a marker file (`_master_orchestrator_initialized.txt`) so this step is skipped on all subsequent runs.<br><br>**For this to work all Curated Views notebooks must be attached to the CUR SQL Endpoint before running.** |
-# | 7 | `04 - trigger semantic models refresh` | Refreshes Power BI semantic models. The list of workspaces/models is loaded from `GlobalParameters.get_semantic_models()`. |
-# | 8 | Saturday cleanup | If today is **Saturday**, runs `Optimize lakehouses` to vacuum/optimise Delta tables and exits early. |
+# | 4 | `notebookutils.notebook.runMultiple` | Executes all project notebooks **in parallel** using the DAG — data prep, enriched, and the curated materialisations, each starting as soon as its own dependencies finish. Visualises the DAG via Graphviz. |
+# | 5 | `03 - refresh sql endpoint` | Refreshes the SQL endpoints for the `Enr` (Enriched) and `Cur` (Curated) lakehouses after ETL completes. |
+# | 6 | `04 - trigger semantic models refresh` | Refreshes Power BI semantic models. The list of workspaces/models is loaded from `GlobalParameters.get_semantic_models()`. |
+# | 7 | Saturday cleanup | If today is **Saturday**, runs `Optimize lakehouses` to vacuum/optimise Delta tables and exits early. |
 # 
 # ---
 # 
 # ## Dependencies
 # 
 # - **`FM_Utility`** — utility functions and `GlobalParameters`
-# - **`02 - Build dag`** — produces the `DAG` variable consumed by `runMultiple`
-# - **`03 - refresh sql endpoint`** — refreshes the `Enr` lakehouse SQL endpoint
+# - **`02 - Build dag`** — produces the `DAG` variable consumed by `runMultiple`, including the `curated_DAG` section
+# - **`03 - refresh sql endpoint`** — refreshes the `Enr` and `Cur` lakehouse SQL endpoints
 # - **`04 - trigger semantic models refresh`** — triggers Power BI dataset refreshes
-# - **`Run_Curated_Views`** — Fabric Data Pipeline (triggered once via REST API)
 # - **`Optimize lakehouses`** — weekly maintenance notebook
 
 
@@ -162,6 +160,7 @@ Response = Orchestration.run(DAG, globals().get("run_picker"))
 # MARKDOWN ********************
 
 # ## Refresh SQL endpoint
+# `Enr` for downstream SQL consumers, `Cur` so the curated tables built by the DAG are visible through the Cur SQL endpoint. Direct Lake on OneLake does not need either refresh, but the Finance Agent and the transitional `[pbi]` views do.
 
 # CELL ********************
 
@@ -187,57 +186,22 @@ lakehouse_to_refresh = 'Enr'
 # META   "language_group": "synapse_pyspark"
 # META }
 
-# MARKDOWN ********************
+# CELL ********************
 
-# ## Initialize curated views (first run only)
-# Creates the Power BI views in the Cur SQL endpoint by triggering the `Run_Curated_Views` pipeline. This only runs once — on subsequent runs it detects the marker file and skips. Delete `_master_orchestrator_initialized.txt` from the attached lakehouse Files folder to re-run.
-# 
-# **For this to work all Curated Views notebooks must be attached to the CUR SQL Endpoint before running.**
+lakehouse_to_refresh = 'Cur'
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark",
+# META   "frozen": false,
+# META   "editable": true
+# META }
 
 # CELL ********************
 
-## Run curated views setup (first run only)
-import os
-import time
-import sempy.fabric as fabric
-from datetime import datetime
-
-first_run_marker = "/lakehouse/default/Files/_master_orchestrator_initialized.txt"
-
-if not os.path.exists(first_run_marker):
-    print("First run detected — creating curated views...")
-
-    client = fabric.FabricRestClient()
-    workspace_id = fabric.resolve_workspace_id()
-    pipeline_id = fabric.resolve_item_id("Run_Curated_Views", type="DataPipeline")
-
-    # Trigger the pipeline
-    response = client.post(f"v1/workspaces/{workspace_id}/items/{pipeline_id}/jobs/instances?jobType=Pipeline")
-    
-    if response.status_code == 202:
-        job_location = response.headers.get("Location")
-        print("Pipeline triggered — waiting for completion...")
-
-        while True:
-            status_response = client.get(job_location)
-            status = status_response.json().get("status")
-            print(f"  Status: {status}")
-
-            if status in ("Completed", "Failed", "Cancelled"):
-                break
-            time.sleep(15)
-
-        if status == "Completed":
-            with open(first_run_marker, "w") as f:
-                f.write(str(datetime.now()))
-            print("Curated views created successfully.")
-        else:
-            raise Exception(f"Pipeline finished with status: {status}")
-    else:
-        raise Exception(f"Failed to trigger pipeline. Status code: {response.status_code}")
-
-else:
-    print("Curated views already initialized — skipping.")
+%run 03 - refresh sql endpoint
 
 # METADATA ********************
 
