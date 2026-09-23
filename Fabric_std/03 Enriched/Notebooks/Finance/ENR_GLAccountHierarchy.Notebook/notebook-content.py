@@ -17,41 +17,33 @@
 # MARKDOWN ********************
 
 # # ENR_GLAccountHierarchy
-#
-# ## Purpose
+# # ## Purpose
 # Builds a P&L and Balance hierarchy **directly from the GL Account chart of accounts**, as an
 # alternative to `ENR_AccountSchedule` (which is driven by the Account Schedule / Financial Report
 # definition). Use this when you want the Power BI P&L / Balance hierarchy to match the GL Account setup.
-#
-# It produces the **same output schema** as `ENR_AccountSchedule`
+# # It produces the **same output schema** as `ENR_AccountSchedule`
 # (`accountScheduleName`, `level{n}_Key` / `level{n}_Name`, `leaf_account_key`,
 # `incomeBalance`, `fullAccountName`) so it is a drop-in source for the same downstream model.
-#
-# ## Hybrid method — auto-selected per statement
+# # ## Hybrid method — auto-selected per statement
 # BC charts encode their structure in two parallel, client-maintained ways, and which one carries the
 # hierarchy differs between the Balance Sheet and the Income Statement (and between clients):
-#
-#  1. **Indentation** (`Begin-Total` / `End-Total` brackets). Balance Sheets are usually richly
+# #  1. **Indentation** (`Begin-Total` / `End-Total` brackets). Balance Sheets are usually richly
 #     bracketed; the nesting comes from BC's `Indentation` field.
 #  2. **`Total` accounts + `Totaling` ranges.** Income Statements are often *flat* (every line at
 #     indentation 0) and express their structure through running-total ranges
 #     (e.g. Dækningsbidrag = 10100..37000 nested inside Bruttoresultat = 10100..51800).
-#
-# This notebook computes both and **chooses per `incomeBalance`**:
+# # This notebook computes both and **chooses per `incomeBalance`**:
 #  - If a statement is meaningfully indented (posting paths reach depth >= `INDENT_MIN_DEPTH`)
 #    -> use the **indentation** method (ancestors = enclosing `Begin-Total` headers).
 #  - Otherwise (flat statement) -> use **Totaling-range containment** (ancestors = the containing
 #    `Total` / `End-Total` accounts, ordered widest range -> narrowest).
-#
-# `accountScheduleName` is set to `incomeBalance` ("Income Statement" / "Balance Sheet"), mirroring the
+# # `accountScheduleName` is set to `incomeBalance` ("Income Statement" / "Balance Sheet"), mirroring the
 # two PBI schedules in ENR_AccountSchedule.
-#
-# Why not G/L Account Categories? They are the Microsoft-standard mechanism, but outside the US BC does
+# # Why not G/L Account Categories? They are the Microsoft-standard mechanism, but outside the US BC does
 # not pre-map them, so they are commonly unpopulated (especially on the Balance Sheet). Indentation +
 # Totaling are derived from the chart structure itself, which every client maintains, so this approach
 # works out of the box without extra tables or manual category setup.
-#
-# ## Notes / limitations
+# # ## Notes / limitations
 #  - Reads **raw `GLAccount`** (not DP). `Indentation` (BC field 19) is used when present; if the column
 #    is absent, every statement falls back to the Totaling-range method.
 #  - Indentation correctness depends on account-`No` ordering (BC's Chart-of-Accounts order); the chart
@@ -120,8 +112,7 @@ force_refresh = False
 # MARKDOWN ********************
 
 # ## Data Loading and Preparation
-#
-# Read the GL Account chart **from the Raw lakehouse** (not DP), exactly as ENR_AccountSchedule reads
+# # Read the GL Account chart **from the Raw lakehouse** (not DP), exactly as ENR_AccountSchedule reads
 # its source.
 
 # CELL ********************
@@ -195,8 +186,7 @@ if DataCheck:
 # MARKDOWN ********************
 
 # ## Part 1: Resolve each posting's ancestor path (hybrid)
-#
-# Done on the driver because the chart of accounts is small metadata and the logic is sequential.
+# # Done on the driver because the chart of accounts is small metadata and the logic is sequential.
 # Step A computes indentation-based paths; Step B classifies each statement; Step C computes
 # Totaling-range paths for the flat statements; Step D picks the right path per posting.
 
@@ -377,8 +367,7 @@ if DataCheck:
 # MARKDOWN ********************
 
 # ## Part 3: Final formatting (ragged fill-down) and write to Delta
-#
-# Mirrors the ENR_AccountSchedule output: the leaf account is placed at the level immediately below its
+# # Mirrors the ENR_AccountSchedule output: the leaf account is placed at the level immediately below its
 # deepest ancestor, `accountScheduleName` is set to `incomeBalance`, then written to Delta.
 
 # CELL ********************

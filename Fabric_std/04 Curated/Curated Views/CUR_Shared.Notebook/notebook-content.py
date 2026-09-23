@@ -17,14 +17,11 @@
 # MARKDOWN ********************
 
 # ## Curated tables for PBI — Shared Dimensions
-#
-# Tables shared across all modules. Always kept on deployment.
+# # Tables shared across all modules. Always kept on deployment.
 # Includes common dimensions such as calendar, company, item, contacts, posting groups, and custom dimensions.
-#
-# These tables replace the old `[pbi].[...]` T-SQL views. The semantic model is
+# # These tables replace the old `[pbi].[...]` T-SQL views. The semantic model is
 # Direct Lake on OneLake, which reads Delta tables directly and cannot read SQL views.
-#
-# **Naming.** Cur is not schema-enabled, so tables land in `dbo` and table names
+# # **Naming.** Cur is not schema-enabled, so tables land in `dbo` and table names
 # cannot contain spaces — `Salesperson Purchaser` becomes `Salesperson_Purchaser`.
 # Column names are kept **verbatim** from the old views, so the semantic model's
 # `sourceColumn` entries are unchanged. Spaces in column names require Delta

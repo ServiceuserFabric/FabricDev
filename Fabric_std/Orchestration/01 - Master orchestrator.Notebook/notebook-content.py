@@ -124,13 +124,9 @@ print(DAG)
 # MARKDOWN ********************
 
 # ## Pick notebooks to run (optional)
-#
 # The cell below renders a checkbox picker grouped by module. It's optional — the notebook runs everything by default.
-#
 # **Everyday full run:** leave this picker cell **frozen** (right-click the cell → *Freeze*). It's skipped, the picker isn't built, and the run cell falls back to a full run of the whole DAG. This is the production default.
-#
 # **Run only certain tables:** **unfreeze** this cell (right-click → *Unfreeze*) and run it. Tick the notebooks you want, then run the next cell — only the ticked notebooks run (in parallel via `runMultiple`), with each one's dependencies pruned to your selection. ⚠️ Make sure the upstream data for your selection already exists, since pruned dependencies won't be rebuilt.
-#
 # **Forgot to freeze?** No problem — an unfrozen picker with nothing ticked still does a full run. The only way to get a partial run is to actively tick boxes.
 
 # CELL ********************

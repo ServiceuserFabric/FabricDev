@@ -17,14 +17,11 @@
 # MARKDOWN ********************
 
 # ## Curated tables for PBI — Finance Module
-#
-# Materialises the Finance curated layer as Delta tables in the **Cur** lakehouse.
+# # Materialises the Finance curated layer as Delta tables in the **Cur** lakehouse.
 # Unnecessary columns are dropped and column names are set to business-friendly names.
-#
-# These tables replace the old `[pbi].[...]` T-SQL views. The semantic model is
+# # These tables replace the old `[pbi].[...]` T-SQL views. The semantic model is
 # Direct Lake on OneLake, which reads Delta tables directly and cannot read SQL views.
-#
-# **Naming.** Cur is not schema-enabled, so tables land in `dbo` and table names
+# # **Naming.** Cur is not schema-enabled, so tables land in `dbo` and table names
 # cannot contain spaces — `Finance Transactions` becomes `Finance_Transactions`.
 # Column names are kept **verbatim** from the old views, so the semantic model's
 # `sourceColumn` entries are unchanged. Spaces in column names require Delta
