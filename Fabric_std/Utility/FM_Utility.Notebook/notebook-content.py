@@ -61,7 +61,7 @@ class GlobalParameters:
     #Default Company setup
     #companyName, companyCurrencyCode, companyKey, CompanyCountry
     company_data = [
-        ('Altibox Danmark A/S','DKK','1','DK')
+        ('Altibox A/S Master','DKK','1','DK')
         ]
 
     #records (Technical name(col name) BC,Technical name NAV, wanted business name)
