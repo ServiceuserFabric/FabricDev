@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "Finance Agent"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "15696e97-452c-bd60-44b6-f5c285a3a236"
+  }
+}
