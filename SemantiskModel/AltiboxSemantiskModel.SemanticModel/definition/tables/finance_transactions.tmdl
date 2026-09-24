@@ -4,6 +4,7 @@ table finance_transactions
 
 	column AccountKey
 		dataType: string
+		isHidden
 		lineageTag: 3b324173-3332-4efb-a145-36fed16af9e2
 		sourceLineageTag: AccountKey
 		summarizeBy: none
@@ -13,6 +14,7 @@ table finance_transactions
 
 	column GenBusinessPostingGroupKey
 		dataType: string
+		isHidden
 		lineageTag: 060fce70-c0c8-48b5-b5f8-7b74860787e4
 		sourceLineageTag: GenBusinessPostingGroupKey
 		summarizeBy: none
@@ -22,6 +24,7 @@ table finance_transactions
 
 	column GenProductPostingGroupKey
 		dataType: string
+		isHidden
 		lineageTag: bdd75c02-4ec2-4215-a031-da70a24db071
 		sourceLineageTag: GenProductPostingGroupKey
 		summarizeBy: none
@@ -31,6 +34,7 @@ table finance_transactions
 
 	column ContactKey
 		dataType: string
+		isHidden
 		lineageTag: 5b551fd2-f7d4-4af5-ab6b-39c3c431331a
 		sourceLineageTag: ContactKey
 		summarizeBy: none
@@ -40,6 +44,7 @@ table finance_transactions
 
 	column CompanyKey
 		dataType: string
+		isHidden
 		lineageTag: 0bffa9ea-4abf-400e-8a25-85cb9dfdeb45
 		sourceLineageTag: CompanyKey
 		summarizeBy: none
@@ -49,6 +54,7 @@ table finance_transactions
 
 	column 'Currency Code LCY'
 		dataType: string
+		isHidden
 		lineageTag: efaa716c-083c-4e8b-a487-62566fc4f496
 		sourceLineageTag: Currency Code LCY
 		summarizeBy: none
@@ -58,6 +64,8 @@ table finance_transactions
 
 	column 'Finance Amount LCY'
 		dataType: double
+		isHidden
+		formatString: #,0
 		lineageTag: 3a98595f-65ae-4bf2-b48c-12cf482dd5f1
 		sourceLineageTag: Finance Amount LCY
 		summarizeBy: sum
@@ -65,10 +73,11 @@ table finance_transactions
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Finance Amount GCY'
 		dataType: double
+		isHidden
+		formatString: #,0
 		lineageTag: 01b2cf5c-2d14-4506-a54e-a8229ae0eccb
 		sourceLineageTag: Finance Amount GCY
 		summarizeBy: sum
@@ -76,7 +85,6 @@ table finance_transactions
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Finance Description'
 		dataType: string
@@ -107,7 +115,7 @@ table finance_transactions
 
 	column 'Document Date'
 		dataType: dateTime
-		formatString: General Date
+		formatString: Long Date
 		lineageTag: 887cc9ce-58c5-4b13-a30d-f0ed26ac6b49
 		sourceLineageTag: Document Date
 		summarizeBy: none
@@ -117,7 +125,8 @@ table finance_transactions
 
 	column PostingDateKey
 		dataType: dateTime
-		formatString: General Date
+		isHidden
+		formatString: Long Date
 		lineageTag: 34bb61aa-1730-4a69-98cd-12dc87b71adb
 		sourceLineageTag: PostingDateKey
 		summarizeBy: none
@@ -154,6 +163,7 @@ table finance_transactions
 
 	column 'Data Source System'
 		dataType: string
+		isHidden
 		lineageTag: 4cb80555-57e6-4bc6-97fd-a1ca1ccd752f
 		sourceLineageTag: Data Source System
 		summarizeBy: none
@@ -163,6 +173,7 @@ table finance_transactions
 
 	column dse_AfdelingKey
 		dataType: string
+		isHidden
 		lineageTag: ed6f6dd5-c3e0-495c-9fb7-b36fee999bf7
 		sourceLineageTag: dse_AfdelingKey
 		summarizeBy: none
@@ -172,6 +183,7 @@ table finance_transactions
 
 	column dse_CustomerContractKey
 		dataType: string
+		isHidden
 		lineageTag: 18941665-4919-466e-bc53-4ed248bf5c35
 		sourceLineageTag: dse_CustomerContractKey
 		summarizeBy: none
@@ -181,6 +193,7 @@ table finance_transactions
 
 	column dse_NetProviderKey
 		dataType: string
+		isHidden
 		lineageTag: 22f4355a-b3c5-4c34-85b6-dfd23239bfe7
 		sourceLineageTag: dse_NetProviderKey
 		summarizeBy: none

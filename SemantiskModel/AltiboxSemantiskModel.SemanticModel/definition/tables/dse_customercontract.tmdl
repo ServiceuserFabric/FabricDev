@@ -22,6 +22,7 @@ table dse_customercontract
 
 	column dse_CustomerContractKey
 		dataType: string
+		isHidden
 		lineageTag: 67c27d74-3472-46e5-a409-b11efc73586f
 		sourceLineageTag: dse_CustomerContractKey
 		summarizeBy: none

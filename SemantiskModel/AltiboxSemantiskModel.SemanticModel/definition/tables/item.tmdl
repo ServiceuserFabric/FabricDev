@@ -91,6 +91,7 @@ table item
 
 	column ItemKey
 		dataType: string
+		isHidden
 		lineageTag: e08e48db-44ba-402f-85df-616fe21b13b7
 		sourceLineageTag: ItemKey
 		summarizeBy: none

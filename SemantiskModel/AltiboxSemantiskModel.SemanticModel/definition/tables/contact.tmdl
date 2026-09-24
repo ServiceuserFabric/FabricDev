@@ -103,6 +103,7 @@ table contact
 
 	column ContactKey
 		dataType: string
+		isHidden
 		lineageTag: ac121d7b-00a2-4ec7-9a67-35509d1a7c3c
 		sourceLineageTag: ContactKey
 		summarizeBy: none

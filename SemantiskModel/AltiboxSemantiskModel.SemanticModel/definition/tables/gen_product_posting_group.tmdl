@@ -4,6 +4,7 @@ table gen_product_posting_group
 
 	column GenProductPostingGroupKey
 		dataType: string
+		isHidden
 		lineageTag: 32ef0bfb-9c59-4c7e-ac9a-f587000467be
 		sourceLineageTag: GenProductPostingGroupKey
 		summarizeBy: none

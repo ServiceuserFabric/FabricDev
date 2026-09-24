@@ -4,6 +4,7 @@ table finance_budgets
 
 	column AccountKey
 		dataType: string
+		isHidden
 		lineageTag: 8df49adb-812d-4235-8476-ac3d75304ad1
 		sourceLineageTag: AccountKey
 		summarizeBy: none
@@ -13,7 +14,7 @@ table finance_budgets
 
 	column Date
 		dataType: dateTime
-		formatString: General Date
+		formatString: Long Date
 		lineageTag: 278eee9b-50b6-4f0f-8cf2-e42f98e47f11
 		sourceLineageTag: Date
 		summarizeBy: none
@@ -50,6 +51,8 @@ table finance_budgets
 
 	column 'Budget Amount'
 		dataType: double
+		isHidden
+		formatString: #,0
 		lineageTag: fa21d29c-6e2d-4f49-a3e4-18db3d1051bb
 		sourceLineageTag: Budget Amount
 		summarizeBy: sum
@@ -57,10 +60,11 @@ table finance_budgets
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Budget Amount GCY'
 		dataType: double
+		isHidden
+		formatString: #,0
 		lineageTag: 519762e6-9cd1-428b-8e08-eed87a36c033
 		sourceLineageTag: Budget Amount GCY
 		summarizeBy: sum
@@ -68,10 +72,10 @@ table finance_budgets
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column CompanyKey
 		dataType: string
+		isHidden
 		lineageTag: c46526f2-a127-43ed-9b44-4997a78563b5
 		sourceLineageTag: CompanyKey
 		summarizeBy: none
@@ -81,6 +85,7 @@ table finance_budgets
 
 	column dse_AfdelingKey
 		dataType: string
+		isHidden
 		lineageTag: 76b7a7f7-772c-49e9-8ce6-7fb22dcff1e6
 		sourceLineageTag: dse_AfdelingKey
 		summarizeBy: none
@@ -90,6 +95,7 @@ table finance_budgets
 
 	column dse_CustomerContractKey
 		dataType: string
+		isHidden
 		lineageTag: 04dc6252-31d8-4a29-910f-82fbfc710fe8
 		sourceLineageTag: dse_CustomerContractKey
 		summarizeBy: none
@@ -99,6 +105,7 @@ table finance_budgets
 
 	column dse_NetProviderKey
 		dataType: string
+		isHidden
 		lineageTag: 9aad6a23-976d-46f9-838f-b200309b7ce8
 		sourceLineageTag: dse_NetProviderKey
 		summarizeBy: none

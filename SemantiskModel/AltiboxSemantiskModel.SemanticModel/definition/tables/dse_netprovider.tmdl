@@ -22,6 +22,7 @@ table dse_netprovider
 
 	column dse_NetProviderKey
 		dataType: string
+		isHidden
 		lineageTag: 491262a3-1d66-46db-946a-3a5798297f83
 		sourceLineageTag: dse_NetProviderKey
 		summarizeBy: none

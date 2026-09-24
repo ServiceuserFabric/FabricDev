@@ -4,6 +4,7 @@ table gen_business_posting_group
 
 	column GenBusinessPostingGroupKey
 		dataType: string
+		isHidden
 		lineageTag: ee8460f2-d256-4d3b-bef6-6c0b3ffa2f4e
 		sourceLineageTag: GenBusinessPostingGroupKey
 		summarizeBy: none

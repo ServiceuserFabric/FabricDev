@@ -22,6 +22,7 @@ table dse_afdeling
 
 	column dse_AfdelingKey
 		dataType: string
+		isHidden
 		lineageTag: 39c4f14e-f25f-4c5f-9cfd-5ec378e85a5b
 		sourceLineageTag: dse_AfdelingKey
 		summarizeBy: none
