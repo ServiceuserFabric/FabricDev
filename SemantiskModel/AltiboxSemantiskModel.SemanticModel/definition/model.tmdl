@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid"]
+annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid","DirectLake - Cur"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -73,4 +73,16 @@ ref table 'dbo agents'
 ref table Agent_events_pause_durations
 ref table Agent_events_signed_in_sessions
 ref table vw_enqreg_total
+ref table finance_transactions
+ref table contact
+ref table dse_afdeling
+ref table dse_customercontract
+ref table company
+ref table item
+ref table dse_netprovider
+ref table gen_business_posting_group
+ref table account
+ref table gen_product_posting_group
+ref table finance_budgets
+ref table account_schedule
 

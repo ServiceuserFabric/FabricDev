@@ -1,0 +1,245 @@
+table account_schedule
+	lineageTag: 3137a409-602c-4bab-a7ab-00d971eab4b7
+	sourceLineageTag: [dbo].[account_schedule]
+
+	column AccountScheduleKey
+		dataType: string
+		lineageTag: e2420789-bc52-4f17-b3d9-631a03a8c67d
+		sourceLineageTag: AccountScheduleKey
+		summarizeBy: none
+		sourceColumn: AccountScheduleKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number'
+		dataType: string
+		lineageTag: 70cf97fb-c849-4f50-a7d6-5d8caf7ce078
+		sourceLineageTag: Account Number
+		summarizeBy: none
+		sourceColumn: Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule Name'
+		dataType: string
+		lineageTag: 780ca1af-8fcf-4c60-89d2-5182861f6ff7
+		sourceLineageTag: Account Schedule Name
+		summarizeBy: none
+		sourceColumn: Account Schedule Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level1Key
+		dataType: string
+		lineageTag: 0c0d1c4a-ab23-4a74-ac7d-ea5fb3591d08
+		sourceLineageTag: Level1Key
+		summarizeBy: none
+		sourceColumn: Level1Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level2Key
+		dataType: string
+		lineageTag: 7a7d5000-fb58-46d4-b482-5b8cd4a70216
+		sourceLineageTag: Level2Key
+		summarizeBy: none
+		sourceColumn: Level2Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level3Key
+		dataType: string
+		lineageTag: c6749996-aa33-44bb-9024-46560c823a7a
+		sourceLineageTag: Level3Key
+		summarizeBy: none
+		sourceColumn: Level3Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level4Key
+		dataType: string
+		lineageTag: cf9b0869-80cf-4e8b-ac03-88f0ee8a4e2f
+		sourceLineageTag: Level4Key
+		summarizeBy: none
+		sourceColumn: Level4Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level5Key
+		dataType: string
+		lineageTag: 9780a223-4aac-45aa-91ad-418bd0c0da1a
+		sourceLineageTag: Level5Key
+		summarizeBy: none
+		sourceColumn: Level5Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level6Key
+		dataType: string
+		lineageTag: bbaa0406-f9d5-44a2-ad88-3aacd5271d0e
+		sourceLineageTag: Level6Key
+		summarizeBy: none
+		sourceColumn: Level6Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level7Key
+		dataType: string
+		lineageTag: 172c798b-0238-45d3-8abd-5740ad22ba52
+		sourceLineageTag: Level7Key
+		summarizeBy: none
+		sourceColumn: Level7Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level8Key
+		dataType: string
+		lineageTag: 24b5aa9e-78ab-4286-8409-7ec686f7ce51
+		sourceLineageTag: Level8Key
+		summarizeBy: none
+		sourceColumn: Level8Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level9Key
+		dataType: string
+		lineageTag: 7e954cd6-1c4f-4c82-b984-70e271db7687
+		sourceLineageTag: Level9Key
+		summarizeBy: none
+		sourceColumn: Level9Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level10Key
+		dataType: string
+		lineageTag: 3e6d9966-ec75-4136-ba6f-8c19b0addd4f
+		sourceLineageTag: Level10Key
+		summarizeBy: none
+		sourceColumn: Level10Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 1'
+		dataType: string
+		lineageTag: dea8648f-bcab-4a52-9f94-453f137eba69
+		sourceLineageTag: Account Schedule - Level 1
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 2'
+		dataType: string
+		lineageTag: 468a8f7d-8480-47d0-a897-1c2fe23b0a1a
+		sourceLineageTag: Account Schedule - Level 2
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 3'
+		dataType: string
+		lineageTag: 549ff74c-26e6-4cb4-aa5a-c8cd17aedeae
+		sourceLineageTag: Account Schedule - Level 3
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 4'
+		dataType: string
+		lineageTag: 9cef3535-7cf0-40bc-940c-5394f10e3362
+		sourceLineageTag: Account Schedule - Level 4
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 5'
+		dataType: string
+		lineageTag: efb09091-0de1-4b53-9eb2-e884f662604b
+		sourceLineageTag: Account Schedule - Level 5
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 6'
+		dataType: string
+		lineageTag: cc8cefe7-db6f-4bad-88d2-9ba8e17605da
+		sourceLineageTag: Account Schedule - Level 6
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 6
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 7'
+		dataType: string
+		lineageTag: 0e80626b-b8f1-4d85-9b0f-c5930c628a2c
+		sourceLineageTag: Account Schedule - Level 7
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 8'
+		dataType: string
+		lineageTag: c7107720-42ad-48ed-9cbc-3690e7fa9343
+		sourceLineageTag: Account Schedule - Level 8
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 8
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 9'
+		dataType: string
+		lineageTag: 5c4814e3-dd98-49cc-a4d5-721c00c9e01d
+		sourceLineageTag: Account Schedule - Level 9
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 9
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Schedule - Level 10'
+		dataType: string
+		lineageTag: bc7a045d-1b61-4369-8ba9-f9f0083d6150
+		sourceLineageTag: Account Schedule - Level 10
+		summarizeBy: none
+		sourceColumn: Account Schedule - Level 10
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a6041d64-a8ed-46d1-ac22-60f2a1ae83aa
+		sourceLineageTag: row_id
+		summarizeBy: sum
+		sourceColumn: row_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: 63330c2f-cb7c-45be-98c9-3811b0b6e5de
+		sourceLineageTag: Account Name
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Statement Type'
+		dataType: string
+		lineageTag: 3f46ffc8-b203-445f-86d3-8af8a1cf7791
+		sourceLineageTag: Account Statement Type
+		summarizeBy: none
+		sourceColumn: Account Statement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition account_schedule = entity
+		mode: directLake
+		source
+			entityName: account_schedule
+			expressionSource: 'DirectLake - Cur'
+

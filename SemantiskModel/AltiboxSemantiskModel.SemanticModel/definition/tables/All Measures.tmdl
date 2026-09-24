@@ -719,7 +719,7 @@ table 'All Measures'
 
 		changedProperty = FormatString
 
-	/// Måltallet beregner antal nysalg 
+	/// Måltallet beregner antal nysalg
 	measure 'Antal Nysalg Nye Kunder Comparison' = ```
 			
 			-- Virker med Month Compare Filter

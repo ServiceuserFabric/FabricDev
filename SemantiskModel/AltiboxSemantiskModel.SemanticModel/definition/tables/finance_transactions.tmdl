@@ -1,0 +1,196 @@
+table finance_transactions
+	lineageTag: 61749b1d-b617-4075-8544-e5eab049be6b
+	sourceLineageTag: [dbo].[finance_transactions]
+
+	column AccountKey
+		dataType: string
+		lineageTag: 3b324173-3332-4efb-a145-36fed16af9e2
+		sourceLineageTag: AccountKey
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenBusinessPostingGroupKey
+		dataType: string
+		lineageTag: 060fce70-c0c8-48b5-b5f8-7b74860787e4
+		sourceLineageTag: GenBusinessPostingGroupKey
+		summarizeBy: none
+		sourceColumn: GenBusinessPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenProductPostingGroupKey
+		dataType: string
+		lineageTag: bdd75c02-4ec2-4215-a031-da70a24db071
+		sourceLineageTag: GenProductPostingGroupKey
+		summarizeBy: none
+		sourceColumn: GenProductPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactKey
+		dataType: string
+		lineageTag: 5b551fd2-f7d4-4af5-ab6b-39c3c431331a
+		sourceLineageTag: ContactKey
+		summarizeBy: none
+		sourceColumn: ContactKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyKey
+		dataType: string
+		lineageTag: 0bffa9ea-4abf-400e-8a25-85cb9dfdeb45
+		sourceLineageTag: CompanyKey
+		summarizeBy: none
+		sourceColumn: CompanyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Code LCY'
+		dataType: string
+		lineageTag: efaa716c-083c-4e8b-a487-62566fc4f496
+		sourceLineageTag: Currency Code LCY
+		summarizeBy: none
+		sourceColumn: Currency Code LCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Amount LCY'
+		dataType: double
+		lineageTag: 3a98595f-65ae-4bf2-b48c-12cf482dd5f1
+		sourceLineageTag: Finance Amount LCY
+		summarizeBy: sum
+		sourceColumn: Finance Amount LCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Finance Amount GCY'
+		dataType: double
+		lineageTag: 01b2cf5c-2d14-4506-a54e-a8229ae0eccb
+		sourceLineageTag: Finance Amount GCY
+		summarizeBy: sum
+		sourceColumn: Finance Amount GCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Finance Description'
+		dataType: string
+		lineageTag: f1cc2367-48bb-4fda-aff2-f7e533e38b27
+		sourceLineageTag: Finance Description
+		summarizeBy: none
+		sourceColumn: Finance Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Document Number'
+		dataType: string
+		lineageTag: 69a21120-a920-4a66-867f-577f4ca54d82
+		sourceLineageTag: Finance Document Number
+		summarizeBy: none
+		sourceColumn: Finance Document Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Document Type'
+		dataType: string
+		lineageTag: 94d07252-8ab3-40e7-a857-c2d80e69418f
+		sourceLineageTag: Finance Document Type
+		summarizeBy: none
+		sourceColumn: Finance Document Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 887cc9ce-58c5-4b13-a30d-f0ed26ac6b49
+		sourceLineageTag: Document Date
+		summarizeBy: none
+		sourceColumn: Document Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostingDateKey
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 34bb61aa-1730-4a69-98cd-12dc87b71adb
+		sourceLineageTag: PostingDateKey
+		summarizeBy: none
+		sourceColumn: PostingDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Number'
+		dataType: string
+		lineageTag: 13652109-eece-442c-b103-0ff622018deb
+		sourceLineageTag: Finance Source Number
+		summarizeBy: none
+		sourceColumn: Finance Source Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Type'
+		dataType: string
+		lineageTag: b9059375-134c-4492-b6cb-e1c2efd52ae3
+		sourceLineageTag: Finance Source Type
+		summarizeBy: none
+		sourceColumn: Finance Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Code'
+		dataType: string
+		lineageTag: 2e323a7a-2fec-4b5c-95c9-aa9797994951
+		sourceLineageTag: Finance Source Code
+		summarizeBy: none
+		sourceColumn: Finance Source Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source System'
+		dataType: string
+		lineageTag: 4cb80555-57e6-4bc6-97fd-a1ca1ccd752f
+		sourceLineageTag: Data Source System
+		summarizeBy: none
+		sourceColumn: Data Source System
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_AfdelingKey
+		dataType: string
+		lineageTag: ed6f6dd5-c3e0-495c-9fb7-b36fee999bf7
+		sourceLineageTag: dse_AfdelingKey
+		summarizeBy: none
+		sourceColumn: dse_AfdelingKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_CustomerContractKey
+		dataType: string
+		lineageTag: 18941665-4919-466e-bc53-4ed248bf5c35
+		sourceLineageTag: dse_CustomerContractKey
+		summarizeBy: none
+		sourceColumn: dse_CustomerContractKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_NetProviderKey
+		dataType: string
+		lineageTag: 22f4355a-b3c5-4c34-85b6-dfd23239bfe7
+		sourceLineageTag: dse_NetProviderKey
+		summarizeBy: none
+		sourceColumn: dse_NetProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition finance_transactions = entity
+		mode: directLake
+		source
+			entityName: finance_transactions
+			expressionSource: 'DirectLake - Cur'
+

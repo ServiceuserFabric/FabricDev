@@ -7,7 +7,7 @@ expression 'DirectLake - Golden_lakehouse' =
 
 	annotation PBI_IncludeFutureArtifacts = False
 
-	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[ProductHistory]"}},"objectType":"Table"}]
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[ProductHistory]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[Budget]"}},"objectType":"Table"}]
 
 expression 'DirectLake - AltiboxMetadata' =
 		let
@@ -18,7 +18,7 @@ expression 'DirectLake - AltiboxMetadata' =
 
 	annotation PBI_IncludeFutureArtifacts = False
 
-	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[puz].[agent_events]"}},"objectType":"Table"}]
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[puz].[agent_events]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[CustomerStatusHistory]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[puz].[Puzzel_FCR]"}},"objectType":"Table"}]
 
 expression 'DirectLake - Puzzel_Altibox' =
 		let
@@ -48,4 +48,15 @@ expression 'DirectLake - GoogleAnalytics_Altibox' =
 	lineageTag: 7b662990-82e1-47f9-afa8-419d33fbdceb
 
 	annotation PBI_IncludeFutureArtifacts = False
+
+expression 'DirectLake - Cur' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/3a25df0d-986f-45a8-9140-8e9d88526e86/bc03b80f-8588-4631-9b48-153ce4edb6ef", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: d63dfe91-b580-4087-8b96-8145a730e720
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[customer]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[calendar]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[salesperson_purchaser]"}},"objectType":"Table"}]
 
