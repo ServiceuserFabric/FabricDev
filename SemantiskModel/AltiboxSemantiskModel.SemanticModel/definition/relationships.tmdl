@@ -335,3 +335,68 @@ relationship 80dc8488-f077-5162-c819-09cb5e551097
 	fromColumn: vw_enqreg_total.dte_start_date
 	toColumn: 'Calendar Comparison'.Date
 
+relationship e0c6b475-b5c7-4ff9-9b39-319344f64216
+	fromColumn: finance_transactions.AccountKey
+	toColumn: account.AccountKey
+
+relationship 216f39f2-cd61-4f60-94eb-0ecbd3bb9659
+	fromColumn: finance_transactions.ContactKey
+	toColumn: contact.ContactKey
+
+relationship 5ecfdc7d-8797-4537-97c2-88917bf8bc03
+	fromColumn: finance_transactions.CompanyKey
+	toColumn: company.CompanyKey
+
+relationship 86fdb556-c6d6-4a29-a4fe-a841417e3842
+	fromColumn: finance_transactions.GenBusinessPostingGroupKey
+	toColumn: gen_business_posting_group.GenBusinessPostingGroupKey
+
+relationship e792a930-8962-479d-9c98-3de868b64cec
+	fromColumn: finance_transactions.GenProductPostingGroupKey
+	toColumn: gen_product_posting_group.GenProductPostingGroupKey
+
+relationship 13050577-141a-478d-bea3-e61822aa3f90
+	fromColumn: finance_transactions.dse_AfdelingKey
+	toColumn: dse_afdeling.dse_AfdelingKey
+
+relationship c9151293-f588-4f77-936c-07c9acf759c1
+	fromColumn: finance_transactions.dse_CustomerContractKey
+	toColumn: dse_customercontract.dse_CustomerContractKey
+
+relationship 5a476051-ab60-4b90-ab93-1256da7a3a30
+	fromColumn: finance_transactions.dse_NetProviderKey
+	toColumn: dse_netprovider.dse_NetProviderKey
+
+relationship 51ef2969-2199-4884-aabc-e1fe2efb2566
+	fromColumn: finance_transactions.PostingDateKey
+	toColumn: Calendar.Date
+
+relationship 0ccdf117-5591-41c8-8961-efb6f40e6651
+	fromColumn: finance_budgets.AccountKey
+	toColumn: account.AccountKey
+
+relationship 580501f1-0e8e-4416-b166-7623b53d4388
+	fromColumn: finance_budgets.CompanyKey
+	toColumn: company.CompanyKey
+
+relationship 09c122a3-ff49-410b-81de-2912a027418f
+	fromColumn: finance_budgets.dse_AfdelingKey
+	toColumn: dse_afdeling.dse_AfdelingKey
+
+relationship 174a3c3f-e44c-4a5b-96f4-6682534fe3a2
+	fromColumn: finance_budgets.dse_CustomerContractKey
+	toColumn: dse_customercontract.dse_CustomerContractKey
+
+relationship a1abc1ca-7e1c-49ef-ac4a-9d271db96fb6
+	fromColumn: finance_budgets.dse_NetProviderKey
+	toColumn: dse_netprovider.dse_NetProviderKey
+
+relationship d530a317-f1ce-4cce-97bc-9031178846f3
+	fromColumn: finance_budgets.Date
+	toColumn: Calendar.Date
+
+relationship a5b96989-07cc-4b6d-ad6a-009ea53b8ea3
+	toCardinality: many
+	fromColumn: account.AccountScheduleKey
+	toColumn: account_schedule.AccountScheduleKey
+

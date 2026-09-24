@@ -1,0 +1,56 @@
+table dse_netprovider
+	lineageTag: 1688f42d-9e45-44c2-8484-3702af7d92f6
+	sourceLineageTag: [dbo].[dse_netprovider]
+
+	column 'NetProvider Code'
+		dataType: string
+		lineageTag: e789fb06-5a8d-4994-95f4-f6899aaf0fb8
+		sourceLineageTag: NetProvider Code
+		summarizeBy: none
+		sourceColumn: NetProvider Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Name'
+		dataType: string
+		lineageTag: 5fbe16f0-f1f4-47e9-96b7-ce51d5857d98
+		sourceLineageTag: NetProvider Name
+		summarizeBy: none
+		sourceColumn: NetProvider Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_NetProviderKey
+		dataType: string
+		isHidden
+		lineageTag: 491262a3-1d66-46db-946a-3a5798297f83
+		sourceLineageTag: dse_NetProviderKey
+		summarizeBy: none
+		sourceColumn: dse_NetProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Code And Name'
+		dataType: string
+		lineageTag: d7531ba6-cd7e-4743-af99-b88009608d6f
+		sourceLineageTag: NetProvider Code And Name
+		summarizeBy: none
+		sourceColumn: NetProvider Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Code And Name Reporting'
+		dataType: string
+		lineageTag: e6444b9f-d1e9-4546-8038-80ff2a72c951
+		sourceLineageTag: NetProvider Code And Name Reporting
+		summarizeBy: none
+		sourceColumn: NetProvider Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_netprovider = entity
+		mode: directLake
+		source
+			entityName: dse_netprovider
+			expressionSource: 'DirectLake - Cur'
+

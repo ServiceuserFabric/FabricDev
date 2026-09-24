@@ -1,0 +1,56 @@
+table dse_afdeling
+	lineageTag: ab00a55b-457d-4226-bc4b-31573a2e3e76
+	sourceLineageTag: [dbo].[dse_afdeling]
+
+	column 'Afdeling Code'
+		dataType: string
+		lineageTag: 9a39f439-02bb-4e37-9a1d-3f66ee668eaa
+		sourceLineageTag: Afdeling Code
+		summarizeBy: none
+		sourceColumn: Afdeling Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Name'
+		dataType: string
+		lineageTag: eb43f48d-0cc1-4030-9c7c-8a7c7dadab0e
+		sourceLineageTag: Afdeling Name
+		summarizeBy: none
+		sourceColumn: Afdeling Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_AfdelingKey
+		dataType: string
+		isHidden
+		lineageTag: 39c4f14e-f25f-4c5f-9cfd-5ec378e85a5b
+		sourceLineageTag: dse_AfdelingKey
+		summarizeBy: none
+		sourceColumn: dse_AfdelingKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Code And Name'
+		dataType: string
+		lineageTag: c9260e6a-f3b1-4cb0-bf10-e61196e9fab1
+		sourceLineageTag: Afdeling Code And Name
+		summarizeBy: none
+		sourceColumn: Afdeling Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Code And Name Reporting'
+		dataType: string
+		lineageTag: 9bfe45c6-b473-4981-a384-00b6ac754d6d
+		sourceLineageTag: Afdeling Code And Name Reporting
+		summarizeBy: none
+		sourceColumn: Afdeling Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_afdeling = entity
+		mode: directLake
+		source
+			entityName: dse_afdeling
+			expressionSource: 'DirectLake - Cur'
+

@@ -1,0 +1,107 @@
+table item
+	lineageTag: 35b8198c-356f-4913-b70f-b52c862610bf
+	sourceLineageTag: [dbo].[item]
+
+	column 'Item Number'
+		dataType: string
+		lineageTag: 48ffd140-ba3f-46cb-9d06-3fb49488a402
+		sourceLineageTag: Item Number
+		summarizeBy: none
+		sourceColumn: Item Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Description'
+		dataType: string
+		lineageTag: a84075fd-7bba-4d9e-8866-69d99f0f26ff
+		sourceLineageTag: Item Description
+		summarizeBy: none
+		sourceColumn: Item Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Description 2'
+		dataType: string
+		lineageTag: 882bdc32-7042-4228-a291-a5c762e62452
+		sourceLineageTag: Item Description 2
+		summarizeBy: none
+		sourceColumn: Item Description 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Inventory Posting Group'
+		dataType: string
+		lineageTag: 79e17cc3-156f-4684-9eac-578789949003
+		sourceLineageTag: Item Inventory Posting Group
+		summarizeBy: none
+		sourceColumn: Item Inventory Posting Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Category Code'
+		dataType: string
+		lineageTag: 0c5441ac-c21e-431b-87fc-aa3a0c4ab12b
+		sourceLineageTag: Item Category Code
+		summarizeBy: none
+		sourceColumn: Item Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Last Direct Cost'
+		dataType: double
+		lineageTag: 8771d006-4283-44db-92a2-ed7d6df77c91
+		sourceLineageTag: Item Last Direct Cost
+		summarizeBy: sum
+		sourceColumn: Item Last Direct Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Unit Cost'
+		dataType: double
+		lineageTag: 38e3afe6-485b-4709-9f87-72ff59c40b1f
+		sourceLineageTag: Item Unit Cost
+		summarizeBy: sum
+		sourceColumn: Item Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Unit Price'
+		dataType: double
+		lineageTag: 5e474f8c-7a25-4835-966d-354e05eeba17
+		sourceLineageTag: Item Unit Price
+		summarizeBy: sum
+		sourceColumn: Item Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Code And Description'
+		dataType: string
+		lineageTag: fe6d999f-df76-4f10-a5b0-8f31bc782859
+		sourceLineageTag: Item Code And Description
+		summarizeBy: none
+		sourceColumn: Item Code And Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemKey
+		dataType: string
+		isHidden
+		lineageTag: e08e48db-44ba-402f-85df-616fe21b13b7
+		sourceLineageTag: ItemKey
+		summarizeBy: none
+		sourceColumn: ItemKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition item = entity
+		mode: directLake
+		source
+			entityName: item
+			expressionSource: 'DirectLake - Cur'
+

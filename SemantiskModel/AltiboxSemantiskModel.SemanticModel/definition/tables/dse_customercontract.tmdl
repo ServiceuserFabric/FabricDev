@@ -1,0 +1,56 @@
+table dse_customercontract
+	lineageTag: 4695af8d-cb67-4ed6-a325-8f14299987aa
+	sourceLineageTag: [dbo].[dse_customercontract]
+
+	column 'CustomerContract Code'
+		dataType: string
+		lineageTag: 4b6352d6-2120-4543-9a65-4159a43ef227
+		sourceLineageTag: CustomerContract Code
+		summarizeBy: none
+		sourceColumn: CustomerContract Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Name'
+		dataType: string
+		lineageTag: 8f50fa36-a1da-4c5e-8d3d-0d24d22a4da3
+		sourceLineageTag: CustomerContract Name
+		summarizeBy: none
+		sourceColumn: CustomerContract Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_CustomerContractKey
+		dataType: string
+		isHidden
+		lineageTag: 67c27d74-3472-46e5-a409-b11efc73586f
+		sourceLineageTag: dse_CustomerContractKey
+		summarizeBy: none
+		sourceColumn: dse_CustomerContractKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Code And Name'
+		dataType: string
+		lineageTag: 09124dd5-ff36-4cfa-b7b7-3d94ce2536b7
+		sourceLineageTag: CustomerContract Code And Name
+		summarizeBy: none
+		sourceColumn: CustomerContract Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Code And Name Reporting'
+		dataType: string
+		lineageTag: 04314202-8640-4e5c-b80f-0a34be70d625
+		sourceLineageTag: CustomerContract Code And Name Reporting
+		summarizeBy: none
+		sourceColumn: CustomerContract Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_customercontract = entity
+		mode: directLake
+		source
+			entityName: dse_customercontract
+			expressionSource: 'DirectLake - Cur'
+

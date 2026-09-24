@@ -1,0 +1,34 @@
+table 'Format Unit'
+	lineageTag: fa0a4201-7964-412c-bf52-e4c5ce9fae6b
+
+	column Format
+		lineageTag: f35a913a-a42c-4a21-ba06-61e8aa4b430b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Format]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisor
+		formatString: 0
+		isHidden
+		lineageTag: 3208b521-ebc3-40ea-88ea-3c207c823bd5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Divisor]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Format Unit' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Format", STRING,
+				    "Divisor", INTEGER,
+				    {
+				        { "Thousands", 1000 },
+				        { "Default ", 0 }
+				    }
+				)
+
+	annotation BC_Module = Shared

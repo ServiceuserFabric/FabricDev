@@ -1,0 +1,35 @@
+table 'Currency Display'
+	lineageTag: 72adfba4-b75d-435d-8563-0d47f1011fe3
+
+	column 'Currency Display'
+		lineageTag: 11201144-d829-46a7-8a8b-0e5aba128c41
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Currency Display]
+		sortByColumn: 'Currency Display Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Display Order'
+		formatString: 0
+		isHidden
+		lineageTag: 448727c3-5ada-4abf-86cd-764d40e0b348
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Currency Display Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Currency Display' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Currency Display", STRING,
+				    "Currency Display Order", INTEGER,
+				    {
+				        { "LCY", 0 },
+				        { "GCY", 1 }
+				    }
+				)
+
+	annotation BC_Module = Shared

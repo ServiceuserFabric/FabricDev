@@ -1,0 +1,94 @@
+table account
+	lineageTag: 161df428-b67b-4fcd-9b38-61732a8d3035
+	sourceLineageTag: [dbo].[account]
+
+	column AccountKey
+		dataType: string
+		isHidden
+		lineageTag: 5c1b12a9-ad53-4aef-a038-0c358caef713
+		sourceLineageTag: AccountKey
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountScheduleKey
+		dataType: string
+		isHidden
+		lineageTag: 8e5e8489-494c-4967-a22e-abf45b090f97
+		sourceLineageTag: AccountScheduleKey
+		summarizeBy: none
+		sourceColumn: AccountScheduleKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number And Name'
+		dataType: string
+		lineageTag: 4e1786e2-2600-49d1-bbbe-83048d9671a2
+		sourceLineageTag: Account Number And Name
+		summarizeBy: none
+		sourceColumn: Account Number And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number'
+		dataType: string
+		lineageTag: c6e399a0-a81a-421d-a8eb-c82fa1576e51
+		sourceLineageTag: Account Number
+		summarizeBy: none
+		sourceColumn: Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: ee8af15c-b1fb-4265-b158-deaee9b2f09d
+		sourceLineageTag: Account Name
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Category'
+		dataType: string
+		lineageTag: 805a01ca-da8a-45ef-9ddc-1c3adbcabb84
+		sourceLineageTag: Account Category
+		summarizeBy: none
+		sourceColumn: Account Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account P&L Sign Switch'
+		dataType: int64
+		formatString: 0
+		lineageTag: 89158364-5289-4c1e-8a0a-7419a2810a90
+		sourceLineageTag: Account P&L Sign Switch
+		summarizeBy: sum
+		sourceColumn: Account P&L Sign Switch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Type'
+		dataType: string
+		lineageTag: 547aa0b6-e79c-445b-a566-0d7d094310e8
+		sourceLineageTag: Account Type
+		summarizeBy: none
+		sourceColumn: Account Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Statement Type'
+		dataType: string
+		lineageTag: 911191e1-ab4d-4261-8ba7-2a1392085903
+		sourceLineageTag: Account Statement Type
+		summarizeBy: none
+		sourceColumn: Account Statement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition account = entity
+		mode: directLake
+		source
+			entityName: account
+			expressionSource: 'DirectLake - Cur'
+

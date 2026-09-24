@@ -1,0 +1,38 @@
+table gen_product_posting_group
+	lineageTag: 3b1f5b81-d9d2-42bd-bd6a-ef7d3905cc36
+	sourceLineageTag: [dbo].[gen_product_posting_group]
+
+	column GenProductPostingGroupKey
+		dataType: string
+		isHidden
+		lineageTag: 32ef0bfb-9c59-4c7e-ac9a-f587000467be
+		sourceLineageTag: GenProductPostingGroupKey
+		summarizeBy: none
+		sourceColumn: GenProductPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Code'
+		dataType: string
+		lineageTag: 1996d8ac-ab7a-447e-aa6a-444af86e9579
+		sourceLineageTag: Gen Product Posting Group Code
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Description'
+		dataType: string
+		lineageTag: 1fcc244f-0dc4-4bd0-a3b8-7b78a0c30481
+		sourceLineageTag: Gen Product Posting Group Description
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gen_product_posting_group = entity
+		mode: directLake
+		source
+			entityName: gen_product_posting_group
+			expressionSource: 'DirectLake - Cur'
+

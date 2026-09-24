@@ -180,6 +180,80 @@ table Calendar
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Dansk månedsforkortelse (Jan, Feb, ..., Maj, ..., Okt). Svarer til BC Accelerator [Month Abbr.]
+	column 'Month Abbr.' =
+			SWITCH (
+			    MONTH ( 'Calendar'[Date] ),
+			    1, "Jan", 2, "Feb", 3, "Mar", 4, "Apr", 5, "Maj", 6, "Jun",
+			    7, "Jul", 8, "Aug", 9, "Sep", 10, "Okt", 11, "Nov", 12, "Dec"
+			)
+		displayFolder: Business Central
+		lineageTag: de413584-cec2-47a6-b53e-867e833cf85e
+		summarizeBy: none
+		sortByColumn: MånedsNr
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Dansk månedsnavn (Januar, Februar, ...). Svarer til BC Accelerator [Month Name]
+	column 'Month Name' =
+			SWITCH (
+			    MONTH ( 'Calendar'[Date] ),
+			    1, "Januar", 2, "Februar", 3, "Marts", 4, "April", 5, "Maj", 6, "Juni",
+			    7, "Juli", 8, "August", 9, "September", 10, "Oktober", 11, "November", 12, "December"
+			)
+		displayFolder: Business Central
+		lineageTag: d6027751-521e-4b2e-9e63-25cb40424021
+		summarizeBy: none
+		sortByColumn: MånedsNr
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Format: 2026-Q3. Svarer til BC Accelerator [Year Quarter Caption]
+	column 'Year Quarter Caption' = YEAR ( 'Calendar'[Date] ) & "-" & 'Calendar'[Kvartal]
+		displayFolder: Business Central
+		lineageTag: c6bc801e-089d-4696-b708-40dc3ed0c70c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE for rapporteringsårets datoer. Rapporteringsperioden er seneste afsluttede måned (måneden før i dag)
+	column 'Current Year' = YEAR ( 'Calendar'[Date] ) = YEAR ( EOMONTH ( TODAY (), -1 ) )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Business Central
+		lineageTag: f47cb6b1-de73-4961-8714-6ba6504a5b31
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE for rapporteringsmåneden (seneste afsluttede måned)
+	column 'Current Month' = EOMONTH ( 'Calendar'[Date], 0 ) = EOMONTH ( TODAY (), -1 )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Business Central
+		lineageTag: 5ba45932-c473-4243-8c5d-ad870be17138
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE for alle datoer til og med udgangen af rapporteringsmåneden
+	column 'Up To Current Month' = 'Calendar'[Date] <= EOMONTH ( TODAY (), -1 )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Business Central
+		lineageTag: f01c2b5b-b3f3-4a3f-ab60-1dd51f608593
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE for de 12 måneder til og med rapporteringsmåneden
+	column 'Last 12 Months' =
+			'Calendar'[Date] > EOMONTH ( TODAY (), -13 )
+			    && 'Calendar'[Date] <= EOMONTH ( TODAY (), -1 )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Business Central
+		lineageTag: ecee2fea-8461-4577-8050-e5ba7391d63d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	hierarchy ÅMD
 		lineageTag: f32776c6-9f29-4780-b2ac-7e62fcc3065c
 
