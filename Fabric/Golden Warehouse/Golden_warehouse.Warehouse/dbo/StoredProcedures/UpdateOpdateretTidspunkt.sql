@@ -34,3 +34,5 @@ BEGIN
         Tidspunkt = CAST(@CopenhagenNow AS TIME)
     WHERE Entitet = @Entitet;
 END
+
+GO

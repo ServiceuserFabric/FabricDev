@@ -25,3 +25,5 @@ BEGIN
       SET @Insertdate = DATEADD(DAY,1,@Insertdate)
 END
 END
+
+GO

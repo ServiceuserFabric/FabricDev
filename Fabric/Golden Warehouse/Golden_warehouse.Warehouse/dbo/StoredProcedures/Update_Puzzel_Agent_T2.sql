@@ -64,3 +64,5 @@ WHERE LastVersion = 1
   )
 
 END
+
+GO

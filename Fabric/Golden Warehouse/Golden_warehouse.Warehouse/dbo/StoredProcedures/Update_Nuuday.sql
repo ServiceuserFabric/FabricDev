@@ -38,3 +38,5 @@ BEGIN
   FROM [NuudayMobil].[dbo].[AltiboxMobil_Nuuday]
 
 END
+
+GO

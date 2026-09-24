@@ -116,7 +116,7 @@ if not df.isEmpty():
 
 
     # Hent all_data_cust_prod fra databasen
-    all_data_cust_prod = spark.sql("SELECT * FROM Bronze_lakehouse.all_data_cust_prod WHERE accounts_id IS NOT NULL")
+    all_data_cust_prod = spark.sql("SELECT * FROM Bronze_lakehouse.all_data_cust_prod WHERE accountKey IS NOT NULL")
 
     # Flad ud DataFrame (antag, at du har en funktion flatten_df)
     df_expanded = flatten_df(df)

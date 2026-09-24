@@ -1,17 +1,19 @@
 CREATE TABLE [puz].[Agent_events_pause_durations] (
-
-	[agent_id] bigint NULL, 
-	[rec_id_pause_start] bigint NULL, 
-	[dte_start] datetime2(0) NULL, 
-	[dte_end] datetime2(0) NULL, 
-	[profile] varchar(200) NULL, 
-	[event_type_pause_start] char(1) NULL, 
-	[event_type_pause_end] char(1) NULL, 
-	[duration_seconds] bigint NULL, 
-	[event_date] date NULL, 
-	[dte_start_date] date NULL, 
-	[dte_start_time] time(0) NULL, 
-	[dte_start_hour] int NULL, 
-	[dte_start_minute] int NULL, 
-	[dte_start_index] int NULL
+    [agent_id]               BIGINT        NULL,
+    [rec_id_pause_start]     BIGINT        NULL,
+    [dte_start]              DATETIME2 (0) NULL,
+    [dte_end]                DATETIME2 (0) NULL,
+    [profile]                VARCHAR (200) NULL,
+    [event_type_pause_start] CHAR (1)      NULL,
+    [event_type_pause_end]   CHAR (1)      NULL,
+    [duration_seconds]       BIGINT        NULL,
+    [event_date]             DATE          NULL,
+    [dte_start_date]         DATE          NULL,
+    [dte_start_time]         TIME (0)      NULL,
+    [dte_start_hour]         INT           NULL,
+    [dte_start_minute]       INT           NULL,
+    [dte_start_index]        INT           NULL
 );
+
+
+GO

@@ -230,3 +230,5 @@ WHERE LastVersion = 1
     WHERE startDate <= GETDATE() AND endDate >= GETDATE() 
 
 END
+
+GO

@@ -20,3 +20,5 @@ BEGIN
           WHERE tgt.internal_iq_session_id = ce.internal_iq_session_id
       );
 END
+
+GO

@@ -27,3 +27,5 @@ BEGIN
     DELETE FROM [Golden_warehouse].puz.Agent_events_signed_in_sessions  WHERE event_date < @S;
     DELETE FROM [Golden_warehouse].puz.Agent_events_pause_durations     WHERE event_date < @S;
 END;
+
+GO

@@ -108,3 +108,5 @@ BEGIN
     DATEPART(hour,s.[dte_start]) * 100 + DATEPART(minute,s.[dte_start]));
 
 END
+
+GO

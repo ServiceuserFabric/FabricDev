@@ -15,3 +15,5 @@ SELECT [Dato]
   FROM [dbo].[Kunde_Status]
 
  END
+
+GO

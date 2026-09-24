@@ -10,3 +10,5 @@ BEGIN
 	SET [WatermarkValue] = @WatermarkValue
 	WHERE ToSchema = @ToSchema AND TableName = @TableName
 END
+
+GO

@@ -15,3 +15,5 @@ BEGIN
 	  FROM [utl].[LoadTables] AS L
 	WHERE L.Active = 1 AND (L.IncFull = 0 OR @FullLoad = 1) AND L.ToSchema = @ToSchema AND LoadFrequency = @LoadFrequency
 END
+
+GO

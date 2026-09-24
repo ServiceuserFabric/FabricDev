@@ -133,3 +133,5 @@ BEGIN
     s.[master_email]);
 
 END
+
+GO

@@ -1,8 +1,10 @@
 CREATE TABLE [puz].[agents_history] (
-
-	[agent_id] int NULL, 
-	[deleted] bit NULL, 
-	[FromDate] date NULL, 
-	[ToDate] date NULL, 
-	[LastVersion] int NULL
+    [agent_id]    INT  NULL,
+    [deleted]     BIT  NULL,
+    [FromDate]    DATE NULL,
+    [ToDate]      DATE NULL,
+    [LastVersion] INT  NULL
 );
+
+
+GO

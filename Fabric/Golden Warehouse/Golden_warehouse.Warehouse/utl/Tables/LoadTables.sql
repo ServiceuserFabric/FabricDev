@@ -1,9 +1,11 @@
 CREATE TABLE [utl].[LoadTables] (
-
-	[TableName] varchar(100) NULL, 
-	[SQLQuery] varchar(max) NULL, 
-	[IncFull] int NULL, 
-	[LoadFrequency] int NULL, 
-	[Active] int NULL, 
-	[ToSchema] varchar(50) NULL
+    [TableName]     VARCHAR (100) NULL,
+    [SQLQuery]      VARCHAR (MAX) NULL,
+    [IncFull]       INT           NULL,
+    [LoadFrequency] INT           NULL,
+    [Active]        INT           NULL,
+    [ToSchema]      VARCHAR (50)  NULL
 );
+
+
+GO

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "Dataflow clean data into silver lakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6daf4086-251e-9e0a-41e6-b6ac415d0285"
+  }
+}

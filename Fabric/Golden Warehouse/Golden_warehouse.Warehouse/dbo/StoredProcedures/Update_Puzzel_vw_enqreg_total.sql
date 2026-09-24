@@ -116,3 +116,5 @@ BEGIN
     CONVERT(date, s.dte_time_stamp));
 
 END
+
+GO
