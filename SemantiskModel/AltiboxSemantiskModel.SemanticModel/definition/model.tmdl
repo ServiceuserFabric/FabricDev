@@ -6,6 +6,17 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
+extendedProperty TabularEditor_ModelDaxPkgSeq = 2
+
+extendedProperty TabularEditor_ModelDaxPkgTable =
+		{
+		  "1": {
+		    "Provider": "https://api.daxlib.org",
+		    "PackageId": "PowerofBI.IBCS",
+		    "Version": "0.4.0"
+		  }
+		}
+
 annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
@@ -73,4 +84,20 @@ ref table 'dbo agents'
 ref table Agent_events_pause_durations
 ref table Agent_events_signed_in_sessions
 ref table vw_enqreg_total
+ref table 'Account Schedule'
+ref table Account
+ref table Company
+ref table Contact
+ref table 'Currency Display'
+ref table 'Delta Toggle'
+ref table 'Finance Budgets'
+ref table 'Finance Transactions'
+ref table 'Format Unit'
+ref table 'Gen Business Posting Group'
+ref table 'Gen Product Posting Group'
+ref table Item
+ref table _Measurelist
+ref table dse_Afdeling
+ref table dse_CustomerContract
+ref table dse_NetProvider
 

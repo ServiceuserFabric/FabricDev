@@ -180,6 +180,41 @@ table Calendar
 
 		annotation SummarizationSetBy = Automatic
 
+	column Year = YEAR(Calendar[Date])
+		formatString: 0
+		lineageTag: a94bba22-a270-4ba2-8a0d-39de3bd6a470
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Month = MONTH(Calendar[Date])
+		formatString: 0
+		lineageTag: 099f1b81-7596-4714-831c-0d5b4112eee3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Abbr.' = SWITCH(MONTH(Calendar[Date]), 1, "Jan", 2, "Feb", 3, "Mar", 4, "Apr", 5, "Maj", 6, "Jun", 7, "Jul", 8, "Aug", 9, "Sep", 10, "Okt", 11, "Nov", 12, "Dec")
+		lineageTag: 661bb8a3-7392-4ac1-8450-07d45ea4bb8a
+		summarizeBy: none
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// BC uses the reporting-period parameter; here the current calendar year
+	column 'Current Year' = YEAR(Calendar[Date]) = YEAR(TODAY())
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 388a7483-4f2f-46de-8b6b-3cc72515dc01
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Caption' = FORMAT(Calendar[Date], "yyyy-MM")
+		lineageTag: adf83bc9-3c82-4e76-8fe1-3a289dc94e38
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	hierarchy ÅMD
 		lineageTag: f32776c6-9f29-4780-b2ac-7e62fcc3065c
 

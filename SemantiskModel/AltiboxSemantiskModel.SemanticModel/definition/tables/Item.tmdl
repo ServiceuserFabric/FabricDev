@@ -1,0 +1,97 @@
+table Item
+	lineageTag: 67cab041-ac65-488b-b1f0-945b9afa2e52
+
+	column 'Item Number'
+		dataType: string
+		lineageTag: adf4f0f4-3669-4229-9b6f-3a58a0c2a833
+		summarizeBy: none
+		sourceColumn: Item Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Description'
+		dataType: string
+		lineageTag: 05dfd290-8adf-412b-8c03-fc13e5b43eda
+		summarizeBy: none
+		sourceColumn: Item Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Description 2'
+		dataType: string
+		lineageTag: 7df6a1cb-3aa2-406b-9e85-aa074570f3ae
+		summarizeBy: none
+		sourceColumn: Item Description 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Inventory Posting Group'
+		dataType: string
+		lineageTag: c541e05c-d155-4832-bdba-f2f015dfb3fb
+		summarizeBy: none
+		sourceColumn: Item Inventory Posting Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Category Code'
+		dataType: string
+		lineageTag: 5c1ddf3b-245c-478a-aa6e-7cd855b0f351
+		summarizeBy: none
+		sourceColumn: Item Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Last Direct Cost'
+		dataType: double
+		lineageTag: 05c21298-26be-4bbe-a540-aa9eb89fc06b
+		summarizeBy: sum
+		sourceColumn: Item Last Direct Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Unit Cost'
+		dataType: double
+		lineageTag: 071434c0-2ead-4029-98b6-3bd859351a4c
+		summarizeBy: sum
+		sourceColumn: Item Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Unit Price'
+		dataType: double
+		lineageTag: fbdccd81-c245-4a67-99b6-22e85cf05ae7
+		summarizeBy: sum
+		sourceColumn: Item Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item Code And Description'
+		dataType: string
+		lineageTag: b7e41571-ab2c-4f41-9b24-718737161424
+		summarizeBy: none
+		sourceColumn: Item Code And Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemKey
+		dataType: string
+		lineageTag: 419476a4-e5f5-4f9d-bc3a-0d5189bc7e0e
+		summarizeBy: none
+		sourceColumn: ItemKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Item = entity
+		mode: directLake
+		source
+			entityName: Item
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Shared
+

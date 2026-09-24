@@ -1,0 +1,192 @@
+table 'Finance Transactions'
+	lineageTag: fe5fd6a5-702b-42bd-9fff-d68334bc916b
+
+	column CompanyKey
+		dataType: string
+		isHidden
+		lineageTag: 1a64006f-d351-42e9-825f-bdd80391721d
+		summarizeBy: none
+		sourceColumn: CompanyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dc94ec51-4365-4125-9235-03779bd987af
+		summarizeBy: none
+		sourceColumn: Document Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AccountKey
+		dataType: string
+		isHidden
+		lineageTag: 1af371e8-c437-493d-a783-69d776713c5c
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenBusinessPostingGroupKey
+		dataType: string
+		isHidden
+		lineageTag: aec64b7b-4550-400a-8df4-6e0530d431f9
+		summarizeBy: none
+		sourceColumn: GenBusinessPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenProductPostingGroupKey
+		dataType: string
+		isHidden
+		lineageTag: 2f1684f5-731d-4a29-a42c-00c1a3a9cd0f
+		summarizeBy: none
+		sourceColumn: GenProductPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactKey
+		dataType: string
+		isHidden
+		lineageTag: b3203534-df14-4239-ac11-da9849b325f3
+		summarizeBy: none
+		sourceColumn: ContactKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Currency Code LCY'
+		dataType: string
+		isHidden
+		lineageTag: 41eca2fb-4d4e-47ed-ac25-70bed4ef16ca
+		summarizeBy: none
+		sourceColumn: Currency Code LCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Amount LCY'
+		dataType: double
+		isHidden
+		lineageTag: 4c255d83-63dc-4db6-aba6-ea860b266340
+		summarizeBy: sum
+		sourceColumn: Finance Amount LCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Finance Amount GCY'
+		dataType: double
+		isHidden
+		lineageTag: ce75bdae-4553-4892-91f1-bc6050f1e88f
+		summarizeBy: sum
+		sourceColumn: Finance Amount GCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Finance Description'
+		dataType: string
+		lineageTag: a2ff5664-ec5c-42fe-b800-4e96a76327e4
+		summarizeBy: none
+		sourceColumn: Finance Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Document Number'
+		dataType: string
+		lineageTag: 738599ab-8ad5-4137-94af-d6951b69151e
+		summarizeBy: none
+		sourceColumn: Finance Document Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Document Type'
+		dataType: string
+		lineageTag: 5e49eeef-56bd-42e9-ad31-6ef2efdeb520
+		summarizeBy: none
+		sourceColumn: Finance Document Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostingDateKey
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 19a2bcf3-ebc4-43ee-aa52-86e87eb511c0
+		summarizeBy: none
+		sourceColumn: PostingDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Number'
+		dataType: string
+		lineageTag: b0a2aba1-cef6-4df9-b2dc-04cdf5c3c24d
+		summarizeBy: none
+		sourceColumn: Finance Source Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Type'
+		dataType: string
+		lineageTag: 93c9b2ab-094e-4d83-898e-6d16a8318742
+		summarizeBy: none
+		sourceColumn: Finance Source Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Source Code'
+		dataType: string
+		lineageTag: 9e0c4e97-1abf-481a-984b-6fdc9fafd89b
+		summarizeBy: none
+		sourceColumn: Finance Source Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Source System'
+		dataType: string
+		isHidden
+		lineageTag: b636b515-8f71-41e2-83fa-5749dd86a6f0
+		summarizeBy: none
+		sourceColumn: Data Source System
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_AfdelingKey
+		dataType: string
+		isHidden
+		lineageTag: 36c4a62f-a1e2-4710-a9f1-af5e857e47e3
+		summarizeBy: none
+		sourceColumn: dse_AfdelingKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_CustomerContractKey
+		dataType: string
+		isHidden
+		lineageTag: 54104bf9-3218-4a08-b6cf-8710a03743c8
+		summarizeBy: none
+		sourceColumn: dse_CustomerContractKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_NetProviderKey
+		dataType: string
+		isHidden
+		lineageTag: 3f08b45a-2592-4b18-9ecb-9fa730b07210
+		summarizeBy: none
+		sourceColumn: dse_NetProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finance Transactions' = entity
+		mode: directLake
+		source
+			entityName: Finance_Transactions
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Finance
+

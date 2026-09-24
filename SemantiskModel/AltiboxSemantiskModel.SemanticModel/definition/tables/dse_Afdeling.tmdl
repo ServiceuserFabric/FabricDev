@@ -1,0 +1,51 @@
+table dse_Afdeling
+	lineageTag: ca32bda0-2e1b-422e-a218-60c5f1f28171
+
+	column 'Afdeling Code'
+		dataType: string
+		lineageTag: e08d825d-e45c-4c5e-8199-27ab266670dc
+		summarizeBy: none
+		sourceColumn: Afdeling Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Name'
+		dataType: string
+		lineageTag: e0f94b26-4f58-441e-9119-26f6e66d1f1f
+		summarizeBy: none
+		sourceColumn: Afdeling Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_AfdelingKey
+		dataType: string
+		lineageTag: b7a5e412-d2d8-4fd7-9a70-fc2429ee97f6
+		summarizeBy: none
+		sourceColumn: dse_AfdelingKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Code And Name'
+		dataType: string
+		lineageTag: e37f5d4e-73b9-4256-8460-cb2ec318fdf2
+		summarizeBy: none
+		sourceColumn: Afdeling Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Afdeling Code And Name Reporting'
+		dataType: string
+		lineageTag: 4492d4a4-35dc-441d-b5a4-999478f9a2f2
+		summarizeBy: none
+		sourceColumn: Afdeling Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_Afdeling = entity
+		mode: directLake
+		source
+			entityName: dse_Afdeling
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = DimensionSetEntry
+

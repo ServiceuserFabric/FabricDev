@@ -1,0 +1,35 @@
+table 'Gen Product Posting Group'
+	lineageTag: 6be7f90a-3f45-4bc3-9117-73b4e51b4499
+
+	column GenProductPostingGroupKey
+		dataType: string
+		lineageTag: 6c2aa584-b7eb-4dd6-baf5-3253f80627ac
+		summarizeBy: none
+		sourceColumn: GenProductPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Code'
+		dataType: string
+		lineageTag: bcb3da03-7c47-4f81-985e-4999cab5ee08
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Description'
+		dataType: string
+		lineageTag: 9b8e6008-efab-42bc-85f1-19a13fddb2fe
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gen Product Posting Group' = entity
+		mode: directLake
+		source
+			entityName: Gen_Product_Posting_Group
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Shared
+

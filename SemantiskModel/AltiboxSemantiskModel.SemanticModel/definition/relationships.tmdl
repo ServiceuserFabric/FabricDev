@@ -335,3 +335,68 @@ relationship 80dc8488-f077-5162-c819-09cb5e551097
 	fromColumn: vw_enqreg_total.dte_start_date
 	toColumn: 'Calendar Comparison'.Date
 
+relationship AutoDetected_45b44340-096d-42c4-97e7-302211cffadb
+	fromColumn: 'Finance Transactions'.AccountKey
+	toColumn: Account.AccountKey
+
+relationship AutoDetected_15d713dc-5ac3-4973-a63f-31ef8f00d45c
+	fromColumn: 'Finance Transactions'.ContactKey
+	toColumn: Contact.ContactKey
+
+relationship 7e8fc244-5f33-0f7a-3563-d80db1d247cf
+	fromColumn: 'Finance Budgets'.AccountKey
+	toColumn: Account.AccountKey
+
+relationship 3972686d-39f3-20ff-6757-67905c030781
+	fromColumn: 'Finance Transactions'.PostingDateKey
+	toColumn: Calendar.Date
+
+relationship efc526f8-ce29-a4b6-36dc-d2275d5eb1b3
+	fromColumn: 'Finance Budgets'.Date
+	toColumn: Calendar.Date
+
+relationship AutoDetected_90468597-cfc9-4ec5-86bb-61cdbbceac91
+	fromColumn: 'Finance Transactions'.CompanyKey
+	toColumn: Company.CompanyKey
+
+relationship 8715f137-79f2-a9dc-6ce6-43d1f64a86aa
+	toCardinality: many
+	fromColumn: Account.AccountScheduleKey
+	toColumn: 'Account Schedule'.AccountScheduleKey
+
+relationship AutoDetected_bd265718-cc2b-48ef-8369-faec538a6ba0
+	fromColumn: 'Finance Budgets'.CompanyKey
+	toColumn: Company.CompanyKey
+
+relationship AutoDetected_192c521b-972d-4639-b01e-9be26b1ac0c7
+	fromColumn: 'Finance Transactions'.GenBusinessPostingGroupKey
+	toColumn: 'Gen Business Posting Group'.GenBusinessPostingGroupKey
+
+relationship AutoDetected_0acdd46a-c466-4bb3-9106-5e34c9f5b99f
+	fromColumn: 'Finance Transactions'.GenProductPostingGroupKey
+	toColumn: 'Gen Product Posting Group'.GenProductPostingGroupKey
+
+relationship AutoDetected_139f55bd-7419-467c-9753-a7792fb0c2a8
+	fromColumn: 'Finance Budgets'.dse_AfdelingKey
+	toColumn: dse_Afdeling.dse_AfdelingKey
+
+relationship AutoDetected_3bf262aa-5fa7-4b26-b623-70ebe308e717
+	fromColumn: 'Finance Transactions'.dse_AfdelingKey
+	toColumn: dse_Afdeling.dse_AfdelingKey
+
+relationship AutoDetected_b9f48469-df85-4293-8c1c-43ee8a4ce178
+	fromColumn: 'Finance Budgets'.dse_CustomerContractKey
+	toColumn: dse_CustomerContract.dse_CustomerContractKey
+
+relationship AutoDetected_8fda2851-ea1c-4ec1-b016-c9c212dc9f41
+	fromColumn: 'Finance Transactions'.dse_CustomerContractKey
+	toColumn: dse_CustomerContract.dse_CustomerContractKey
+
+relationship AutoDetected_bbd95429-6209-4a3f-8b3a-397b2af3f3fc
+	fromColumn: 'Finance Budgets'.dse_NetProviderKey
+	toColumn: dse_NetProvider.dse_NetProviderKey
+
+relationship AutoDetected_a481dc2a-1b81-4157-83cf-1e1d72c0ca81
+	fromColumn: 'Finance Transactions'.dse_NetProviderKey
+	toColumn: dse_NetProvider.dse_NetProviderKey
+

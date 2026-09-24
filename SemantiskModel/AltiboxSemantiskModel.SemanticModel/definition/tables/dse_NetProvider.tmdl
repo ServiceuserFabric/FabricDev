@@ -1,0 +1,51 @@
+table dse_NetProvider
+	lineageTag: 7bc5ee2f-de15-451b-a004-38fee2058c33
+
+	column 'NetProvider Code'
+		dataType: string
+		lineageTag: 40466b07-a05f-46ae-80e4-476b29e2b85a
+		summarizeBy: none
+		sourceColumn: NetProvider Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Name'
+		dataType: string
+		lineageTag: ef2a8c9b-8546-41fb-b132-b73968706987
+		summarizeBy: none
+		sourceColumn: NetProvider Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_NetProviderKey
+		dataType: string
+		lineageTag: b8d779b3-c6c6-443c-a259-47b089676c3d
+		summarizeBy: none
+		sourceColumn: dse_NetProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Code And Name'
+		dataType: string
+		lineageTag: 5c9d1458-07c6-4938-b63e-94797a55dc8c
+		summarizeBy: none
+		sourceColumn: NetProvider Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NetProvider Code And Name Reporting'
+		dataType: string
+		lineageTag: c19d0c0c-22e5-43b6-b547-d4899000dacb
+		summarizeBy: none
+		sourceColumn: NetProvider Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_NetProvider = entity
+		mode: directLake
+		source
+			entityName: dse_NetProvider
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = DimensionSetEntry
+

@@ -1,0 +1,27 @@
+table 'Currency Display'
+	lineageTag: e69e70ae-e963-4367-a23c-93bf828ce550
+
+	column 'Currency Display'
+		lineageTag: 716dc4cb-e240-4d19-a366-5af63718310d
+		isNameInferred
+		sourceColumn: [Currency Display]
+
+	column 'Currency Display Order'
+		lineageTag: 88d7a820-4d9d-4691-8f46-03739d7ca6b2
+		isNameInferred
+		sourceColumn: [Currency Display Order]
+
+	partition 'Currency Display' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Currency Display", STRING,
+				    "Currency Display Order", INTEGER,
+				    {
+				        { "LCY", 0 },
+				        { "GCY", 1 }
+				    }
+				)
+
+	annotation BC_Module = Shared
+

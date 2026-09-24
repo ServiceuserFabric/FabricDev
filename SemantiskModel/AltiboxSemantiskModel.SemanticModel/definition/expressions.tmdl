@@ -49,3 +49,13 @@ expression 'DirectLake - GoogleAnalytics_Altibox' =
 
 	annotation PBI_IncludeFutureArtifacts = False
 
+/// BC Accelerator curated layer (Cur lakehouse)
+expression 'DirectLake - Cur' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/3a25df0d-986f-45a8-9140-8e9d88526e86/bc03b80f-8588-4631-9b48-153ce4edb6ef", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 5e2b7c1d-8a4f-4b6e-9c3d-bc0a11f00002
+
+	annotation PBI_IncludeFutureArtifacts = False
+

@@ -1,0 +1,184 @@
+function 'PowerofBI.IBCS.BarChart.AbsoluteVariance' =
+		(
+		    valueMain: SCALAR VAL,
+		    dataLabel: STRING VAL,
+		    isTotalRow: BOOLEAN VAL,
+		    valueMax: SCALAR VAL,
+		    valueMin: SCALAR VAL,
+		    valueScale: SCALAR VAL,
+		    imageWidth: INT64 VAL,
+		    imageRightPad: INT64 VAL
+		)
+		=>
+		VAR _DEBUG = 0
+		VAR _Rank = 1000000000000 + ROUND ( valueMain + ABS ( valueMin ), 0 )
+		VAR _SVG_Width = IF ( imageWidth > 0, imageWidth, 350 )
+		VAR _ColorGrey  = "#C6C6C6"
+		VAR _ColorRed   = "#C89A9A"
+		VAR _ColorGreen = "#9AC8A6"
+		VAR _Em = 10  // CHANGED TO 10
+		
+		// REDUCED PADDING for larger bars: 100px instead of 150px
+		VAR _SVG_LeftPadding  = 100  // CHANGED FROM 150
+		VAR _SVG_RightPadding = IF ( imageRightPad > 0, imageRightPad, 100 )  // CHANGED FROM 150
+		VAR _SVG_TopPadding   = 2
+		
+		VAR _YPosition = _Em * 0.25 + _SVG_TopPadding
+		VAR _SVG_ColumnWidth = _SVG_Width - _SVG_LeftPadding - _SVG_RightPadding
+		VAR _Scale = DIVIDE( _SVG_ColumnWidth, valueScale )
+		VAR _FontWeight = IF( isTotalRow, "bold", "normal" )
+		
+		VAR _AxisYPosition =
+		    _SVG_LeftPadding +
+		        IF(
+		            valueMin >= 0,
+		            0,
+		            ROUND( DIVIDE( ABS( valueMin ), ABS( valueMin ) + valueMax ) * _SVG_ColumnWidth, 0 )
+		        )
+		
+		VAR _WidthValue = ROUND( ABS( valueMain * _Scale ), 0 )
+		VAR _barColor = IF( valueMain > 0, _ColorGreen, _ColorRed )
+		
+		VAR _X =
+		    SWITCH(
+		        TRUE(),
+		        valueMain >= 0, _AxisYPosition,
+		        valueMain < 0, _AxisYPosition - _WidthValue
+		    )
+		
+		VAR _XText =
+		    SWITCH(
+		        TRUE(),
+		        valueMain >= 0, _AxisYPosition + _WidthValue,
+		        valueMain < 0, _X
+		    )
+		
+		VAR _Anchor =
+		    IF(
+		        isTotalRow,
+		        "middle",
+		        IF( valueMain >= 0, "start", "end" )
+		    )
+		
+		VAR _DX =
+		    SWITCH(
+		        TRUE(),
+		        valueMain >= 0, 5,
+		        valueMain < 0, -5
+		    )
+		
+		VAR _WidthValueFmt    = FORMAT( _WidthValue, "0", "en-US" )
+		VAR _AxisYPositionFmt = FORMAT( _AxisYPosition, "0", "en-US" )
+		VAR _XFmt             = FORMAT( _X, "0", "en-US" )
+		VAR _XTextFmt         = FORMAT( _XText, "0", "en-US" )
+		VAR _DXFmt            = FORMAT( _DX, "0", "en-US" )
+		VAR _StrokeWidthFmt   = FORMAT( _Em * 0.3, "0.00", "en-US" )
+		VAR _YPositionFmt     = FORMAT( _YPosition, "0", "en-US" )
+		VAR _EmFmt            = FORMAT( _Em, "0", "en-US" )
+		
+		VAR _SVG_Header = "data:image/svg+xml;utf8,"
+		VAR _SVG_Open = "<svg xmlns='http://www.w3.org/2000/svg' width='" & _SVG_Width & "' >"
+		VAR _SVG_Style = "<style> text { font-family: 'Segoe UI', wf_segoe-ui_normal, sans-serif; font-size: " & _EmFmt & "px; font-weight: " & _FontWeight & "; dominant-baseline: central; text-anchor: " & _Anchor & "; } </style>"
+		VAR _SVG_Close = "</svg>"
+		VAR _SVG_SortBy = "/*SortBy:" & _Rank & "*/"
+		VAR _SVG_DebugBox = IF(_DEBUG, "<rect id='rect-debug-box' x='0%' y='0%' width='100%' height='100%' fill='#FFFFAA' stroke-width='1' stroke='#FF0000' />", "")
+		VAR _SVG_AxisY = "<line id='line-axis-y' x1='" & _AxisYPositionFmt & "' x2='" & _AxisYPositionFmt & "' y1='0%' y2='100%' stroke='" & _ColorGrey & "' stroke-width='" & _StrokeWidthFmt & "'></line>"
+		VAR _SVG_BarDeltaPY = "<rect id='rect-bar-delta-py' x='" & _XFmt & "' width='" & _WidthValueFmt & "' y='" & _YPositionFmt & "' height='" & _EmFmt & "' fill='" & _barColor & "' stroke='white' stroke-width='0.5'></rect>"
+		VAR _SVG_TextDeltaPYLabel = "<text id='text-delta-py-label' x='" & _XTextFmt & "' dx='" & _DXFmt & "' y='50%'>" & dataLabel & "</text>"
+		VAR _SVG_TextDeltaPYLabelTotal = "<text id='text-delta-py-total-label' x='" & _AxisYPositionFmt & "' dx='0' y='50%'>" & dataLabel & "</text>"
+		VAR _SVG_Total = _SVG_Header & _SVG_Open & _SVG_DebugBox & _SVG_TextDeltaPYLabelTotal & _SVG_Style & _SVG_Close
+		VAR _SVG_Row = _SVG_Header & _SVG_Open & _SVG_SortBy & _SVG_DebugBox & _SVG_AxisY & _SVG_BarDeltaPY & _SVG_TextDeltaPYLabel & _SVG_Style & _SVG_Close
+		VAR _Result = IF( isTotalRow, _SVG_Total, _SVG_Row )
+		RETURN _Result
+	lineageTag: 4dd962a0-db0e-4cb7-8b36-999c99f5719e
+
+function 'PowerofBI.IBCS.BarChart.RelativeVariance' = ```
+		(
+		    valueMain: SCALAR VAL,
+		    dataLabel: STRING VAL,
+		    isTotalRow: BOOLEAN VAL,
+		    imageWidth: INT64 VAL
+		)
+		=>
+		    VAR _DEBUG = 0
+		    VAR _minDelta = 0
+		    VAR _Rank = 1000000000000 + ROUND( valueMain + 100, 0 )
+		    VAR _ValueFix = MIN( 100, valueMain )
+		    VAR _ColorGrey  = "#C6C6C6"
+		    VAR _ColorRed   = "#C89A9A"
+		    VAR _ColorGreen = "#9AC8A6"
+		    VAR _OutlinerTriangle = UNICHAR(9656)
+		    VAR _Em = 10  // CHANGED FROM 10.67 TO 10
+		    VAR _FontWeight = IF( isTotalRow, "bold", "normal" )
+		    VAR _maxValue = 70
+		    VAR _SVG_Width = IF( imageWidth > 0, imageWidth, 350 )
+		    
+		    // Balanced padding
+		    VAR _SVG_LeftPadding  = 150
+		    VAR _SVG_RightPadding = 150  // Back to 150 for better balance
+		    
+		    VAR _SVG_ColumnWidth = _SVG_Width - _SVG_LeftPadding - _SVG_RightPadding
+		    VAR _AxisYPosition = _SVG_LeftPadding + IF(_minDelta >= 0, 0, ROUND(DIVIDE( ABS(_minDelta), _maxValue ) * _SVG_ColumnWidth, 0))
+		    VAR _WidthValue = ROUND(DIVIDE( ABS(_ValueFix), _maxValue ) * _SVG_ColumnWidth, 0)
+		    VAR _barColor = IF( valueMain > 0, _ColorGreen, _ColorRed )
+		    VAR _X = SWITCH(TRUE(), valueMain >= 0, _AxisYPosition, valueMain < 0,  _AxisYPosition - _WidthValue)
+		    VAR _XPinhead = SWITCH(TRUE(), valueMain >= 0, _AxisYPosition + _WidthValue - _Em * 0.4, valueMain < 0, _AxisYPosition - _WidthValue - _Em * 0.3)
+		    VAR _Anchor = IF(isTotalRow, "middle", IF( valueMain >= 0, "start", "end" ))
+		    VAR _DX = SWITCH(TRUE(), valueMain >= 0, IF( valueMain > _ValueFix, _Em * 0.3, _Em * 0.7 ) + 5, valueMain < 0, -5)
+		
+		    VAR _Em_Str = SUBSTITUTE(FORMAT(_Em, "0.00", "en-US"), ".00", "")
+		    VAR _X_Str = SUBSTITUTE(FORMAT(_X, "0.00", "en-US"), ".00", "")
+		    VAR _WidthValue_Str = SUBSTITUTE(FORMAT(_WidthValue, "0.00", "en-US"), ".00", "")
+		    VAR _XPinhead_Str = SUBSTITUTE(FORMAT(_XPinhead, "0.00", "en-US"), ".00", "")
+		    VAR _AxisYPosition_Str = SUBSTITUTE(FORMAT(_AxisYPosition, "0.00", "en-US"), ".00", "")
+		    VAR _DX_Str = SUBSTITUTE(FORMAT(_DX, "0.00", "en-US"), ".00", "")
+		    VAR _EmWidth_Str = SUBSTITUTE(FORMAT(_Em * 0.3, "0.00", "en-US"), ".00", "")
+		    VAR _RectY_Str = SUBSTITUTE(FORMAT(_Em * 0.6 + 2, "0.00", "en-US"), ".00", "")
+		    VAR _RectHeight_Str = SUBSTITUTE(FORMAT(_Em * 0.3, "0.00", "en-US"), ".00", "")
+		    VAR _PinHeadWidth_Str = SUBSTITUTE(FORMAT(_Em * 0.7, "0.00", "en-US"), ".00", "")
+		    VAR _PinHeadY_Str = SUBSTITUTE(FORMAT(_Em * 0.3 + 2, "0.00", "en-US"), ".00", "")
+		    VAR _PinHeadHeight_Str = SUBSTITUTE(FORMAT(_Em * 0.9, "0.00", "en-US"), ".00", "")
+		    VAR _OutlinerX_Str = SUBSTITUTE(FORMAT(_XPinhead + _Em * 0.55 * LEN(dataLabel), "0.00", "en-US"), ".00", "")
+		    VAR _OutlinerY_Str = SUBSTITUTE(FORMAT(_Em * 0.85 + 2, "0.00", "en-US"), ".00", "")
+		
+		    VAR _SVG_Header = "data:image/svg+xml;utf8,"
+		    VAR _SVG_Open = "<svg xmlns='http://www.w3.org/2000/svg' width='" & _SVG_Width & "' >"
+		    VAR _SVG_Style = "<style> text{ font-family: Segoe UI, wf_segoe-ui_normal, sans-serif; font-size: " & _Em_Str & "px; font-weight: " & _FontWeight & "; dominant-baseline: central; text-anchor: " & _Anchor & "; } #markoutlier{ dominant-baseline: middle; } </style>"
+		    VAR _SVG_Close = "</svg>"
+		    VAR _SVG_SortBy = "/*SortBy:" & _Rank & "*/"
+		    VAR _SVG_DebugBox = IF(_DEBUG, "<rect id='rect-debug-box' x='0%' y='0%' width='100%' height='100%' fill='#FFFFAA' stroke-width='1' stroke='#FF0000' />", "")
+		    VAR _SVG_AxisY = "<line id='line-axisy' x1='" & _AxisYPosition_Str & "' x2='" & _AxisYPosition_Str & "' y1='0%' y2='100%' stroke='" & _ColorGrey & "' stroke-width='" & _EmWidth_Str & "'></line>"
+		    VAR _SVG_BarDeltaPY = "<rect id='rect-variancepin' x='" & _X_Str & "' width='" & _WidthValue_Str & "' y='" & _RectY_Str & "' height='" & _RectHeight_Str & "' fill='" & _barColor & "' stroke='white' stroke-width='0.5'></rect>"
+		    VAR _SVG_PinHead = "<rect id='rect-pinhead' x='" & _XPinhead_Str & "' width='" & _PinHeadWidth_Str & "' y='" & _PinHeadY_Str & "' height='" & _PinHeadHeight_Str & "' fill='#404040'></rect>"
+		    VAR _SVG_TextDeltaPYLabel = "<text id='text-label' text-anchor='" & _Anchor & "' x='" & _XPinhead_Str & "' dx='" & _DX_Str & "' y='50%'>" & dataLabel & "</text>"
+		    VAR _SVG_Outliner = "<text id='markoutlier' x='" & _OutlinerX_Str & "' dx='" & _DX_Str & "' fill='" & _barColor & "' y='" & _OutlinerY_Str & "'>" & _OutlinerTriangle & "</text>"
+		    VAR _SVG_PinHeadX = IF(ISBLANK(valueMain), "", IF( valueMain > _ValueFix, _SVG_Outliner, _SVG_PinHead ))
+		    VAR _SVG_TextDeltaPYLabelTotal = "<text id='text-labeltotal' x='" & _AxisYPosition_Str & "' y='50%'>" & dataLabel & "</text>"
+		    VAR _SVG_Total = _SVG_Header & _SVG_Open & _SVG_DebugBox & _SVG_TextDeltaPYLabelTotal & _SVG_Style & _SVG_Close
+		    VAR _SVG_Row = _SVG_Header & _SVG_Open & _SVG_DebugBox & _SVG_SortBy & _SVG_AxisY & _SVG_PinHeadX & _SVG_BarDeltaPY & _SVG_TextDeltaPYLabel & _SVG_Style & _SVG_Close
+		    VAR _Result = IF( isTotalRow, _SVG_Total, _SVG_Row )
+		    RETURN _Result
+		```
+	lineageTag: 3cff8351-00b8-42ec-a044-d800b35579df
+
+function ColorByDeviation = ```
+		
+		(
+		    _Deviation : SCALAR
+		)
+		=>
+		VAR _Green   = "#9AC8A6"
+		VAR _Red     = "#C89A9A"
+		VAR _Neutral = "#000000"
+		
+		RETURN
+		    SWITCH(
+		        TRUE(),
+		        ISBLANK(_Deviation), _Neutral,
+		        _Deviation >= 0,     _Green,
+		        _Red
+		    )
+		
+		```
+	lineageTag: cb5d5ea4-b05c-48a1-9d81-8f7b77a162ab
+

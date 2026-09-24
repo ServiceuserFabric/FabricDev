@@ -1,0 +1,27 @@
+table 'Delta Toggle'
+	lineageTag: e3f7861a-94aa-48f0-9075-680c6f1f05be
+
+	column 'Delta Toggle'
+		lineageTag: 1916c8d2-0980-40de-9c1f-a11508b4e388
+		isNameInferred
+		sourceColumn: [Delta Toggle]
+
+	column 'Delta Toggle Order'
+		lineageTag: 9b1f9933-a911-468f-a28f-a1c404dc026f
+		isNameInferred
+		sourceColumn: [Delta Toggle Order]
+
+	partition 'Delta Toggle' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Delta Toggle", STRING,
+				    "Delta Toggle Order", INTEGER,
+				    {
+				        { "#", 0 },
+				        { "%", 1 }
+				    }
+				)
+
+	annotation BC_Module = Shared
+

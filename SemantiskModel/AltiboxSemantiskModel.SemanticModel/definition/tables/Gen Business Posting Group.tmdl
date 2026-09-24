@@ -1,0 +1,35 @@
+table 'Gen Business Posting Group'
+	lineageTag: 3310510e-e42e-44b9-9a0d-a514a7fc9b6e
+
+	column GenBusinessPostingGroupKey
+		dataType: string
+		lineageTag: 978a53ca-ef94-4037-b7b4-9b369f742b75
+		summarizeBy: none
+		sourceColumn: GenBusinessPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Business Posting Group Code'
+		dataType: string
+		lineageTag: b610ba83-1b0d-48dc-8418-1b88a8e2fdad
+		summarizeBy: none
+		sourceColumn: Gen Business Posting Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Business Posting Group Description'
+		dataType: string
+		lineageTag: ac2c095d-18c5-47e7-bfc9-8e8293d72de9
+		summarizeBy: none
+		sourceColumn: Gen Business Posting Group Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gen Business Posting Group' = entity
+		mode: directLake
+		source
+			entityName: Gen_Business_Posting_Group
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Shared
+

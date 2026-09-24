@@ -1,0 +1,51 @@
+table dse_CustomerContract
+	lineageTag: 3f4f6ea8-0fac-456b-89d9-1a8b571895d5
+
+	column 'CustomerContract Code'
+		dataType: string
+		lineageTag: a919ec23-e403-4adb-9057-4e47543d6499
+		summarizeBy: none
+		sourceColumn: CustomerContract Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Name'
+		dataType: string
+		lineageTag: 3c02846b-a1c2-4727-ab76-f69fae7515f1
+		summarizeBy: none
+		sourceColumn: CustomerContract Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_CustomerContractKey
+		dataType: string
+		lineageTag: 7ecb4716-a6ef-4935-8429-67d8b4caeb58
+		summarizeBy: none
+		sourceColumn: dse_CustomerContractKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Code And Name'
+		dataType: string
+		lineageTag: 9b8059a3-5496-46ac-ae4d-81f30bd3b34d
+		summarizeBy: none
+		sourceColumn: CustomerContract Code And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CustomerContract Code And Name Reporting'
+		dataType: string
+		lineageTag: 3713153e-fca9-463b-99ac-386b9189b530
+		summarizeBy: none
+		sourceColumn: CustomerContract Code And Name Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dse_CustomerContract = entity
+		mode: directLake
+		source
+			entityName: dse_CustomerContract
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = DimensionSetEntry
+

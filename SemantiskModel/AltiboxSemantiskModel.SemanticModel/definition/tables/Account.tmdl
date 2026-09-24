@@ -1,0 +1,86 @@
+table Account
+	lineageTag: a82de5d6-ae15-46f8-9d67-df7a470d2241
+
+	column AccountKey
+		dataType: string
+		isHidden
+		lineageTag: 02680d80-5c72-41b8-94fb-57300bd2058c
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountScheduleKey
+		dataType: string
+		isHidden
+		lineageTag: 31656252-4afe-43a6-9019-f5b2df380684
+		summarizeBy: none
+		sourceColumn: AccountScheduleKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number And Name'
+		dataType: string
+		lineageTag: b8cd36db-3162-4269-bd77-6b837547f459
+		summarizeBy: none
+		sourceColumn: Account Number And Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number'
+		dataType: string
+		lineageTag: 0ae57e45-c2cc-490d-8730-4ffe58921833
+		summarizeBy: none
+		sourceColumn: Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: e07e40ac-a1a2-4e04-bbbd-366ad3ab3165
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Category'
+		dataType: string
+		lineageTag: 26e11527-a326-4a95-82a0-add6e9c6c543
+		summarizeBy: none
+		sourceColumn: Account Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account P&L Sign Switch'
+		dataType: int64
+		formatString: 0
+		lineageTag: d0172924-adfa-4daf-8857-3e2ae9e31088
+		summarizeBy: sum
+		sourceColumn: Account P&L Sign Switch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Type'
+		dataType: string
+		lineageTag: 1db1b8dd-13f1-4293-954b-341fbbab44ef
+		summarizeBy: none
+		sourceColumn: Account Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Statement Type'
+		dataType: string
+		lineageTag: 9d381f26-e09d-4ecf-a66e-95c50fb8c55c
+		summarizeBy: none
+		sourceColumn: Account Statement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Account = entity
+		mode: directLake
+		source
+			entityName: Account
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Finance
+

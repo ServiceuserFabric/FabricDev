@@ -1,0 +1,43 @@
+table Company
+	lineageTag: 6d5c58e8-35e5-4f7f-acd0-883559a2eb25
+
+	column CompanyKey
+		dataType: string
+		lineageTag: 978e9dff-ea19-481a-b667-4b0504c2a512
+		summarizeBy: none
+		sourceColumn: CompanyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Currency'
+		dataType: string
+		lineageTag: 35717a95-07ca-4332-88c3-16431443ca2d
+		summarizeBy: none
+		sourceColumn: Company Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Name'
+		dataType: string
+		lineageTag: 9a6d7f29-7327-4468-b943-a447989926e0
+		summarizeBy: none
+		sourceColumn: Company Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Country'
+		dataType: string
+		lineageTag: 54533cfb-6576-4b4c-9cc6-777121755f1b
+		summarizeBy: none
+		sourceColumn: Company Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Company = entity
+		mode: directLake
+		source
+			entityName: Company
+			expressionSource: 'DirectLake - Cur'
+
+	annotation BC_Module = Shared
+
