@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/Semantisk model\";initial catalog=AltiboxSemantiskModel;integrated security=ClaimsToken;semanticmodelid=7a83c557-cc6c-4eb8-bcc8-5265de14b5a1"
+    }
+  }
+}
