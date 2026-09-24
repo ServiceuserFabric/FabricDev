@@ -85,4 +85,6 @@ ref table account
 ref table gen_product_posting_group
 ref table finance_budgets
 ref table account_schedule
+ref table 'Currency Display'
+ref table 'Format Unit'
 
