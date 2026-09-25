@@ -41,9 +41,9 @@
               "properties": {
                 "type": "DataWarehouse",
                 "typeProperties": {
-                  "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+                  "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
                   "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-                  "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
                 },
                 "externalReferences": {
                   "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -91,7 +91,7 @@
                     },
                     "schema": [],
                     "externalReferences": {
-                      "connection": "55ae7e95-3c55-4877-9cf0-95eeea26df83"
+                      "connection": "5ccee7d0-3b8b-4deb-98a4-235a29e06718"
                     },
                     "annotations": []
                   }
@@ -100,6 +100,7 @@
                   "type": "LakehouseTableSink",
                   "tableActionOption": "Upsert",
                   "applyVOrder": true,
+                  "enableTimestampNtz": false,
                   "upsertSettings": {
                     "keys": {
                       "value": "@array(item().IncField)",
@@ -248,9 +249,9 @@
                 "properties": {
                   "type": "DataWarehouse",
                   "typeProperties": {
-                    "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+                    "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
                     "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-                    "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
                   },
                   "externalReferences": {
                     "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -297,9 +298,9 @@
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
               "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
             },
             "externalReferences": {
               "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -334,9 +335,9 @@
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
               "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
             },
             "externalReferences": {
               "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -464,9 +465,9 @@
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
               "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
             },
             "externalReferences": {
               "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
@@ -507,9 +508,9 @@
           "properties": {
             "type": "DataWarehouse",
             "typeProperties": {
-              "artifactId": "e53bd032-acff-4e0b-9fbf-af74e4125510",
+              "artifactId": "e4125510-af74-9fbf-4e0b-acffe53bd032",
               "endpoint": "7xicscz5vrfenntrcuaryzucyu-jklqm22gim4evpc22qxfmstl5q.datawarehouse.fabric.microsoft.com",
-              "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+              "workspaceId": "00000000-0000-0000-0000-000000000000"
             },
             "externalReferences": {
               "connection": "87314f00-4d75-44be-9d66-4eed736f03ca"
