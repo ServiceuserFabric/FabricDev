@@ -1,0 +1,82 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Extract from AD",
+        "description": "Users, groups and group members",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Drop Tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "79758abc-2f0c-4f8d-a641-a7e33be895e9",
+          "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+        }
+      },
+      {
+        "name": "Drop Tables",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "db4c27e2-239b-4e9e-8ca0-d18f8e6ae61b",
+          "workspaceId": "6b06974a-4346-4a38-bc5a-d42e564a6bec"
+        }
+      },
+      {
+        "name": "Microsoft AD Outlook",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "Drop Tables",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Extract from AD",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "to": "driftbi@altibox.dk",
+          "subject": {
+            "value": "@pipeline().PipelineName",
+            "type": "Expression"
+          },
+          "body": "<p>Der er opstået en fejl i at hente data fra MicrosoftAD.&nbsp;</p>\n<p>Denne pipeline består af to pipelines:&nbsp;</p>\n<p>- Drop Tables: @{activity('Drop Tables').output}<br>\n- Extract from AD: @{activity('Extract from AD').output}</p>\n<p></p>"
+        },
+        "externalReferences": {
+          "connection": "a2629348-dff2-49f3-88ac-34b5c2a79038"
+        }
+      }
+    ]
+  }
+}
