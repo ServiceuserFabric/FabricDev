@@ -1,0 +1,155 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "9ec310f1f484a7bc1d56",
+  "position": {
+    "x": 893,
+    "y": 123,
+    "z": 2000,
+    "height": 255,
+    "width": 351,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Opdateringsfrekvens",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Panther",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontStyle": "italic",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Fullload - ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "Klokken 01:00",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Inkrementel -  ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "Klokken: 06:00, 12:00, 15:00, 23:55",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Bemærk at fullload overskriver alt data for dagen før for at 'gribe' eventuelle manglende oplysninger imellem inkrementelle kørsler. ",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontStyle": "italic",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Nuuday",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontStyle": "italic",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Klokken 08:15",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Bemærk at Nuuday kun sender én rapport om dagen. ",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontStyle": "italic",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "a34a67b6d90b043eabaa",
   "position": {
     "x": 877.5,
     "y": 430.83333333333337,
-    "z": 5000,
+    "z": 4000,
     "height": 263.33333333333337,
     "width": 365.83333333333337,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "pieChart",
@@ -163,20 +163,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "d01a6502b0d2e642036a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal Churn Kunder Nuuday Current"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "803b631ab028cd6c237e",
         "field": {

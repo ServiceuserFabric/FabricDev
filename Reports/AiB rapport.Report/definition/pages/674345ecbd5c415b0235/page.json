@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "674345ecbd5c415b0235",
+  "displayName": "Produktmix Segment",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Skabelon PowerBI type 23.jpg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Skabelon_PowerBI_type_239462075228333687.jpg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "6b0b2c14e0cd60914cb1",
+      "target": "7dcb8515e6c6d0cbb0d9",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7dcb8515e6c6d0cbb0d9",
+      "target": "6b0b2c14e0cd60914cb1",
+      "type": "NoFilter"
+    }
+  ]
+}

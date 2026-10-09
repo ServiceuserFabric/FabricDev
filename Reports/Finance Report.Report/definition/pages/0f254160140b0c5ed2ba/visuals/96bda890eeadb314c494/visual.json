@@ -1070,6 +1070,13 @@
                   "Value": "'Center'"
                 }
               }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
             }
           }
         }
@@ -1611,6 +1618,76 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "38cb68eb06ae5eb9ae9d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "account_schedule"
+              }
+            },
+            "Property": "Account Schedule - Level 1"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "73251914e45d4a739904",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "account_schedule"
+              }
+            },
+            "Property": "Account Schedule - Level 2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "725994689701d5b71424",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "account_schedule"
+              }
+            },
+            "Property": "Account Schedule - Level 3"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "aa340c29da8b0ebcd60d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "account_schedule"
+              }
+            },
+            "Property": "Account Schedule - Level 4"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bfb079255a52912e5083",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Finance Amount BS"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

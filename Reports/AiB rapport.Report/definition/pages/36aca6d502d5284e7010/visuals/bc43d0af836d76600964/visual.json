@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "bc43d0af836d76600964",
   "position": {
     "x": 1059.3643031784841,
@@ -81,13 +81,6 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Erhverv'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
                                 "Value": "'Forening'"
                               }
                             }
@@ -103,6 +96,13 @@
                             {
                               "Literal": {
                                 "Value": "'Privat'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Erhverv'"
                               }
                             }
                           ]
@@ -129,7 +129,7 @@
             "singleSelect": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }

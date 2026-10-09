@@ -121,17 +121,6 @@
   ],
   "resourcePackages": [
     {
-      "name": "multipleAxesChartBC35C88E1D1A49DFA5A9240AFBB4E3BC_OrgStore",
-      "type": "OrganizationalStoreCustomVisual",
-      "items": [
-        {
-          "name": "resources/multipleAxesChartBC35C88E1D1A49DFA5A9240AFBB4E3BC_OrgStore.pbiviz.json",
-          "path": "2/c905c127-525f-47a9-83f1-bec014f6d613/ResourcePackage/BlobIdV2-6e01d064-0cc7-4a02-9a99-2233b7f248224R0vaOxN6tgr9W1DhaBIuQzhxMalmj-kY18q-1.json",
-          "type": "CustomVisualMetadata"
-        }
-      ]
-    },
-    {
       "name": "RegisteredResources",
       "type": "RegisteredResources",
       "items": [

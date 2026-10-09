@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "afec096c60a99dca080b",
   "position": {
     "x": 640,
@@ -32,6 +32,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar Comparison"
+                  }
+                },
+                "Property": "ÅrMåned_Default Comparison"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -81,7 +98,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Sidste måned'"
+                                "Value": "'2026-07'"
                               }
                             }
                           ]

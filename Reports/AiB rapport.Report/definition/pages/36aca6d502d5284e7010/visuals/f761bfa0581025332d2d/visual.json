@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "f761bfa0581025332d2d",
   "position": {
     "x": 851.24694376528123,
@@ -32,6 +32,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Produktvalg"
+                  }
+                },
+                "Property": "Kategori"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "objects": {
@@ -81,7 +98,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Internet'"
+                                "Value": "'TV'"
                               }
                             }
                           ]

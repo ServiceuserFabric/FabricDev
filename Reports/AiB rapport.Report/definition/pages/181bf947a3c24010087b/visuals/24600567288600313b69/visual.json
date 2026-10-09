@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "24600567288600313b69",
   "position": {
     "x": 481.66666666666669,
     "y": 430.83333333333337,
-    "z": 4000,
+    "z": 3000,
     "height": 263.33333333333337,
     "width": 365.83333333333337,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "pieChart",
@@ -256,20 +256,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "546d7612db30700c3a6a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal Kunder Nuuday Current"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

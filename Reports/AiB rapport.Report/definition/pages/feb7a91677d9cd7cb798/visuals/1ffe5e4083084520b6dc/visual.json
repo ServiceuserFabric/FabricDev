@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "1ffe5e4083084520b6dc",
   "position": {
     "x": 34.249848593294061,
@@ -64,7 +64,7 @@
               },
               "queryRef": "Product_config.selfserviceNames_da",
               "nativeQueryRef": "Produkt1",
-              "active": false,
+              "active": true,
               "displayName": "Produkt"
             },
             {
@@ -192,7 +192,20 @@
             "isCollapsed": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -851,7 +864,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "57.52811320804773D"
+                  "Value": "61.85039293551275D"
                 }
               }
             }
@@ -888,7 +901,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "67.09291453108223D"
+                  "Value": "70.51770443090844D"
                 }
               }
             }
@@ -962,7 +975,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "48.35207152607076D"
+                  "Value": "50.9052071690716D"
                 }
               }
             }
@@ -999,7 +1012,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "63.62592044483854D"
+                  "Value": "76.56347008685056D"
                 }
               }
             }
@@ -1036,7 +1049,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "57.83863716561819D"
+                  "Value": "75.03434304352042D"
                 }
               }
             }
@@ -1073,7 +1086,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "42.875326114328885D"
+                  "Value": "51.47503414731269D"
                 }
               }
             }
@@ -1110,7 +1123,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "61.40341695557264D"
+                  "Value": "69.92173486257485D"
                 }
               }
             }
@@ -1147,7 +1160,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "39.5280991230468D"
+                  "Value": "48.2061923452479D"
                 }
               }
             }
@@ -1221,7 +1234,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "43.4401085485745D"
+                  "Value": "48.53187556083731D"
                 }
               }
             }
@@ -1258,7 +1271,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "139.0169949549592D"
+                  "Value": "60.1547493325311D"
                 }
               }
             }
@@ -1435,7 +1448,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "44.83375418958508D"
+                  "Value": "52.57899484371774D"
                 }
               }
             }
@@ -1472,7 +1485,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "47.74570960864773D"
+                  "Value": "54.640707624671194D"
                 }
               }
             }
@@ -1496,6 +1509,43 @@
                     "Right": {
                       "Literal": {
                         "Value": "'TDC Fiber'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.826894130541376D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Cust_Group"
+                          }
+                        },
+                        "Property": "name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Fibia'"
                       }
                     }
                   }
@@ -1529,6 +1579,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -1751,6 +1808,13 @@
                               "Value": "'ON IO02'"
                             }
                           }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sponsor TV'"
+                            }
+                          }
                         ]
                       ]
                     }
@@ -1777,7 +1841,7 @@
         }
       },
       {
-        "name": "9c37030b61d4e00a9d5b",
+        "name": "77d006b6b0872de7fbe0",
         "field": {
           "Column": {
             "Expression": {
@@ -1791,7 +1855,7 @@
         "type": "Categorical"
       },
       {
-        "name": "158746535b5c5606e1cb",
+        "name": "01fcde686c8f16b39aaf",
         "field": {
           "Column": {
             "Expression": {
@@ -1805,7 +1869,7 @@
         "type": "Categorical"
       },
       {
-        "name": "93842c3669562e203249",
+        "name": "84839e5f5cd8d6c1f863",
         "field": {
           "Column": {
             "Expression": {
@@ -1819,7 +1883,7 @@
         "type": "Categorical"
       },
       {
-        "name": "eed920690e04a43cb206",
+        "name": "2bbb0f25c9afaf2caac6",
         "field": {
           "Column": {
             "Expression": {
@@ -1833,7 +1897,7 @@
         "type": "Categorical"
       },
       {
-        "name": "9aaa6b7941b013945003",
+        "name": "16fc385a051eb9903832",
         "field": {
           "Measure": {
             "Expression": {

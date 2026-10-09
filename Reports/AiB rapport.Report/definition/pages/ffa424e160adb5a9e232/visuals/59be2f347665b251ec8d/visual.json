@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "59be2f347665b251ec8d",
   "position": {
-    "x": 963.63636363636351,
-    "y": 700.90909090909088,
+    "x": 925.71428571428578,
+    "y": 700.71428571428578,
     "z": 14000,
-    "height": 19.09090909090909,
-    "width": 126.36363636363636,
+    "height": 19.285714285714288,
+    "width": 322.85714285714289,
     "tabOrder": 14000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Data er opdateret d. "
+                    "value": "Nuudaydata er opdateret d. "
                   }
                 ]
               }

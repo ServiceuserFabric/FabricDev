@@ -4,5 +4,20 @@
   "displayName": "Danmarkskort",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "objects": {
+    "personalizeVisual": [
+      {
+        "properties": {
+          "perspectiveRef": {
+            "expr": {
+              "Literal": {
+                "Value": "''"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "673901e55bcbd7077a7d",
   "position": {
     "x": 30,
@@ -2581,6 +2581,43 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "55D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Calendar"
+                          }
+                        },
+                        "Property": "ÅrMåned_Default"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2026-03'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "grid": [
@@ -2651,6 +2688,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'''Times New Roman'''"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -2933,48 +2977,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "3e6eec52e622506c7139",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendar"
-              }
-            },
-            "Property": "ÅrMåned_Default"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "01c0ab994379794a65bd",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "AltiboxMobil_Nuuday"
-              }
-            },
-            "Property": "Eksternt abonnnementsnavn"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "57844243b41907e406a2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal Kunder Nuuday Current"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

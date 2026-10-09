@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "71a2df8c3bae9b84cbb7",
   "position": {
     "x": 30,
@@ -529,14 +529,21 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'Test Kunder'"
+                              "Value": "'Sponsor TV'"
                             }
                           }
                         ],
                         [
                           {
                             "Literal": {
-                              "Value": "'Sponsor TV'"
+                              "Value": "'Standard Priser'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Test Kunder'"
                             }
                           }
                         ]

@@ -56,6 +56,19 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "255L"
+              }
+            }
+          }
+        }
+      }
     ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "0a5b3b67a1e8a7158857",
   "position": {
     "x": 852.72727272727263,
@@ -193,5 +193,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "72ec64659370e86107ae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Produktvalg"
+              }
+            },
+            "Property": "Kategori"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

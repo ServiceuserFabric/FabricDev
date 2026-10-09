@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "f81c6a3389358e1e25b3",
   "position": {
     "x": 0,
     "y": 0,
     "z": 0,
-    "height": 719.99999999999989,
+    "height": 720,
     "width": 1280,
     "tabOrder": 0
   },
@@ -91,7 +91,7 @@
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "56.22196512023663D"
+                  "Value": "56.25031288766942D"
                 }
               }
             },
@@ -165,34 +165,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "e0874403281112544ea4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customer"
-              }
-            },
-            "Property": "Zip"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c04c4fc2d6008be38d73",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Antal Kunder (Daglig udvikling)"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "7e30acbdfc2c262e0e83",
         "field": {

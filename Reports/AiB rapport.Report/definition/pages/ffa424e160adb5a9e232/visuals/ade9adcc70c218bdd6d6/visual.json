@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "ade9adcc70c218bdd6d6",
   "position": {
     "x": 208.11735941320293,
@@ -23,11 +23,11 @@
                       "Entity": "All Measures"
                     }
                   },
-                  "Property": "Aktive tv-andel NY"
+                  "Property": "Aktive tv-andel"
                 }
               },
-              "queryRef": "All Measures.Aktive tv-andel NY",
-              "nativeQueryRef": "Aktive tv-andel NY"
+              "queryRef": "All Measures.Aktive tv-andel",
+              "nativeQueryRef": "Aktive tv-andel"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "All Measures"
                   }
                 },
-                "Property": "Aktive tv-andel NY"
+                "Property": "Aktive tv-andel"
               }
             },
             "direction": "Descending"

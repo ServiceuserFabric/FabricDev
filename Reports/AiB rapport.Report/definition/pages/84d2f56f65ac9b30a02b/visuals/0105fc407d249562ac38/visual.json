@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "0105fc407d249562ac38",
   "position": {
     "x": 813.85771025822021,
@@ -81,20 +81,6 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Antivirus'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Forsikring'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
                                 "Value": "'Internet - Erhverv'"
                               }
                             }
@@ -109,6 +95,13 @@
                           [
                             {
                               "Literal": {
+                                "Value": "'Internet - Forening: TDC Fiber'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
                                 "Value": "'Internet - MBB: AFAA'"
                               }
                             }
@@ -117,6 +110,13 @@
                             {
                               "Literal": {
                                 "Value": "'Internet - MBB: Opennet'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Internet - MBB: TDC Fiber'"
                               }
                             }
                           ],
@@ -222,76 +222,6 @@
                             {
                               "Literal": {
                                 "Value": "'Internet - Standard'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'IP'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Streaming'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Streaming SA'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Telefoni'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV - Pakker'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV - Tilvalgskanaler'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV - Tilvalgspakker'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV SA - Pakker'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV SA - Tilvalgskanaler'"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'TV SA - Tilvalgspakker'"
                               }
                             }
                           ]

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "d39f23f64731e73a01a9",
   "position": {
     "x": 481.66666666666669,
     "y": 20.833333333333336,
-    "z": 5001,
+    "z": 5000,
     "height": 95.833333333333343,
     "width": 365.83333333333337,
-    "tabOrder": 5001
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "card",
@@ -108,23 +108,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "85e71af5c7b89aa98832",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "All Measures"
-              }
-            },
-            "Property": "Igangværende opsigelser"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

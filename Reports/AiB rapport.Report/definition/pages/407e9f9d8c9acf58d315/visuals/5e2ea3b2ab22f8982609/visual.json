@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "5e2ea3b2ab22f8982609",
+  "position": {
+    "x": 37,
+    "y": 123,
+    "z": 1000,
+    "height": 215,
+    "width": 311,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Definitioner",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Nysalg ",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontStyle": "italic",
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "er beregnet på den måde at et produkt er et nysalg, hvis kunden ikke har et eksisterende produkt i samme hovedproduktgruppe. For eksisterende kunder med opsagte kunder, tildeles et nysalg dagen efter et udløbet produkt. ",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

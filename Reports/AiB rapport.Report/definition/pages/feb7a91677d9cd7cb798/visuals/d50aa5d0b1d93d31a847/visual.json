@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "d50aa5d0b1d93d31a847",
   "position": {
     "x": 34.249848593294061,
@@ -64,7 +64,7 @@
               },
               "queryRef": "Product_config.selfserviceNames_da",
               "nativeQueryRef": "Produkt1",
-              "active": false,
+              "active": true,
               "displayName": "Produkt"
             },
             {
@@ -111,8 +111,7 @@
                 }
               },
               "index": 0,
-              "length": 2,
-              "sortDirection": "Ascending"
+              "length": 2
             }
           ]
         },
@@ -139,16 +138,16 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Product_config"
+                    "Entity": "All Measures"
                   }
                 },
-                "Property": "Internet_speed"
+                "Property": "Måltal Current Salg Churn"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -210,7 +209,20 @@
             "isCollapsed": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -869,7 +881,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "64.74572680226962D"
+                  "Value": "69.90999446605184D"
                 }
               }
             }
@@ -906,7 +918,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "53.36185819070904D"
+                  "Value": "60.17487380291442D"
                 }
               }
             }
@@ -943,7 +955,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "39.74571086540968D"
+                  "Value": "47.51163914277818D"
                 }
               }
             }
@@ -980,7 +992,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "62.84352440094766D"
+                  "Value": "79.1609606724153D"
                 }
               }
             }
@@ -1017,7 +1029,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "56.27382876931771D"
+                  "Value": "68.23555658318904D"
                 }
               }
             }
@@ -1054,7 +1066,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "43.65772144342782D"
+                  "Value": "48.843028429999116D"
                 }
               }
             }
@@ -1091,7 +1103,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "54.36185121171569D"
+                  "Value": "65.43293799275115D"
                 }
               }
             }
@@ -1128,7 +1140,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "44.22250420663153D"
+                  "Value": "45.928546985288094D"
                 }
               }
             }
@@ -1165,7 +1177,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "55.40342298288508D"
+                  "Value": "51.98724481955955D"
                 }
               }
             }
@@ -1202,7 +1214,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "40.31049581894524D"
+                  "Value": "52.25844083889148D"
                 }
               }
             }
@@ -1239,7 +1251,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "156.22968760825842D"
+                  "Value": "64.96765044120993D"
                 }
               }
             }
@@ -1268,7 +1280,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "62.57458949866613D"
+                  "Value": "71.2030864283254D"
                 }
               }
             }
@@ -1305,7 +1317,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "45.398520215936216D"
+                  "Value": "50.498803474211286D"
                 }
               }
             }
@@ -1379,7 +1391,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "55.96332075525092D"
+                  "Value": "59.39513616366089D"
                 }
               }
             }
@@ -1521,6 +1533,43 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.26957803208059D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Cust_Group"
+                          }
+                        },
+                        "Property": "name"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Fibia'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "grid": [
@@ -1584,6 +1633,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -1745,6 +1801,13 @@
                               "Value": "'ON IO02'"
                             }
                           }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Sponsor TV'"
+                            }
+                          }
                         ]
                       ]
                     }
@@ -1771,7 +1834,7 @@
         }
       },
       {
-        "name": "7cc5249295118525e20a",
+        "name": "38e0bb89d416c24399ff",
         "field": {
           "Column": {
             "Expression": {
@@ -1785,7 +1848,7 @@
         "type": "Categorical"
       },
       {
-        "name": "be4c2efb0a4aa073bc99",
+        "name": "e3bd8746011abd98d7a4",
         "field": {
           "Column": {
             "Expression": {
@@ -1799,7 +1862,7 @@
         "type": "Categorical"
       },
       {
-        "name": "5c597fb538580c05ce20",
+        "name": "3f107d9c13e69c1b44ba",
         "field": {
           "Column": {
             "Expression": {
@@ -1813,7 +1876,7 @@
         "type": "Categorical"
       },
       {
-        "name": "058599e1a1002b305b3b",
+        "name": "2aceb6966d52595acbfc",
         "field": {
           "Column": {
             "Expression": {
@@ -1827,7 +1890,7 @@
         "type": "Categorical"
       },
       {
-        "name": "87f846a965c711d49b40",
+        "name": "489b3b59b6ba20f5c20d",
         "field": {
           "Measure": {
             "Expression": {
