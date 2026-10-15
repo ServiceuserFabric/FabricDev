@@ -213,6 +213,26 @@ table agent_events
 
 		annotation SummarizationSetBy = Automatic
 
+	column dte_start_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9c19e782-17fd-45f0-a420-aea4b9a090b2
+		sourceLineageTag: dte_start_UTC
+		summarizeBy: none
+		sourceColumn: dte_start_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab6c5013-da54-4c0d-bd14-77423d99ddb5
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
 	partition agent_events = entity
 		mode: directLake
 		source

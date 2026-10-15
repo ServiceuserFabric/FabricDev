@@ -1,0 +1,115 @@
+table Budget
+	lineageTag: faac8d7c-8b6f-4e4c-83fe-cc98679ca5e5
+	sourceLineageTag: [dbo].[Budget]
+
+	column Dato
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c3c89d96-f057-43bc-bc6f-239ab22bb32f
+		sourceLineageTag: Dato
+		summarizeBy: none
+		sourceColumn: Dato
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduktGruppe
+		dataType: string
+		lineageTag: 09881f61-4f1a-4273-b549-0dad9324be15
+		sourceLineageTag: ProduktGruppe
+		summarizeBy: none
+		sourceColumn: ProduktGruppe
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produkt
+		dataType: string
+		lineageTag: e8718200-4fe0-4755-a48d-a897a3eb33b7
+		sourceLineageTag: Produkt
+		summarizeBy: none
+		sourceColumn: Produkt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 4d479525-2aaf-4275-96fa-502ff74f0fbb
+		sourceLineageTag: Type
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column InfrastructureOwner
+		dataType: string
+		lineageTag: 5e4640ae-cd41-4991-9b12-02c0c96163f4
+		sourceLineageTag: InfrastructureOwner
+		summarizeBy: none
+		sourceColumn: InfrastructureOwner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 9bcfa268-d208-4f5d-9d10-cb153b5f08df
+		sourceLineageTag: Segment
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustGroupID
+		dataType: string
+		lineageTag: 83c4038e-c132-41dd-a989-e62539d25d11
+		sourceLineageTag: CustGroupID
+		summarizeBy: none
+		sourceColumn: CustGroupID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kundebasen
+		dataType: double
+		lineageTag: 6624312c-5bc4-4c22-82be-b5dc6795db45
+		sourceLineageTag: Kundebasen
+		summarizeBy: sum
+		sourceColumn: Kundebasen
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Salg
+		dataType: double
+		isHidden
+		lineageTag: 0636d9bd-d72a-4000-9432-cbd6a304d02e
+		sourceLineageTag: Salg
+		summarizeBy: sum
+		sourceColumn: Salg
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Churn
+		dataType: double
+		isHidden
+		lineageTag: 6400defb-386e-41bd-9c51-6a69c2df8ff9
+		sourceLineageTag: Churn
+		summarizeBy: sum
+		sourceColumn: Churn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Budget = entity
+		mode: directLake
+		source
+			entityName: Budget
+			expressionSource: 'DirectLake - Golden_lakehouse'
+

@@ -1,0 +1,19 @@
+table InfrastructureOwner
+	lineageTag: 8254264d-a0fe-48c6-a0e0-b3a809953af1
+
+	column InfrastructureOwner
+		lineageTag: 1208c3e9-0111-460f-970c-36ebc53f3fae
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Budget[InfrastructureOwner]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition InfrastructureOwner = calculated
+		mode: import
+		source =
+				
+				FILTER ( DISTINCT ( Budget[InfrastructureOwner] ), NOT ISBLANK ( Budget[InfrastructureOwner] ) )
+
+	annotation PBI_Id = 793b259e00db41a08c684c13bd0313bb
+

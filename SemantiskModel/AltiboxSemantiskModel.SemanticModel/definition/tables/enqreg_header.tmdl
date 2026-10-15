@@ -133,6 +133,26 @@ table enqreg_header
 
 		annotation SummarizationSetBy = Automatic
 
+	column dte_time_stamp_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 210a19e4-ac98-4dda-9131-21e21ff88830
+		sourceLineageTag: dte_time_stamp_UTC
+		summarizeBy: none
+		sourceColumn: dte_time_stamp_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d9d079f3-7050-448c-8a91-eec40503ee62
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
 	partition enqreg_header = entity
 		mode: directLake
 		source

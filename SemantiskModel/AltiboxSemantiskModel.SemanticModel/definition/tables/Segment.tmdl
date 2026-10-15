@@ -1,0 +1,19 @@
+table Segment
+	lineageTag: d253185e-3195-4387-a1c1-5a7786600b42
+
+	column Segment
+		lineageTag: 41684ab3-a681-41e1-aba7-047c7565c046
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Budget[Segment]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Segment = calculated
+		mode: import
+		source =
+				
+				FILTER ( DISTINCT ( Budget[Segment] ), NOT ISBLANK ( Budget[Segment] ) )
+
+	annotation PBI_Id = 74b8fb2aeaf2476ba935f0bee0683943
+

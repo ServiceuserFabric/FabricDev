@@ -1,4 +1,4 @@
-/// Denne tabel anvendes primært til KPI'er for at kunne bruge måltal til sammenligningsperioder, fx måltal i går, 1 måned siden, etc. 
+/// Denne tabel anvendes primært til KPI'er for at kunne bruge måltal til sammenligningsperioder, fx måltal i går, 1 måned siden, etc.
 table 'Calendar Comparison Periods'
 	lineageTag: cf63c1e9-c9c4-4aa7-9741-91ff5656b63f
 

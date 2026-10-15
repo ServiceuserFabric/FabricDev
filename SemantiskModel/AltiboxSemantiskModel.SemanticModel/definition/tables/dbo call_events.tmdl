@@ -397,6 +397,35 @@ table 'dbo call_events'
 
 		annotation SummarizationSetBy = Automatic
 
+	column internal_country_src_db
+		dataType: string
+		lineageTag: da231360-dc11-48cd-bfef-7cf72138af12
+		sourceLineageTag: internal_country_src_db
+		summarizeBy: none
+		sourceColumn: internal_country_src_db
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_start_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab3ecc71-883d-4806-b655-7410bdc4dcfe
+		sourceLineageTag: dte_start_UTC
+		summarizeBy: none
+		sourceColumn: dte_start_UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9b52125b-85c7-4459-b3db-77f2f7719bf8
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'dbo call_events' = entity
 		mode: directLake
 		source

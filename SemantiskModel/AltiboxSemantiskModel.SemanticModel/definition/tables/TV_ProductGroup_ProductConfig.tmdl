@@ -1,0 +1,34 @@
+table TV_ProductGroup_ProductConfig
+	lineageTag: 06a0a1b3-caa8-427c-b966-a8b7c2283ec5
+
+	column ProductGroup
+		lineageTag: fd10d648-7987-4bc2-9582-55b15d7223cb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ProductGroup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column productGroupConfig
+		lineageTag: 6712c45d-f741-4785-ac93-d5bc5766a977
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [productGroupConfig]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TV_ProductGroup_ProductConfig = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "ProductGroup", STRING,
+				    "productGroupConfig", STRING,
+				    {
+				        { "TV",   "TV - Pakker" },
+				        { "TVSA", "TV SA - Pakker" }
+				    }
+				)
+
+	annotation PBI_Id = d57a1fe8a34b440cab18b671a57e8418
+

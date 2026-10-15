@@ -206,10 +206,6 @@ relationship 7c148c1b-d574-7f88-784c-9d4c38716a15
 	fromColumn: call_events.result_code
 	toColumn: call_result_codes.result_code
 
-relationship a20a4fd7-e511-39fc-be29-07e21c7e9284
-	fromColumn: call_events.dte_start
-	toColumn: Calendar.Date
-
 relationship 4751fbf9-8b97-c5d4-6ce4-2870dc3d9c6e
 	fromColumn: call_events.event_type
 	toColumn: call_event_types.event_type
@@ -234,41 +230,9 @@ relationship 82775e77-7e88-ca8d-ca71-3bdeda7e8b90
 	fromColumn: agents.master_email
 	toColumn: MicrosoftAD_users.userPrincipalName
 
-relationship e3ab226c-ac03-3cad-ee7a-64328ac4c492
-	fromColumn: call_events.agent_id
-	toColumn: agents.agent_id
-
 relationship 9245ba64-9513-45bc-8b2f-b716a0ed8fa5
 	fromColumn: call_events.dte_start
 	toColumn: 'Calendar Comparison'.Date
-
-relationship 5e9e993b-d375-4789-825b-57013c385f4a
-	fromColumn: agent_events.phone_type
-	toColumn: phone_types.phone_type
-
-relationship 8ef5ba67-0039-7d80-b4c5-d667528611d3
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: Agent_events_pause_durations.rec_id_pause_start
-	toColumn: agent_events.rec_id
-
-relationship 034f91fa-43f9-b8ff-6227-bf8fd3367af1
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: Agent_events_signed_in_sessions.rec_id_signed_in
-	toColumn: agent_events.phone_type
-
-relationship 12164c8f-2ba9-c8e2-591c-fc963d7730a3
-	fromColumn: agent_events.event_type
-	toColumn: agent_event_types.event_type
-
-relationship 097c20ce-5f6e-2020-c839-e75500b02c73
-	fromColumn: agent_events.result_code
-	toColumn: agent_result_codes.result_code
-
-relationship d6021744-45f5-2b4b-99d6-6ef66bc9cd8d
-	fromColumn: agent_events.event_source
-	toColumn: agent_event_sources.event_source
 
 relationship 0b9bd56c-dc9c-f3ec-cf4d-320df69f9bc6
 	fromColumn: Agent_events_pause_durations.agent_id
@@ -282,10 +246,6 @@ relationship 1c212975-b070-d678-c742-e38b241bf079
 relationship 4986f8fb-dbad-d28f-d667-f3e82658df04
 	fromColumn: Agent_events_pause_durations.dte_start_date
 	toColumn: 'Calendar Comparison'.Date
-
-relationship 1a748330-6d10-b1e7-59d6-af99bec2bbc9
-	fromColumn: Agent_events_signed_in_sessions.dte_start_date
-	toColumn: Calendar.Date
 
 relationship 989a23c8-f70f-80ea-6984-359d66137125
 	fromColumn: AltiboxMobil_Nuuday.Sælgerreference
@@ -334,4 +294,84 @@ relationship e1bc76b7-78af-20a1-e802-04dcbc79863a
 relationship 80dc8488-f077-5162-c819-09cb5e551097
 	fromColumn: vw_enqreg_total.dte_start_date
 	toColumn: 'Calendar Comparison'.Date
+
+relationship a20a4fd7-e511-39fc-be29-07e21c7e9284
+	fromColumn: call_events.dte_start
+	toColumn: Calendar.Date
+
+relationship e3ab226c-ac03-3cad-ee7a-64328ac4c492
+	fromColumn: call_events.agent_id
+	toColumn: agents.agent_id
+
+relationship 5e9e993b-d375-4789-825b-57013c385f4a
+	fromColumn: agent_events.phone_type
+	toColumn: phone_types.phone_type
+
+relationship 8ef5ba67-0039-7d80-b4c5-d667528611d3
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Agent_events_pause_durations.rec_id_pause_start
+	toColumn: agent_events.rec_id
+
+relationship 034f91fa-43f9-b8ff-6227-bf8fd3367af1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Agent_events_signed_in_sessions.rec_id_signed_in
+	toColumn: agent_events.phone_type
+
+relationship 12164c8f-2ba9-c8e2-591c-fc963d7730a3
+	fromColumn: agent_events.event_type
+	toColumn: agent_event_types.event_type
+
+relationship 097c20ce-5f6e-2020-c839-e75500b02c73
+	fromColumn: agent_events.result_code
+	toColumn: agent_result_codes.result_code
+
+relationship d6021744-45f5-2b4b-99d6-6ef66bc9cd8d
+	fromColumn: agent_events.event_source
+	toColumn: agent_event_sources.event_source
+
+relationship 1a748330-6d10-b1e7-59d6-af99bec2bbc9
+	fromColumn: Agent_events_signed_in_sessions.dte_start_date
+	toColumn: Calendar.Date
+
+relationship 2162dba1-a11f-d992-3945-c53db86fcc96
+	fromColumn: Budget.Dato
+	toColumn: Calendar.Date
+
+relationship 29346f8a-c10a-0afa-7d39-029a23353cd4
+	fromColumn: Budget.CustGroupID
+	toColumn: Cust_Group.id
+
+relationship ac8722d6-8a67-d726-27d0-9dfdda92c75c
+	fromColumn: Budget.Produkt
+	toColumn: InternetSpeed_ProductConfig.InternetSpeed
+
+relationship b43fad0d-ef44-fa00-7383-f2567f4d0c28
+	fromColumn: Product_config.Internet_speed
+	toColumn: InternetSpeed_ProductConfig.InternetSpeed
+
+relationship ea661df8-1324-d864-c7dc-6f3a56b6aeed
+	fromColumn: Budget.Produkt
+	toColumn: TV_ProductConfig.TV
+
+relationship 0d6357ad-8382-1559-4d92-dde37f8eee88
+	fromColumn: Product_config.selfserviceNames_da
+	toColumn: TV_ProductConfig.TV
+
+relationship 7ce1b04b-f133-2149-3c98-eb30bce6b61d
+	fromColumn: Budget.ProduktGruppe
+	toColumn: TV_ProductGroup_ProductConfig.ProductGroup
+
+relationship f0167e34-d95e-8f52-d033-811b3dee7fd5
+	fromColumn: Product_config.productGroup
+	toColumn: TV_ProductGroup_ProductConfig.productGroupConfig
+
+relationship a3a850ac-0bc9-97ee-a6e2-3a159ce95e21
+	fromColumn: Budget.Segment
+	toColumn: Segment.Segment
+
+relationship 532ccdec-8862-f489-f1a8-a0a2bb9cfe1a
+	fromColumn: Budget.InfrastructureOwner
+	toColumn: InfrastructureOwner.InfrastructureOwner
 

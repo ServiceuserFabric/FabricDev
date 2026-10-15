@@ -1,0 +1,33 @@
+table InternetSpeed_ProductConfig
+	lineageTag: a9f2d0d0-cb08-4b67-b12f-29e4f0ca276f
+
+	column InternetSpeed
+		lineageTag: cd315888-4b22-43bb-ab18-27e002da5bab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [InternetSpeed]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition InternetSpeed_ProductConfig = calculated
+		mode: import
+		source =
+				
+				FILTER (
+				    DISTINCT (
+				        UNION (
+				            SELECTCOLUMNS (
+				                FILTER ( Budget, Budget[ProduktGruppe] = "Internet" ),
+				                "InternetSpeed", Budget[Produkt]
+				            ),
+				            SELECTCOLUMNS (
+				                FILTER ( Product_config, Product_config[HovedProduktGruppe] = "Internet" ),
+				                "InternetSpeed", Product_config[Internet_speed]
+				            )
+				        )
+				    ),
+				    NOT ISBLANK ( [InternetSpeed] ) && [InternetSpeed] <> ""
+				)
+
+	annotation PBI_Id = 829a90b8a52c491cba600d01f11338ad
+

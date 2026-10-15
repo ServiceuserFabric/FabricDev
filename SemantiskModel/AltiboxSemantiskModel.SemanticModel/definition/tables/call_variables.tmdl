@@ -64,6 +64,26 @@ table call_variables
 
 		annotation SummarizationSetBy = Automatic
 
+	column dte_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 564a6850-281a-4afb-8ff9-e3eb280a5e51
+		sourceLineageTag: dte_updated
+		summarizeBy: none
+		sourceColumn: dte_updated
+
+		annotation SummarizationSetBy = Automatic
+
+	column dte_updated_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 52781382-e8d2-471d-ad8b-3eb5a6f9ef56
+		sourceLineageTag: dte_updated_UTC
+		summarizeBy: none
+		sourceColumn: dte_updated_UTC
+
+		annotation SummarizationSetBy = Automatic
+
 	partition call_variables = entity
 		mode: directLake
 		source

@@ -133,32 +133,6 @@ table 'All Measures'
 
 		changedProperty = DisplayFolder
 
-	measure 'Aktive tv-andel' = ```
-			
-			DIVIDE(
-			    CALCULATE(
-			        COUNTROWS('status'),
-			        'status'[Produkt_Status] = "I brug",
-			        Product_config[ProductGroup] = "TV - Pakker"
-			        
-			    ),
-			    CALCULATE(
-			        COUNTROWS('status'),
-			        'status'[Produkt_Status] = "I brug",
-			        Product_config[HovedProduktGruppe] = "Internet"
-			        
-			    )
-			)
-			```
-		displayFolder: CRM FORÆLDET
-		lineageTag: d3e3ae55-37fa-436c-ae94-f034cb45764e
-
-		changedProperty = Name
-
-		changedProperty = DisplayFolder
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Antal Annulleringer Sidste Måned' =
 			
 			CALCULATE (
@@ -604,38 +578,31 @@ table 'All Measures'
 
 		changedProperty = IsHidden
 
-	measure 'Aktive tv-andel NY' =
+	measure 'Aktive tv-andel' = ```
 			
-			VAR d = [AsOf Date]
-			VAR TvCustomers =
-			    CALCULATE (
-			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
-			        Product_config[ProductGroup] = "TV - Pakker",
-			        REMOVEFILTERS ( 'Calendar' ),
-			        ProductHistory[Kunde_Status] = "Aktive",
-			        ProductHistory[FromDate] <= d,
-			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('status'),
+			        'status'[Produkt_Status] = "I brug",
+			        Product_config[ProductGroup] = "TV - Pakker"
+			        
+			    ),
+			    CALCULATE(
+			        COUNTROWS('status'),
+			        'status'[Produkt_Status] = "I brug",
+			        Product_config[HovedProduktGruppe] = "Internet"
+			        
 			    )
-			VAR InternetCustomers =
-			    CALCULATE (
-			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
-			        Product_config[HovedProduktGruppe] = "Internet",
-			        REMOVEFILTERS ( 'Calendar' ),
-			        ProductHistory[Kunde_Status] = "Aktive",
-			        ProductHistory[FromDate] <= d,
-			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
-			    )
-			RETURN
-			DIVIDE ( TvCustomers, InternetCustomers )
-		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: CRM (ProductHistory) AKTIVE
-		lineageTag: 1072e346-56ed-4306-b10c-a6c0cdf207f7
+			)
+			```
+		displayFolder: CRM FORÆLDET
+		lineageTag: d3e3ae55-37fa-436c-ae94-f034cb45764e
 
 		changedProperty = DisplayFolder
 
 		changedProperty = Name
 
-		changedProperty = FormatString
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Antal Kunder (Daglig udvikling)' =
 			
@@ -719,7 +686,7 @@ table 'All Measures'
 
 		changedProperty = FormatString
 
-	/// Måltallet beregner antal nysalg 
+	/// Måltallet beregner antal nysalg
 	measure 'Antal Nysalg Nye Kunder Comparison' = ```
 			
 			-- Virker med Month Compare Filter
@@ -2516,6 +2483,72 @@ table 'All Measures'
 		changedProperty = FormatString
 
 		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Aktive tv-andel NY' =
+			
+			VAR d = [AsOf Date]
+			VAR TvCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			        Product_config[ProductGroup] = "TV - Pakker",
+			        REMOVEFILTERS ( 'Calendar' ),
+			        ProductHistory[Kunde_Status] = "Aktive",
+			        ProductHistory[FromDate] <= d,
+			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			    )
+			VAR InternetCustomers =
+			    CALCULATE (
+			        DISTINCTCOUNT ( ProductHistory[KundeNO] ),
+			        Product_config[HovedProduktGruppe] = "Internet",
+			        REMOVEFILTERS ( 'Calendar' ),
+			        ProductHistory[Kunde_Status] = "Aktive",
+			        ProductHistory[FromDate] <= d,
+			        COALESCE ( ProductHistory[ToDate], DATE ( 9999, 12, 31 ) ) >= d
+			    )
+			RETURN
+			DIVIDE ( TvCustomers, InternetCustomers )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: CRM (ProductHistory) AKTIVE
+		lineageTag: 1072e346-56ed-4306-b10c-a6c0cdf207f7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Kunder Budget' = DISTINCTCOUNT(Budget[Kundebasen])
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: cd5032ee-1dd5-4d34-a3df-78b28f5bdcbb
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Antal Churn Budget' = CALCULATE(COUNTROWS('Budget'),'Budget'[Churn] > 0)
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: f6917c71-4e04-43b9-9422-068f7172bf7c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Antal Salg Budget' = CALCULATE(COUNTROWS('Budget'),'Budget'[Salg] > 0)
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 5e29878b-f31f-4b4e-a7d4-d8fcf5ceb3d2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
 
 	column ID
 		dataType: int64

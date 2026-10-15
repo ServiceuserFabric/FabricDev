@@ -1,0 +1,33 @@
+table TV_ProductConfig
+	lineageTag: 23b34500-2588-49d2-a930-f709541ce0bc
+
+	column TV
+		lineageTag: 4078a816-8658-4b95-b99d-1cb94a536c07
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TV]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TV_ProductConfig = calculated
+		mode: import
+		source =
+				
+				FILTER (
+				    DISTINCT (
+				        UNION (
+				            SELECTCOLUMNS (
+				                FILTER ( Budget, Budget[ProduktGruppe] IN { "TV", "TVSA" } ),
+				                "TV", Budget[Produkt]
+				            ),
+				            SELECTCOLUMNS (
+				                FILTER ( Product_config, Product_config[productGroup] IN { "TV - Pakker", "TV SA - Pakker" } ),
+				                "TV", Product_config[selfserviceNames_da]
+				            )
+				        )
+				    ),
+				    NOT ISBLANK ( [TV] ) && [TV] <> ""
+				)
+
+	annotation PBI_Id = 74212e7e9d6d4eda9d5377cde39336d5
+

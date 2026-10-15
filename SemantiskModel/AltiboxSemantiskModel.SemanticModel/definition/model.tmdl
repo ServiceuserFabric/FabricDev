@@ -13,11 +13,9 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
 
 ref table Customer
-ref table Realiseret_vs_Budget
 ref table Product_config
 ref table IO
 ref table Cust_Group
-ref table Realiseret_vs_Budget_Dagligt_
 ref table Calendar
 ref table 'All Measures'
 ref table status
@@ -61,16 +59,22 @@ ref table MatrixRækkeParameter
 ref table 'Produktmix Måltal Matrix'
 ref table 'Salgsrapport Måltal Matrix'
 ref table call_events
-ref table LoadTables
-ref table watermarktable
 ref table OpdateretTidspunkt
 ref table agents
 ref table agents_history
 ref table ProductHistory
-ref table agent_events
 ref table 'dbo call_events'
 ref table 'dbo agents'
 ref table Agent_events_pause_durations
 ref table Agent_events_signed_in_sessions
 ref table vw_enqreg_total
+ref table agent_events
+ref table Realiseret_vs_Budget
+ref table Realiseret_vs_Budget_Dagligt_
+ref table Budget
+ref table InternetSpeed_ProductConfig
+ref table TV_ProductConfig
+ref table TV_ProductGroup_ProductConfig
+ref table Segment
+ref table InfrastructureOwner
 
