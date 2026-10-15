@@ -8,34 +8,19 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "8e60b0a9690ba96348ee",
+        "name": "965b910201c42351c243",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Segment"
+                "Entity": "Budget"
               }
             },
             "Property": "Segment"
           }
         },
         "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "howCreated": "User"
       }
     ]
   },

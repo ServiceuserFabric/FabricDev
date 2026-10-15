@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "79df2915bc7012471b04",
   "position": {
     "x": 29.810053405274459,
@@ -490,57 +490,46 @@
         }
       },
       {
-        "name": "ef1f316c857e4b8be601",
+        "name": "fd32bc40846d8dda9157",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder %Calendar"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f083f4448fdbd64eec05",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ec05ee2eb41c5eef6bf1",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "TV_ProductGroup_ProductConfig"
+                "Entity": "Budget"
               }
             },
-            "Property": "ProductGroup"
+            "Property": "ProduktGruppe"
           }
         },
         "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "t",
-              "Entity": "TV_ProductGroup_ProductConfig",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "t"
-                          }
-                        },
-                        "Property": "ProductGroup"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'TV'"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "User"
       }
     ]

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "aaaa04f0a91a08888bd8",
   "position": {
     "x": 30.000000000000004,
@@ -690,6 +690,34 @@
             }
           ]
         }
+      },
+      {
+        "name": "8e9ed1aa4f7662ae3035",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder %Calendar"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "330e294c9baf2360abd5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Kunder Budget"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

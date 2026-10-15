@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "dd71634791aadbda6203",
   "position": {
     "x": 1058.8571602957588,
@@ -475,6 +475,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "4eee86f898788a49c264",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "All Measures"
+              }
+            },
+            "Property": "Antal Nysalg Kunder Medarbejdere Mobil %Calendar"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
