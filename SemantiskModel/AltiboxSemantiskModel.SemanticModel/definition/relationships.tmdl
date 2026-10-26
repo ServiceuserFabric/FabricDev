@@ -335,10 +335,6 @@ relationship 1a748330-6d10-b1e7-59d6-af99bec2bbc9
 	fromColumn: Agent_events_signed_in_sessions.dte_start_date
 	toColumn: Calendar.Date
 
-relationship 2162dba1-a11f-d992-3945-c53db86fcc96
-	fromColumn: Budget.Dato
-	toColumn: Calendar.Date
-
 relationship 29346f8a-c10a-0afa-7d39-029a23353cd4
 	fromColumn: Budget.CustGroupID
 	toColumn: Cust_Group.id
@@ -374,4 +370,57 @@ relationship a3a850ac-0bc9-97ee-a6e2-3a159ce95e21
 relationship 532ccdec-8862-f489-f1a8-a0a2bb9cfe1a
 	fromColumn: Budget.InfrastructureOwner
 	toColumn: InfrastructureOwner.InfrastructureOwner
+
+relationship b05fd337-36a3-566d-de5d-f6800252e6b5
+	fromColumn: Budget.Dato
+	toColumn: Calendar.Date
+
+relationship e05dc32f-2c7d-2938-7a3c-b43a91f41f92
+	toCardinality: many
+	fromColumn: Account.AccountScheduleKey
+	toColumn: 'Account Schedule'.AccountScheduleKey
+
+relationship 8ce7fbeb-3f08-00f5-d0b3-b16407e07d0c
+	fromColumn: 'Finance Budgets'.AccountKey
+	toColumn: Account.AccountKey
+
+relationship ac274000-340b-66d0-a6fe-c6e70f7063dd
+	fromColumn: 'Finance Budgets'.CompanyKey
+	toColumn: Company.CompanyKey
+
+relationship 496c7b0b-f64c-b9f9-4efa-ae47bdeed66a
+	fromColumn: 'Finance Budgets'.Date
+	toColumn: Calendar.Date
+
+relationship 6a21ec81-a547-1619-81b5-2c20159ee557
+	fromColumn: 'Finance Budgets'.dse_AfdelingKey
+	toColumn: dse_afdeling.dse_AfdelingKey
+
+relationship 385eded5-59ea-e5ec-4dcf-1349d16e4e17
+	fromColumn: 'Finance Transactions'.AccountKey
+	toColumn: Account.AccountKey
+
+relationship 4d62bd96-c2ae-7731-9f4e-d22bb086fcce
+	fromColumn: 'Finance Transactions'.CompanyKey
+	toColumn: Company.CompanyKey
+
+relationship a7e66802-de9f-a83c-9f6e-58dc56aa2c70
+	fromColumn: 'Finance Transactions'.ContactKey
+	toColumn: Contact.ContactKey
+
+relationship c708c7e5-56fb-7920-6ef9-98a6ed215db9
+	fromColumn: 'Finance Transactions'.dse_AfdelingKey
+	toColumn: dse_afdeling.dse_AfdelingKey
+
+relationship 97a624d3-ee1d-cfd8-3384-629440b3a2c7
+	fromColumn: 'Finance Transactions'.GenBusinessPostingGroupKey
+	toColumn: 'Gen Business Posting Group'.GenBusinessPostingGroupKey
+
+relationship 7b35c000-284e-0a0f-f43e-32307ab54067
+	fromColumn: 'Finance Transactions'.GenProductPostingGroupKey
+	toColumn: 'Gen Product Posting Group'.GenProductPostingGroupKey
+
+relationship de7f18b5-8101-7774-f799-27730b450adb
+	fromColumn: 'Finance Transactions'.PostingDateKey
+	toColumn: Calendar.Date
 

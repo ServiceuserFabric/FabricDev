@@ -1,0 +1,46 @@
+table salesperson_purchaser
+	lineageTag: c118a82a-8969-4f6b-ab41-474356975c32
+	sourceLineageTag: [dbo].[salesperson_purchaser]
+
+	column SalespersonPurchaserKey
+		dataType: string
+		lineageTag: 27949fe6-2dc4-422c-aa64-50aef6c06c8d
+		sourceLineageTag: SalespersonPurchaserKey
+		summarizeBy: none
+		sourceColumn: SalespersonPurchaserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salesperson Purchaser Code'
+		dataType: string
+		lineageTag: 65f67e2b-9981-4f2e-94c2-97423e4a8b93
+		sourceLineageTag: Salesperson Purchaser Code
+		summarizeBy: none
+		sourceColumn: Salesperson Purchaser Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salesperson Purchaser Name'
+		dataType: string
+		lineageTag: bc7e2d79-e187-47a9-96f2-79cb4dd41749
+		sourceLineageTag: Salesperson Purchaser Name
+		summarizeBy: none
+		sourceColumn: Salesperson Purchaser Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salesperson Purchaser Email'
+		dataType: string
+		lineageTag: 99fd4d77-ee4f-4b95-accd-55a403f30796
+		sourceLineageTag: Salesperson Purchaser Email
+		summarizeBy: none
+		sourceColumn: Salesperson Purchaser Email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition salesperson_purchaser = entity
+		mode: directLake
+		source
+			entityName: salesperson_purchaser
+			expressionSource: 'DirectLake - Cur'
+

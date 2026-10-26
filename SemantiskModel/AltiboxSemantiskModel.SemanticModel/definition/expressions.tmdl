@@ -49,3 +49,14 @@ expression 'DirectLake - GoogleAnalytics_Altibox' =
 
 	annotation PBI_IncludeFutureArtifacts = False
 
+expression 'DirectLake - Cur' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/3a25df0d-986f-45a8-9140-8e9d88526e86/bc03b80f-8588-4631-9b48-153ce4edb6ef", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: ff276c4a-f95c-434b-8e15-ebec8548e044
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[calendar]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[customer]"}},"objectType":"Table"}]
+

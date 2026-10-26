@@ -1,0 +1,116 @@
+table 'Finance Budgets'
+	lineageTag: 82cd5af1-05a3-4a88-8b93-0dc1c44756d1
+	sourceLineageTag: [dbo].[finance_budgets]
+
+	column AccountKey
+		dataType: string
+		lineageTag: 6bb0f866-c4b7-4bc1-aeaf-20d32e8cea7e
+		sourceLineageTag: AccountKey
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1fb5fc4b-4ca0-4af9-a706-ad48731667d9
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Name'
+		dataType: string
+		lineageTag: 5e9dff2d-5313-4884-a6f3-86d2a9da48f6
+		sourceLineageTag: Budget Name
+		summarizeBy: none
+		sourceColumn: Budget Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number'
+		dataType: string
+		lineageTag: 40ac280b-bdd2-4bee-8608-869bf8208ca6
+		sourceLineageTag: Account Number
+		summarizeBy: none
+		sourceColumn: Account Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Data Source'
+		dataType: string
+		lineageTag: 70821593-09f9-4356-af07-1600dc9aafab
+		sourceLineageTag: Budget Data Source
+		summarizeBy: none
+		sourceColumn: Budget Data Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Amount'
+		dataType: double
+		lineageTag: 42008ec0-ce5f-4f5a-a981-c1df355c5f81
+		sourceLineageTag: Budget Amount
+		summarizeBy: sum
+		sourceColumn: Budget Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Budget Amount GCY'
+		dataType: double
+		lineageTag: 30f611bb-9c6e-4ff6-b3cb-a2cbeb3b0f06
+		sourceLineageTag: Budget Amount GCY
+		summarizeBy: sum
+		sourceColumn: Budget Amount GCY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CompanyKey
+		dataType: string
+		lineageTag: b0b81383-900d-4688-a40c-3f4771821f17
+		sourceLineageTag: CompanyKey
+		summarizeBy: none
+		sourceColumn: CompanyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_AfdelingKey
+		dataType: string
+		lineageTag: 9245fd8e-ddc8-4c5f-bdbe-da5a68178288
+		sourceLineageTag: dse_AfdelingKey
+		summarizeBy: none
+		sourceColumn: dse_AfdelingKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_CustomerContractKey
+		dataType: string
+		lineageTag: b564302c-615a-4273-974b-cdb7187de4aa
+		sourceLineageTag: dse_CustomerContractKey
+		summarizeBy: none
+		sourceColumn: dse_CustomerContractKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column dse_NetProviderKey
+		dataType: string
+		lineageTag: d89a956b-1197-4ba9-a478-a50afeccb574
+		sourceLineageTag: dse_NetProviderKey
+		summarizeBy: none
+		sourceColumn: dse_NetProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finance Budgets' = entity
+		mode: directLake
+		source
+			entityName: finance_budgets
+			expressionSource: 'DirectLake - Cur'
+
+	changedProperty = Name
+

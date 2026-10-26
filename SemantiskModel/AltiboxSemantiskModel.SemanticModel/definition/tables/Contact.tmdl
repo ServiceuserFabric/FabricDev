@@ -1,0 +1,120 @@
+table Contact
+	lineageTag: 0b8be5a2-4631-49a0-be39-3db659053224
+	sourceLineageTag: [dbo].[contact]
+
+	column 'Contact Number'
+		dataType: string
+		lineageTag: cd098461-bc86-426d-9b38-7ce12b6723ee
+		sourceLineageTag: Contact Number
+		summarizeBy: none
+		sourceColumn: Contact Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Address'
+		dataType: string
+		lineageTag: e53b7715-d701-4e64-adfb-696b40b54957
+		sourceLineageTag: Contact Address
+		summarizeBy: none
+		sourceColumn: Contact Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Address 2'
+		dataType: string
+		lineageTag: 5b9ea038-b2cd-4579-80a5-19d645574a4c
+		sourceLineageTag: Contact Address 2
+		summarizeBy: none
+		sourceColumn: Contact Address 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Country/Region Code'
+		dataType: string
+		lineageTag: 86722964-e7c9-435a-af43-405a4b940cf4
+		sourceLineageTag: Contact Country/Region Code
+		summarizeBy: none
+		sourceColumn: Contact Country/Region Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact IC Partner Code'
+		dataType: string
+		lineageTag: 2076b0ae-5c72-44eb-8024-89a588f41627
+		sourceLineageTag: Contact IC Partner Code
+		summarizeBy: none
+		sourceColumn: Contact IC Partner Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Name'
+		dataType: string
+		lineageTag: 3716a6b3-407b-4a8f-a5aa-b8c7254d5695
+		sourceLineageTag: Contact Name
+		summarizeBy: none
+		sourceColumn: Contact Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Payment Method Code'
+		dataType: string
+		lineageTag: 72a50b3e-37b4-4ad1-81dc-030b5258d86c
+		sourceLineageTag: Contact Payment Method Code
+		summarizeBy: none
+		sourceColumn: Contact Payment Method Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Payment Terms Code'
+		dataType: string
+		lineageTag: f53eec20-f316-4b68-acd6-04c22192d9af
+		sourceLineageTag: Contact Payment Terms Code
+		summarizeBy: none
+		sourceColumn: Contact Payment Terms Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Payment Terms ID'
+		dataType: string
+		lineageTag: fafff490-a306-4e65-9e48-4c1a75184881
+		sourceLineageTag: Contact Payment Terms ID
+		summarizeBy: none
+		sourceColumn: Contact Payment Terms ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Default Salesperson'
+		dataType: string
+		lineageTag: a95a1fb0-83b8-467d-abfd-2162a8ebf29a
+		sourceLineageTag: Contact Default Salesperson
+		summarizeBy: none
+		sourceColumn: Contact Default Salesperson
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Default Purchaser Code'
+		dataType: string
+		lineageTag: 38d087c6-8b08-466d-aef1-3a8cf23cbbe7
+		sourceLineageTag: Contact Default Purchaser Code
+		summarizeBy: none
+		sourceColumn: Contact Default Purchaser Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactKey
+		dataType: string
+		lineageTag: 15450726-8261-4040-83ee-ae24d8bff6ed
+		sourceLineageTag: ContactKey
+		summarizeBy: none
+		sourceColumn: ContactKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Contact = entity
+		mode: directLake
+		source
+			entityName: contact
+			expressionSource: 'DirectLake - Cur'
+
+	changedProperty = Name
+

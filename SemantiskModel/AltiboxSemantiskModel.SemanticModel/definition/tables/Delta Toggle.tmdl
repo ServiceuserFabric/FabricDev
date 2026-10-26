@@ -1,0 +1,34 @@
+table 'Delta Toggle'
+	lineageTag: 31a22f1a-fcf0-4638-b654-3babfe9a7c5f
+
+	column 'Delta Toggle'
+		lineageTag: 90408dd4-fadb-4542-81f8-02aff1e5bc44
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Delta Toggle]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delta Toggle Order'
+		formatString: 0
+		lineageTag: 2c4b596f-5458-40ae-89bb-469fcd7638d6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Delta Toggle Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Delta Toggle' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Delta Toggle", STRING,
+				    "Delta Toggle Order", INTEGER,
+				    {
+				        { "#", 0 },
+				        { "%", 1 }
+				    }
+				)
+
+	annotation PBI_Id = dfd58434f3df428bb5346ccf467a9d8c
+

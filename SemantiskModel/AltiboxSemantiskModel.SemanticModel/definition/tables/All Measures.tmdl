@@ -2517,7 +2517,7 @@ table 'All Measures'
 
 		changedProperty = FormatString
 
-	measure 'Antal Kunder Budget' = DISTINCTCOUNT(Budget[Kundebasen])
+	measure 'Antal Kunder Budget' = SUM ( Budget[Kundebasen] )
 		formatString: #,0
 		displayFolder: Budget
 		lineageTag: cd5032ee-1dd5-4d34-a3df-78b28f5bdcbb
@@ -2528,7 +2528,7 @@ table 'All Measures'
 
 		changedProperty = FormatString
 
-	measure 'Antal Churn Budget' = CALCULATE(COUNTROWS('Budget'),'Budget'[Churn] > 0)
+	measure 'Antal Churn Budget' = SUM(Budget[Churn])
 		formatString: #,0
 		displayFolder: Budget
 		lineageTag: f6917c71-4e04-43b9-9422-068f7172bf7c
@@ -2539,7 +2539,7 @@ table 'All Measures'
 
 		changedProperty = FormatString
 
-	measure 'Antal Salg Budget' = CALCULATE(COUNTROWS('Budget'),'Budget'[Salg] > 0)
+	measure 'Antal Salg Budget' = SUM(Budget[Salg])
 		formatString: #,0
 		displayFolder: Budget
 		lineageTag: 5e29878b-f31f-4b4e-a7d4-d8fcf5ceb3d2
@@ -2549,6 +2549,1827 @@ table 'All Measures'
 		changedProperty = Name
 
 		changedProperty = FormatString
+
+	measure 'Input - Accounts Receivable' =
+			
+			// *** Accounts receivable - ANGIV KPI VARIABEL HER: *** \\
+			"Accounts Receivable"
+		displayFolder: Finance\0. Input
+		lineageTag: 05741e7d-a07f-46dc-a14e-e80baabdd57e
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Input - Cash' =
+			
+			// *** Cash - ANGIV KPI VARIABEL HER: *** \\
+			"Cash and Cash Equivalents"
+		displayFolder: Finance\0. Input
+		lineageTag: 890ee93a-1e9b-4736-b28d-e758406454e6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - Cost of Sales' =
+			
+			// *** Cost of Sales - ANGIV KPI VARIABEL HER: *** \\
+			"Cost of Goods"
+		displayFolder: Finance\0. Input
+		lineageTag: 228d3b26-cce9-4fce-a8bc-ce0f3a18648d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - EBITDA' =
+			
+			// *** "Profit before depreciation" - ANGIV KPI VARIABEL HER: *** \\
+			"EBITDA"
+		displayFolder: Finance\0. Input
+		lineageTag: 4bcb2ee9-0627-41f1-96d3-655770855e40
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - Fixed Assets' =
+			
+			// *** Fixed assets - ANGIV KPI VARIABEL HER: *** \\
+			"Non-Current Assets"
+		displayFolder: Finance\0. Input
+		lineageTag: eceea0fa-db5b-4e76-88bc-7a976b62a192
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - Fixed Costs' =
+			
+			// *** Fixed costs - ANGIV KPI VARIABEL HER: *** \\
+			"Operating & Administrative Costs"
+		displayFolder: Finance\0. Input
+		lineageTag: 442f7753-f730-4983-b7ac-b0aa8ca4bcd6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - Inventory' =
+			
+			// *** Inventories - ANGIV KPI VARIABEL HER: *** \\
+			"Inventory"
+		displayFolder: Finance\0. Input
+		lineageTag: 0855382c-dded-4841-b976-5299fd894098
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Input - Revenue' =
+			
+			// *** SALES - ANGIV KPI VARIABEL HER: *** \\
+			"Revenue"
+		displayFolder: Finance\0. Input
+		lineageTag: 57922ecc-767c-420d-b689-b056a40c59d7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Sum of Finance Amount GCY' = SUM('Finance Transactions'[Finance Amount GCY])
+		formatString: #,0.00
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: c89ecdd7-24fb-4a29-854b-b986529b331a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+	measure 'Sum of Finance Amount LCY' = SUM('Finance Transactions'[Finance Amount LCY])
+		formatString: 0.00
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 2e171d33-b617-40e3-ab6d-3e6a76815338
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+	measure 'P&L Values' = ```
+			1
+			
+			// This is only used in Excel when you generate the P&L using the Finance Reporting Calculation Group 
+			// as a placeholder for the values that the calculation group then shifts the context for.
+			// It can also be used in the report, but then you can't use drill-through, color formatting, etc.
+			```
+		formatString: 0
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 4d78ccc4-b410-4a68-ab05-ae421af57f85
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Finance Amount BS LCY' =
+			CALCULATE (
+			    [Sum of Finance Amount LCY],
+			    FILTER (
+			        ALL ( 'Calendar'[Date] ),
+			        'Calendar'[Date] <= MAX ( 'Calendar'[Date] )
+			    ),
+			    'Account'[Account Statement Type] = "Balance Sheet"
+			)
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 9cee5d50-f7cc-431c-8aca-3bc9cc37f955
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Finance Amount BS GCY' =
+			CALCULATE(
+			    [Sum of Finance Amount GCY],
+			    FILTER(
+			        ALL('Calendar'[Date]),
+			        'Calendar'[Date] <= MAX('Calendar'[Date])
+			    ),
+			    'Account'[Account Statement Type] = "Balance Sheet"
+			)
+		formatString: #,0.00
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 39a32754-28d3-439c-8e04-a9e02625f0c7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+	measure 'Finance Amount BS' =
+			SWITCH(
+			    SELECTEDVALUE('Currency Display'[Currency Display], "LCY"),
+			    "GCY", [Finance Amount BS GCY],
+			    [Finance Amount BS LCY]
+			)
+		formatString: #,0
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 65e4cb27-ca68-4240-a9b5-7743667e764e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Finance Amount BS LCY Budget' =
+			CALCULATE (
+			    [Sum of Finance Amount LCY],
+			    FILTER (
+			        ALL ( 'Calendar'[Date] ),
+			        'Calendar'[Date] <= MAX ( 'Calendar'[Date] )
+			    ),
+			    'Account'[Account Statement Type] = "Balance Sheet"
+			)
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: c4a4515e-1933-4c47-a26f-9758593b7a5d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Finance Amount IS' =
+			CALCULATE(
+			    SWITCH(
+			        SELECTEDVALUE('Currency Display'[Currency Display], "LCY"),
+			        "GCY", [Sum of Finance Amount GCY],
+			        [Sum of Finance Amount LCY]
+			    ),
+			    'Account'[Account Statement Type] = "Income Statement"
+			)
+		formatString: #,0
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: 4d781282-814c-450c-a104-f8275c1fd493
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Finance Transaction Tx' =
+			CALCULATE(
+			    SWITCH(
+			        SELECTEDVALUE('Currency Display'[Currency Display], "LCY"),
+			        "GCY", [Sum of Finance Amount GCY],
+			        [Sum of Finance Amount LCY]
+			    ),
+			    'Account'[Account Statement Type] = "Income Statement"
+			)
+		isHidden
+		displayFolder: Finance\1. Actuals\1. Base\_Support
+		lineageTag: d92d1240-71d4-442b-9895-ce076d8b6f43
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Finance Amount' =
+			
+			[Finance Amount IS]+[Finance Amount BS]
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\1. Base
+		lineageTag: cdab4309-7f86-4073-873d-845c44e4b42f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Finance Amount ABS' = ABS([Finance Amount])
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\1. Base
+		lineageTag: 82db1252-a43f-4ae7-b8dd-6e1c181475dc
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Finance Transaction Amount' =
+			/* This measure supports the needs to show differences in the balance sheet - as the default measure aggregates */
+			[Finance Transaction Tx]
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\1. Base
+		lineageTag: b5986f5e-fc11-4a2d-95c7-8c0e8224eb12
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Actuals FY' =
+			
+			
+			CALCULATE(
+			    [Finance Amount],
+			    ALL('Calendar'),
+			    VALUES('Calendar'[År])
+			)
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 1f5bcbf3-b825-4a23-87b5-cb8f0a241e5d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Actuals LY' = CALCULATE([Finance Amount], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 225108e3-d7c2-47df-a7fc-8a8b8a4af1d0
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Actuals FY LY' =
+			
+			
+			CALCULATE (
+			    [Actuals FY],
+			    SAMEPERIODLASTYEAR('Calendar'[Date])
+			)
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 55de3389-5fa6-47a6-b588-0ba03c11d6a2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Actuals YTD' =
+			
+			CALCULATE (
+			            [Finance Amount],            DATESYTD ('Calendar'[Date] ),
+			            ALL('Calendar'[Date])
+			            )
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 7dff1563-194f-43ad-956f-c66404834626
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Actuals YTD LY' = CALCULATE([Actuals YTD], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: a65caa55-88b5-40b2-9b51-9cff499a9b49
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget Amount' =
+			SWITCH (
+			    SELECTEDVALUE ( 'Currency Display'[Currency Display], "LCY" ),
+			    "GCY", SUM ( 'Finance Budgets'[Budget Amount GCY] ),
+			    SUM ( 'Finance Budgets'[Budget Amount] )
+			)
+		formatString: #,0
+		displayFolder: Finance\2. Budget\1. Base
+		lineageTag: 02301056-5d96-435b-9249-a65c457f0964
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget Amount ABS' = ```
+			ABS([Budget Amount]) 
+			```
+		formatString: #,0
+		displayFolder: Finance\2. Budget\1. Base
+		lineageTag: d4b8a90f-2a0d-4e8f-ac2a-885651ec219b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV (Actuals vs Budget)' = [Finance Amount] - [Budget Amount]
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 8f5f6c1d-8d96-4701-809a-f696e2e8b8c8
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV (Actuals vs Budget) YTD' =
+			CALCULATE (
+			            [DEV (Actuals vs Budget)],
+			            DATESYTD ('Calendar'[Date] ),
+			            ALL('Calendar'[Date])
+			            )
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 602272e3-b37b-4133-80b8-a1802a66520d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV (Actuals vs LY)' = [Finance Amount] - [Actuals LY]
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 94d2ab09-4d88-4cbf-bbec-0bfd64a1c782
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV (Actuals vs LY) YTD' =
+			CALCULATE(
+			    [DEV (Actuals vs LY)],
+			    DATESYTD( 'Calendar'[Date] ),
+			    ALL( 'Calendar'[Date] )
+			)
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: d7177e70-eb14-409c-98c6-36cd7275bc5f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV % (Actuals vs Budget)' =
+			
+			
+			VAR _ACT = [Finance Amount]
+			
+			VAR _BUD = [Budget Amount]
+			
+			RETURN
+			
+			DIVIDE( (_ACT - _BUD) , _BUD )
+		formatString: #,0
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: ff20bee0-86b0-4726-824b-e12fcfa76d1e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'DEV % (Actuals vs LY)' = DIVIDE( [Finance Amount] - [Actuals LY], ABS( [Actuals LY] ) )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 979deb0d-fa1e-492c-96bd-247d7c98b5eb
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'DEV % (Actuals vs LY) YTD' =
+			CALCULATE(
+			    [DEV % (Actuals vs LY)],
+			    DATESYTD( 'Calendar'[Date] ),
+			    ALL( 'Calendar'[Date] )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Finance\1. Actuals\2. Rapportering\Amount\P&L
+		lineageTag: 85c8bb38-35f3-4968-b2a9-3b565e8e9597
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Actuals, %' =
+			
+			VAR _Revenue =
+			    CALCULATE (
+			        [Finance Amount],'Account Schedule'[Account Schedule - Level 1] = "OMSÆTNING",
+			        ALL ( 'Account Schedule')
+			    )
+			VAR _Actuals =
+			    ABS( [Finance Amount] )
+			VAR _Result =
+			    IF (
+			        MAX ( 'Account Schedule'[Account Schedule - Level 1] ) = "OMSÆTNING",
+			        "",
+			        DIVIDE ( _Actuals, _Revenue )
+			    )
+			RETURN
+			_Result
+		formatString: " #,0.0\ %;-#,0.0\ %;#,0.0\ %"
+		displayFolder: Finance\1. Actuals\2. Rapportering\%
+		lineageTag: 7be278db-f390-4069-944d-8eb441fde8ae
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Actuals LY, %' =
+			
+			VAR _Revenue =
+			    CALCULATE (
+			        [Actuals LY],
+			        'Account Schedule'[Account Schedule - Level 1] = "OMSÆTNING",
+			        ALL ( 'Account Schedule')
+			    )
+			VAR _Actuals_LY =
+			    ABS ( [Actuals LY] )
+			VAR _Result =
+			    IF (
+			        MAX ( 'Account Schedule'[Account Schedule - Level 1] ) = "OMSÆTNING",
+			        "",
+			        DIVIDE ( _Actuals_LY, _Revenue )
+			    )
+			RETURN
+			_Result
+		displayFolder: Finance\1. Actuals\2. Rapportering\%
+		lineageTag: 86686524-e263-4e9c-8de4-49eb0de71f5c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual LY Index' = DIVIDE([Finance Amount], [Actuals LY])*100
+		displayFolder: Finance\1. Actuals\2. Rapportering\Index
+		lineageTag: 77ff4a13-1562-4cf1-bf78-e19de12d23ad
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget FY' = CALCULATE( [Budget Amount], ALL( Calendar ), VALUES( 'Calendar'[År] ) )
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Amount
+		lineageTag: 10db5d1e-6cbe-41e1-9d70-1172fc485b6e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget LY' = CALCULATE([Budget Amount], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Amount
+		lineageTag: 51beb93d-96c6-4e62-9778-d623f3216934
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget FY LY' =
+			
+			
+			CALCULATE (
+			    [Budget FY],
+			    SAMEPERIODLASTYEAR('Calendar'[Date])
+			)
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Amount
+		lineageTag: 7397692e-1d31-42aa-a8ae-dda4d1b0c9bd
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget YTD' = CALCULATE( [Budget Amount], DATESYTD( Calendar[Date] ), ALL( Calendar[Date] ) )
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Amount
+		lineageTag: 8fa4d770-9cff-4416-8874-f6705f0465b2
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Estimate = ```
+			VAR _BudgetFY = [Budget FY]
+			
+			VAR _BudgetYTD = [Budget YTD]
+			
+			VAR _ActualYTD = [Actuals YTD]
+			
+			VAR _RESULT = _BudgetFY - _BudgetYTD + _ActualYTD
+			
+			RETURN
+			    
+			_RESULT
+			```
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Forecast
+		lineageTag: ae7fa868-ea4f-4288-83fa-363e5f764d11
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Estimate ABS' = ABS( [Estimate] )
+		formatString: #,0
+		displayFolder: Finance\2. Budget\2. Rapportering\Forecast
+		lineageTag: 18d9dc52-1e5a-4515-a415-8b62fd40b25a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Budget Index' = DIVIDE([Finance Amount], [Budget Amount])*100
+		displayFolder: Finance\2. Budget\2. Rapportering\Index
+		lineageTag: e733a1f1-7d49-4faa-9129-373e42d97cb8
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cash Actual' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 3] = [Input - Cash] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: a38e4a1a-2eb4-4837-a656-d7cfa8397f37
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cost of Sales Actual' = ```
+			
+			CALCULATE (
+			    [Finance Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Cost of Sales] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 2432a9e2-45c3-4d48-8c1a-938b1fb5be2b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Inventory Actual' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 3] = [Input - Inventory] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 73049feb-dbc1-4dc1-925c-6cffc0b32a96
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivables Actual' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 3] = [Input - Accounts Receivable] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 399e0158-27c0-458d-b756-952cb905c961
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Revenue Actual' =
+			
+			CALCULATE (
+			    [Finance Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 01cbfb9d-7fd9-488a-8c3e-9345658f9f6b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Cost Actual' = ```
+			
+			CALCULATE (
+			    [Finance Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Costs] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 4d36d526-c888-42c9-a200-b67209220b46
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Assets Actual' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Assets] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: f8ec2d0a-5076-4de3-b0f9-bf098f1f3c85
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Current Assets Actual' =
+			
+			[Cash Actual] + [Receivables Actual] + [Inventory Actual]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 09dc96cf-fb57-4afc-9670-98d4fee902a5
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Assets Actual' =
+			
+			[Current Assets Actual] + [Fixed Assets Actual]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: a95c68bc-2c05-4989-98f6-5d39660b691b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Gross Margin Actual' =
+			
+			[Revenue Actual] - [Cost of Sales Actual]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: e7895fb5-36e1-4f9a-abbd-9691bfaa8296
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Gross Margin Actual %' = ```
+			DIVIDE( [Gross Margin Actual] , [Revenue Actual] ) 
+			```
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 5c39d4b8-db50-47fa-b818-2d47eb5c2271
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ResFin Actual' =
+			
+			[Gross Margin Actual] - [Fixed Cost Actual]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 3f51da95-3c5f-44fe-9086-9ee04fabe949
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'ROA % Actual' = ```
+			DIVIDE ( [Revenue Actual], [Assets Actual], 0 )
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 9e4640ce-ff21-4c45-b14f-335376924a56
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'EBIT% Actual' = DIVIDE ( [ResFin Actual], [Revenue Actual], 0 )
+		formatString: " 0.0\ %;-0.0\ %;0.0\ %"
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: e3d56b50-47c0-49b2-a59d-e25d7eed812a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'EBITDA% Actual' = ```
+			
+			VAR Var1 =
+			    CALCULATE (
+			        [Finance Amount ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 1] = [Input - EBITDA] 
+			    )
+			)
+			VAR Var2 =
+			    CALCULATE (
+			        [Finance Amount ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue]
+			    )
+			)
+			RETURN
+			    DIVIDE ( Var1, Var2, 0 )
+			```
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 7f487e51-63df-43f7-b07f-697434683c97
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROIC % Actual' = [EBIT% Actual] * [ROA % Actual]
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 1a985ab5-3b9b-4b9f-a836-a6b4681955b9
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cash Budget' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY Budget],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 3] = [Input - Cash] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 05c5bc94-81f6-45f2-8355-370e4d40fe90
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cost of Sales Budget' = ```
+			
+			CALCULATE (
+			    [Budget Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Cost of Sales] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 41b425f3-48d3-48c2-8790-7459031ba072
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Assets Budget' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY Budget],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Assets] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 814017f2-eb51-4915-a14e-250ffc8a23cb
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Cost Budget' = ```
+			
+			CALCULATE (
+			    [Budget Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Costs] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: aa82914c-1e44-4fab-bd6c-596c7860f2da
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Inventory Budget' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY Budget],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 3] = [Input - Inventory] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: aa693c64-e0b2-4f69-a91b-dbc17dc13a3c
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivables Budget' =
+			
+			CALCULATE (
+			    [Finance Amount BS LCY Budget],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Accounts Receivable] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: ff75d226-5db7-495a-a949-05c5567cd0fe
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Revenue Budget' =
+			
+			CALCULATE (
+			    [Budget Amount ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 289603f6-d86d-4233-a5bf-506e7f0885b6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Current Assets Budget' =
+			
+			[Cash Budget] + [Receivables Budget] + [Inventory Budget]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: a7566aa8-902d-4410-b775-8d14f8d938d9
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Assets Budget' =
+			
+			[Current Assets Budget] + [Fixed Assets Budget]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 56e331ae-3742-450d-9b8e-93f98f40a516
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Gross Margin Budget' =
+			
+			[Revenue Budget] - [Cost of Sales Budget]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 96a505eb-1f3e-45b2-8aef-b7fcd4880523
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Gross Margin Budget %' = ```
+			DIVIDE( [Gross Margin Budget] , [Revenue Budget] ) 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 897b3333-bcef-4090-8ee2-2cfa85cb25ca
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'ResFin Budget' =
+			
+			[Gross Margin Budget] - [Fixed Cost Budget]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: ded42a33-a257-4723-b9e9-7fecdbe94e9e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'EBIT% Budget' = DIVIDE ( [ResFin Budget], [Revenue Budget], 0 )
+		formatString: " 0.0\ %;-0.0\ %;0.0\ %"
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 167c5c8c-e7e7-4c30-befc-3415af7440f0
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'EBITDA% Budget' = ```
+			
+			VAR Var1 =
+			    CALCULATE (
+			        [Budget Amount ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 1] = [Input - EBITDA] 
+			    )
+			)
+			VAR Var2 =
+			    CALCULATE (
+			        [Budget Amount ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue]
+			    )
+			)
+			RETURN
+			    DIVIDE ( Var1, Var2, 0 )
+			```
+		formatString: " 0.0\ %;-0.0\ %;0.0\ %"
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: c2c9f911-0c95-47fa-a984-7ef5f09844f5
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'ROA % Budget' = DIVIDE ( [Revenue Budget], [Assets Budget], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: dd6b6e67-efc3-4655-b062-83d959e2fc8e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'ROIC % Budget' = [EBIT% Budget] * [ROA % Budget]
+		formatString: 0.0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Budget
+		lineageTag: 499c7087-7e09-435a-9903-3362a4585c6d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'DEV EBIT %' = [EBIT% Actual] - [EBIT% Budget]
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: dce454d2-8b0c-4915-b6c4-8992ba9c4d33
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DEV Gross Margin %' = ```
+			
+			[Gross Margin Actual %] - [Gross Margin Budget %]
+			
+			```
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 636879d6-8d67-4d62-aad2-277e631a22bb
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DEV ROA %' = [ROA % Actual] - [ROA % Budget]
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 52875549-cfb3-4863-a6ee-962ecc4b92b3
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DEV ROIC %' = [ROIC % Actual] - [ROIC % Budget]
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Actual
+		lineageTag: 8cd81ea8-712a-46d2-926a-9d992cd7499d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cash Estimate' =
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Cash] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 79266adb-2781-4d21-b6d6-c7483232130d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cost of Sales Estimate' = ```
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Cost of Sales] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: fb06e110-32ae-4fc3-a846-d4912ca5d048
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Assets Estimate' =
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Assets] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: be9eaae1-361c-4a6c-9c21-073316992f5e
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Fixed Cost Estimate' = ```
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Fixed Costs] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			) 
+			```
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: b8721fa4-e114-478c-89a6-ba26b740dbad
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Inventory Estimate' =
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Inventory] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 4aa10158-d18a-4e31-a6f5-ed734f0724e7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivables Estimate' =
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Accounts Receivable] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 4582ec87-b89c-4b17-b131-941e71531e73
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Revenue Estimate' =
+			
+			CALCULATE (
+			    [Estimate ABS],
+			    FILTER (
+			        ALLSELECTED ( 'Account Schedule' ),
+			        'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue] // Tjek at levelangivelse er korrekt ift. det valgte hierarki
+			    )
+			)
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: fded84ab-233d-4de0-8267-2bfd2e0dc503
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Current Assets Estimate' =
+			
+			[Cash Estimate] + [Receivables Estimate] + [Inventory Estimate]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 8a323114-823d-4b25-9156-d8e64f1ac45a
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Assets Estimate' =
+			
+			[Current Assets Estimate] + [Fixed Assets Estimate]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 27eac640-943e-4815-a794-0e51df018894
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Gross Margin Estimate' =
+			
+			[Revenue Estimate] - [Cost of Sales Estimate]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: f49272e2-65f0-406d-87e3-aa4db9c55846
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'ResFin Estimate' =
+			
+			[Gross Margin Estimate] - [Fixed Cost Estimate]
+		formatString: #,0
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: da887dd7-060e-4766-8f02-b568bf41e7f8
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'ROA Estimate' = DIVIDE ( [Revenue Estimate], [Assets Estimate], 0 )
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 6f59aaa8-9a46-4abb-be83-62ad2c7553e6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EBIT% Estimate' = DIVIDE ( [ResFin Estimate], [Revenue Estimate], 0 )
+		formatString: " 0.0\ %;-0.0\ %;0.0\ %"
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: da101f96-ad6e-4c03-8a23-f0f8a6ac6191
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'EBITDA% Estimate' = ```
+			
+			VAR Var1 =
+			    CALCULATE (
+			        [Estimate ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 1] = [Input - EBITDA] 
+			    )
+			)
+			VAR Var2 =
+			    CALCULATE (
+			        [Estimate ABS],
+			        FILTER ( ALLSELECTED ( 'Account Schedule' ), 'Account Schedule'[Account Schedule - Level 2] = [Input - Revenue]
+			    )
+			)
+			RETURN
+			    DIVIDE ( Var1, Var2, 0 )
+			```
+		formatString: " 0.0\ %;-0.0\ %;0.0\ %"
+		displayFolder: Finance\3. Key figures\0. DuPont\DuPont Estimate
+		lineageTag: 950e4764-3f91-4639-90f1-d1e299e34d17
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'PL Relative Variance - US Format' = ```
+			// Relative Variance with US format
+			VAR _Actual = ROUND([Finance Amount], 0)
+			VAR _Budget = ROUND([Budget Amount], 0)
+			VAR _VariancePct = 
+			    IF(
+			        NOT(ISBLANK(_Budget)) && _Budget <> 0,
+			        ROUND(DIVIDE(_Actual - _Budget, ABS(_Budget)) * 100, 0),
+			        BLANK()
+			    )
+			VAR _IsTotalRow = NOT(ISINSCOPE('Account Schedule'[Account Schedule - Level 2]))
+			VAR _Label = 
+			    IF(
+			        NOT(ISBLANK(_VariancePct)),
+			        IF(
+			            _VariancePct >= 0,
+			            "+" & FORMAT(_VariancePct, "#,0", "en-US") & "%",
+			            FORMAT(_VariancePct, "#,0", "en-US") & "%"
+			        ),
+			        BLANK()
+			    )
+			RETURN
+			IF(
+			    NOT(ISBLANK(_VariancePct)),
+			    PowerofBI.IBCS.BarChart.RelativeVariance(
+			        _VariancePct,
+			        _Label,
+			        _IsTotalRow,
+			        0  // Default 350px width
+			    ),
+			    BLANK()
+			)
+			```
+		displayFolder: Finance\4. Other\IBCS Charts
+		lineageTag: 9934eb07-dece-4528-9dee-09013bf0cda9
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'PL Waterfall US Format' = ```
+			// Waterfall with US number format (using . as decimal separator)
+			// This ensures proper SVG scaling
+			// ADJUSTED: Scale factor of 2 for larger bars
+			
+			VAR _Variance = [Finance Amount] - [Budget Amount]
+			VAR _IsTotalRow = NOT(ISINSCOPE('Account Schedule'[Account Schedule - Level 2]))
+			
+			// IMPORTANT: Use whole numbers (no decimals) to avoid decimal separator issues
+			VAR _VarianceRounded = ROUND(_Variance, 0)
+			
+			// Format label with US format (. as decimal, , as thousands separator)
+			VAR _Label = 
+			    IF(
+			        _VarianceRounded >= 0,
+			        "+" & FORMAT(_VarianceRounded, "#,0", "en-US"),
+			        FORMAT(_VarianceRounded, "#,0", "en-US")
+			    )
+			
+			// Calculate max/min variance across all rows - using whole numbers
+			VAR _AllVariances = 
+			    CALCULATETABLE(
+			        ADDCOLUMNS(
+			            VALUES('Account Schedule'[Account Schedule - Level 2]),
+			            "@Var", ROUND([Finance Amount] - [Budget Amount], 0)
+			        ),
+			        ALLSELECTED('Account Schedule')
+			    )
+			VAR _MaxVar = MAXX(_AllVariances, [@Var])
+			VAR _MinVar = MINX(_AllVariances, [@Var])
+			
+			// Calculate scale - using whole numbers
+			// ADJUSTED: Divide by 2 to double the visual size
+			VAR _AllActuals = 
+			    CALCULATETABLE(
+			        ADDCOLUMNS(
+			            VALUES('Account Schedule'[Account Schedule - Level 2]),
+			            "@Act", ROUND(ABS([Finance Amount]), 0)
+			        ),
+			        ALLSELECTED('Account Schedule')
+			    )
+			VAR _AllBudgets = 
+			    CALCULATETABLE(
+			        ADDCOLUMNS(
+			            VALUES('Account Schedule'[Account Schedule - Level 2]),
+			            "@Bud", ROUND(ABS([Budget Amount]), 0)
+			        ),
+			        ALLSELECTED('Account Schedule')
+			    )
+			VAR _MaxAbs = MAX(MAXX(_AllActuals, [@Act]), MAXX(_AllBudgets, [@Bud])) / 2
+			
+			RETURN
+			IF(
+			    NOT(ISBLANK(_Variance)),
+			    PowerofBI.IBCS.BarChart.AbsoluteVariance(
+			        _VarianceRounded,      // Use rounded whole number
+			        _Label,                 // US formatted label
+			        _IsTotalRow,
+			        _MaxVar / 2,           // Adjusted max variance (factor 2)
+			        _MinVar / 2,           // Adjusted min variance (factor 2)
+			        _MaxAbs,               // Adjusted max absolute (factor 2)
+			        0,                     // Default width (350px)
+			        0                     // Default right padding
+			    ),
+			    BLANK()
+			)
+			```
+		displayFolder: Finance\4. Other\IBCS Charts
+		lineageTag: bbff859b-47b7-4522-9c13-77f0fca9ef96
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Bullet Max' = 1
+		displayFolder: Finance\4. Other\Key Figures KPI
+		lineageTag: 7a2c200d-3cee-4d14-a05e-169a191395c6
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Color EBIT %' =
+			
+			ColorByDeviation(
+			    [DEV EBIT %]
+			)
+		displayFolder: Finance\4. Other\Key Figures KPI
+		lineageTag: 6df64b3e-332e-4bbe-8754-f343d1772b5b
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color Gross Margin Deviation %' = ```
+			
+			ColorByDeviation(
+			    [DEV Gross Margin %]
+			)
+			
+			```
+		displayFolder: Finance\4. Other\Key Figures KPI
+		lineageTag: a2b682df-ece0-4f96-adb8-52eec7d23efc
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color ROA %' =
+			
+			ColorByDeviation(
+			    [DEV ROA %]
+			)
+		displayFolder: Finance\4. Other\Key Figures KPI
+		lineageTag: 9c7427e6-75f2-444b-9e85-f6d5c4456e7f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color ROIC %' =
+			
+			ColorByDeviation(
+			    [DEV ROIC %]
+			)
+		displayFolder: Finance\4. Other\Key Figures KPI
+		lineageTag: 777b2a60-3278-4029-9873-409730e72c46
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color DEV P&L (vs Budget)' = IF( ISBLANK( [DEV (Actuals vs Budget)] ), "#000000", IF( [DEV (Actuals vs Budget)] >= 0, "#006400", "#8B0000" ) )
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 149054ec-9894-46ad-a2ea-6ad9e3a0c1a1
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color DEV P&L (vs Budget) YTD' = IF( ISBLANK( [DEV (Actuals vs Budget) YTD] ), "#000000", IF( [DEV (Actuals vs Budget) YTD] >= 0, "#006400", "#8B0000" ) )
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 436018df-11f3-4ea7-975b-c8624e98ff87
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color DEV P&L (vs LY)' = IF( ISBLANK( [DEV (Actuals vs LY)] ), "#000000", IF( [DEV (Actuals vs LY)] >= 0, "#006400", "#8B0000" ) )
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 7d93f061-8a49-437e-99e7-6ac9177ebb9f
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Color DEV P&L (vs LY) YTD' = IF( ISBLANK( [DEV (Actuals vs LY) YTD] ), "#000000", IF( [DEV (Actuals vs LY) YTD] >= 0, "#006400", "#8B0000" ) )
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 15a299d1-5a46-4ce2-bef3-a751553b4735
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Icon DEV P&L (vs Budget)' = IF( ISBLANK( [DEV (Actuals vs Budget)] ), 1, IF( [DEV (Actuals vs Budget)] >= 0, 2, 0 ) )
+		formatString: 0
+		displayFolder: Finance\8. CF Measures
+		lineageTag: a756cbf9-33d3-419c-a6b9-91d0b3ef7cc0
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Icon DEV P&L (vs Budget) YTD' = IF( ISBLANK( [DEV (Actuals vs Budget) YTD] ), 1, IF( [DEV (Actuals vs Budget) YTD] >= 0, 2, 0 ) )
+		formatString: 0
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 980ec28d-1876-4155-b0c5-e9dc3a51efad
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Icon DEV P&L (vs LY)' = IF( ISBLANK( [DEV (Actuals vs LY)] ), 1, IF( [DEV (Actuals vs LY)] >= 0, 2, 0 ) )
+		formatString: 0
+		displayFolder: Finance\8. CF Measures
+		lineageTag: cad96869-5468-470f-9f75-e8921c2268fe
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Icon DEV P&L (vs LY) YTD' = IF( ISBLANK( [DEV (Actuals vs LY) YTD] ), 1, IF( [DEV (Actuals vs LY) YTD] >= 0, 2, 0 ) )
+		formatString: 0
+		displayFolder: Finance\8. CF Measures
+		lineageTag: 35ce102c-a955-400d-90e1-dbf5f782249d
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
 
 	column ID
 		dataType: int64

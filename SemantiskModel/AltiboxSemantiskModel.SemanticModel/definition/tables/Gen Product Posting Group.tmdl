@@ -1,0 +1,39 @@
+table 'Gen Product Posting Group'
+	lineageTag: b10b824f-4c2d-4746-88fc-ccf41dcb191d
+	sourceLineageTag: [dbo].[gen_product_posting_group]
+
+	column GenProductPostingGroupKey
+		dataType: string
+		lineageTag: adc279f4-bd7a-45e2-ba0e-b679992bb945
+		sourceLineageTag: GenProductPostingGroupKey
+		summarizeBy: none
+		sourceColumn: GenProductPostingGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Code'
+		dataType: string
+		lineageTag: 37428fdc-577b-4537-8169-65ad744b20d5
+		sourceLineageTag: Gen Product Posting Group Code
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gen Product Posting Group Description'
+		dataType: string
+		lineageTag: 71c73692-4bed-432a-8780-e93a9274d920
+		sourceLineageTag: Gen Product Posting Group Description
+		summarizeBy: none
+		sourceColumn: Gen Product Posting Group Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gen Product Posting Group' = entity
+		mode: directLake
+		source
+			entityName: gen_product_posting_group
+			expressionSource: 'DirectLake - Cur'
+
+	changedProperty = Name
+

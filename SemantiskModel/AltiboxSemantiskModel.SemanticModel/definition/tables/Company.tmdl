@@ -1,0 +1,48 @@
+table Company
+	lineageTag: 70e4340f-a847-4ce6-94a8-11b87c967ac3
+	sourceLineageTag: [dbo].[company]
+
+	column CompanyKey
+		dataType: string
+		lineageTag: cfeb918a-734e-40ea-903f-7e6dec446390
+		sourceLineageTag: CompanyKey
+		summarizeBy: none
+		sourceColumn: CompanyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Currency'
+		dataType: string
+		lineageTag: 658ac17e-bdf1-45bc-a75c-6c24d6f268aa
+		sourceLineageTag: Company Currency
+		summarizeBy: none
+		sourceColumn: Company Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Name'
+		dataType: string
+		lineageTag: 3ad9d3f6-ff37-43cb-9b57-f7f55a01f201
+		sourceLineageTag: Company Name
+		summarizeBy: none
+		sourceColumn: Company Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Country'
+		dataType: string
+		lineageTag: ef24eec6-df6c-43bd-9880-45236a629aa3
+		sourceLineageTag: Company Country
+		summarizeBy: none
+		sourceColumn: Company Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Company = entity
+		mode: directLake
+		source
+			entityName: company
+			expressionSource: 'DirectLake - Cur'
+
+	changedProperty = Name
+

@@ -4,13 +4,21 @@ table Budget
 
 	column Dato
 		dataType: dateTime
-		formatString: General Date
+		formatString: dd-mm-yyyy
 		lineageTag: c3c89d96-f057-43bc-bc6f-239ab22bb32f
 		sourceLineageTag: Dato
 		summarizeBy: none
 		sourceColumn: Dato
 
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
 		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	column ProduktGruppe
 		dataType: string

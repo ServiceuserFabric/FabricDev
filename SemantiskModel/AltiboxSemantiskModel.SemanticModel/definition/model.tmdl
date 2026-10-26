@@ -6,11 +6,11 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid"]
+annotation PBI_QueryOrder = ["DirectLake - Golden_lakehouse","DirectLake - AltiboxMetadata","DirectLake - Puzzel_Altibox","DirectLake - MicrosoftAD","DirectLake - GoogleAnalytics_Altibox","Tid","DirectLake - Cur"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit","DaxQueryView_Desktop"]
 
 ref table Customer
 ref table Product_config
@@ -77,4 +77,19 @@ ref table TV_ProductConfig
 ref table TV_ProductGroup_ProductConfig
 ref table Segment
 ref table InfrastructureOwner
+ref table Account
+ref table 'Account Schedule'
+ref table Company
+ref table Contact
+ref table dse_afdeling
+ref table dse_customercontract
+ref table dse_netprovider
+ref table 'Finance Budgets'
+ref table 'Finance Transactions'
+ref table 'Gen Business Posting Group'
+ref table 'Gen Product Posting Group'
+ref table item
+ref table salesperson_purchaser
+ref table 'Currency Display'
+ref table 'Delta Toggle'
 
